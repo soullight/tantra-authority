@@ -3,197 +3,74 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Tantric Match Test — Tantra Authority</title>
-<meta name="description" content="A 30-question diagnostic across active/receptive, body/mind, kink, energy, and shadow axes. Generates a portable compatibility code. Free to take. The output becomes your match key on the Honest Fetish Matching service.">
+<title>The Psychosexual Psychological Test — Tantra Authority</title>
+<meta name="description" content="A three-tier diagnostic across the body's actual psychosexual architecture. Quick (10 questions, 3 minutes), Standard (30 questions, 10 minutes), or Deep Dive (100 questions, 30 minutes). Generates a portable compatibility code. Free to take. The output becomes your match key on the Honest Fetish Matching service.">
 <link rel="stylesheet" href="styles.css">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>○</text></svg>">
 <style>
-  /* Test-specific styles */
-  .test-intro {
-    background: linear-gradient(135deg, rgba(139,58,58,0.06), rgba(184,134,11,0.04));
-    padding: 32px;
-    border-radius: 10px;
-    margin-bottom: 32px;
-    border: 1px solid var(--border);
-  }
-  .test-intro h2 { margin-top: 0; font-size: 22px; }
-  .test-axes {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 14px;
-    margin: 20px 0;
-  }
-  .axis-card {
-    padding: 14px 16px;
-    background: rgba(255,255,255,0.6);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-  }
-  .axis-card .axis-label {
-    font-family: 'Inter', sans-serif;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 6px;
-  }
-  .axis-card .axis-poles {
-    font-size: 14px;
-    color: var(--text);
-    line-height: 1.4;
-  }
-
-  /* Quiz */
-  #quiz { margin-top: 32px; }
-  .question {
-    margin: 28px 0 32px;
-    padding-bottom: 28px;
-    border-bottom: 1px solid var(--border);
-  }
-  .question:last-of-type { border-bottom: none; }
-  .question-number {
-    font-family: 'Inter', sans-serif;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    margin-bottom: 8px;
-  }
-  .question h3 {
-    font-family: 'Charter', serif;
-    font-size: 19px;
-    font-weight: 700;
-    line-height: 1.35;
-    margin: 0 0 18px;
-  }
-  .scale {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 10px;
-  }
-  .scale-options {
-    display: flex;
-    justify-content: space-between;
-    gap: 6px;
-    flex-wrap: wrap;
-  }
-  .scale-anchor {
-    font-size: 13px;
-    color: var(--text-muted);
-    flex: 1;
-    min-width: 120px;
-  }
-  .scale-anchor.left { text-align: left; }
-  .scale-anchor.right { text-align: right; }
-  .radio-row {
-    display: flex;
-    justify-content: space-between;
-    gap: 8px;
-    align-items: center;
-    margin-top: 4px;
-  }
-  .radio-row label {
-    flex: 1;
-    text-align: center;
-    padding: 10px 4px;
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    cursor: pointer;
-    background: rgba(255,255,255,0.4);
-    font-family: 'Inter', sans-serif;
-    font-size: 12px;
-    font-weight: 600;
-    color: var(--text-muted);
-    transition: all 0.12s;
-  }
-  .radio-row label:hover {
-    border-color: var(--accent-soft);
-    color: var(--text);
-  }
-  .radio-row input[type="radio"] { display: none; }
-  .radio-row input[type="radio"]:checked + label {
-    background: var(--accent);
-    color: #fff;
-    border-color: var(--accent);
-  }
-
-  .multi-choice {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap: 10px;
-  }
-  .multi-choice label {
-    padding: 12px 14px;
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    background: rgba(255,255,255,0.4);
-    font-size: 14px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    transition: all 0.12s;
-  }
-  .multi-choice label:hover { border-color: var(--accent-soft); }
-  .multi-choice input[type="checkbox"] { accent-color: var(--accent); }
-  .multi-choice input[type="checkbox"]:checked + span { color: var(--accent); font-weight: 600; }
-
-  #submit-row {
-    margin-top: 32px;
-    padding: 24px;
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    text-align: center;
-  }
-  #submit-btn {
-    padding: 16px 36px;
-    font-size: 14px;
-  }
-
-  #result {
-    display: none;
-    margin-top: 32px;
-    padding: 32px;
-    background: linear-gradient(135deg, rgba(139,58,58,0.08), rgba(184,134,11,0.05));
-    border: 2px solid var(--accent);
-    border-radius: 10px;
-    text-align: center;
-  }
-  #result.show { display: block; }
-  #result .your-code {
-    font-family: 'SF Mono', 'Fira Code', monospace;
-    font-size: 30px;
-    font-weight: 700;
-    color: var(--accent);
-    letter-spacing: 4px;
-    padding: 20px;
-    background: var(--bg);
-    border: 1px solid var(--accent);
-    border-radius: 8px;
-    margin: 18px auto;
-    display: inline-block;
-  }
-  .breakdown {
-    text-align: left;
-    margin: 24px 0;
-    display: grid;
-    gap: 10px;
-  }
-  .breakdown-row {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 14px;
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    font-family: 'Inter', sans-serif;
-    font-size: 14px;
-  }
-  .breakdown-label { color: var(--text-muted); }
-  .breakdown-value { color: var(--accent); font-weight: 700; }
+.test-intro { background: linear-gradient(135deg, rgba(139,58,58,0.06), rgba(184,134,11,0.04)); padding: 32px; border-radius: 10px; margin-bottom: 32px; border: 1px solid var(--border); }
+.test-intro h2 { margin-top: 0; font-size: 22px; }
+.tier-picker { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin: 24px 0; }
+.tier-card { padding: 22px; background: rgba(255,255,255,0.6); border: 2px solid var(--border); border-radius: 8px; cursor: pointer; transition: all 0.15s; text-align: left; font-family: inherit; }
+.tier-card:hover { border-color: var(--accent); background: rgba(255,255,255,0.85); }
+.tier-card.active { border-color: var(--accent); background: var(--bg-card); }
+.tier-card .tier-label { font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+.tier-card .tier-name { font-size: 22px; font-weight: 600; margin-bottom: 4px; }
+.tier-card .tier-meta { font-family: 'Inter', sans-serif; font-size: 13px; color: var(--text-muted); margin-bottom: 12px; }
+.tier-card .tier-desc { font-size: 14px; line-height: 1.5; color: var(--text); }
+.test-meta-fields { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; padding: 20px; background: rgba(255,255,255,0.5); border: 1px solid var(--border); border-radius: 8px; margin: 24px 0; }
+.test-meta-fields label { display: block; font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; }
+.test-meta-fields input, .test-meta-fields select, .ask-form textarea, .ask-form input, .ask-form select { width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: 6px; font-family: inherit; font-size: 15px; background: white; box-sizing: border-box; }
+.question { padding: 24px; margin: 18px 0; background: rgba(255,255,255,0.6); border: 1px solid var(--border); border-radius: 8px; }
+.question .q-number { font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+.question .q-text { font-size: 17px; line-height: 1.5; margin-bottom: 16px; font-weight: 500; }
+.question .q-note { font-size: 13px; color: var(--text-muted); margin-top: 8px; line-height: 1.4; }
+.scale-row { display: grid; grid-template-columns: 1fr auto 1fr; gap: 12px; align-items: center; }
+.scale-options { display: flex; gap: 6px; justify-content: center; }
+.scale-options label { display: flex; flex-direction: column; align-items: center; padding: 8px 4px; min-width: 44px; border: 1px solid var(--border); border-radius: 6px; cursor: pointer; font-family: 'Inter', sans-serif; font-size: 11px; color: var(--text-muted); transition: all 0.1s; user-select: none; }
+.scale-options input[type=radio] { margin-bottom: 4px; cursor: pointer; }
+.scale-options label:has(input:checked) { border-color: var(--accent); background: rgba(139,58,58,0.06); color: var(--accent); font-weight: 600; }
+.scale-anchor { font-family: 'Inter', sans-serif; font-size: 12px; color: var(--text-muted); }
+.scale-anchor.left { text-align: right; }
+.scale-anchor.right { text-align: left; }
+.multi-options { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; }
+.multi-options label { display: flex; align-items: flex-start; gap: 10px; padding: 12px 14px; border: 1px solid var(--border); border-radius: 6px; cursor: pointer; font-size: 14px; line-height: 1.4; background: white; transition: all 0.1s; }
+.multi-options label:has(input:checked) { border-color: var(--accent); background: rgba(139,58,58,0.06); }
+.multi-options input[type=checkbox], .multi-options input[type=radio] { margin-top: 3px; flex-shrink: 0; cursor: pointer; }
+.choice-options { display: flex; flex-direction: column; gap: 10px; }
+.choice-options label { display: flex; align-items: flex-start; gap: 10px; padding: 12px 14px; border: 1px solid var(--border); border-radius: 6px; cursor: pointer; font-size: 14px; line-height: 1.4; background: white; transition: all 0.1s; }
+.choice-options label:has(input:checked) { border-color: var(--accent); background: rgba(139,58,58,0.06); }
+.choice-options input { margin-top: 3px; flex-shrink: 0; cursor: pointer; }
+.section-header { margin: 32px 0 12px; padding-top: 24px; border-top: 1px solid var(--border); }
+.section-header .section-label { font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 4px; }
+.section-header .section-name { font-size: 18px; font-weight: 600; margin-bottom: 4px; }
+.section-header .section-desc { font-size: 14px; color: var(--text-muted); line-height: 1.4; }
+.test-action { text-align: center; margin: 40px 0 20px; }
+.test-action button { padding: 14px 36px; font-size: 17px; font-weight: 600; border: none; border-radius: 6px; background: var(--accent); color: white; cursor: pointer; font-family: inherit; transition: all 0.15s; }
+.test-action button:hover { background: #6d2929; }
+.test-action .progress-note { font-family: 'Inter', sans-serif; font-size: 12px; color: var(--text-muted); margin-top: 10px; }
+#result-area { display: none; padding: 32px; background: linear-gradient(135deg, rgba(139,58,58,0.08), rgba(184,134,11,0.04)); border-radius: 10px; border: 1px solid var(--border); margin: 32px 0; }
+#result-area h3 { margin-top: 0; font-size: 22px; }
+.result-code { font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 700; letter-spacing: 1px; padding: 18px 22px; background: white; border: 2px solid var(--accent); border-radius: 8px; margin: 18px 0; word-break: break-all; line-height: 1.6; }
+.result-axes { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin: 20px 0; }
+.result-axis { padding: 12px 14px; background: white; border-left: 3px solid var(--accent); border-radius: 4px; }
+.result-axis .label { font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); margin-bottom: 4px; }
+.result-axis .value { font-size: 15px; font-weight: 600; }
+.result-axis .desc { font-size: 13px; color: var(--text-muted); margin-top: 2px; line-height: 1.3; }
+.ask-section { padding: 32px; background: linear-gradient(135deg, rgba(184,134,11,0.06), rgba(139,58,58,0.04)); border-radius: 10px; border: 1px solid var(--border); margin: 48px 0; }
+.ask-section h2 { margin-top: 0; }
+.ask-form { display: grid; gap: 16px; margin-top: 20px; }
+.ask-form .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.ask-form .checkbox-row { display: flex; align-items: flex-start; gap: 10px; padding: 10px; background: rgba(255,255,255,0.4); border-radius: 6px; }
+.ask-form .checkbox-row input { width: auto; margin-top: 4px; }
+.ask-form .checkbox-row label { font-size: 14px; color: var(--text); margin: 0; text-transform: none; letter-spacing: normal; font-weight: normal; }
+.ask-form button { padding: 12px 28px; font-size: 16px; font-weight: 600; border: none; border-radius: 6px; background: var(--accent); color: white; cursor: pointer; font-family: inherit; justify-self: start; }
+.ask-form button:hover { background: #6d2929; }
+.ask-confirmation { display: none; padding: 18px; background: rgba(255,255,255,0.7); border-left: 3px solid var(--accent); border-radius: 4px; margin-top: 16px; font-size: 15px; line-height: 1.5; }
+@media (max-width: 640px) {
+  .ask-form .form-row { grid-template-columns: 1fr; }
+  .scale-options label { min-width: 38px; padding: 6px 2px; }
+}
 </style>
 </head>
 <body>
@@ -217,277 +94,156 @@
 <main>
 
   <div class="article-meta">
-    <span class="pill">Test · Free · 8 minutes</span>
+    <span class="pill">Diagnostic · Free</span>
   </div>
 
-  <h1>The Tantric Match Test</h1>
+  <h1>The Psychosexual Psychological Test</h1>
+
+  <p style="font-size:19px;color:var(--text-muted);line-height:1.55;">A three-tier diagnostic across the body's actual psychosexual architecture. Maps your appetite, polarity, openness, and shadow material onto a portable code you can keep, share, and use as your match key on the eventual matching service. Free to take. Pick your depth.</p>
 
   <div class="test-intro">
     <h2>What this is</h2>
-    <p>A 30-question diagnostic that profiles your tantric, sexual, and relational orientation across nine axes. Output: a portable compatibility code (something like <strong>AR-7 / BG-4 / D-6 / PV-8 / OP-3 / RT-5 / S-7 / D-4 / V-2</strong>) that maps your wants and offers cleanly enough that real matching becomes possible.</p>
+    <p>The test is structured around the axes of human sexual response that actually predict compatibility — not the gamified swipe-bait dating apps optimize for, but the real distinctions in how bodies meet bodies. Active vs receptive. Direct vs subtle. Open vs pair-bonded. Submission and dominance appetite. The trying-things willingness that separates people who explore from people who don't. The disgust profile that shapes what can never happen and what might. The world-model markers that determine whether a partnership runs from abundance or from scarcity.</p>
+    <p>Take the version that matches your appetite for self-knowledge. The Quick version gives you a clean signal in three minutes. The Standard fills in your match key for the eventual paid matching service. The Deep Dive maps you in the kind of detail that comes back useful for years.</p>
 
-    <p>The test is free. Your code is yours — copy it, share it, put it on your dating profile if you want, or feed it into the forthcoming Honest Fetish Matching service for AI-assisted compatibility matching with other code-holders.</p>
-
-    <h3 style="margin-top:24px;font-size:16px;">The nine axes</h3>
-    <div class="test-axes">
-      <div class="axis-card">
-        <div class="axis-label">AR</div>
-        <div class="axis-poles">Active ↔ Receptive (replaces masculine/feminine)</div>
-      </div>
-      <div class="axis-card">
-        <div class="axis-label">BG</div>
-        <div class="axis-poles">Body-grounded ↔ Mind-grounded</div>
-      </div>
-      <div class="axis-card">
-        <div class="axis-label">D</div>
-        <div class="axis-poles">Direct ↔ Subtle (in expression)</div>
-      </div>
-      <div class="axis-card">
-        <div class="axis-label">PV</div>
-        <div class="axis-poles">Partnered ↔ Solo (orientation)</div>
-      </div>
-      <div class="axis-card">
-        <div class="axis-label">OP</div>
-        <div class="axis-poles">Open ↔ Pair-bonded (relational)</div>
-      </div>
-      <div class="axis-card">
-        <div class="axis-label">RT</div>
-        <div class="axis-poles">Discharge ↔ Retention (energy management)</div>
-      </div>
-      <div class="axis-card">
-        <div class="axis-label">S</div>
-        <div class="axis-poles">Submission appetite (0-9)</div>
-      </div>
-      <div class="axis-card">
-        <div class="axis-label">D</div>
-        <div class="axis-poles">Dominance appetite (0-9)</div>
-      </div>
-      <div class="axis-card">
-        <div class="axis-label">V</div>
-        <div class="axis-poles">Vanilla ↔ Edge (kink range)</div>
-      </div>
+    <div class="tier-picker">
+      <button class="tier-card" data-tier="quick" type="button">
+        <div class="tier-label">Tier 1 · Free</div>
+        <div class="tier-name">Quick</div>
+        <div class="tier-meta">10 questions · ~3 minutes</div>
+        <div class="tier-desc">Clean first signal. Generates a basic code across the nine core axes. Good for first encounter with the framework or for sharing the test concept with a partner.</div>
+      </button>
+      <button class="tier-card" data-tier="standard" type="button">
+        <div class="tier-label">Tier 2 · Free</div>
+        <div class="tier-name">Standard</div>
+        <div class="tier-meta">30 questions · ~10 minutes</div>
+        <div class="tier-desc">The main version. Three questions on each core axis, plus shadow appetite inventory, openness anchor, and the trying-things axis. Generates the code that becomes your match key.</div>
+      </button>
+      <button class="tier-card" data-tier="deep" type="button">
+        <div class="tier-label">Tier 3 · Free</div>
+        <div class="tier-name">Deep Dive</div>
+        <div class="tier-meta">100 questions · ~30 minutes</div>
+        <div class="tier-desc">Comprehensive. Adds disgust profile, communication style, aftercare appetite, frequency, orientation flexibility, solo-practice depth, energy-work appetite, shame-state, and gender-aware capacity markers. Richest data. Deepest mapping.</div>
+      </button>
     </div>
 
-    <p style="margin-top:20px;">No question requires you to be a particular kind of person. The test is non-judgmental by design. Answer how your body actually responds, not how you think you should respond. The whole point is the honest profile.</p>
+    <p style="font-size:14px;color:var(--text-muted);margin-bottom:0;"><em>All three tiers are free. The matching service is the paid layer that uses the code; the diagnostic itself stays open.</em></p>
   </div>
 
-  <form id="quiz" onsubmit="event.preventDefault(); calculate();">
-
-    <div class="question">
-      <div class="question-number">1 · ACTIVE / RECEPTIVE</div>
-      <h3>In sexual partnership, your body's default orientation is to:</h3>
-      <div class="scale-options">
-        <span class="scale-anchor left">Initiate, lead, drive the contact</span>
-        <span class="scale-anchor right">Receive, be acted upon, surrender to contact</span>
+  <div id="meta-area" style="display:none;">
+    <div class="test-meta-fields">
+      <div>
+        <label for="user-email">Email (so we can send you your code)</label>
+        <input type="email" id="user-email" placeholder="you@email.com" required>
       </div>
-      <div class="radio-row">
-        <input type="radio" name="q1" id="q1-1" value="1" required><label for="q1-1">1</label>
-        <input type="radio" name="q1" id="q1-2" value="2"><label for="q1-2">2</label>
-        <input type="radio" name="q1" id="q1-3" value="3"><label for="q1-3">3</label>
-        <input type="radio" name="q1" id="q1-4" value="4"><label for="q1-4">4</label>
-        <input type="radio" name="q1" id="q1-5" value="5"><label for="q1-5">5</label>
+      <div>
+        <label for="user-gender">Gender (used for gender-specific questions)</label>
+        <select id="user-gender">
+          <option value="">Prefer not to say</option>
+          <option value="female">Female</option>
+          <option value="male">Male</option>
+          <option value="nonbinary">Non-binary / Other</option>
+        </select>
       </div>
-    </div>
-
-    <div class="question">
-      <div class="question-number">2 · BODY / MIND</div>
-      <h3>When you're aroused, you tend to:</h3>
-      <div class="scale-options">
-        <span class="scale-anchor left">Drop into your body, feel sensation, narrate less</span>
-        <span class="scale-anchor right">Stay in your head, watch yourself, narrate more</span>
-      </div>
-      <div class="radio-row">
-        <input type="radio" name="q2" id="q2-1" value="1" required><label for="q2-1">1</label>
-        <input type="radio" name="q2" id="q2-2" value="2"><label for="q2-2">2</label>
-        <input type="radio" name="q2" id="q2-3" value="3"><label for="q2-3">3</label>
-        <input type="radio" name="q2" id="q2-4" value="4"><label for="q2-4">4</label>
-        <input type="radio" name="q2" id="q2-5" value="5"><label for="q2-5">5</label>
-      </div>
-    </div>
-
-    <div class="question">
-      <div class="question-number">3 · DIRECT / SUBTLE</div>
-      <h3>You communicate sexual desire most naturally by:</h3>
-      <div class="scale-options">
-        <span class="scale-anchor left">Saying it plainly</span>
-        <span class="scale-anchor right">Showing it indirectly</span>
-      </div>
-      <div class="radio-row">
-        <input type="radio" name="q3" id="q3-1" value="1" required><label for="q3-1">1</label>
-        <input type="radio" name="q3" id="q3-2" value="2"><label for="q3-2">2</label>
-        <input type="radio" name="q3" id="q3-3" value="3"><label for="q3-3">3</label>
-        <input type="radio" name="q3" id="q3-4" value="4"><label for="q3-4">4</label>
-        <input type="radio" name="q3" id="q3-5" value="5"><label for="q3-5">5</label>
-      </div>
-    </div>
-
-    <div class="question">
-      <div class="question-number">4 · PARTNERED / SOLO</div>
-      <h3>Your richest sexual experiences tend to be:</h3>
-      <div class="scale-options">
-        <span class="scale-anchor left">With a partner present</span>
-        <span class="scale-anchor right">Alone</span>
-      </div>
-      <div class="radio-row">
-        <input type="radio" name="q4" id="q4-1" value="1" required><label for="q4-1">1</label>
-        <input type="radio" name="q4" id="q4-2" value="2"><label for="q4-2">2</label>
-        <input type="radio" name="q4" id="q4-3" value="3"><label for="q4-3">3</label>
-        <input type="radio" name="q4" id="q4-4" value="4"><label for="q4-4">4</label>
-        <input type="radio" name="q4" id="q4-5" value="5"><label for="q4-5">5</label>
-      </div>
-    </div>
-
-    <div class="question">
-      <div class="question-number">5 · OPEN / PAIR-BONDED</div>
-      <h3>Your honest relational orientation:</h3>
-      <div class="scale-options">
-        <span class="scale-anchor left">Multiple connections, no exclusivity</span>
-        <span class="scale-anchor right">One partner, deep exclusivity</span>
-      </div>
-      <div class="radio-row">
-        <input type="radio" name="q5" id="q5-1" value="1" required><label for="q5-1">1</label>
-        <input type="radio" name="q5" id="q5-2" value="2"><label for="q5-2">2</label>
-        <input type="radio" name="q5" id="q5-3" value="3"><label for="q5-3">3</label>
-        <input type="radio" name="q5" id="q5-4" value="4"><label for="q5-4">4</label>
-        <input type="radio" name="q5" id="q5-5" value="5"><label for="q5-5">5</label>
-      </div>
-    </div>
-
-    <div class="question">
-      <div class="question-number">6 · DISCHARGE / RETENTION</div>
-      <h3>How does your body actually respond to ejaculation / climax?</h3>
-      <div class="scale-options">
-        <span class="scale-anchor left">Daily / abundant feels best — body adapts</span>
-        <span class="scale-anchor right">Conserved / occasional feels best — body builds charge</span>
-      </div>
-      <div class="radio-row">
-        <input type="radio" name="q6" id="q6-1" value="1" required><label for="q6-1">1</label>
-        <input type="radio" name="q6" id="q6-2" value="2"><label for="q6-2">2</label>
-        <input type="radio" name="q6" id="q6-3" value="3"><label for="q6-3">3</label>
-        <input type="radio" name="q6" id="q6-4" value="4"><label for="q6-4">4</label>
-        <input type="radio" name="q6" id="q6-5" value="5"><label for="q6-5">5</label>
-      </div>
-    </div>
-
-    <div class="question">
-      <div class="question-number">7 · SUBMISSION APPETITE</div>
-      <h3>Being told what to do, sexually — yielding control to a trusted partner — is:</h3>
-      <div class="scale-options">
-        <span class="scale-anchor left">Off-putting / not for you</span>
-        <span class="scale-anchor right">A peak experience</span>
-      </div>
-      <div class="radio-row">
-        <input type="radio" name="q7" id="q7-1" value="1" required><label for="q7-1">1</label>
-        <input type="radio" name="q7" id="q7-2" value="2"><label for="q7-2">2</label>
-        <input type="radio" name="q7" id="q7-3" value="3"><label for="q7-3">3</label>
-        <input type="radio" name="q7" id="q7-4" value="4"><label for="q7-4">4</label>
-        <input type="radio" name="q7" id="q7-5" value="5"><label for="q7-5">5</label>
-      </div>
-    </div>
-
-    <div class="question">
-      <div class="question-number">8 · DOMINANCE APPETITE</div>
-      <h3>Telling a partner what to do, sexually — taking the controlling position — is:</h3>
-      <div class="scale-options">
-        <span class="scale-anchor left">Off-putting / not for you</span>
-        <span class="scale-anchor right">A peak experience</span>
-      </div>
-      <div class="radio-row">
-        <input type="radio" name="q8" id="q8-1" value="1" required><label for="q8-1">1</label>
-        <input type="radio" name="q8" id="q8-2" value="2"><label for="q8-2">2</label>
-        <input type="radio" name="q8" id="q8-3" value="3"><label for="q8-3">3</label>
-        <input type="radio" name="q8" id="q8-4" value="4"><label for="q8-4">4</label>
-        <input type="radio" name="q8" id="q8-5" value="5"><label for="q8-5">5</label>
-      </div>
-    </div>
-
-    <div class="question">
-      <div class="question-number">9 · VANILLA / EDGE</div>
-      <h3>The range of sexual contexts that interest you spans:</h3>
-      <div class="scale-options">
-        <span class="scale-anchor left">Familiar and conventional</span>
-        <span class="scale-anchor right">Wide-open including most edges and shadow material</span>
-      </div>
-      <div class="radio-row">
-        <input type="radio" name="q9" id="q9-1" value="1" required><label for="q9-1">1</label>
-        <input type="radio" name="q9" id="q9-2" value="2"><label for="q9-2">2</label>
-        <input type="radio" name="q9" id="q9-3" value="3"><label for="q9-3">3</label>
-        <input type="radio" name="q9" id="q9-4" value="4"><label for="q9-4">4</label>
-        <input type="radio" name="q9" id="q9-5" value="5"><label for="q9-5">5</label>
-      </div>
-    </div>
-
-    <div class="question">
-      <div class="question-number">10 · SHADOW APPETITES</div>
-      <h3>Which of the following are alive for you (check all that apply — honesty here is the point):</h3>
-      <div class="multi-choice">
-        <label><input type="checkbox" name="shadow" value="F"><span>Foot fetish</span></label>
-        <label><input type="checkbox" name="shadow" value="G"><span>Group sex</span></label>
-        <label><input type="checkbox" name="shadow" value="V"><span>Voyeurism</span></label>
-        <label><input type="checkbox" name="shadow" value="E"><span>Exhibitionism</span></label>
-        <label><input type="checkbox" name="shadow" value="A"><span>Anal play</span></label>
-        <label><input type="checkbox" name="shadow" value="O"><span>Oral fixation</span></label>
-        <label><input type="checkbox" name="shadow" value="P"><span>Power exchange / BDSM</span></label>
-        <label><input type="checkbox" name="shadow" value="R"><span>Role play / personas</span></label>
-        <label><input type="checkbox" name="shadow" value="L"><span>Latex / leather / material</span></label>
-        <label><input type="checkbox" name="shadow" value="X"><span>Public play</span></label>
-        <label><input type="checkbox" name="shadow" value="C"><span>Cuckolding / hotwifing</span></label>
-        <label><input type="checkbox" name="shadow" value="K"><span>Impact / pain play</span></label>
-      </div>
-    </div>
-
-    <div id="submit-row">
-      <p style="margin-bottom:18px;color:var(--text-muted);">This is a 10-question demo. The full 30-question test, with the additional axes for energy preferences, attachment style, and contextual preferences, ships with the matching service launch.</p>
-      <button type="submit" id="submit-btn" class="cta-button">Generate My Code</button>
-    </div>
-
-  </form>
-
-  <div id="result">
-    <h2 style="margin-top:0;">Your Tantric Match Code</h2>
-    <div class="your-code" id="code-display">—</div>
-    <div class="breakdown" id="breakdown"></div>
-    <p style="color:var(--text-muted);margin-top:24px;font-size:15px;">This is your portable compatibility key. Save it. The Honest Fetish Matching service uses codes like this — plus the longer 30-question version — to find compatible matches based on actual structural alignment instead of swipe-and-pray.</p>
-    <div style="margin-top:28px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
-      <a href="match.html" class="cta-button">Read about the matching service</a>
-      <a href="#" onclick="event.preventDefault(); copyCode();" class="cta-button" style="background:var(--bg-card);color:var(--accent) !important;border:1px solid var(--accent);">Copy Code</a>
     </div>
   </div>
 
-  <div class="animal-cta" style="margin-top:48px;">
+  <form id="test-form" style="display:none;"></form>
+
+  <div class="test-action" id="action-area" style="display:none;">
+    <button type="button" id="submit-test">Generate my code</button>
+    <div class="progress-note" id="progress-note"></div>
+  </div>
+
+  <div id="result-area"></div>
+
+  <!-- ============================================ -->
+  <!-- ASK AN EXPERT FORM                            -->
+  <!-- ============================================ -->
+
+  <section class="ask-section" id="ask">
+    <h2>Ask an Expert</h2>
+    <p>One question, one answer, one frame at a time. Submit a question — about your own body, your relationship, a kink you're trying to understand, a specific stuck point — and it lands in the editorial queue. Selected questions become articles. All questions inform what we write next. Use this if there's something you wanted answered and could not find an honest version of anywhere else.</p>
+
+    <form class="ask-form" id="ask-form">
+      <div class="form-row">
+        <div>
+          <label for="ask-name" style="display:block;font-family:'Inter',sans-serif;font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--text-muted);margin-bottom:6px;">Your name (optional)</label>
+          <input type="text" id="ask-name" name="name" placeholder="What we should call you">
+        </div>
+        <div>
+          <label for="ask-email" style="display:block;font-family:'Inter',sans-serif;font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--text-muted);margin-bottom:6px;">Your email</label>
+          <input type="email" id="ask-email" name="email" placeholder="you@email.com" required>
+        </div>
+      </div>
+      <div>
+        <label for="ask-topic" style="display:block;font-family:'Inter',sans-serif;font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--text-muted);margin-bottom:6px;">Topic area</label>
+        <select id="ask-topic" name="topic" required>
+          <option value="">Choose what your question is about</option>
+          <option value="foundations">Foundations — safety, dismantling, the framework</option>
+          <option value="body-practice">Body practice — breath, sound, touch, partner work</option>
+          <option value="female-sexuality">Female sexuality — orgasm, anatomy, shame</option>
+          <option value="male-sexuality">Male sexuality — PE, polarity, receiving</option>
+          <option value="shadow">Shadow Library — fetish, kink, taboo</option>
+          <option value="relationship">Relationship structures — open, monogamy, cheating</option>
+          <option value="energy-work">Energy work / subtle-body practice</option>
+          <option value="meditation">Meditation / consciousness / awakening</option>
+          <option value="hypnosis">Hypnosis / somatic deprogramming</option>
+          <option value="practical">Specific practical / situational question</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+      <div>
+        <label for="ask-question" style="display:block;font-family:'Inter',sans-serif;font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--text-muted);margin-bottom:6px;">Your question</label>
+        <textarea id="ask-question" name="question" rows="6" placeholder="Ask plainly. We don't moralize, we don't judge, we don't redirect to therapy. We answer." required></textarea>
+      </div>
+      <div class="checkbox-row">
+        <input type="checkbox" id="ask-publish" name="publish">
+        <label for="ask-publish">You may publish my question (anonymized) if it becomes an article.</label>
+      </div>
+      <div class="checkbox-row">
+        <input type="checkbox" id="ask-follow-up" name="follow_up">
+        <label for="ask-follow-up">You may contact me for follow-up about my question.</label>
+      </div>
+      <button type="submit">Send the question</button>
+      <div class="ask-confirmation" id="ask-confirmation"></div>
+    </form>
+  </section>
+
+  <div class="animal-cta">
     <div class="animal-cta-eyebrow">Invite the Animal In</div>
-    <h3 class="animal-cta-headline">Whatever your code came back as — the work is in the body.</h3>
-    <p class="animal-cta-intro">Doors below.</p>
+    <h3 class="animal-cta-headline">Self-knowledge is the prerequisite for getting what you actually want.</h3>
+    <p class="animal-cta-intro">Below are the doors. Each is downstream of the diagnostic.</p>
     <div class="rabbit-hole">
-      <a href="articles/the-dismantling.html" class="rabbit-hole-item">
+      <a href="articles/safety-is-the-precondition.html" class="rabbit-hole-item">
         <div class="rh-label">Foundation</div>
-        <div class="rh-title">The Dismantling</div>
-        <div class="rh-desc">Most people's codes shift after the dismantling work — the inherited shame layer comes off and the underlying appetites become visible.</div>
-      </a>
-      <a href="articles/beyond-the-myth-foot-fetish.html" class="rabbit-hole-item">
-        <div class="rh-label">Shadow Library</div>
-        <div class="rh-title">If you checked Foot Fetish</div>
-        <div class="rh-desc">The full neuroscience, evolutionary frame, and lived practical guidance on the most common non-genital fetish.</div>
+        <div class="rh-title">Safety Is the Precondition</div>
+        <div class="rh-desc">The condition every result on this test points toward. Read this before doing anything with the code.</div>
       </a>
       <a href="match.html" class="rabbit-hole-item">
-        <div class="rh-label">Matching</div>
+        <div class="rh-label">Matching · Coming</div>
         <div class="rh-title">Honest Fetish Matching</div>
-        <div class="rh-desc">The service this test feeds. Real disclosure, real vetting, real structural compatibility.</div>
+        <div class="rh-desc">The paid layer that uses your code as the match key. Built around structural compatibility instead of swipe-and-pray.</div>
+      </a>
+      <a href="articles/the-ease-of-orgasm.html" class="rabbit-hole-item">
+        <div class="rh-label">Practice</div>
+        <div class="rh-title">The Ease of Orgasm</div>
+        <div class="rh-desc">For respondents whose code shows a high chase / low ease profile — the practical entry point into the work.</div>
+      </a>
+      <a href="articles/cheating-isnt-a-thing.html" class="rabbit-hole-item">
+        <div class="rh-label">Foundation</div>
+        <div class="rh-title">Cheating Isn't a Thing</div>
+        <div class="rh-desc">For respondents whose code shows openness ambiguity — the structural piece on what relationship architectures are actually available.</div>
       </a>
       <a href="directory.html" class="rabbit-hole-item">
-        <div class="rh-label">Directory</div>
+        <div class="rh-label">Practitioner</div>
         <div class="rh-title">Find a vetted practitioner</div>
-        <div class="rh-desc">Whatever your code says, there are practitioners trained in the work it points at.</div>
+        <div class="rh-desc">Practitioners across coaching, somatic work, hypnosis, and bodywork — for respondents who want the deeper work.</div>
       </a>
       <a href="book.html" class="rabbit-hole-item">
-        <div class="rh-label">Book</div>
-        <div class="rh-title">Beyond the Myth</div>
-        <div class="rh-desc">The whole framework underneath this test. Lawrence Lanoff's complete system.</div>
-      </a>
-      <a href="https://thenakedmind.ai" class="rabbit-hole-item">
-        <div class="rh-label">Newsletter</div>
-        <div class="rh-title">The Naked Mind</div>
-        <div class="rh-desc">The longer essays. Free.</div>
+        <div class="rh-label">Book · Forthcoming</div>
+        <div class="rh-title">Beyond the Myth: Definitive Guide to Modern Tantra</div>
+        <div class="rh-desc">The full system. Every axis on the test is a chapter in the book.</div>
       </a>
     </div>
   </div>
@@ -499,69 +255,547 @@
 </footer>
 
 <script>
-function calculate() {
-  const get = name => {
-    const r = document.querySelector(`input[name="${name}"]:checked`);
-    return r ? parseInt(r.value) : 3;
-  };
+const QUESTIONS = [
+  { id:'ar1', tiers:['quick','standard','deep'], axis:'AR', type:'scale', text:'In partnered sex, do you prefer to direct what happens or to be carried by what happens?', left:'Always direct', right:'Always carried' },
+  { id:'ar2', tiers:['standard','deep'], axis:'AR', type:'scale', text:'When intense sensation arrives in your body, your first impulse is to extend toward it or to receive it.', left:'Extend toward', right:'Receive in' },
+  { id:'ar3', tiers:['standard','deep'], axis:'AR', type:'scale', text:'You\'re more energized by giving pleasure or by receiving it.', left:'Giving', right:'Receiving' },
+  { id:'ar4', tiers:['deep'], axis:'AR', type:'scale', text:'When the dynamic shifts mid-encounter, you switch fluidly or stay in your preferred role.', left:'Switch fluidly', right:'Stay in role' },
+  { id:'ar5', tiers:['deep'], axis:'AR', type:'scale', text:'Outside the bedroom you tend to be the planner or the carried-along.', left:'Planner', right:'Carried' },
+  { id:'ar6', tiers:['deep'], axis:'AR', type:'scale', text:'When something exciting happens, your reflex is to act first or to take it in first.', left:'Act first', right:'Take in first' },
 
-  const ar = get('q1');         // 1=very active, 5=very receptive
-  const bg = get('q2');         // 1=body-grounded, 5=mind-grounded
-  const d  = get('q3');         // 1=direct, 5=subtle
-  const pv = get('q4');         // 1=partnered, 5=solo
-  const op = get('q5');         // 1=open, 5=pair-bonded
-  const rt = get('q6');         // 1=discharge, 5=retention
-  const s  = get('q7');         // 1=no sub, 5=peak sub
-  const dom= get('q8');         // 1=no dom, 5=peak dom
-  const v  = get('q9');         // 1=vanilla, 5=edge
+  { id:'bg1', tiers:['standard','deep'], axis:'BG', type:'scale', text:'Where do you live most of the time — in your body or in your head?', left:'Almost all head', right:'Almost all body' },
+  { id:'bg2', tiers:['standard','deep'], axis:'BG', type:'scale', text:'You notice your breath, posture, and physical state during the day.', left:'Almost never', right:'Almost constantly' },
+  { id:'bg3', tiers:['standard','deep'], axis:'BG', type:'scale', text:'You engage in physical activities that require attention to sensation (yoga, dance, somatic work, sports that require presence).', left:'Never', right:'Almost daily' },
+  { id:'bg4', tiers:['deep'], axis:'BG', type:'scale', text:'When stressed, you turn to thinking your way through, or to body-based responses (breath, movement, sensation).', left:'Thinking only', right:'Body-based only' },
 
-  // Convert 1-5 scale to 0-9 scale roughly
-  const scale = (x) => Math.round(((x-1)/4) * 9);
+  { id:'d1', tiers:['quick','standard','deep'], axis:'D', type:'scale', text:'In erotic energy, you\'re more direct and explicit, or more subtle and atmospheric.', left:'Direct, explicit', right:'Subtle, atmospheric' },
+  { id:'d2', tiers:['standard','deep'], axis:'D', type:'scale', text:'You prefer your partner to tell you what they want, or to let you discover it.', left:'Tell me plainly', right:'Let me discover' },
+  { id:'d3', tiers:['standard','deep'], axis:'D', type:'scale', text:'When you flirt, you state your interest plainly, or wait to be approached.', left:'State plainly', right:'Wait to be approached' },
+  { id:'d4', tiers:['deep'], axis:'D', type:'scale', text:'You think erotic art should be explicit or suggestive.', left:'Explicit', right:'Suggestive only' },
 
-  const shadow = Array.from(document.querySelectorAll('input[name="shadow"]:checked')).map(c => c.value).join('');
+  { id:'pv1', tiers:['standard','deep'], axis:'PV', type:'scale', text:'Your current sexual practice is mostly partnered or mostly solo.', left:'Almost all partnered', right:'Almost all solo' },
+  { id:'pv2', tiers:['standard','deep'], axis:'PV', type:'scale', text:'Solo sex is something you do regularly or rarely.', left:'Rarely or never', right:'Multiple times per week' },
+  { id:'pv3', tiers:['standard','deep'], axis:'PV', type:'scale', text:'You find solo and partnered sex equally satisfying or very different in what they offer.', left:'Equally satisfying', right:'Very different' },
+  { id:'pv4', tiers:['deep'], axis:'PV', type:'scale', text:'Solo practice is essential to your sexual health, or something you do only when no partner is available.', left:'Essential', right:'Only when alone' },
 
-  const code = `AR-${scale(ar)} / BG-${scale(bg)} / D-${scale(d)} / PV-${scale(pv)} / OP-${scale(op)} / RT-${scale(rt)} / S-${scale(s)} / DM-${scale(dom)} / V-${scale(v)} / SH-${shadow || 'none'}`;
+  { id:'op1', tiers:['quick','standard','deep'], axis:'OP', type:'choice', text:'Your ideal relationship structure is:',
+    options: [
+      { value:1, text:'Strict monogamy — one partner, fully exclusive' },
+      { value:2, text:'Monogamish — primarily monogamous with occasional flexibility' },
+      { value:3, text:'Open — committed primary, sexual openness with others' },
+      { value:4, text:'Polyamorous — multiple committed loving relationships' },
+      { value:5, text:'Solo by choice — no primary partnership; full sexual sovereignty' }
+    ]},
+  { id:'op2', tiers:['standard','deep'], axis:'OP', type:'scale', text:'You believe you can romantically love more than one person at once.', left:'No, never', right:'Absolutely, easily' },
+  { id:'op3', tiers:['standard','deep'], axis:'OP', type:'scale', text:'Jealousy is something you experience often or rarely.', left:'Constantly', right:'Almost never' },
+  { id:'op4', tiers:['deep'], axis:'OP', type:'choice', text:'Your experience with non-monogamous structures:',
+    options: [
+      { value:1, text:'Never considered them' },
+      { value:2, text:'Considered but never tried' },
+      { value:3, text:'Tried once, not for me' },
+      { value:4, text:'Currently exploring' },
+      { value:5, text:'Long-term practice; it works' }
+    ]},
+  { id:'op5', tiers:['deep'], axis:'OP', type:'scale', text:'Privacy from your partner about your sexual experiences feels like betrayal, or their right.', left:'Betrayal', right:'Their right always' },
 
-  document.getElementById('code-display').textContent = code;
+  { id:'rt1', tiers:['quick','standard','deep'], axis:'RT', type:'scale', text:'For you, orgasm is the goal of sex, or one of several outcomes.', left:'The goal', right:'Not the point' },
+  { id:'rt2', tiers:['standard','deep'], axis:'RT', type:'scale', text:'You\'ve practiced or are interested in non-ejaculatory / extended / retained sex.', left:'Not interested', right:'Already practicing' },
+  { id:'rt3', tiers:['standard','deep'], axis:'RT', type:'scale', text:'Multi-orgasmic states interest you.', left:'Not at all', right:'Very much' },
+  { id:'rt4', tiers:['deep'], axis:'RT', type:'choice', text:'After orgasm, you typically want:',
+    options: [
+      { value:1, text:'Sleep / to drop out immediately' },
+      { value:2, text:'Quiet, alone or together' },
+      { value:3, text:'Cuddling and contact' },
+      { value:4, text:'Conversation, integration' },
+      { value:5, text:'More — keep going' }
+    ]},
 
-  // Breakdown
-  const labels = {
-    AR: ['highly active', 'active-leaning', 'balanced', 'receptive-leaning', 'highly receptive'],
-    BG: ['deeply body-grounded', 'body-leaning', 'balanced', 'mind-leaning', 'deeply mind-grounded'],
-    D:  ['very direct', 'direct-leaning', 'balanced', 'subtle-leaning', 'very subtle'],
-    PV: ['strongly partnered', 'partnered-leaning', 'balanced', 'solo-leaning', 'strongly solo'],
-    OP: ['fully open', 'open-leaning', 'balanced', 'pair-bonded-leaning', 'fully pair-bonded'],
-    RT: ['discharge orientation', 'discharge-leaning', 'mixed', 'retention-leaning', 'retention orientation'],
-    S:  ['no submission appetite', 'low submission', 'moderate', 'high submission', 'peak submission'],
-    DM: ['no dominance appetite', 'low dominance', 'moderate', 'high dominance', 'peak dominance'],
-    V:  ['vanilla orientation', 'vanilla-leaning', 'mixed', 'edge-leaning', 'wide edge orientation'],
-  };
-  const labelOf = (axis, v) => labels[axis][v-1];
+  { id:'s1', tiers:['quick','standard','deep'], axis:'S', type:'scale', text:'Being submissive — in a controlled, consensual, trusted way — appeals to you.', left:'Not at all', right:'Intensely' },
+  { id:'s2', tiers:['standard','deep'], axis:'S', type:'scale', text:'You enjoy being told what to do in bed.', left:'No', right:'Yes, deeply' },
+  { id:'s3', tiers:['standard','deep'], axis:'S', type:'scale', text:'Restraint, being held in place, or bondage interests you.', left:'No interest', right:'Strong interest' },
+  { id:'s4', tiers:['deep'], axis:'S', type:'scale', text:'You\'ve experienced submission and found it deeply releasing.', left:'Never experienced', right:'Yes, transformative' },
+  { id:'s5', tiers:['deep'], axis:'S', type:'scale', text:'Surrender in sex is what you\'ve wanted but felt afraid of.', left:'Not relevant', right:'Strongly relevant' },
 
-  const html = [
-    {axis:'AR', val:ar, name:'Active / Receptive'},
-    {axis:'BG', val:bg, name:'Body / Mind'},
-    {axis:'D',  val:d,  name:'Direct / Subtle'},
-    {axis:'PV', val:pv, name:'Partnered / Solo'},
-    {axis:'OP', val:op, name:'Open / Pair-bonded'},
-    {axis:'RT', val:rt, name:'Discharge / Retention'},
-    {axis:'S',  val:s,  name:'Submission'},
-    {axis:'DM', val:dom,name:'Dominance'},
-    {axis:'V',  val:v,  name:'Vanilla / Edge'},
-  ].map(r => `<div class="breakdown-row"><span class="breakdown-label">${r.name}</span><span class="breakdown-value">${labelOf(r.axis, r.val)}</span></div>`).join('');
+  { id:'dm1', tiers:['quick','standard','deep'], axis:'DM', type:'scale', text:'Being dominant — in a caring, attentive, consensual way — appeals to you.', left:'Not at all', right:'Intensely' },
+  { id:'dm2', tiers:['standard','deep'], axis:'DM', type:'scale', text:'You enjoy directing the encounter and watching your partner respond.', left:'No', right:'Yes, deeply' },
+  { id:'dm3', tiers:['standard','deep'], axis:'DM', type:'scale', text:'Power exchange (D/s dynamics) is erotic to you.', left:'Not at all', right:'Very erotic' },
+  { id:'dm4', tiers:['deep'], axis:'DM', type:'scale', text:'You\'ve experienced dominance and felt natural / generous / aroused in the role.', left:'Felt awkward', right:'Felt completely natural' },
+  { id:'dm5', tiers:['deep'], axis:'DM', type:'scale', text:'You suspect you may be more naturally dominant than your relationships have allowed (especially relevant for women).', left:'Not at all', right:'Strongly suspect this' },
 
-  document.getElementById('breakdown').innerHTML = html;
-  const result = document.getElementById('result');
-  result.classList.add('show');
-  result.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  { id:'v1', tiers:['quick','standard','deep'], axis:'V', type:'scale', text:'Your erotic appetite leans vanilla / classic / adventurous / edgy / extreme.', left:'Vanilla / classic', right:'Edge / extreme' },
+  { id:'v2', tiers:['standard','deep'], axis:'V', type:'scale', text:'Kink is something you\'re curious about.', left:'Not at all', right:'Always curious' },
+  { id:'v3', tiers:['standard','deep'], axis:'V', type:'scale', text:'You\'ve explored kink and found it: not for me, occasionally interesting, or core to who I am.', left:'Not for me', right:'Core to who I am' },
+  { id:'v4', tiers:['deep'], axis:'V', type:'scale', text:'Shadow material — taboo, dark, intense erotic content — interests you.', left:'Not at all', right:'Deeply' },
+  { id:'v5', tiers:['deep'], axis:'V', type:'scale', text:'Pain in a controlled, consensual context interests you.', left:'No interest', right:'Strong interest' },
+
+  { id:'sh_std', tiers:['standard'], axis:'SH', type:'multi', text:'Which of these specifically interest you? (Check all that apply — for matching, not judgment.)',
+    options: [
+      { code:'F', text:'Feet / foot worship' },
+      { code:'G', text:'Group sex (three or more people)' },
+      { code:'V', text:'Voyeurism or exhibitionism' },
+      { code:'A', text:'Anal play (giving or receiving)' },
+      { code:'R', text:'Restraint / rope / bondage' },
+      { code:'P', text:'Public-risk or semi-public sex' },
+      { code:'X', text:'Pain play (controlled, consensual)' },
+      { code:'L', text:'Role-play / scenarios / character work' },
+      { code:'D', text:'Daddy / Mommy / age-play dynamics' },
+      { code:'C', text:'Cuckolding / sharing / hotwifing' }
+    ]},
+  { id:'sh_feet', tiers:['deep'], axis:'SH', type:'scale', text:'Feet / foot worship / footwear interests you.', left:'Not at all', right:'Strongly' },
+  { id:'sh_group', tiers:['deep'], axis:'SH', type:'scale', text:'Group sex (three or more people) interests you.', left:'Not at all', right:'Strongly' },
+  { id:'sh_voy', tiers:['deep'], axis:'SH', type:'scale', text:'Voyeurism (watching) interests you.', left:'Not at all', right:'Strongly' },
+  { id:'sh_exh', tiers:['deep'], axis:'SH', type:'scale', text:'Exhibitionism (being watched) interests you.', left:'Not at all', right:'Strongly' },
+  { id:'sh_anal', tiers:['deep'], axis:'SH', type:'scale', text:'Anal play (giving or receiving) interests you.', left:'Not at all', right:'Strongly' },
+  { id:'sh_rope', tiers:['deep'], axis:'SH', type:'scale', text:'Restraint, rope, bondage interests you.', left:'Not at all', right:'Strongly' },
+  { id:'sh_public', tiers:['deep'], axis:'SH', type:'scale', text:'Public-risk or semi-public sex interests you.', left:'Not at all', right:'Strongly' },
+  { id:'sh_pain', tiers:['deep'], axis:'SH', type:'scale', text:'Pain play (within firm consent) interests you.', left:'Not at all', right:'Strongly' },
+  { id:'sh_role', tiers:['deep'], axis:'SH', type:'scale', text:'Role-play and scenario work interests you.', left:'Not at all', right:'Strongly' },
+  { id:'sh_age', tiers:['deep'], axis:'SH', type:'scale', text:'Daddy / Mommy / age-play dynamics interest you.', left:'Not at all', right:'Strongly' },
+  { id:'sh_cuck', tiers:['deep'], axis:'SH', type:'scale', text:'Cuckolding / sharing / hotwifing dynamics interest you.', left:'Not at all', right:'Strongly' },
+
+  { id:'dg1', tiers:['deep'], axis:'DG', type:'multi', text:'What disgusts you in a sexual context? (Check all that apply — informs limits, not judgment.)',
+    options: [
+      { code:'B', text:'Body fluids beyond standard' },
+      { code:'S', text:'Specific smells' },
+      { code:'A', text:'Specific acts' },
+      { code:'P', text:'Specific power dynamics' },
+      { code:'L', text:'Specific language / dirty talk' },
+      { code:'V', text:'Visible body types or features' },
+      { code:'N', text:'Nothing in particular disgusts me sexually' }
+    ]},
+  { id:'dg2', tiers:['deep'], axis:'DG', type:'scale', text:'Have you ever moved through initial disgust into release of energy or pleasure?', left:'Never', right:'Yes — transformative' },
+  { id:'dg3', tiers:['deep'], axis:'DG', type:'choice', text:'When something disgusts you sexually, you typically:',
+    options: [
+      { value:1, text:'Avoid it always, no exceptions' },
+      { value:2, text:'Avoid it but stay curious about why' },
+      { value:3, text:'Examine the disgust before deciding' },
+      { value:4, text:'Try it once to see what happens' },
+      { value:5, text:'Lean into disgust as growth edge' }
+    ]},
+  { id:'dg4', tiers:['deep'], axis:'DG', type:'scale', text:'Your disgust threshold (how much it takes to trigger disgust).', left:'Low (lots disgusts me)', right:'High (little disgusts me)' },
+  { id:'dg5', tiers:['deep'], axis:'DG', type:'scale', text:'Your interest in your partner\'s body (smells, fluids, textures, sounds).', left:'Limited / with rules', right:'Fully enthusiastic' },
+
+  { id:'open1', tiers:['quick','standard','deep'], axis:'OPEN', type:'scale', text:'In life generally, your stance leans toward "this is dangerous, be careful" or "this is interesting, let\'s see."', left:'Danger, be careful', right:'Interesting, let\'s see' },
+  { id:'open2', tiers:['standard','deep'], axis:'OPEN', type:'scale', text:'New experiences: you seek them out or avoid them.', left:'Avoid', right:'Actively seek' },
+  { id:'open3', tiers:['deep'], axis:'OPEN', type:'scale', text:'Your worldview leans toward scarcity or abundance.', left:'Scarcity, protect', right:'Abundance, flow' },
+  { id:'open4', tiers:['deep'], axis:'OPEN', type:'scale', text:'Anxiety about the future is a constant feature of your life or rare.', left:'Constant', right:'Rare' },
+  { id:'open5', tiers:['deep'], axis:'OPEN', type:'scale', text:'You\'re more drawn to stability or to novelty.', left:'Stability', right:'Novelty / edge' },
+
+  { id:'wm1', tiers:['deep'], axis:'WM', internal:true, type:'choice', text:'You believe at your core that:',
+    options: [
+      { value:1, text:'The world is fundamentally dangerous' },
+      { value:2, text:'The world has both danger and beauty' },
+      { value:3, text:'The world is fundamentally workable' },
+      { value:4, text:'Everything is love at the deepest level' },
+      { value:5, text:'I\'m not sure / don\'t hold a fixed position' }
+    ]},
+  { id:'wm2', tiers:['deep'], axis:'WM', internal:true, type:'choice', text:'People are:',
+    options: [
+      { value:1, text:'Mostly untrustworthy by default' },
+      { value:2, text:'Trustworthy after vetting' },
+      { value:3, text:'Fundamentally complex but mostly good' },
+      { value:4, text:'Fundamentally good given the right conditions' },
+      { value:5, text:'I don\'t make a single generalization' }
+    ]},
+  { id:'wm3', tiers:['deep'], axis:'WM', internal:true, type:'scale', text:'Your default state when alone is at ease or restless / anxious.', left:'Restless / anxious', right:'At ease' },
+  { id:'wm4', tiers:['deep'], axis:'WM', internal:true, type:'choice', text:'Spiritual realization is:',
+    options: [
+      { value:1, text:'Not real / not a meaningful concept' },
+      { value:2, text:'Real but requires lifetimes of work' },
+      { value:3, text:'Real and achievable in this life with effort' },
+      { value:4, text:'Available now — not earned' },
+      { value:5, text:'Already the case — recognition not achievement' }
+    ]},
+  { id:'wm5', tiers:['deep'], axis:'WM', internal:true, type:'choice', text:'When you encounter someone with strong opinions, you:',
+    options: [
+      { value:1, text:'Withdraw or stay quiet' },
+      { value:2, text:'Agree to avoid conflict' },
+      { value:3, text:'Engage but defer' },
+      { value:4, text:'Engage and challenge' },
+      { value:5, text:'Stay curious — let them have their position' }
+    ]},
+
+  { id:'woc1', tiers:['standard','deep'], axis:'WOC', type:'choice', text:'You get off most when:',
+    options: [
+      { value:1, text:'Taking pleasure in someone\'s body' },
+      { value:2, text:'Letting someone take pleasure in yours' },
+      { value:3, text:'Both equally — switching is the point' },
+      { value:4, text:'Depends entirely on the partner / context' },
+      { value:5, text:'Not sure / still figuring this out' }
+    ]},
+  { id:'woc2', tiers:['standard','deep'], axis:'WOC', type:'scale', text:'Being served (someone giving you exactly what you want) feels amazing or awkward.', left:'Awkward / weird', right:'Amazing / deeply right' },
+  { id:'woc3', tiers:['deep'], axis:'WOC', type:'scale', text:'Giving someone exactly what they want: lights you up or feels neutral.', left:'Neutral / depends', right:'Lights me up' },
+  { id:'woc4', tiers:['deep'], axis:'WOC', type:'scale', text:'Receiving someone\'s full attention: deeply welcome or uncomfortable.', left:'Uncomfortable', right:'Deeply welcome' },
+
+  { id:'try1', tiers:['quick','standard','deep'], axis:'TRY', type:'choice', text:'When you try something new sexually and it doesn\'t click the first time, you typically:',
+    options: [
+      { value:1, text:'Try once and then it\'s over' },
+      { value:2, text:'Try maybe twice if the situation invites' },
+      { value:3, text:'Try a few times before deciding' },
+      { value:4, text:'Try 4-5 times before deciding' },
+      { value:5, text:'Try many times — the body learns slowly sometimes' }
+    ]},
+  { id:'try2', tiers:['standard','deep'], axis:'TRY', type:'scale', text:'You\'re willing to try things outside your comfort zone.', left:'Rarely', right:'Enthusiastically' },
+  { id:'try3', tiers:['deep'], axis:'TRY', type:'choice', text:'The hardest thing about trying new sexual things, for you, is:',
+    options: [
+      { value:1, text:'Shame' },
+      { value:2, text:'Anxiety / fear' },
+      { value:3, text:'Partner concerns or unavailability' },
+      { value:4, text:'Lack of time or context' },
+      { value:5, text:'Honestly nothing — I just go' }
+    ]},
+
+  { id:'com1', tiers:['deep'], axis:'COM', type:'scale', text:'You can tell your partner what you want in bed.', left:'Barely / not at all', right:'Easily and specifically' },
+  { id:'com2', tiers:['deep'], axis:'COM', type:'choice', text:'When you want something, you typically:',
+    options: [
+      { value:1, text:'Hope they figure it out' },
+      { value:2, text:'Drop hints' },
+      { value:3, text:'Ask once, gently' },
+      { value:4, text:'Ask directly' },
+      { value:5, text:'State the want plainly and discuss' }
+    ]},
+  { id:'com3', tiers:['deep'], axis:'COM', type:'scale', text:'After sex, you discuss what happened with your partner.', left:'Never', right:'Often / always' },
+  { id:'com4', tiers:['deep'], axis:'COM', type:'scale', text:'Before sex, you negotiate what you want.', left:'Never', right:'Always' },
+
+  { id:'ac1', tiers:['deep'], axis:'AC', type:'choice', text:'After intense sex, what you need most is:',
+    options: [
+      { value:1, text:'Space and silence' },
+      { value:2, text:'Physical contact and quiet' },
+      { value:3, text:'Cuddling and talking it through' },
+      { value:4, text:'Water, food, and integration time' },
+      { value:5, text:'Going again, no return needed' }
+    ]},
+  { id:'ac2', tiers:['deep'], axis:'AC', type:'scale', text:'Aftercare is essential to you or a new concept.', left:'Never thought about it', right:'Essential, non-negotiable' },
+
+  { id:'freq1', tiers:['standard','deep'], axis:'FREQ', type:'choice', text:'Your ideal sexual frequency is:',
+    options: [
+      { value:1, text:'Daily or near-daily' },
+      { value:2, text:'A few times per week' },
+      { value:3, text:'Weekly' },
+      { value:4, text:'A few times per month' },
+      { value:5, text:'Less often — quality over quantity' }
+    ]},
+  { id:'freq2', tiers:['deep'], axis:'FREQ', type:'scale', text:'In your current relationship, sex happens more or less often than you\'d ideally want.', left:'Less than ideal', right:'More than ideal' },
+
+  { id:'fns1', tiers:['deep'], axis:'FNS', gender:'female', type:'scale', text:'You suspect you may be more dominant than your past partnerships have allowed.', left:'Not at all', right:'Strongly suspect this' },
+  { id:'fns2', tiers:['deep'], axis:'FNS', gender:'female', type:'scale', text:'Pegging a male partner (or strap-on play with any partner) interests you.', left:'No interest', right:'Strong interest' },
+  { id:'fns3', tiers:['deep'], axis:'FNS', gender:'female', type:'scale', text:'Telling a partner what to do erotically appeals to you.', left:'Not at all', right:'Deeply' },
+
+  { id:'mrc1', tiers:['deep'], axis:'MRC', gender:'male', type:'scale', text:'Being penetrated (digitally, with a toy, by a partner) interests you.', left:'No interest', right:'Strong interest' },
+  { id:'mrc2', tiers:['deep'], axis:'MRC', gender:'male', type:'scale', text:'Being told what to do erotically by a partner appeals to you.', left:'Not at all', right:'Deeply' },
+  { id:'mrc3', tiers:['deep'], axis:'MRC', gender:'male', type:'scale', text:'Receiving rather than giving pleasure is something you can sustain.', left:'Difficult', right:'Easily and deeply' },
+
+  { id:'so1', tiers:['deep'], axis:'SO', type:'choice', text:'Your sexual orientation:',
+    options: [
+      { value:1, text:'Straight / heterosexual' },
+      { value:2, text:'Mostly straight, occasional flexibility' },
+      { value:3, text:'Bisexual / pansexual' },
+      { value:4, text:'Mostly gay/lesbian, occasional flexibility' },
+      { value:5, text:'Gay / lesbian' },
+      { value:6, text:'Queer / fluid / other' }
+    ]},
+  { id:'so2', tiers:['deep'], axis:'SO', type:'scale', text:'You feel your orientation is fixed or fluid.', left:'Fixed', right:'Fluid' },
+  { id:'so3', tiers:['deep'], axis:'SO', type:'scale', text:'You\'re currently exploring orientation-related territory you didn\'t before.', left:'Not at all', right:'Actively' },
+
+  { id:'sp1', tiers:['deep'], axis:'SP', type:'multi', text:'Your solo practice currently includes: (check all that apply)',
+    options: [
+      { code:'O', text:'Orgasm / release' },
+      { code:'B', text:'Breath work' },
+      { code:'M', text:'Meditation' },
+      { code:'F', text:'Fantasy / mental sex work' },
+      { code:'H', text:'Hypnosis / audio installations' },
+      { code:'T', text:'Toys / technology' },
+      { code:'K', text:'Solo kink / restraint / sensation play' },
+      { code:'N', text:'I don\'t currently have a solo practice' }
+    ]},
+  { id:'sp2', tiers:['deep'], axis:'SP', type:'scale', text:'Solo orgasm is reliable for you.', left:'Rarely / never', right:'Always, easily' },
+  { id:'sp3', tiers:['deep'], axis:'SP', type:'scale', text:'You use toys (vibrators, etc.) in solo practice.', left:'Never / not interested', right:'Regularly' },
+
+  { id:'ew1', tiers:['deep'], axis:'EW', type:'scale', text:'Subtle-body / energy concepts are something you take seriously.', left:'Skeptical / dismissive', right:'Take it seriously' },
+  { id:'ew2', tiers:['deep'], axis:'EW', type:'scale', text:'You\'ve experienced something you\'d call energy in your body during sex or practice.', left:'Never', right:'Yes, repeatedly' },
+  { id:'ew3', tiers:['deep'], axis:'EW', type:'scale', text:'You\'re interested in non-physical / energetic sexual practice.', left:'Not interested', right:'Deeply interested' },
+
+  { id:'shp1', tiers:['deep'], axis:'SHP', type:'scale', text:'You feel shame about your sexual desires.', left:'Constantly', right:'Almost never' },
+  { id:'shp2', tiers:['deep'], axis:'SHP', type:'scale', text:'You\'ve done active work to dismantle sexual shame.', left:'No / not aware of any', right:'Substantial work' },
+  { id:'shp3', tiers:['deep'], axis:'SHP', type:'choice', text:'Your family of origin\'s view on sex was:',
+    options: [
+      { value:1, text:'Heavily negative / shame-based' },
+      { value:2, text:'Negative, not discussed' },
+      { value:3, text:'Neutral, not discussed' },
+      { value:4, text:'Positive, openly discussed' },
+      { value:5, text:'Very positive — sexually positive household' }
+    ]},
+  { id:'shp4', tiers:['deep'], axis:'SHP', type:'scale', text:'Religious or spiritual conditioning has lingering effect on your sexuality.', left:'No residue', right:'Strong residue' }
+];
+
+const AXES = {
+  AR:{ label:'Active / Receptive', desc:'Where you sit on the extending-vs-receiving polarity', public:true, shortCode:'AR' },
+  BG:{ label:'Body / Mind', desc:'Somatic vs cerebral default', public:true, shortCode:'BG' },
+  D:{ label:'Direct / Subtle', desc:'How your erotic energy presents', public:true, shortCode:'D' },
+  PV:{ label:'Partnered / Solo', desc:'Where your practice currently lives', public:true, shortCode:'PV' },
+  OP:{ label:'Open / Pair-bonded', desc:'Preferred relationship structure', public:true, shortCode:'OP' },
+  RT:{ label:'Discharge / Retention', desc:'Orgasm philosophy', public:true, shortCode:'RT' },
+  S:{ label:'Submission', desc:'Submission appetite', public:true, shortCode:'S' },
+  DM:{ label:'Dominance', desc:'Dominance appetite', public:true, shortCode:'DM' },
+  V:{ label:'Vanilla / Edge', desc:'Where your appetite sits on the explore spectrum', public:true, shortCode:'V' },
+  SH:{ label:'Shadow Appetite', desc:'Specific kink / fetish interests', public:true, shortCode:'SH' },
+  DG:{ label:'Disgust Profile', desc:'What disgusts you + capacity to move through it', public:true, shortCode:'DG' },
+  OPEN:{ label:'Openness', desc:'Big Five openness anchor — abundance vs scarcity worldview', public:true, shortCode:'OPEN' },
+  WM:{ label:'World Model', desc:'(internal) — Games framework markers', public:false, shortCode:'WM' },
+  WOC:{ label:'Active vs Receiving', desc:'Taking pleasure vs being taken pleasure in (wheel of consent reframed)', public:true, shortCode:'WOC' },
+  TRY:{ label:'Trying Willingness', desc:'How many attempts before deciding', public:true, shortCode:'TRY' },
+  COM:{ label:'Communication', desc:'Ability to articulate wants directly', public:true, shortCode:'COM' },
+  AC:{ label:'Aftercare Appetite', desc:'Integration needs after intense practice', public:true, shortCode:'AC' },
+  FREQ:{ label:'Frequency Desired', desc:'Ideal sexual frequency', public:true, shortCode:'FREQ' },
+  FNS:{ label:'Female Dominance', desc:'(female-only) — natural dominance markers', public:true, shortCode:'FNS' },
+  MRC:{ label:'Male Receiving', desc:'(male-only) — receiving capacity markers', public:true, shortCode:'MRC' },
+  SO:{ label:'Orientation Flexibility', desc:'Fixed vs evolving orientation', public:true, shortCode:'SO' },
+  SP:{ label:'Solo Practice Depth', desc:'What your solo practice includes', public:true, shortCode:'SP' },
+  EW:{ label:'Energy Work Appetite', desc:'Interest in subtle-body practice', public:true, shortCode:'EW' },
+  SHP:{ label:'Shame / Permission State', desc:'Where you are in shame-layer dismantling', public:true, shortCode:'SHP' }
+};
+
+let currentTier = null;
+let currentGender = '';
+
+document.querySelectorAll('.tier-card').forEach(card => {
+  card.addEventListener('click', () => {
+    document.querySelectorAll('.tier-card').forEach(c => c.classList.remove('active'));
+    card.classList.add('active');
+    currentTier = card.dataset.tier;
+    startTest();
+  });
+});
+
+document.getElementById('user-gender').addEventListener('change', e => {
+  currentGender = e.target.value;
+  if (currentTier) renderQuestions();
+});
+
+function startTest() {
+  document.getElementById('meta-area').style.display = 'block';
+  document.getElementById('test-form').style.display = 'block';
+  document.getElementById('action-area').style.display = 'block';
+  document.getElementById('result-area').style.display = 'none';
+  document.getElementById('result-area').innerHTML = '';
+  renderQuestions();
+  document.getElementById('meta-area').scrollIntoView({ behavior:'smooth', block:'start' });
 }
 
-function copyCode() {
-  const code = document.getElementById('code-display').textContent;
-  navigator.clipboard.writeText(code).then(() => {
-    alert('Code copied. Save it — this is your portable compatibility key.');
+function getApplicableQuestions() {
+  return QUESTIONS.filter(q => {
+    if (!q.tiers.includes(currentTier)) return false;
+    if (q.gender && currentGender && q.gender !== currentGender) return false;
+    if (q.gender && !currentGender) return false;
+    return true;
   });
 }
+
+function renderQuestions() {
+  const form = document.getElementById('test-form');
+  form.innerHTML = '';
+  const qs = getApplicableQuestions();
+  let currentAxis = null;
+  let num = 0;
+
+  qs.forEach(q => {
+    if (q.axis !== currentAxis) {
+      currentAxis = q.axis;
+      const a = AXES[q.axis];
+      if (a) {
+        const h = document.createElement('div');
+        h.className = 'section-header';
+        h.innerHTML = '<div class="section-label">Section · ' + a.shortCode + '</div><div class="section-name">' + a.label + '</div><div class="section-desc">' + a.desc + '</div>';
+        form.appendChild(h);
+      }
+    }
+    num++;
+    const div = document.createElement('div');
+    div.className = 'question';
+    div.dataset.qid = q.id;
+    div.dataset.qaxis = q.axis;
+    div.dataset.qtype = q.type;
+    let body = '<div class="q-number">Question ' + num + '</div><div class="q-text">' + q.text + '</div>';
+    if (q.type === 'scale') {
+      body += '<div class="scale-row"><div class="scale-anchor left">' + (q.left || '') + '</div><div class="scale-options">';
+      for (let i=1; i<=5; i++) {
+        body += '<label><input type="radio" name="' + q.id + '" value="' + i + '" required><span>' + i + '</span></label>';
+      }
+      body += '</div><div class="scale-anchor right">' + (q.right || '') + '</div></div>';
+    } else if (q.type === 'choice') {
+      body += '<div class="choice-options">';
+      q.options.forEach(opt => {
+        body += '<label><input type="radio" name="' + q.id + '" value="' + opt.value + '" required><span>' + opt.text + '</span></label>';
+      });
+      body += '</div>';
+    } else if (q.type === 'multi') {
+      body += '<div class="multi-options">';
+      q.options.forEach(opt => {
+        body += '<label><input type="checkbox" name="' + q.id + '" value="' + (opt.code || opt.value) + '"><span>' + opt.text + '</span></label>';
+      });
+      body += '</div>';
+    }
+    if (q.note) body += '<div class="q-note">' + q.note + '</div>';
+    div.innerHTML = body;
+    form.appendChild(div);
+  });
+
+  document.getElementById('progress-note').textContent = qs.length + ' questions in this tier';
+}
+
+function scaleTo9(x) { return Math.round(((x - 1) / 4) * 9); }
+
+document.getElementById('submit-test').addEventListener('click', () => {
+  const email = document.getElementById('user-email').value.trim();
+  if (!email) { alert('Add your email so we can send you the code.'); document.getElementById('user-email').focus(); return; }
+
+  const qs = getApplicableQuestions();
+  const axisData = {};
+
+  for (const q of qs) {
+    if (q.type === 'scale' || q.type === 'choice') {
+      const checked = document.querySelector('input[name="' + q.id + '"]:checked');
+      if (!checked) { alert('Missing answer for: "' + q.text.slice(0,80) + '..."'); return; }
+      const val = parseInt(checked.value);
+      if (!axisData[q.axis]) axisData[q.axis] = { sum:0, count:0, internal:q.internal, raw:[] };
+      axisData[q.axis].sum += val;
+      axisData[q.axis].count++;
+      axisData[q.axis].raw.push({ id:q.id, val });
+    } else if (q.type === 'multi') {
+      const codes = Array.from(document.querySelectorAll('input[name="' + q.id + '"]:checked')).map(c => c.value);
+      if (!axisData[q.axis]) axisData[q.axis] = { sum:0, count:0, multi:[], internal:q.internal };
+      axisData[q.axis].multi = (axisData[q.axis].multi || []).concat(codes);
+    }
+  }
+
+  const publicAxes = ['AR','BG','D','PV','OP','RT','S','DM','V'];
+  const codeParts = [];
+  publicAxes.forEach(ax => {
+    if (axisData[ax] && axisData[ax].count > 0) {
+      codeParts.push(ax + '-' + scaleTo9(axisData[ax].sum / axisData[ax].count));
+    }
+  });
+  if (axisData.SH) {
+    const sh = (axisData.SH.multi || []).join('') || 'none';
+    codeParts.push('SH-' + sh);
+  }
+  if (axisData.OPEN && axisData.OPEN.count > 0) codeParts.push('OPEN-' + scaleTo9(axisData.OPEN.sum / axisData.OPEN.count));
+  if (axisData.TRY && axisData.TRY.count > 0) codeParts.push('TRY-' + scaleTo9(axisData.TRY.sum / axisData.TRY.count));
+
+  if (currentTier === 'deep') {
+    ['DG','WOC','COM','AC','FREQ','SO','EW','SHP'].forEach(ax => {
+      if (axisData[ax] && axisData[ax].count > 0) codeParts.push(ax + '-' + scaleTo9(axisData[ax].sum / axisData[ax].count));
+    });
+    if (axisData.FNS && axisData.FNS.count > 0) codeParts.push('FNS-' + scaleTo9(axisData.FNS.sum / axisData.FNS.count));
+    if (axisData.MRC && axisData.MRC.count > 0) codeParts.push('MRC-' + scaleTo9(axisData.MRC.sum / axisData.MRC.count));
+    if (axisData.SP && axisData.SP.multi) codeParts.push('SP-' + (axisData.SP.multi.join('') || 'none'));
+  }
+
+  const codeShort = codeParts.join(' / ');
+  const tierTag = currentTier === 'quick' ? 'Q' : currentTier === 'standard' ? 'S' : 'D';
+  const fullCode = '[' + tierTag + '] ' + codeShort;
+
+  const internalData = {};
+  ['WM'].forEach(ax => {
+    if (axisData[ax] && axisData[ax].count > 0) {
+      internalData[ax] = (axisData[ax].sum / axisData[ax].count).toFixed(2);
+      internalData[ax + '_raw'] = axisData[ax].raw;
+    }
+  });
+
+  const r = document.getElementById('result-area');
+  let html = '<h3>Your code</h3>';
+  html += '<div class="result-code">' + fullCode + '</div>';
+  html += '<div style="font-size:14px;color:var(--text-muted);line-height:1.5;">A copy of your code has been logged for your records. Save it. The matching service will use this as your match key when it goes live. The longer-form interpretation appears below.</div>';
+
+  html += '<div class="result-axes">';
+  publicAxes.forEach(ax => {
+    if (axisData[ax] && axisData[ax].count > 0) {
+      const val = scaleTo9(axisData[ax].sum / axisData[ax].count);
+      html += '<div class="result-axis"><div class="label">' + AXES[ax].label + '</div><div class="value">' + ax + '-' + val + '</div><div class="desc">' + AXES[ax].desc + '</div></div>';
+    }
+  });
+  html += '</div>';
+
+  if (axisData.SH && axisData.SH.multi && axisData.SH.multi.length) {
+    html += '<div style="margin-top:16px;font-size:14px;"><strong>Shadow appetite:</strong> ' + axisData.SH.multi.length + ' interests selected</div>';
+  }
+
+  html += '<div style="margin-top:24px;padding:16px;background:white;border-radius:6px;border-left:3px solid var(--accent);"><strong>Save your code.</strong> When the matching service launches, this is your intake key. We have also logged your submission (with your email) for the queue.</div>';
+
+  const submission = {
+    timestamp: new Date().toISOString(),
+    tier: currentTier,
+    gender: currentGender || 'unspecified',
+    email,
+    code: fullCode,
+    axes: {},
+    internal: internalData
+  };
+  Object.keys(axisData).forEach(ax => {
+    if (axisData[ax].count > 0) {
+      submission.axes[ax] = { avg: (axisData[ax].sum / axisData[ax].count).toFixed(2), count: axisData[ax].count };
+    }
+    if (axisData[ax].multi && axisData[ax].multi.length) {
+      submission.axes[ax] = submission.axes[ax] || {};
+      submission.axes[ax].multi = axisData[ax].multi;
+    }
+  });
+
+  try {
+    const stored = JSON.parse(localStorage.getItem('ta_test_submissions') || '[]');
+    stored.push(submission);
+    localStorage.setItem('ta_test_submissions', JSON.stringify(stored));
+    localStorage.setItem('ta_test_latest', JSON.stringify(submission));
+  } catch (e) {}
+
+  const TEST_ENDPOINT = window.TA_TEST_ENDPOINT || null;
+  if (TEST_ENDPOINT) {
+    fetch(TEST_ENDPOINT, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(submission) }).catch(()=>{});
+  }
+
+  r.innerHTML = html;
+  r.style.display = 'block';
+  r.scrollIntoView({ behavior:'smooth', block:'start' });
+});
+
+document.getElementById('ask-form').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const data = {
+    timestamp: new Date().toISOString(),
+    name: document.getElementById('ask-name').value.trim(),
+    email: document.getElementById('ask-email').value.trim(),
+    topic: document.getElementById('ask-topic').value,
+    question: document.getElementById('ask-question').value.trim(),
+    publish_consent: document.getElementById('ask-publish').checked,
+    follow_up_consent: document.getElementById('ask-follow-up').checked
+  };
+
+  if (!data.email || !data.topic || !data.question) {
+    alert('Email, topic, and question are required.');
+    return;
+  }
+
+  try {
+    const stored = JSON.parse(localStorage.getItem('ta_ask_submissions') || '[]');
+    stored.push(data);
+    localStorage.setItem('ta_ask_submissions', JSON.stringify(stored));
+  } catch (err) {}
+
+  const ASK_ENDPOINT = window.TA_ASK_ENDPOINT || null;
+  if (ASK_ENDPOINT) {
+    fetch(ASK_ENDPOINT, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(data) }).catch(()=>{});
+  } else {
+    const subject = encodeURIComponent('Ask an Expert: ' + data.topic);
+    const body = encodeURIComponent('From: ' + (data.name || 'Anonymous') + ' <' + data.email + '>\nTopic: ' + data.topic + '\nPublish consent: ' + (data.publish_consent ? 'YES' : 'no') + '\nFollow-up consent: ' + (data.follow_up_consent ? 'YES' : 'no') + '\n\nQuestion:\n' + data.question + '\n\n---\nSent from the Ask an Expert form at tantra-authority.com/test.html');
+    setTimeout(() => { window.location.href = 'mailto:editorial@tantraauthority.com?subject=' + subject + '&body=' + body; }, 100);
+  }
+
+  const c = document.getElementById('ask-confirmation');
+  c.innerHTML = '<strong>Question received.</strong> Logged in the queue (' + new Date().toLocaleString() + '). Selected questions become articles. If you opted into follow-up, we will be in touch. Thank you — the question itself helps the work.';
+  c.style.display = 'block';
+  document.getElementById('ask-form').reset();
+});
 </script>
 
 </body>
