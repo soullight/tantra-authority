@@ -10,7 +10,7 @@ The first vertical site in the 100-fishing-lines portfolio. Built 2026-05-14 (Ja
 
 ## What this site is
 
-Tantra Authority is the **practical, SEO-friendly, educational** front door to Lawrence Gregory's tantra body of work. It is NOT the personal Substack. It is the authoritative, depersonalized destination for people who type "what is tantra" or "tantric breathing exercises" into Google.
+Tantra Authority is the **practical, SEO-friendly, educational** front door to Lawrence Lanoff's tantra body of work. It is NOT the personal Substack. It is the authoritative, depersonalized destination for people who type "what is tantra" or "tantric breathing exercises" into Google.
 
 **Persona:** The Tantra Authority Editors. Bylineless in most cases. Calm, authoritative, anti-bullshit, body-grounded.
 
@@ -38,7 +38,7 @@ Earlier drafts had a tone that read as anti-workshop and anti-commerce categoric
 | Sell books (royalty, KDP, audiobook) | Sell weekend certification programs |
 | Run occasional retreats — the kind that's meditating, cooking, laughing, real practice, not certification-mills | Run cult-style "level two" / "level three" upsell tracks |
 | Offer high-end coaching (1:1, small group, expensive, no scale games) | Run paid private communities you must keep paying to stay inside |
-| List vetted practitioners — sex workers, tantric massage practitioners, somatic guides — with full transparency about their lineage, training, and any cult/guru affiliations | Hide a practitioner's training history or whitewash their teacher's record |
+| List vouched-for practitioners — tantra teachers, somatic guides, breathwork facilitators, erotic-hypnosis self-practice coaches — with full transparency about their lineage, training, and any cult/guru affiliations | List sex workers / escorts / transactional intimate services (FOSTA/regulatory complexity not worth the risk); hide a practitioner's training history; whitewash their teacher's record |
 | Sell products — books, ethical sex toys (affiliate), print-on-demand (Etsy/Shopify), supplements where evidence supports them | Sell mystified products with manufactured spiritual claims |
 | Affiliate to credible adult-industry, wellness, and bookseller links | Affiliate to MLM-style spiritual product schemes |
 | Acknowledge that a good workshop is an accelerant, that real teachers exist, that paying for structure is sometimes the right move | Pretend everything has to be solo, free, and self-directed |
@@ -55,7 +55,7 @@ Every Tantra Authority article ends with a specific closing structure, in this o
 1. **The teaching close** — the article's last sober editorial paragraph, lands the framework.
 2. **`<hr>` separator.**
 3. **"And now — invite the animal in"** section heading. The tone flips from sober-editor to wild-erotic-alive. 2–3 paragraphs. The "now do it" beat. Always pointing the reader at shadow / wildness / eros / the body that wants more / ritual / the unconscious. The opposite of the article's earlier register. This is where the reader gets the permission to take the framework into their own body.
-4. **Rabbit-holes block** — `<div class="rabbit-holes">` with 5–8 related-article links. Mix of in-site articles (linked) and forthcoming articles (italicized, marked "(forthcoming)") to seed demand. Topics that recur: shadow, erotic hypnosis, the symbolic body, ritual, the voice, the slow practice, the workshop question, sex workers and lineage transparency, the unconscious, the directory, ancient practices vs neo-tantra.
+4. **Rabbit-holes block** — `<div class="rabbit-holes">` with 5–8 related-article links. Mix of in-site articles (linked) and forthcoming articles (italicized, marked "(forthcoming)") to seed demand. Topics that recur: shadow, erotic hypnosis, the symbolic body, ritual, the voice, the slow practice, the workshop question, lineage transparency, the unconscious, the directory, ancient practices vs neo-tantra, the AI safe-space conversations.
 5. **Cross-link to substack** — a `<p><em>` block pointing to The Naked Mind for the first-person personal-essay version of the territory.
 6. **`<div class="cta-card">`** — standard book promo.
 

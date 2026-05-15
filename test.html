@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Tantric Match Test — Tantra Authority</title>
+<meta name="description" content="A 30-question diagnostic across active/receptive, body/mind, kink, energy, and shadow axes. Generates a portable compatibility code. Free to take. The output becomes your match key on the Honest Fetish Matching service.">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>○</text></svg>">
+<style>
+  /* Test-specific styles */
+  .test-intro {
+    background: linear-gradient(135deg, rgba(139,58,58,0.06), rgba(184,134,11,0.04));
+    padding: 32px;
+    border-radius: 10px;
+    margin-bottom: 32px;
+    border: 1px solid var(--border);
+  }
+  .test-intro h2 { margin-top: 0; font-size: 22px; }
+  .test-axes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 14px;
+    margin: 20px 0;
+  }
+  .axis-card {
+    padding: 14px 16px;
+    background: rgba(255,255,255,0.6);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+  }
+  .axis-card .axis-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+  .axis-card .axis-poles {
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.4;
+  }
+
+  /* Quiz */
+  #quiz { margin-top: 32px; }
+  .question {
+    margin: 28px 0 32px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--border);
+  }
+  .question:last-of-type { border-bottom: none; }
+  .question-number {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+  }
+  .question h3 {
+    font-family: 'Charter', serif;
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 1.35;
+    margin: 0 0 18px;
+  }
+  .scale {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .scale-options {
+    display: flex;
+    justify-content: space-between;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .scale-anchor {
+    font-size: 13px;
+    color: var(--text-muted);
+    flex: 1;
+    min-width: 120px;
+  }
+  .scale-anchor.left { text-align: left; }
+  .scale-anchor.right { text-align: right; }
+  .radio-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    align-items: center;
+    margin-top: 4px;
+  }
+  .radio-row label {
+    flex: 1;
+    text-align: center;
+    padding: 10px 4px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    cursor: pointer;
+    background: rgba(255,255,255,0.4);
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-muted);
+    transition: all 0.12s;
+  }
+  .radio-row label:hover {
+    border-color: var(--accent-soft);
+    color: var(--text);
+  }
+  .radio-row input[type="radio"] { display: none; }
+  .radio-row input[type="radio"]:checked + label {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+
+  .multi-choice {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 10px;
+  }
+  .multi-choice label {
+    padding: 12px 14px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: rgba(255,255,255,0.4);
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.12s;
+  }
+  .multi-choice label:hover { border-color: var(--accent-soft); }
+  .multi-choice input[type="checkbox"] { accent-color: var(--accent); }
+  .multi-choice input[type="checkbox"]:checked + span { color: var(--accent); font-weight: 600; }
+
+  #submit-row {
+    margin-top: 32px;
+    padding: 24px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    text-align: center;
+  }
+  #submit-btn {
+    padding: 16px 36px;
+    font-size: 14px;
+  }
+
+  #result {
+    display: none;
+    margin-top: 32px;
+    padding: 32px;
+    background: linear-gradient(135deg, rgba(139,58,58,0.08), rgba(184,134,11,0.05));
+    border: 2px solid var(--accent);
+    border-radius: 10px;
+    text-align: center;
+  }
+  #result.show { display: block; }
+  #result .your-code {
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 4px;
+    padding: 20px;
+    background: var(--bg);
+    border: 1px solid var(--accent);
+    border-radius: 8px;
+    margin: 18px auto;
+    display: inline-block;
+  }
+  .breakdown {
+    text-align: left;
+    margin: 24px 0;
+    display: grid;
+    gap: 10px;
+  }
+  .breakdown-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 14px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+  }
+  .breakdown-label { color: var(--text-muted); }
+  .breakdown-value { color: var(--accent); font-weight: 700; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <a href="index.html" class="site-logo">TANTRA <span>AUTHORITY</span></a>
+    <nav class="site-nav">
+      <a href="index.html">Articles</a>
+      <a href="featured.html">Featured</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="directory.html">Directory</a>
+      <a href="shop.html">Shop</a>
+      <a href="test.html">Test</a>
+      <a href="book.html">The Book</a>
+      <a href="about.html">About</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <div class="article-meta">
+    <span class="pill">Test · Free · 8 minutes</span>
+  </div>
+
+  <h1>The Tantric Match Test</h1>
+
+  <div class="test-intro">
+    <h2>What this is</h2>
+    <p>A 30-question diagnostic that profiles your tantric, sexual, and relational orientation across nine axes. Output: a portable compatibility code (something like <strong>AR-7 / BG-4 / D-6 / PV-8 / OP-3 / RT-5 / S-7 / D-4 / V-2</strong>) that maps your wants and offers cleanly enough that real matching becomes possible.</p>
+
+    <p>The test is free. Your code is yours — copy it, share it, put it on your dating profile if you want, or feed it into the forthcoming Honest Fetish Matching service for AI-assisted compatibility matching with other code-holders.</p>
+
+    <h3 style="margin-top:24px;font-size:16px;">The nine axes</h3>
+    <div class="test-axes">
+      <div class="axis-card">
+        <div class="axis-label">AR</div>
+        <div class="axis-poles">Active ↔ Receptive (replaces masculine/feminine)</div>
+      </div>
+      <div class="axis-card">
+        <div class="axis-label">BG</div>
+        <div class="axis-poles">Body-grounded ↔ Mind-grounded</div>
+      </div>
+      <div class="axis-card">
+        <div class="axis-label">D</div>
+        <div class="axis-poles">Direct ↔ Subtle (in expression)</div>
+      </div>
+      <div class="axis-card">
+        <div class="axis-label">PV</div>
+        <div class="axis-poles">Partnered ↔ Solo (orientation)</div>
+      </div>
+      <div class="axis-card">
+        <div class="axis-label">OP</div>
+        <div class="axis-poles">Open ↔ Pair-bonded (relational)</div>
+      </div>
+      <div class="axis-card">
+        <div class="axis-label">RT</div>
+        <div class="axis-poles">Discharge ↔ Retention (energy management)</div>
+      </div>
+      <div class="axis-card">
+        <div class="axis-label">S</div>
+        <div class="axis-poles">Submission appetite (0-9)</div>
+      </div>
+      <div class="axis-card">
+        <div class="axis-label">D</div>
+        <div class="axis-poles">Dominance appetite (0-9)</div>
+      </div>
+      <div class="axis-card">
+        <div class="axis-label">V</div>
+        <div class="axis-poles">Vanilla ↔ Edge (kink range)</div>
+      </div>
+    </div>
+
+    <p style="margin-top:20px;">No question requires you to be a particular kind of person. The test is non-judgmental by design. Answer how your body actually responds, not how you think you should respond. The whole point is the honest profile.</p>
+  </div>
+
+  <form id="quiz" onsubmit="event.preventDefault(); calculate();">
+
+    <div class="question">
+      <div class="question-number">1 · ACTIVE / RECEPTIVE</div>
+      <h3>In sexual partnership, your body's default orientation is to:</h3>
+      <div class="scale-options">
+        <span class="scale-anchor left">Initiate, lead, drive the contact</span>
+        <span class="scale-anchor right">Receive, be acted upon, surrender to contact</span>
+      </div>
+      <div class="radio-row">
+        <input type="radio" name="q1" id="q1-1" value="1" required><label for="q1-1">1</label>
+        <input type="radio" name="q1" id="q1-2" value="2"><label for="q1-2">2</label>
+        <input type="radio" name="q1" id="q1-3" value="3"><label for="q1-3">3</label>
+        <input type="radio" name="q1" id="q1-4" value="4"><label for="q1-4">4</label>
+        <input type="radio" name="q1" id="q1-5" value="5"><label for="q1-5">5</label>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="question-number">2 · BODY / MIND</div>
+      <h3>When you're aroused, you tend to:</h3>
+      <div class="scale-options">
+        <span class="scale-anchor left">Drop into your body, feel sensation, narrate less</span>
+        <span class="scale-anchor right">Stay in your head, watch yourself, narrate more</span>
+      </div>
+      <div class="radio-row">
+        <input type="radio" name="q2" id="q2-1" value="1" required><label for="q2-1">1</label>
+        <input type="radio" name="q2" id="q2-2" value="2"><label for="q2-2">2</label>
+        <input type="radio" name="q2" id="q2-3" value="3"><label for="q2-3">3</label>
+        <input type="radio" name="q2" id="q2-4" value="4"><label for="q2-4">4</label>
+        <input type="radio" name="q2" id="q2-5" value="5"><label for="q2-5">5</label>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="question-number">3 · DIRECT / SUBTLE</div>
+      <h3>You communicate sexual desire most naturally by:</h3>
+      <div class="scale-options">
+        <span class="scale-anchor left">Saying it plainly</span>
+        <span class="scale-anchor right">Showing it indirectly</span>
+      </div>
+      <div class="radio-row">
+        <input type="radio" name="q3" id="q3-1" value="1" required><label for="q3-1">1</label>
+        <input type="radio" name="q3" id="q3-2" value="2"><label for="q3-2">2</label>
+        <input type="radio" name="q3" id="q3-3" value="3"><label for="q3-3">3</label>
+        <input type="radio" name="q3" id="q3-4" value="4"><label for="q3-4">4</label>
+        <input type="radio" name="q3" id="q3-5" value="5"><label for="q3-5">5</label>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="question-number">4 · PARTNERED / SOLO</div>
+      <h3>Your richest sexual experiences tend to be:</h3>
+      <div class="scale-options">
+        <span class="scale-anchor left">With a partner present</span>
+        <span class="scale-anchor right">Alone</span>
+      </div>
+      <div class="radio-row">
+        <input type="radio" name="q4" id="q4-1" value="1" required><label for="q4-1">1</label>
+        <input type="radio" name="q4" id="q4-2" value="2"><label for="q4-2">2</label>
+        <input type="radio" name="q4" id="q4-3" value="3"><label for="q4-3">3</label>
+        <input type="radio" name="q4" id="q4-4" value="4"><label for="q4-4">4</label>
+        <input type="radio" name="q4" id="q4-5" value="5"><label for="q4-5">5</label>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="question-number">5 · OPEN / PAIR-BONDED</div>
+      <h3>Your honest relational orientation:</h3>
+      <div class="scale-options">
+        <span class="scale-anchor left">Multiple connections, no exclusivity</span>
+        <span class="scale-anchor right">One partner, deep exclusivity</span>
+      </div>
+      <div class="radio-row">
+        <input type="radio" name="q5" id="q5-1" value="1" required><label for="q5-1">1</label>
+        <input type="radio" name="q5" id="q5-2" value="2"><label for="q5-2">2</label>
+        <input type="radio" name="q5" id="q5-3" value="3"><label for="q5-3">3</label>
+        <input type="radio" name="q5" id="q5-4" value="4"><label for="q5-4">4</label>
+        <input type="radio" name="q5" id="q5-5" value="5"><label for="q5-5">5</label>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="question-number">6 · DISCHARGE / RETENTION</div>
+      <h3>How does your body actually respond to ejaculation / climax?</h3>
+      <div class="scale-options">
+        <span class="scale-anchor left">Daily / abundant feels best — body adapts</span>
+        <span class="scale-anchor right">Conserved / occasional feels best — body builds charge</span>
+      </div>
+      <div class="radio-row">
+        <input type="radio" name="q6" id="q6-1" value="1" required><label for="q6-1">1</label>
+        <input type="radio" name="q6" id="q6-2" value="2"><label for="q6-2">2</label>
+        <input type="radio" name="q6" id="q6-3" value="3"><label for="q6-3">3</label>
+        <input type="radio" name="q6" id="q6-4" value="4"><label for="q6-4">4</label>
+        <input type="radio" name="q6" id="q6-5" value="5"><label for="q6-5">5</label>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="question-number">7 · SUBMISSION APPETITE</div>
+      <h3>Being told what to do, sexually — yielding control to a trusted partner — is:</h3>
+      <div class="scale-options">
+        <span class="scale-anchor left">Off-putting / not for you</span>
+        <span class="scale-anchor right">A peak experience</span>
+      </div>
+      <div class="radio-row">
+        <input type="radio" name="q7" id="q7-1" value="1" required><label for="q7-1">1</label>
+        <input type="radio" name="q7" id="q7-2" value="2"><label for="q7-2">2</label>
+        <input type="radio" name="q7" id="q7-3" value="3"><label for="q7-3">3</label>
+        <input type="radio" name="q7" id="q7-4" value="4"><label for="q7-4">4</label>
+        <input type="radio" name="q7" id="q7-5" value="5"><label for="q7-5">5</label>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="question-number">8 · DOMINANCE APPETITE</div>
+      <h3>Telling a partner what to do, sexually — taking the controlling position — is:</h3>
+      <div class="scale-options">
+        <span class="scale-anchor left">Off-putting / not for you</span>
+        <span class="scale-anchor right">A peak experience</span>
+      </div>
+      <div class="radio-row">
+        <input type="radio" name="q8" id="q8-1" value="1" required><label for="q8-1">1</label>
+        <input type="radio" name="q8" id="q8-2" value="2"><label for="q8-2">2</label>
+        <input type="radio" name="q8" id="q8-3" value="3"><label for="q8-3">3</label>
+        <input type="radio" name="q8" id="q8-4" value="4"><label for="q8-4">4</label>
+        <input type="radio" name="q8" id="q8-5" value="5"><label for="q8-5">5</label>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="question-number">9 · VANILLA / EDGE</div>
+      <h3>The range of sexual contexts that interest you spans:</h3>
+      <div class="scale-options">
+        <span class="scale-anchor left">Familiar and conventional</span>
+        <span class="scale-anchor right">Wide-open including most edges and shadow material</span>
+      </div>
+      <div class="radio-row">
+        <input type="radio" name="q9" id="q9-1" value="1" required><label for="q9-1">1</label>
+        <input type="radio" name="q9" id="q9-2" value="2"><label for="q9-2">2</label>
+        <input type="radio" name="q9" id="q9-3" value="3"><label for="q9-3">3</label>
+        <input type="radio" name="q9" id="q9-4" value="4"><label for="q9-4">4</label>
+        <input type="radio" name="q9" id="q9-5" value="5"><label for="q9-5">5</label>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="question-number">10 · SHADOW APPETITES</div>
+      <h3>Which of the following are alive for you (check all that apply — honesty here is the point):</h3>
+      <div class="multi-choice">
+        <label><input type="checkbox" name="shadow" value="F"><span>Foot fetish</span></label>
+        <label><input type="checkbox" name="shadow" value="G"><span>Group sex</span></label>
+        <label><input type="checkbox" name="shadow" value="V"><span>Voyeurism</span></label>
+        <label><input type="checkbox" name="shadow" value="E"><span>Exhibitionism</span></label>
+        <label><input type="checkbox" name="shadow" value="A"><span>Anal play</span></label>
+        <label><input type="checkbox" name="shadow" value="O"><span>Oral fixation</span></label>
+        <label><input type="checkbox" name="shadow" value="P"><span>Power exchange / BDSM</span></label>
+        <label><input type="checkbox" name="shadow" value="R"><span>Role play / personas</span></label>
+        <label><input type="checkbox" name="shadow" value="L"><span>Latex / leather / material</span></label>
+        <label><input type="checkbox" name="shadow" value="X"><span>Public play</span></label>
+        <label><input type="checkbox" name="shadow" value="C"><span>Cuckolding / hotwifing</span></label>
+        <label><input type="checkbox" name="shadow" value="K"><span>Impact / pain play</span></label>
+      </div>
+    </div>
+
+    <div id="submit-row">
+      <p style="margin-bottom:18px;color:var(--text-muted);">This is a 10-question demo. The full 30-question test, with the additional axes for energy preferences, attachment style, and contextual preferences, ships with the matching service launch.</p>
+      <button type="submit" id="submit-btn" class="cta-button">Generate My Code</button>
+    </div>
+
+  </form>
+
+  <div id="result">
+    <h2 style="margin-top:0;">Your Tantric Match Code</h2>
+    <div class="your-code" id="code-display">—</div>
+    <div class="breakdown" id="breakdown"></div>
+    <p style="color:var(--text-muted);margin-top:24px;font-size:15px;">This is your portable compatibility key. Save it. The Honest Fetish Matching service uses codes like this — plus the longer 30-question version — to find compatible matches based on actual structural alignment instead of swipe-and-pray.</p>
+    <div style="margin-top:28px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+      <a href="match.html" class="cta-button">Read about the matching service</a>
+      <a href="#" onclick="event.preventDefault(); copyCode();" class="cta-button" style="background:var(--bg-card);color:var(--accent) !important;border:1px solid var(--accent);">Copy Code</a>
+    </div>
+  </div>
+
+  <div class="animal-cta" style="margin-top:48px;">
+    <div class="animal-cta-eyebrow">Invite the Animal In</div>
+    <h3 class="animal-cta-headline">Whatever your code came back as — the work is in the body.</h3>
+    <p class="animal-cta-intro">Doors below.</p>
+    <div class="rabbit-hole">
+      <a href="articles/the-dismantling.html" class="rabbit-hole-item">
+        <div class="rh-label">Foundation</div>
+        <div class="rh-title">The Dismantling</div>
+        <div class="rh-desc">Most people's codes shift after the dismantling work — the inherited shame layer comes off and the underlying appetites become visible.</div>
+      </a>
+      <a href="articles/beyond-the-myth-foot-fetish.html" class="rabbit-hole-item">
+        <div class="rh-label">Shadow Library</div>
+        <div class="rh-title">If you checked Foot Fetish</div>
+        <div class="rh-desc">The full neuroscience, evolutionary frame, and lived practical guidance on the most common non-genital fetish.</div>
+      </a>
+      <a href="match.html" class="rabbit-hole-item">
+        <div class="rh-label">Matching</div>
+        <div class="rh-title">Honest Fetish Matching</div>
+        <div class="rh-desc">The service this test feeds. Real disclosure, real vetting, real structural compatibility.</div>
+      </a>
+      <a href="directory.html" class="rabbit-hole-item">
+        <div class="rh-label">Directory</div>
+        <div class="rh-title">Find a vetted practitioner</div>
+        <div class="rh-desc">Whatever your code says, there are practitioners trained in the work it points at.</div>
+      </a>
+      <a href="book.html" class="rabbit-hole-item">
+        <div class="rh-label">Book</div>
+        <div class="rh-title">Beyond the Myth</div>
+        <div class="rh-desc">The whole framework underneath this test. Lawrence Lanoff's complete system.</div>
+      </a>
+      <a href="https://thenakedmind.ai" class="rabbit-hole-item">
+        <div class="rh-label">Newsletter</div>
+        <div class="rh-title">The Naked Mind</div>
+        <div class="rh-desc">The longer essays. Free.</div>
+      </a>
+    </div>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <div>Tantra Authority — published by <a href="https://thenaked.press">The Naked Press</a></div>
+</footer>
+
+<script>
+function calculate() {
+  const get = name => {
+    const r = document.querySelector(`input[name="${name}"]:checked`);
+    return r ? parseInt(r.value) : 3;
+  };
+
+  const ar = get('q1');         // 1=very active, 5=very receptive
+  const bg = get('q2');         // 1=body-grounded, 5=mind-grounded
+  const d  = get('q3');         // 1=direct, 5=subtle
+  const pv = get('q4');         // 1=partnered, 5=solo
+  const op = get('q5');         // 1=open, 5=pair-bonded
+  const rt = get('q6');         // 1=discharge, 5=retention
+  const s  = get('q7');         // 1=no sub, 5=peak sub
+  const dom= get('q8');         // 1=no dom, 5=peak dom
+  const v  = get('q9');         // 1=vanilla, 5=edge
+
+  // Convert 1-5 scale to 0-9 scale roughly
+  const scale = (x) => Math.round(((x-1)/4) * 9);
+
+  const shadow = Array.from(document.querySelectorAll('input[name="shadow"]:checked')).map(c => c.value).join('');
+
+  const code = `AR-${scale(ar)} / BG-${scale(bg)} / D-${scale(d)} / PV-${scale(pv)} / OP-${scale(op)} / RT-${scale(rt)} / S-${scale(s)} / DM-${scale(dom)} / V-${scale(v)} / SH-${shadow || 'none'}`;
+
+  document.getElementById('code-display').textContent = code;
+
+  // Breakdown
+  const labels = {
+    AR: ['highly active', 'active-leaning', 'balanced', 'receptive-leaning', 'highly receptive'],
+    BG: ['deeply body-grounded', 'body-leaning', 'balanced', 'mind-leaning', 'deeply mind-grounded'],
+    D:  ['very direct', 'direct-leaning', 'balanced', 'subtle-leaning', 'very subtle'],
+    PV: ['strongly partnered', 'partnered-leaning', 'balanced', 'solo-leaning', 'strongly solo'],
+    OP: ['fully open', 'open-leaning', 'balanced', 'pair-bonded-leaning', 'fully pair-bonded'],
+    RT: ['discharge orientation', 'discharge-leaning', 'mixed', 'retention-leaning', 'retention orientation'],
+    S:  ['no submission appetite', 'low submission', 'moderate', 'high submission', 'peak submission'],
+    DM: ['no dominance appetite', 'low dominance', 'moderate', 'high dominance', 'peak dominance'],
+    V:  ['vanilla orientation', 'vanilla-leaning', 'mixed', 'edge-leaning', 'wide edge orientation'],
+  };
+  const labelOf = (axis, v) => labels[axis][v-1];
+
+  const html = [
+    {axis:'AR', val:ar, name:'Active / Receptive'},
+    {axis:'BG', val:bg, name:'Body / Mind'},
+    {axis:'D',  val:d,  name:'Direct / Subtle'},
+    {axis:'PV', val:pv, name:'Partnered / Solo'},
+    {axis:'OP', val:op, name:'Open / Pair-bonded'},
+    {axis:'RT', val:rt, name:'Discharge / Retention'},
+    {axis:'S',  val:s,  name:'Submission'},
+    {axis:'DM', val:dom,name:'Dominance'},
+    {axis:'V',  val:v,  name:'Vanilla / Edge'},
+  ].map(r => `<div class="breakdown-row"><span class="breakdown-label">${r.name}</span><span class="breakdown-value">${labelOf(r.axis, r.val)}</span></div>`).join('');
+
+  document.getElementById('breakdown').innerHTML = html;
+  const result = document.getElementById('result');
+  result.classList.add('show');
+  result.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function copyCode() {
+  const code = document.getElementById('code-display').textContent;
+  navigator.clipboard.writeText(code).then(() => {
+    alert('Code copied. Save it — this is your portable compatibility key.');
+  });
+}
+</script>
+
+</body>
+</html>
