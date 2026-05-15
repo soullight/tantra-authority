@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Psychosexual Psychological Test — Tantra Authority</title>
-<meta name="description" content="A three-tier diagnostic across the body's actual psychosexual architecture. Quick (10 questions, 3 minutes), Standard (30 questions, 10 minutes), or Deep Dive (100 questions, 30 minutes). Generates a portable compatibility code. Free to take. The output becomes your match key on the Honest Fetish Matching service.">
+<title>The PPT — Psychosexual Psychological Type Test — Tantra Authority</title>
+<meta name="description" content="The PPT — a three-tier psychosexual psychological type test. Quick (10 questions, 3 minutes), Standard (30 questions, 10 minutes), or Deep Dive (100 questions, 30 minutes). Generates a portable compatibility code across 25 axes. Free to take. The output becomes your match key on the Honest Fetish Matching service.">
 <link rel="stylesheet" href="styles.css">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>○</text></svg>">
 <style>
@@ -18,6 +18,12 @@
 .tier-card .tier-name { font-size: 22px; font-weight: 600; margin-bottom: 4px; }
 .tier-card .tier-meta { font-family: 'Inter', sans-serif; font-size: 13px; color: var(--text-muted); margin-bottom: 12px; }
 .tier-card .tier-desc { font-size: 14px; line-height: 1.5; color: var(--text); }
+.ppt-hero { padding: 48px 40px; background: linear-gradient(135deg, rgba(139,58,58,0.10), rgba(184,134,11,0.06)); border-radius: 12px; border: 1px solid var(--border); margin-bottom: 32px; text-align: left; }
+.ppt-hero .acronym { font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 6px; text-transform: uppercase; color: var(--accent); margin-bottom: 18px; }
+.ppt-hero h1 { font-size: 56px; line-height: 1; margin: 0 0 14px; letter-spacing: -2px; }
+.ppt-hero .full-name { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 22px; }
+.ppt-hero .lede { font-size: 19px; line-height: 1.5; color: var(--text); max-width: 720px; margin: 0; }
+@media (max-width: 640px) { .ppt-hero h1 { font-size: 42px; letter-spacing: -1px; } }
 .test-meta-fields { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; padding: 20px; background: rgba(255,255,255,0.5); border: 1px solid var(--border); border-radius: 8px; margin: 24px 0; }
 .test-meta-fields label { display: block; font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; }
 .test-meta-fields input, .test-meta-fields select, .ask-form textarea, .ask-form input, .ask-form select { width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: 6px; font-family: inherit; font-size: 15px; background: white; box-sizing: border-box; }
@@ -84,7 +90,8 @@
       <a href="gallery.html">Gallery</a>
       <a href="directory.html">Directory</a>
       <a href="shop.html">Shop</a>
-      <a href="test.html">Test</a>
+      <a href="test.html">PPT</a>
+      <a href="ask.html">Ask</a>
       <a href="book.html">The Book</a>
       <a href="about.html">About</a>
     </nav>
@@ -93,13 +100,12 @@
 
 <main>
 
-  <div class="article-meta">
-    <span class="pill">Diagnostic · Free</span>
-  </div>
-
-  <h1>The Psychosexual Psychological Test</h1>
-
-  <p style="font-size:19px;color:var(--text-muted);line-height:1.55;">A three-tier diagnostic across the body's actual psychosexual architecture. Maps your appetite, polarity, openness, and shadow material onto a portable code you can keep, share, and use as your match key on the eventual matching service. Free to take. Pick your depth.</p>
+  <section class="ppt-hero">
+    <div class="acronym">P · P · T</div>
+    <h1>The PPT.</h1>
+    <div class="full-name">Psychosexual · Psychological · Type</div>
+    <p class="lede">A three-tier diagnostic across the body's actual psychosexual architecture. Twenty-five axes when you go deep. Maps your appetite, polarity, openness, shadow appetite, disgust profile, world model, and shame-state onto a portable code you can keep, share, and use as your match key. Free to take. Pick your depth.</p>
+  </section>
 
   <div class="test-intro">
     <h2>What this is</h2>
@@ -157,57 +163,11 @@
 
   <div id="result-area"></div>
 
-  <!-- ============================================ -->
-  <!-- ASK AN EXPERT FORM                            -->
-  <!-- ============================================ -->
-
-  <section class="ask-section" id="ask">
-    <h2>Ask an Expert</h2>
-    <p>One question, one answer, one frame at a time. Submit a question — about your own body, your relationship, a kink you're trying to understand, a specific stuck point — and it lands in the editorial queue. Selected questions become articles. All questions inform what we write next. Use this if there's something you wanted answered and could not find an honest version of anywhere else.</p>
-
-    <form class="ask-form" id="ask-form">
-      <div class="form-row">
-        <div>
-          <label for="ask-name" style="display:block;font-family:'Inter',sans-serif;font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--text-muted);margin-bottom:6px;">Your name (optional)</label>
-          <input type="text" id="ask-name" name="name" placeholder="What we should call you">
-        </div>
-        <div>
-          <label for="ask-email" style="display:block;font-family:'Inter',sans-serif;font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--text-muted);margin-bottom:6px;">Your email</label>
-          <input type="email" id="ask-email" name="email" placeholder="you@email.com" required>
-        </div>
-      </div>
-      <div>
-        <label for="ask-topic" style="display:block;font-family:'Inter',sans-serif;font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--text-muted);margin-bottom:6px;">Topic area</label>
-        <select id="ask-topic" name="topic" required>
-          <option value="">Choose what your question is about</option>
-          <option value="foundations">Foundations — safety, dismantling, the framework</option>
-          <option value="body-practice">Body practice — breath, sound, touch, partner work</option>
-          <option value="female-sexuality">Female sexuality — orgasm, anatomy, shame</option>
-          <option value="male-sexuality">Male sexuality — PE, polarity, receiving</option>
-          <option value="shadow">Shadow Library — fetish, kink, taboo</option>
-          <option value="relationship">Relationship structures — open, monogamy, cheating</option>
-          <option value="energy-work">Energy work / subtle-body practice</option>
-          <option value="meditation">Meditation / consciousness / awakening</option>
-          <option value="hypnosis">Hypnosis / somatic deprogramming</option>
-          <option value="practical">Specific practical / situational question</option>
-          <option value="other">Other</option>
-        </select>
-      </div>
-      <div>
-        <label for="ask-question" style="display:block;font-family:'Inter',sans-serif;font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--text-muted);margin-bottom:6px;">Your question</label>
-        <textarea id="ask-question" name="question" rows="6" placeholder="Ask plainly. We don't moralize, we don't judge, we don't redirect to therapy. We answer." required></textarea>
-      </div>
-      <div class="checkbox-row">
-        <input type="checkbox" id="ask-publish" name="publish">
-        <label for="ask-publish">You may publish my question (anonymized) if it becomes an article.</label>
-      </div>
-      <div class="checkbox-row">
-        <input type="checkbox" id="ask-follow-up" name="follow_up">
-        <label for="ask-follow-up">You may contact me for follow-up about my question.</label>
-      </div>
-      <button type="submit">Send the question</button>
-      <div class="ask-confirmation" id="ask-confirmation"></div>
-    </form>
+  <section style="padding: 32px; background: linear-gradient(135deg, rgba(184,134,11,0.06), rgba(139,58,58,0.04)); border-radius: 10px; border: 1px solid var(--border); margin: 48px 0; text-align:center;">
+    <div style="font-family:'Inter',sans-serif;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:14px;">Have a question instead?</div>
+    <h2 style="margin-top:0;font-size:28px;">Ask.</h2>
+    <p style="font-size:17px;color:var(--text-muted);max-width:600px;margin:0 auto 22px;line-height:1.5;">One question, one answer, one frame at a time. Submit something about your body, your relationship, a kink you're trying to understand. Selected questions become articles.</p>
+    <a href="ask.html" class="cta-button">Go to Ask</a>
   </section>
 
   <div class="animal-cta">
@@ -759,43 +719,6 @@ document.getElementById('submit-test').addEventListener('click', () => {
   r.scrollIntoView({ behavior:'smooth', block:'start' });
 });
 
-document.getElementById('ask-form').addEventListener('submit', (e) => {
-  e.preventDefault();
-  const data = {
-    timestamp: new Date().toISOString(),
-    name: document.getElementById('ask-name').value.trim(),
-    email: document.getElementById('ask-email').value.trim(),
-    topic: document.getElementById('ask-topic').value,
-    question: document.getElementById('ask-question').value.trim(),
-    publish_consent: document.getElementById('ask-publish').checked,
-    follow_up_consent: document.getElementById('ask-follow-up').checked
-  };
-
-  if (!data.email || !data.topic || !data.question) {
-    alert('Email, topic, and question are required.');
-    return;
-  }
-
-  try {
-    const stored = JSON.parse(localStorage.getItem('ta_ask_submissions') || '[]');
-    stored.push(data);
-    localStorage.setItem('ta_ask_submissions', JSON.stringify(stored));
-  } catch (err) {}
-
-  const ASK_ENDPOINT = window.TA_ASK_ENDPOINT || null;
-  if (ASK_ENDPOINT) {
-    fetch(ASK_ENDPOINT, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(data) }).catch(()=>{});
-  } else {
-    const subject = encodeURIComponent('Ask an Expert: ' + data.topic);
-    const body = encodeURIComponent('From: ' + (data.name || 'Anonymous') + ' <' + data.email + '>\nTopic: ' + data.topic + '\nPublish consent: ' + (data.publish_consent ? 'YES' : 'no') + '\nFollow-up consent: ' + (data.follow_up_consent ? 'YES' : 'no') + '\n\nQuestion:\n' + data.question + '\n\n---\nSent from the Ask an Expert form at tantra-authority.com/test.html');
-    setTimeout(() => { window.location.href = 'mailto:editorial@tantraauthority.com?subject=' + subject + '&body=' + body; }, 100);
-  }
-
-  const c = document.getElementById('ask-confirmation');
-  c.innerHTML = '<strong>Question received.</strong> Logged in the queue (' + new Date().toLocaleString() + '). Selected questions become articles. If you opted into follow-up, we will be in touch. Thank you — the question itself helps the work.';
-  c.style.display = 'block';
-  document.getElementById('ask-form').reset();
-});
 </script>
 
 </body>
