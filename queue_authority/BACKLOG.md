@@ -408,3 +408,104 @@ Sober editorial comparison. Where they overlap (most places). Where they diverge
 ## Tracking
 
 When picking up a brief: change the status line to **In progress** with date + Writer agent name (Claude session ID is fine). When shipped: change to **✅ Drafted [date]** + path to article HTML. When live: **✅ Live [date]** + URL.
+
+---
+
+# CLUSTER ADDITIONS — 2026-05-15 (Lawrence's dump)
+
+The framework just revealed its true scale. These are the next cluster expansions. Group into thematic series. Brief each one as the queue picks them up. Approximate priority noted; SEO opportunity per cluster is enormous (see `automation/seo/SEO_AUDIT_2026-05-15.md`).
+
+---
+
+## CLUSTER A — Women's Orgasm Liberation (HIGH SEO + HIGH MISSION FIT)
+
+Anchored to PILLARS §3 (women's-orgasm-shame as dedicated teaching territory) + §3.4 (safety as precondition). Every article in this cluster runs on the safety-pillar through-line.
+
+- **The Ease of Orgasm** — *the anchor piece.* Orgasm as the default state of a body in safety, not a target requiring technique. Why most orgasm advice points the wrong direction.
+- **How to Relax Into Your Orgasm** — practical: breath, body, attention. The opposite of "do these five things." Permission piece.
+- **Why Chasing Orgasms Sucks** — the goal-directed sex pattern explicitly named. The opposite of the supplement-and-toy industry.
+- **Coming Easily and Fast Is Great (Especially for Women)** — debunks the "I take too long / I come too fast" shame. Both directions of female orgasmic timing reframed.
+- **Letting Your Orgasm Flow** — the body's natural release pattern; what blocks it; how to step out of the way.
+- **You Can Orgasm Alone Just Fine — and That's the Foundation** — the penis-as-orgasm-deliverer mythology debunked. Solo as primary, partnered as expansion.
+- **The Tight Vagina Mythology** — the "if a guy wants a tight vagina tell him to fuck his hand" piece. Direct. The vagina is supposed to be open, soft, wet, big enough to birth a child. The tightness fantasy is anti-biological. Pure Lanoff voice — high virality.
+- **Is This Normal? — The Question Women Keep Asking About Their Orgasms** — directly addresses the recurrent question Lawrence hears in his work. Every variant — "can I have multiples?" "is it bad mine takes 30 minutes?" "is it bad mine takes 30 seconds?" — answered plainly.
+
+## CLUSTER B — The Energy Cock / Energy Pussy Framework (NEW FRAMEWORK PIECE)
+
+The unifying body-energy model. Bridges men's and women's practice into one vocabulary. PILLARS §3 (sex as primordial fact) + §3.4 (safety).
+
+- **The Energy Cock (For Men)** — fucking with your energy, not just your dick. Sensation as the leading edge. The body extending beyond the genitals.
+- **The Energy Cock (For Women)** — yes, women have one too. Fucking with energy as a feminine practice. Strap-on as the bridge to literal experience of the principle.
+- **The Energetic Pussy (For Women)** — receiving with the whole body, not just the genitals. Opening as a practice.
+- **The Energetic Pussy (For Men)** — yes, men have one too. The art of receiving. Anal play, prostate play, and the body learning to be open. The hardest unlock for most men.
+- **Opening Is a Practice, Not a State** — the central teaching. Open isn't who you are; it's what your body learns to do under safety.
+
+## CLUSTER C — The Cheating Reframe (HIGH SEO, HIGH VIRALITY)
+
+PILLARS §5 (facts vs problems vs mythology). Cheating is mythology, not fact.
+
+- **Why People Can't Cheat — Cheating Isn't a Thing** — the central reframe. "Cheating" is a story built on a story about ownership of bodies. Honest examination of what the word actually does. Lights up SEO from people in cheating crises looking for a different lens.
+- **The Ownership Mythology in Modern Monogamy** — companion piece. What monogamy actually is when it's voluntary versus when it's contractual.
+- **What "Betrayal" Really Is — and Isn't** — the framework's reframe of the central emotion.
+
+## CLUSTER D — Sex / Porn / Smell as Meditation (META-REFRAME PIECES)
+
+PILLARS §3.4 (safety) + meditation as focus-and-peace, not religion.
+
+- **Sex as Meditative Practice** — the actual practice underneath what monasteries hide. Focus, sensation, awareness, present-moment — every meditation primitive runs hot in sex when shame is removed.
+- **Porn as Meditative Practice (Used Right)** — the framework's reframe. Porn as object of attention, not avoidance. Distinguishes practice from compulsion.
+- **The Vagina as Mandala** — pure Lanoff. Visual object of meditation; focus and peace. The cultural inversion that calls this blasphemous reveals which religion installed the script.
+- **Smell, Body Shame, and Why Your Nose Has Always Been Right** — olfactory information as one of the body's most direct erotic vectors. Why adults are ashamed of smell. Why smell is signal.
+
+## CLUSTER E — Kink, Ritual, Sensory Restriction, Bondage (HUGE SEO + HUGE EDITORIAL TERRITORY)
+
+PILLARS §3 + §3.4 + the shadow cluster the framework owns.
+
+- **Blindfolds — What Sensory Restriction Actually Does in the Body** — the science of removing input to amplify the rest. Safety condition amplified.
+- **Why Submission Is a Thing (already in backlog #9)** — keep.
+- **What Being Tied and Wrapped Actually Does** — shibari / rope as practice. Holding the body in place removes the labor of self-direction. The somatic mechanism.
+- **Bondage as Practice, Not as Pathology** — the editorial reframe of the entire BDSM category.
+- **Shibari, Plainly** — what it actually is. Origins. What the practice produces. How to start.
+- **Ritual, Release, and the Body's Need for Containers** — the structural function of ritual in sexual practice. Why containers work.
+- **The Erotic Use of Removing Senses** — earplugs, blindfolds, restraints — sensory restriction as a class of practice.
+- **Anal Play — Body-Grounded, No Shame, Plain Instruction** — explicit how-to in editorial voice. HIGH SEO. Massive shame-load to dissolve.
+- **Milking the Prostate — What Actually Happens** — the practical companion. Anatomy + practice + why it matters.
+
+## CLUSTER F — Tools, Toys, Practical Augments
+
+PILLARS §3.4 (safety) + permission-to-use-help.
+
+- **Toys Aren't Cheating on Your Body** — using toys to make orgasms easier. The mythology that toys are a sign of inadequacy.
+- **The Wand, the Plug, the Vibrator — A Body-Grounded Guide** — practical, editorial, anti-shame.
+- **What to Buy First If You've Never Used a Toy** — entry-level recommendation piece. Affiliate-ready.
+
+## CLUSTER G — Premature Ejaculation Reframe
+
+PILLARS §3 + men's-anatomy book pre-launch material.
+
+- **Premature Ejaculation — The Science, Reframed** — what's actually happening; why most "delay tactics" make it worse; what works.
+- **The Refractory Period, Honestly** — what's known, what's myth, how to work with the body's actual rhythm.
+- **Coming Fast Is Not a Failure — Here's Why** — male orgasm shame reframed.
+
+---
+
+# Scaling toward "a thousand articles"
+
+Per Lawrence 2026-05-15: this is not a 30-article project. The framework runs deep enough that every pillar spawns a cluster, every cluster spawns a sub-cluster, and the SEO surface is closer to 500-1000 articles than 30.
+
+**Cadence math:**
+- 30 articles / 90 days → ~2-3/week → 1000 articles takes 6 years
+- 10 articles / week (multi-agent pipeline) → 1000 articles in 2 years
+- 20 articles / week (mature pipeline + multiple Writer sessions in parallel + Lawrence audit batch processing) → 1000 articles in 1 year
+
+The pipeline architecture supports the 20/week cadence once Writer agents are running reliably and Lawrence's audit batches to 30-min / 10-article passes. Bottleneck is Lawrence's audit time. Mitigation: voice rules and pillars tight enough that Writer drafts need ~10% revision, not ~50%.
+
+**Production budget at scale:**
+- 1000 articles × 1500-2000 words = 1.5-2 million words of editorial content
+- One Claude session can draft a 1500-word article in ~10-15 minutes
+- 20 articles/week × $0.10-0.50 API cost per article = $2-10/week in API costs
+- Lawrence audit time: 20 × 20min = ~7 hours/week
+- Total ops cost at scale: ~$50/week in API + 7 hours of Lawrence + some Max coordination
+
+This is comfortably achievable. The structural unlock is the voice + pillar discipline already in place.
+
