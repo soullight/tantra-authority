@@ -29,6 +29,52 @@ Tantra Authority is the **practical, SEO-friendly, educational** front door to L
 - Generally written in third person about the field
 - Funnels to *Beyond the Myth: The Definitive Guide to Modern Tantra* + The Naked Mind newsletter + the vetted practitioner directory + the shop
 
+## NO PSEUDO-CLINICAL AUTHORITY (course-correction 2026-05-15, load-bearing)
+
+The framework refuses, specifically, the move of importing clinical-sounding labels — *compulsion*, *obsession*, *addiction*, *fixation*, *disorder*, *dysfunction*, *pathology* — to mark some shapes of sexuality, fetish, or erotic behavior as healthy and others as broken. That move is **moralism in scientific costume.** The DSM-derived vocabulary used to draw these lines has been wrong about most sexual variations at one time or another and has no special authority to be right about anyone's. Articles that perform this move read as Game 4 (pseudo-enlightenment trap — "I see clearly from above") and Game 2 (moral authority — "I know which shape is correct") collapsed together.
+
+**What we DO NOT write:**
+- "When the cue crosses into compulsion..."
+- "A small fraction tip into compulsion territory..."
+- "The compulsion-level case warrants therapy..."
+- "Sex without the cue feels hollow..."
+- "Hollows out their capacity for partnership..."
+- "Easier than the work..."
+- Any language that ranks shapes of erotic life on a healthy/broken axis the framework has no authority to draw
+
+**What we DO write:**
+- The cue is the cue. How much room it takes is the practitioner's call.
+- We do not have a preferred shape for your erotic architecture.
+- If something is genuinely interfering with what *you* care about, that is information *you* have access to, and you can do something about it without anyone else labeling it.
+- If you want to expand the range, the practice is here. If you don't, your call.
+- We hold no preferred shape for your erotic architecture.
+
+The framework's editorial integrity is the moat. Pseudo-clinical authority dressed as observation breaks the moat. Catch this in every draft.
+
+---
+
+## NO MORAL OVERLAY ON SUGGESTION (course-correction 2026-05-16, load-bearing)
+
+Parallel to the no-pseudo-clinical-authority rule. The framework refuses the move of marking some suggestion as "honest" or "truthful" and other suggestion as "lying" or "deceptive." The unconscious mind has been getting suggestions installed continuously since infancy — by advertising, religious upbringing, school, parents, peer culture, every romantic partner, every algorithm running on every feed. **Calling deliberate erotic hypnosis (or any other suggestion-based practice) "honest" and contrasting it with "lying to the unconscious" imports moral authority that the framework does not have and does not want.**
+
+Lawrence is explicit on this: *"You don't need to talk about, you know, without lying to the unconscious mind, because you're lying to it all the time. You're basically lying to it always, because nothing is particularly as factual as people believe it is. Our understanding of hypnosis is very deep. We don't worry about lying, not lying. People lie all the time. That's kind of more of a moral thing you're bringing up there."*
+
+**What we DO NOT write:**
+- "Working with the suggestible mind without lying to it"
+- "Honest" vs "dishonest" hypnosis as the bright line
+- "Truthful" vs "manipulative" suggestion framings that smuggle in moral authority
+- Any framing that suggests one shape of suggestion is metaphysically/morally cleaner than another
+
+**What we DO write:**
+- The bright line is *consent*, not truthfulness. Consent is structural, observable, negotiable. "Honest" is a moral story.
+- Suggestion has been operating in every adult life continuously. The question is whether the practitioner wants to take deliberate authorship or leave it on autopilot.
+- The manipulation tells (no pre-session conversation, refusal of safe word, claims of special access, secrecy demands, escalation without consent renegotiation) describe consent violations, not lying.
+- Practitioners running the practice as a collaboration vs. practitioners using technique for coercion — frame around consent architecture, not honesty.
+
+**The catch in drafts:** any time the article reaches for "honest," "lying," "deceptive," "truthful" to draw the bright line between legitimate practice and abuse, the article is doing moralism. Replace with consent-architecture language. Same bright line, no moral overlay.
+
+---
+
 ## Anti-fake-guru, NOT anti-money (course-correction 2026-05-15)
 
 Earlier drafts had a tone that read as anti-workshop and anti-commerce categorically. **This is wrong and load-bearing to fix.** The actual editorial stance:
@@ -63,7 +109,7 @@ This structure does multiple jobs at once: closes the article with energy not pe
 
 **Rabbit hole topics to seed in every article (rotate freely):**
 - The Shadow That Wants More
-- Erotic Hypnosis (working with the suggestible mind without lying to it)
+- Erotic Hypnosis (working with the suggestible mind)
 - The Symbolic Body / When Sex Starts Speaking in Pictures
 - Ritual Without Religion / Building containers that don't ask you to believe anything
 - The Voice You've Been Suppressing / Why Adults Can't Make Noise

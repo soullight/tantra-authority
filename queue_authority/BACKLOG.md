@@ -41,7 +41,7 @@ The first six are foundational rabbit-hole fulfillment for the articles currentl
 
 ## #2 — Why Adults Can't Make Noise
 
-**Status:** Queued
+**Status:** ✅ Drafted 2026-05-16 → `articles/why-adults-cant-make-noise.html` (~2,400 words, autonomous session)
 **Length:** 1,500–1,800 words
 **Category pill:** Practice
 **Slug:** `why-adults-cant-make-noise.html`
@@ -90,7 +90,7 @@ The first six are foundational rabbit-hole fulfillment for the articles currentl
 
 ## #4 — Ritual Without Religion
 
-**Status:** Queued
+**Status:** ✅ Drafted 2026-05-16 → `articles/ritual-without-religion.html` (~2,300 words, autonomous session)
 **Length:** 1,500–1,800 words
 **Category pill:** Practice
 **Slug:** `ritual-without-religion.html`
@@ -113,9 +113,9 @@ The first six are foundational rabbit-hole fulfillment for the articles currentl
 
 ---
 
-## #5 — Erotic Hypnosis — Working with the Suggestible Mind Without Lying to It
+## #5 — Erotic Hypnosis — Working with the Suggestible Mind
 
-**Status:** Queued
+**Status:** ✅ Drafted 2026-05-16 → `articles/erotic-hypnosis.html` (~2,900 words, autonomous session — covers brief #5 and #22 together). Title revised 2026-05-16 per Lawrence: dropped the "Without Lying to It" framing — the unconscious is being shaped by suggestion constantly (ads, culture, family), and calling deliberate erotic hypnosis "honest" vs other suggestion "lying" imports a moral overlay the framework refuses. Opening reframed accordingly. Consent architecture kept intact (that's a different bright line from the lying/not-lying frame).
 **Length:** 1,800–2,200 words
 **Category pill:** Practice
 **Slug:** `erotic-hypnosis.html`
@@ -509,3 +509,143 @@ The pipeline architecture supports the 20/week cadence once Writer agents are ru
 
 This is comfortably achievable. The structural unlock is the voice + pillar discipline already in place.
 
+
+---
+
+# BRIEFS ADDED 2026-05-16 (autonomous session)
+
+**Critical voice note before drafting any of these:** Per the 2026-05-15 course-correction Lawrence locked into the brand brief (`code/verticals/tantra-authority/README.md` → "NO PSEUDO-CLINICAL AUTHORITY" section), the framework refuses the move of importing clinical-sounding labels — *compulsion*, *obsession*, *addiction*, *fixation*, *disorder*, *dysfunction*, *pathology* — to rank shapes of sexuality, fetish, or erotic behavior as healthy vs broken. Every brief below carries this constraint. If a draft of any of these articles uses those words to make framework-authority claims (rather than to name the cultural frame and refuse it), the draft is wrong and gets revised before shipping.
+
+---
+
+## #20 — Beyond the Myth: Porn
+
+**Status:** Queued — paired piece with the OnlyFans article
+**Length:** 2,200-2,800 words
+**Category pill:** Reframes
+**Slug:** `beyond-the-myth-porn.html`
+
+**Core teaching:** Pornography is neither the moral catastrophe the conservative frame calls it nor the wellness-product the libertarian-coded frame calls it. It is a specific technology that does specific things to bodies in specific ways. Naming what it actually does — and what it actually costs and offers, on the user's own terms — is the move. The framework refuses to tell readers whether to consume porn; it tells readers what porn is mechanically doing, and the readers run their own evaluation.
+
+**Specifically land:**
+- What pornography mechanically does at the level of the nervous system (dopamine, novelty, the recalibration question)
+- The labor reality of the workers, with respect, without exploitative framing
+- The user side without "addiction" framing or "empowerment" framing
+- The unique modern problem (infinite supply + algorithmic curation) versus pre-internet pornographic ecosystems
+- "Watching well" as a real skill the framework can teach
+- The imagination-vs-porn relationship — porn as imagination prosthetic, useful in some configurations, narrowing in others
+- The framework does NOT tell readers to stop watching, feel guilty, or that it's all fine — refuses both frames
+- Cross-link to The Erotic Imagination + Beyond the Myth: OnlyFans
+
+**Avoid:** "addiction" language as authority claim. NoFap rhetoric. Sex-positive cheerleading that flattens the real costs. Anti-porn feminist authority. Industry apologetics. Anything that ranks porn use as healthy vs broken on the framework's authority.
+
+**Closing "invite the animal in":** Porn has been doing what it does the whole time. The question is what your looking is in service of, not whether to allow it. Look at the looking. Notice what your imagination does with it. Decide on your terms.
+
+---
+
+## #21 — Why Group Sex Is a Thing
+
+**Status:** Queued — high SEO volume, framework-owned reframe
+**Length:** 2,000-2,500 words
+**Category pill:** Foundations
+**Slug:** `why-group-sex-is-a-thing.html`
+
+**Core teaching:** Group sex has shown up in every recorded human culture in some form. The biology, the historical record, and the cross-cultural evidence all point at the same thing: this is not deviance, not modern decadence, not a sign of broken culture. It is one of the species's basic erotic templates. The framework's reframe is not pro or anti; it is clear.
+
+**Specifically land:**
+- Brief cross-cultural and cross-historical evidence (without listing) — that this template recurs everywhere
+- The biology of multi-partner arousal — what dopamine, oxytocin, and novelty are doing
+- The varieties — orgies, threesomes, swinger structures, ritualized group practices — each has different emotional flavor
+- Why it is not what most monogamy framings claim it is
+- For monogamous readers: the cultural script is one of many, not the most ancient or universal
+- The shame attached and where it came from
+- The framework's stance: neither pro nor anti, just clear
+- The Open Relationship Authority cross-link (separate territory, this article doesn't replace that vertical)
+
+**Avoid:** ENM-community identity politics. Polyamory cheerleading. Conservative panic. "Compulsion" framing.
+
+**Closing "invite the animal in":** The animal has always known it lives in a tribe. Whether you want a tribe is your choice. The animal does not have to be told what's possible — only un-told what is not.
+
+---
+
+## #22 — Erotic Hypnosis (Full Draft, Not the Spec)
+
+**Status:** ✅ Drafted 2026-05-16 — see #5 above. Single article covers both briefs.
+**Length:** 2,200-2,800 words
+**Category pill:** Practice
+**Slug:** `erotic-hypnosis.html`
+
+**Core teaching:** Erotic hypnosis as practiced in legitimate work is body-based, consensual, ancient, and almost entirely misunderstood. It is not pickup-trick mind control. It is not the manipulative bottom-of-the-funnel of dating-coach internet. It is the deliberate use of suggestion, breath, voice, and sustained attention to access altered states for erotic and self-discovery purposes.
+
+**Specifically land:**
+- What hypnotic states actually are (autonomic + attentional shift, real physiology, not magic)
+- The five components of any working induction
+- Erotic hypnosis specifically: arousal as the substrate, suggestion as the operation
+- The consent question — informed, ongoing, embodied
+- Solo erotic self-hypnosis (the practice most adults will start with)
+- Partnered erotic hypnosis — when it lands, when it breaks, what to watch for
+- The manipulation tell — how to recognize when "hypnosis" is being used as a costume for coercion
+- The framework treats this as a real practice deserving editorial seriousness, not a kink to be giggled about
+
+**Avoid:** Pickup-coach framings. Stage-hypnosis sensationalism. Anything that lets one person claim authority over another's mind. "Addiction" framing. Treating hypnosis as evidence of weakness.
+
+**Closing "invite the animal in":** The suggestible mind has been there the whole time. Use it on yourself with permission. Use it with others with permission. Refuse it from anyone using it on you without permission.
+
+---
+
+## #23 — Why We Want to Look at Naked Bodies
+
+**Status:** Queued
+**Length:** 1,800-2,200 words
+**Category pill:** Foundations
+**Slug:** `why-we-want-to-look.html`
+
+**Core teaching:** The most basic question, rarely answered honestly. We look at naked bodies because we are bodies, we evolved to find other bodies, and the looking is its own complete erotic act. Not a substitute for sex. Not a moral failure. Not a problem to solve. A fact to understand.
+
+**Specifically land:**
+- Evolutionary substrate of visual erotic interest
+- The aesthetic appetite as separate from the sexual appetite — and how they overlap
+- Why visual cultures keep producing the same image patterns across millennia
+- The looking-as-act vs the looking-as-substitute distinction (without the moralizing on either side)
+- Erotic art across history — what changes, what doesn't
+- For the reader who feels weird about wanting to look — why the wanting is not the problem
+- Pairs with Beyond the Myth: Porn + The Erotic Imagination
+
+**Avoid:** "Male gaze" as authority. Anti-porn framing. Fine-art / pornography moral hierarchy. Sanitized art-history-class register.
+
+**Closing "invite the animal in":** The eye has always been one of the body's primary sex organs. Stop treating it like a moral failing for having appetite.
+
+---
+
+## #24 — The Slow Practice
+
+**Status:** Queued — practice piece
+**Length:** 1,800-2,200 words
+**Category pill:** Practice
+**Slug:** `the-slow-practice.html`
+
+**Core teaching:** Modern adult attention has been trained on intensity — high arousal, high contrast, high stimulation. The tantric primitives work at the opposite end of the spectrum: very slow, very fine-grained, very repetitive. Adults coming to the practice often experience the slow stuff as "boring" for the first several weeks. Pushing through the boredom is the practice. What is on the other side is qualitatively different from anything intensity training has produced.
+
+**Specifically land:**
+- The dopamine-cycle critique without being preachy
+- Why slow practice feels intolerable at first
+- The neuroscience of attentional capacity rebuilding (without mystifying)
+- The before/after — what changes once slow becomes accessible
+- Slow self-touch, slow movement, slow eye-gazing as proof points
+- The reward — sustained presence that intensity cannot deliver
+
+**Avoid:** Phones-are-bad moralizing. Mindfulness-industry vocabulary. "Addiction" framing for fast-stimulation patterns.
+
+**Closing "invite the animal in":** Your animal does not actually want intensity. It wants permission to slow down to a pace where it can finally feel what is happening.
+
+---
+
+## Tracking note for Writer agent
+
+When picking up any of these briefs:
+1. Read `code/verticals/tantra-authority/README.md` first, especially the "NO PSEUDO-CLINICAL AUTHORITY" section (locked 2026-05-15)
+2. Read 2-3 of Max's recent articles for voice calibration (safety-is-the-precondition.html, are-you-broken.html, beyond-the-myth-the-whore-is-power.html — these are the cleanest voice samples)
+3. Use the rabbit-hole convention from existing articles
+4. Match the closing-structure: hr → "invite the animal in" section → rabbit-holes block → substack cross-link → book CTA card
+5. Word count per brief
+6. Self-audit before shipping: did I import any pseudo-clinical authority language? If yes, revise.

@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Practitioner Intake — Tantra Authority</title>
+<meta name="description" content="Tantra Authority's intake form for invited practitioners. 33 questions, 60-90 minutes. Produces directory listing, Featured profile, and (optionally) guest article from a single submission.">
+<meta name="robots" content="noindex,nofollow">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>○</text></svg>">
+<style>
+  .intake-form { max-width: 720px; margin: 0 auto; padding: 1em 0; }
+  .intake-section { margin: 2.5em 0; padding: 1.5em 0; border-top: 2px solid var(--text-muted, #888); }
+  .intake-section:first-of-type { border-top: none; }
+  .intake-section h2 { margin-top: 0; }
+  .intake-section .lede { font-style: italic; opacity: 0.8; margin-bottom: 1.5em; }
+  .intake-q { margin: 1.5em 0; }
+  .intake-q label { display: block; font-weight: 600; margin-bottom: 0.5em; }
+  .intake-q .help { font-size: 0.92em; opacity: 0.75; margin: 0.25em 0 0.5em; font-style: italic; font-weight: normal; }
+  .intake-q input[type=text], .intake-q input[type=email], .intake-q textarea, .intake-q select {
+    width: 100%;
+    padding: 0.6em;
+    font-family: inherit;
+    font-size: 1em;
+    border: 1px solid #888;
+    background: transparent;
+    color: inherit;
+  }
+  .intake-q textarea { min-height: 5em; resize: vertical; }
+  .intake-q .long { min-height: 9em; }
+  .intake-q .very-long { min-height: 14em; }
+  .intake-q .check-list label { display: block; font-weight: normal; margin: 0.4em 0; }
+  .intake-q .check-list input { margin-right: 0.5em; }
+  .intake-meta { padding: 1.5em; border-left: 3px solid #888; background: rgba(0,0,0,0.02); margin: 2em 0; }
+  .intake-submit { padding: 1em 2em; font-size: 1.1em; cursor: pointer; }
+  .file-upload { padding: 1em; border: 2px dashed #888; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <a href="index.html" class="site-logo">TANTRA <span>AUTHORITY</span></a>
+    <nav class="site-nav">
+      <a href="index.html">Articles</a>
+      <a href="featured.html">Featured</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="directory.html">Directory</a>
+      <a href="shop.html">Shop</a>
+      <a href="test.html">PPT</a>
+      <a href="ask.html">Ask</a>
+      <a href="book.html">The Book</a>
+      <a href="about.html">About</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section style="padding: 2em 0;">
+    <div class="pill">Invite-only intake</div>
+    <h1>Practitioner Intake</h1>
+    <p style="font-size: 1.15em; max-width: 38em;">If you're reading this, Lawrence sent you a private link. This form is how Tantra Authority gets to know practitioners well enough to feature them — in the directory, in a Featured profile, and (if you want) as a guest writer.</p>
+    <p style="max-width: 38em;">It's long. 33 questions, 60–90 minutes for a careful answer. You don't have to answer everything. The questions that produce the best material are usually the ones in section D — give those time. We are not impressed by polished bios. We are impressed by real disclosure and clean voice.</p>
+  </section>
+
+  <div class="intake-meta">
+    <p style="margin: 0;"><strong>What happens after you submit:</strong> The editorial team reviews. We may follow up with questions. If we want to feature you, we draft three pieces from your submission — a directory listing, a Featured profile, and (if you wrote one) a guest article — and you review every draft before anything goes live. Nothing publishes without your sign-off on the final version.</p>
+  </div>
+
+  <form class="intake-form" method="POST" action="https://api.tantra-authority.com/practitioner-intake" enctype="multipart/form-data">
+
+    <input type="hidden" name="token" id="token-field" value="">
+
+    <!-- ============ SECTION A — IDENTITY ============ -->
+    <section class="intake-section">
+      <h2>A. Who you are</h2>
+      <p class="lede">Five questions. Identity + basic contact.</p>
+
+      <div class="intake-q">
+        <label>1. Legal name <span class="help">(For editorial records. Not necessarily what we publish.)</span></label>
+        <input type="text" name="legal_name" required>
+      </div>
+
+      <div class="intake-q">
+        <label>2. Public / professional name <span class="help">If different from legal name. Leave blank if you go by your legal name publicly.</span></label>
+        <input type="text" name="professional_name">
+      </div>
+
+      <div class="intake-q">
+        <label>3. Where you live and work <span class="help">City + country. Location matters for directory clients searching for in-person work.</span></label>
+        <input type="text" name="location" required>
+      </div>
+
+      <div class="intake-q">
+        <label>4. Pronouns + how you'd like to be referred to in print</label>
+        <input type="text" name="pronouns" placeholder="e.g., she/her — Sarah, or just 'Sarah'">
+      </div>
+
+      <div class="intake-q">
+        <label>5. Best email to reach you</label>
+        <input type="email" name="email" required>
+      </div>
+    </section>
+
+    <!-- ============ SECTION B — LINEAGE ============ -->
+    <section class="intake-section">
+      <h2>B. Lineage + training transparency</h2>
+      <p class="lede">Five questions. These are the questions the directory's vetting standard requires. Non-disclosure is the only disqualifier.</p>
+
+      <div class="intake-q">
+        <label>6. Every teacher you've trained with that mattered.</label>
+        <p class="help">For each: their name, the years, the location, the length of training, what specifically you got from them. Be thorough. We will verify a sample.</p>
+        <textarea name="lineage" class="very-long" required></textarea>
+      </div>
+
+      <div class="intake-q">
+        <label>7. Cult, intentional community, guru-based, or high-control group affiliations — past or present.</label>
+        <p class="help">Disclose. Non-disclosure is the only disqualifier. We respect honest disclosure even when the affiliation is controversial. If you've left a group, name when and why.</p>
+        <textarea name="cult_history" class="long" required></textarea>
+      </div>
+
+      <div class="intake-q">
+        <label>8. Awareness of abuse allegations against your teachers — past or present.</label>
+        <p class="help">What you know, when you found out, how you've handled the information in your own practice and your relationships with students. If there are none you know of, say so.</p>
+        <textarea name="abuse_awareness" class="long"></textarea>
+      </div>
+
+      <div class="intake-q">
+        <label>9. What body of work outside formal training shaped you.</label>
+        <p class="help">Books, mentors, personal experience, traditions you studied informally. Anything that made you who you are that wasn't a classroom.</p>
+        <textarea name="informal_influences" class="long"></textarea>
+      </div>
+
+      <div class="intake-q">
+        <label>10. Certifications, with honest assessment.</label>
+        <p class="help">What credentials you hold + your real evaluation of how much each one was worth, and how much was credential-theater. We are not impressed by certificate-stacking; we are impressed by honesty about it.</p>
+        <textarea name="certifications" class="long"></textarea>
+      </div>
+    </section>
+
+    <!-- ============ SECTION C — PRACTICE ============ -->
+    <section class="intake-section">
+      <h2>C. Your actual practice</h2>
+      <p class="lede">Eight questions. Scope-of-practice integrity. The directory listing is built from this section.</p>
+
+      <div class="intake-q">
+        <label>11. What you actually do.</label>
+        <p class="help">Modalities, in plain language. Not the marketing copy. The real thing.</p>
+        <textarea name="modalities" class="long" required></textarea>
+      </div>
+
+      <div class="intake-q">
+        <label>12. What you don't do, and what you refer out for.</label>
+        <p class="help">Scope-of-practice integrity. The work you specifically refuse to take on.</p>
+        <textarea name="scope_limits" class="long" required></textarea>
+      </div>
+
+      <div class="intake-q">
+        <label>13. Who you work with.</label>
+        <p class="help">Typical client profile. Who comes to you, who shouldn't.</p>
+        <textarea name="client_profile" class="long"></textarea>
+      </div>
+
+      <div class="intake-q">
+        <label>14. A typical session, plainly.</label>
+        <p class="help">First 10 minutes, middle, end. What actually happens.</p>
+        <textarea name="session_walkthrough" class="long"></textarea>
+      </div>
+
+      <div class="intake-q">
+        <label>15. Pricing.</label>
+        <p class="help">Sessions, packages, sliding scale if any. No hidden tiers, no "ask in DMs."</p>
+        <textarea name="pricing"></textarea>
+      </div>
+
+      <div class="intake-q">
+        <label>16. What you've changed about your practice in the last 3 years.</label>
+        <p class="help">What you used to do and stopped doing. Where you've grown.</p>
+        <textarea name="recent_changes" class="long"></textarea>
+      </div>
+
+      <div class="intake-q">
+        <label>17. Where your practice still struggles.</label>
+        <p class="help">What you wish was easier. What's still in development. Your honest limits.</p>
+        <textarea name="current_struggles" class="long"></textarea>
+      </div>
+
+      <div class="intake-q">
+        <label>18. Three references.</label>
+        <p class="help">Clients, colleagues, or teachers. Name + email + relationship. We may contact them.</p>
+        <textarea name="references" class="long" required></textarea>
+      </div>
+    </section>
+
+    <!-- ============ SECTION D — VOICE + EDITORIAL ============ -->
+    <section class="intake-section">
+      <h2>D. Voice + editorial</h2>
+      <p class="lede">Eight questions. This is the part that makes you a writer. Long honest answers are more valuable than short polished ones. Take your time.</p>
+
+      <div class="intake-q">
+        <label>19. How did you get into this work?</label>
+        <p class="help">Specifically. The actual story, not the bio version. What was happening in your life when you found this? What kept you in it?</p>
+        <textarea name="origin_story" class="very-long"></textarea>
+      </div>
+
+      <div class="intake-q">
+        <label>20. The hardest thing you've learned in your practice.</label>
+        <p class="help">Not the most inspiring. The hardest. What was painful. What took years to integrate.</p>
+        <textarea name="hardest_lesson" class="long"></textarea>
+      </div>
+
+      <div class="intake-q">
+        <label>21. What you wish more people understood about this work.</label>
+        <p class="help">What does the public miss?</p>
+        <textarea name="public_misunderstanding" class="long"></textarea>
+      </div>
+
+      <div class="intake-q">
+        <label>22. What you actively refuse to teach, and why.</label>
+        <p class="help">Every honest practitioner has a list. We want yours.</p>
+        <textarea name="refusals" class="long"></textarea>
+      </div>
+
+      <div class="intake-q">
+        <label>23. A specific client moment that taught you something.</label>
+        <p class="help">Anonymize the client. The case that changed how you practice. The session where you realized you'd been doing something wrong, or right, or impossible.</p>
+        <textarea name="formative_case" class="very-long"></textarea>
+      </div>
+
+      <div class="intake-q">
+        <label>24. The pattern you see most often in new clients arriving at your work.</label>
+        <p class="help">What they think they're there for, what they actually need, the gap.</p>
+        <textarea name="client_pattern" class="long"></textarea>
+      </div>
+
+      <div class="intake-q">
+        <label>25. What Tantra Authority gets right.</label>
+        <p class="help">Read 3–5 articles at tantraauthority.com before answering. We want practitioners whose stance overlaps with the framework's editorial position. Name what specifically lands for you.</p>
+        <textarea name="framework_agreement" class="long"></textarea>
+      </div>
+
+      <div class="intake-q">
+        <label>26. What the framework might be missing or oversimplifying.</label>
+        <p class="help">Honest critique welcome. We are not building a cult of agreement.</p>
+        <textarea name="framework_critique" class="long"></textarea>
+      </div>
+    </section>
+
+    <!-- ============ SECTION E — PHOTOS ============ -->
+    <section class="intake-section">
+      <h2>E. Photos + visual</h2>
+      <p class="lede">Three questions. The Featured profile is built around what you upload here.</p>
+
+      <div class="intake-q">
+        <label>27. Upload 3–5 photos.</label>
+        <p class="help">Suggested mix: one clean portrait (eye contact, simple background), one working photo (in your practice space, doing the work, not posed), one lifestyle photo (you out of work context — at home, at a meal, somewhere that says something about who you are when no one's paying you to be there). Up to two more optional. JPG or PNG, ideally 2000px+ on the long edge.</p>
+        <div class="file-upload">
+          <input type="file" name="photos" accept="image/jpeg,image/png,image/webp" multiple>
+        </div>
+      </div>
+
+      <div class="intake-q">
+        <label>28. Are you comfortable being photographed by editorial collaborators?</label>
+        <p class="help">For a Featured Person cover spread, if we go that direction.</p>
+        <select name="editorial_photography">
+          <option value="">— choose —</option>
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+          <option value="discuss">Let's discuss</option>
+        </select>
+      </div>
+
+      <div class="intake-q">
+        <label>29. Image usage permission.</label>
+        <p class="help">Check to grant Tantra Authority permission to use the photos you've submitted (and any subsequent editorial photography) in connection with your listing, Featured profile, and any guest articles you publish on Tantra Authority and its affiliated channels (newsletter, social, print book references). You retain copyright. You can revoke usage by written request with 30 days' notice.</p>
+        <label style="display: flex; align-items: flex-start; gap: 0.5em; font-weight: normal;">
+          <input type="checkbox" name="image_permission" required>
+          <span>I grant Tantra Authority the image usage permissions described above.</span>
+        </label>
+      </div>
+    </section>
+
+    <!-- ============ SECTION F — WHAT YOU WANT ============ -->
+    <section class="intake-section">
+      <h2>F. What you want from this</h2>
+      <p class="lede">Four questions. Editorial direction.</p>
+
+      <div class="intake-q">
+        <label>30. What kind of presence do you want on Tantra Authority?</label>
+        <p class="help">Pick all that apply.</p>
+        <div class="check-list">
+          <label><input type="checkbox" name="presence" value="directory_only"> Directory listing only</label>
+          <label><input type="checkbox" name="presence" value="directory_featured"> Directory listing + Featured Person profile</label>
+          <label><input type="checkbox" name="presence" value="directory_featured_articles"> Directory + Featured + guest article(s)</label>
+          <label><input type="checkbox" name="presence" value="long_term"> Long-term editorial relationship — recurring contributions, podcasts, retreat collaborations</label>
+        </div>
+      </div>
+
+      <div class="intake-q">
+        <label>31. Anonymity preferences.</label>
+        <p class="help">Full name, professional name, or anonymous? Anything in your background you do NOT want included publicly?</p>
+        <textarea name="anonymity_prefs"></textarea>
+      </div>
+
+      <div class="intake-q">
+        <label>32. If you want to write an article: what topic(s)?</label>
+        <p class="help">Suggest 1–3. We'll match against the editorial queue and confirm direction before you start drafting. Optional: paste a 200-word excerpt of your writing in any voice so we can calibrate.</p>
+        <textarea name="article_topics" class="long"></textarea>
+      </div>
+
+      <div class="intake-q">
+        <label>33. Anything else you want us to know.</label>
+        <p class="help">What we didn't ask. What matters to you. What the gap is in how we framed this conversation.</p>
+        <textarea name="open_field" class="long"></textarea>
+      </div>
+    </section>
+
+    <!-- ============ SUBMIT ============ -->
+    <section class="intake-section">
+      <p class="lede">Submitting sends your responses to Lawrence and the editorial team. We respond within 7 days. Nothing publishes without your final sign-off.</p>
+      <button type="submit" class="cta-button intake-submit">Submit application</button>
+    </section>
+
+  </form>
+
+  <div class="intake-meta">
+    <p style="margin: 0;"><strong>Privacy:</strong> Your submission is stored in a private editorial workspace. Your data is not shared with third parties. Photos remain private until you approve final-draft Featured profile / directory listing for publication. You can request deletion of your submission at any time by emailing the editorial team. Full privacy policy at <a href="about.html#privacy">about.html#privacy</a>.</p>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <div>Tantra Authority — published by <a href="https://thenaked.press">The Naked Press</a></div>
+</footer>
+
+<script>
+  // Auto-fill token from URL path: /intake/abc123 → token field gets abc123
+  (function() {
+    var path = window.location.pathname.replace(/\/$/, '');
+    var parts = path.split('/');
+    var maybeToken = parts[parts.length - 1];
+    if (maybeToken && maybeToken !== 'practitioner-intake.html' && maybeToken !== 'practitioner-intake') {
+      document.getElementById('token-field').value = maybeToken;
+    } else {
+      // Fallback: check ?token= query param
+      var params = new URLSearchParams(window.location.search);
+      var qToken = params.get('token');
+      if (qToken) document.getElementById('token-field').value = qToken;
+    }
+  })();
+</script>
+
+</body>
+</html>
