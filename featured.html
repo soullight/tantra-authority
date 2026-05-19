@@ -1,14 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-WTXBXKTS');</script>
+<!-- End Google Tag Manager -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Featured — Tantra Authority</title>
 <meta name="description" content="The cover-story rotation: featured women, featured fetishes, featured artists, featured photographers. Editorial in the GQ / Esquire / classical Playboy tradition — interview, photography, lineage, and work — done with the Tantra Authority frame.">
 <link rel="stylesheet" href="styles.css">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>○</text></svg>">
+<script>
+  window.TA_SUBSCRIBE_ENDPOINT = 'https://api.tantra-authority.com/api/subscribe/submit';
+</script>
 </head>
 <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WTXBXKTS"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 
 <header class="site-header">
   <div class="site-header-inner">
@@ -80,10 +94,11 @@
   <div class="newsletter">
     <h4>Get notified when each Featured launches.</h4>
     <p>Quarterly cover drops. Monthly fetish features. Quality over volume.</p>
-    <form action="#" method="post" onsubmit="alert('Newsletter signup wiring pending.'); return false;">
+    <form id="subscribe-form">
       <input type="email" name="email" placeholder="you@email.com" required>
       <button type="submit">Subscribe</button>
     </form>
+    <div id="subscribe-confirmation" style="display:none;margin-top:14px;font-size:14px;color:var(--text-muted);"></div>
   </div>
 
 </main>
@@ -91,6 +106,39 @@
 <footer class="site-footer">
   <div>Tantra Authority — published by <a href="https://thenaked.press">The Naked Press</a></div>
 </footer>
+
+<script>
+(function() {
+  const form = document.getElementById('subscribe-form');
+  if (!form) return;
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const input = form.querySelector('input[type=email]');
+    const email = (input && input.value || '').trim();
+    if (!email) return;
+
+    const data = { timestamp: new Date().toISOString(), email: email, source: window.location.pathname };
+
+    try {
+      const stored = JSON.parse(localStorage.getItem('ta_subscriptions') || '[]');
+      stored.push(data);
+      localStorage.setItem('ta_subscriptions', JSON.stringify(stored));
+    } catch (err) {}
+
+    const ENDPOINT = window.TA_SUBSCRIBE_ENDPOINT || null;
+    if (ENDPOINT) {
+      fetch(ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) }).catch(function(){});
+    }
+
+    const c = document.getElementById('subscribe-confirmation');
+    if (c) {
+      c.innerHTML = '<strong>You’re on the list.</strong> We’ll be in touch.';
+      c.style.display = 'block';
+    }
+    form.reset();
+  });
+})();
+</script>
 
 </body>
 </html>
