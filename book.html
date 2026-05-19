@@ -7,6 +7,9 @@
 <meta name="description" content="The full system, by Lawrence Lanoff. What tantra actually is, stripped of the mythology, with the body practices in plain language. Forthcoming 2026 from The Naked Press.">
 <link rel="stylesheet" href="styles.css">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>○</text></svg>">
+<script>
+  window.TA_SUBSCRIBE_ENDPOINT = 'https://api.tantra-authority.com/api/subscribe/submit';
+</script>
 </head>
 <body>
 
@@ -78,18 +81,52 @@
     <div class="eyebrow">Notify me when it ships</div>
     <h3>Be first to read it.</h3>
     <p>Drop your email below and we'll let you know when the book is available — and send you a chapter excerpt in the meantime.</p>
-    <form action="#" method="post" onsubmit="alert('Newsletter signup wiring pending — point this form at ConvertKit, Substack, or Buttondown.'); return false;" style="max-width:440px;margin:0 auto;display:flex;gap:8px;">
+    <form id="subscribe-form" style="max-width:440px;margin:0 auto;display:flex;gap:8px;">
       <input type="email" name="email" placeholder="you@email.com" required style="flex:1;padding:14px 16px;border:1px solid var(--border);border-radius:4px;font-family:'Inter',sans-serif;font-size:15px;">
       <button type="submit" class="cta-button" style="border:none;cursor:pointer;">Notify me</button>
     </form>
+    <div id="subscribe-confirmation" style="display:none;margin:16px auto 0;max-width:440px;font-size:14px;color:var(--text-muted);text-align:center;"></div>
   </div>
 
 </main>
 
 <footer class="site-footer">
   <div>Tantra Authority — published by <a href="https://thenaked.press">The Naked Press</a></div>
-  
+
 </footer>
+
+<script>
+(function() {
+  const form = document.getElementById('subscribe-form');
+  if (!form) return;
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const input = form.querySelector('input[type=email]');
+    const email = (input && input.value || '').trim();
+    if (!email) return;
+
+    const data = { timestamp: new Date().toISOString(), email: email, source: window.location.pathname };
+
+    try {
+      const stored = JSON.parse(localStorage.getItem('ta_subscriptions') || '[]');
+      stored.push(data);
+      localStorage.setItem('ta_subscriptions', JSON.stringify(stored));
+    } catch (err) {}
+
+    const ENDPOINT = window.TA_SUBSCRIBE_ENDPOINT || null;
+    if (ENDPOINT) {
+      fetch(ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) }).catch(function(){});
+    }
+
+    const c = document.getElementById('subscribe-confirmation');
+    if (c) {
+      c.innerHTML = '<strong>You’re on the list.</strong> We’ll let you know when the book ships.';
+      c.style.display = 'block';
+    }
+    form.reset();
+  });
+})();
+</script>
 
 </body>
 </html>
