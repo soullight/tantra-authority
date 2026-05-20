@@ -2,9 +2,9 @@
 
 The first vertical site in the 100-fishing-lines portfolio. Built 2026-05-14 (Japan) as the per-vertical template prototype.
 
-**Live target:** `tantraauthority.com` (owned by Lawrence, Cloudflare DNS)
-**Backup domain:** `tantra-authority.com` (redirect → primary)
-**Deploy via:** Cloudflare Pages (see `DEPLOY.md`)
+**Live:** https://tantra-authority.com (apex, hyphenated). `www.tantra-authority.com` and `tantraauthority.com` (no-hyphen) both 301 → apex.
+**Hosting:** GitHub Pages from `soullight/tantra-authority` (auto-deploy on push to main, no build step).
+**Backend:** Cloudflare Worker at `api.tantra-authority.com` + D1 (`tantra-authority-db`). Source in `../tantra-authority-api/`.
 
 ---
 

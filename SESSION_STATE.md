@@ -1,18 +1,21 @@
 # Tantra Authority — Session State
 
-**Updated:** 2026-05-15
+**Updated:** 2026-05-20
 **Purpose:** Single source of truth for any agent or operator picking up this work cold. Reconstitutes the current state without needing to re-verify endpoints or re-read every commit.
 
 ---
 
 ## Live state
 
-**Site:** https://soullight.github.io/tantra-authority/
+**Primary URL:** https://tantra-authority.com (apex, hyphenated — this is the canonical domain, see `CNAME`)
+**Aliases (301 → apex):** `www.tantra-authority.com`, `tantraauthority.com` (no-hyphen)
 **Repo:** https://github.com/soullight/tantra-authority (origin = main)
-**Hosting:** GitHub Pages, auto-deploys from main, build status: green
-**Custom domains:** `tantraauthority.com` + `tantra-authority.com` both registered at Cloudflare but **DNS not yet configured**. Currently dead. Lawrence needs to add CNAMEs at Cloudflare pointing `@` and `www` to `soullight.github.io`, then I add the CNAME file to the repo + configure Pages custom domain. Site is fully functional at the github.io URL right now.
+**Hosting:** GitHub Pages, auto-deploys from main, build status: green. DNS is live at Cloudflare.
+**Backend API:** https://api.tantra-authority.com (Cloudflare Worker, source in `../tantra-authority-api/`). D1 binding: `tantra-authority-db`.
 
-**Deploy cadence:** `git push` → 30-90 sec → live. No build step.
+**Deploy cadence:**
+- Site: `git push` → 30-90 sec → live. No build step.
+- Worker: `cd ../tantra-authority-api && wrangler deploy` (requires `CLOUDFLARE_API_TOKEN`).
 
 ---
 
