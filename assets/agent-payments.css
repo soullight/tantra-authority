@@ -1,0 +1,161 @@
+/* Tantra Authority — agent payments paywall + unlocked content styles. */
+
+.agent-paywall {
+  border: 1px solid rgba(0,0,0,0.12);
+  border-radius: 12px;
+  padding: 1.5em 1.75em;
+  margin: 2em 0;
+  background: linear-gradient(180deg, rgba(255,250,240,0.6) 0%, rgba(255,255,255,0.95) 100%);
+  font-family: inherit;
+  line-height: 1.55;
+}
+.agent-paywall-eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.7em;
+  color: #b07a2a;
+  font-weight: 600;
+  margin-bottom: 0.4em;
+}
+.agent-paywall-headline {
+  font-size: 1.5em;
+  font-weight: 700;
+  margin: 0 0 0.6em;
+  letter-spacing: -0.01em;
+}
+.agent-paywall-blurb {
+  margin: 0 0 1.2em;
+  font-size: 1em;
+  color: #333;
+}
+.agent-paywall-button {
+  display: inline-block;
+  padding: 0.75em 1.4em;
+  background: #111;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 1em;
+  cursor: pointer;
+  font-family: inherit;
+}
+.agent-paywall-button:hover { background: #333; }
+
+.agent-paywall-tech {
+  margin-top: 1em;
+  font-size: 0.78em;
+  color: #777;
+}
+.agent-paywall-tech code {
+  background: rgba(0,0,0,0.05);
+  padding: 0.1em 0.4em;
+  border-radius: 3px;
+  font-size: 0.95em;
+}
+
+.agent-paywall-invoice {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75em;
+  margin: 1em 0;
+}
+.agent-paywall-invoice img {
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 8px;
+  max-width: 100%;
+  height: auto;
+}
+.agent-paywall-amount {
+  font-size: 1.1em;
+  color: #444;
+}
+.agent-paywall-bolt11 {
+  width: 100%;
+  min-height: 4em;
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 0.75em;
+  padding: 0.5em;
+  border: 1px solid rgba(0,0,0,0.15);
+  border-radius: 6px;
+  background: #fafafa;
+  resize: vertical;
+  word-break: break-all;
+}
+.agent-paywall-row {
+  display: flex;
+  gap: 0.6em;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.agent-paywall-copy,
+.agent-paywall-simulate {
+  padding: 0.5em 1em;
+  border: 1px solid rgba(0,0,0,0.2);
+  background: #fff;
+  border-radius: 5px;
+  font-size: 0.85em;
+  cursor: pointer;
+  font-family: inherit;
+}
+.agent-paywall-simulate { color: #999; border-style: dashed; }
+.agent-paywall-status {
+  margin-top: 0.8em;
+  text-align: center;
+  font-style: italic;
+  color: #777;
+}
+
+.agent-paywall-unlocked {
+  background: linear-gradient(180deg, rgba(240,255,245,0.6) 0%, rgba(255,255,255,0.95) 100%);
+  border-color: rgba(0,128,64,0.2);
+}
+
+.ta-digest {
+  font-size: 1em;
+}
+.ta-digest h3 {
+  margin-top: 1.6em;
+  margin-bottom: 0.5em;
+  font-size: 1.1em;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #555;
+}
+.ta-thesis, .ta-structural { font-size: 1.05em; line-height: 1.6; }
+.ta-reframes { list-style: none; padding: 0; margin: 0; }
+.ta-reframe {
+  margin: 0.9em 0;
+  padding: 0.8em 1em;
+  background: rgba(0,0,0,0.025);
+  border-left: 3px solid #b07a2a;
+  border-radius: 4px;
+}
+.ta-reframe-from span,
+.ta-reframe-to span {
+  display: inline-block;
+  font-size: 0.65em;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #888;
+  margin-right: 0.5em;
+  vertical-align: middle;
+}
+.ta-reframe-to { margin-top: 0.4em; font-weight: 500; }
+.ta-quote {
+  margin: 0.7em 0;
+  padding: 0.5em 1em;
+  border-left: 3px solid #ccc;
+  font-style: italic;
+  color: #444;
+}
+.ta-related, .ta-agent-uses {
+  padding-left: 1.2em;
+  margin: 0.4em 0;
+}
+.ta-source, .ta-license {
+  font-size: 0.85em;
+  color: #777;
+  margin-top: 1.2em;
+}

@@ -1,0 +1,70 @@
+{
+  "$schema": "https://schemas.x402.org/agent-services/v1.json",
+  "version": 1,
+  "publisher": {
+    "name": "Tantra Authority",
+    "url": "https://tantra-authority.com",
+    "operator": "Lawrence Lanoff",
+    "imprint": "The Naked Press",
+    "contact": "editorial@tantra-authority.com",
+    "description": "Body-grounded teaching on consciousness, tantra, and modern sexuality. Operated by Lawrence Lanoff, author of A Course in Freedom (2007) and the Beyond the Myth series."
+  },
+  "protocol": {
+    "x402Version": 1,
+    "specs": [
+      "https://x402.org",
+      "https://datatracker.ietf.org/doc/html/rfc7231#section-6.5.2"
+    ]
+  },
+  "discovery": {
+    "catalogEndpoint": "https://api.tantra-authority.com/api/services",
+    "wellKnownUrl": "https://tantra-authority.com/.well-known/agent-services.json"
+  },
+  "paymentMethods": [
+    { "scheme": "lightning", "network": "bitcoin", "asset": "BTC", "minUnit": "satoshi", "status": "active" },
+    { "scheme": "exact", "network": "base", "asset": "USDC", "minUnit": "atomic", "status": "planned" },
+    { "scheme": "exact", "network": "solana", "asset": "USDC", "minUnit": "atomic", "status": "planned" }
+  ],
+  "services": [
+    {
+      "slug": "beyond-the-myth-onlyfans",
+      "type": "article",
+      "title": "Beyond the Myth: OnlyFans — Director's Digest",
+      "description": "Structured digest of the OnlyFans reframe — thesis, the three load-bearing reframes, quotable passages, and cross-pollination pointers. Machine-readable for agent consumption; also rendered for humans at the checkout URL below.",
+      "endpoint": "https://api.tantra-authority.com/api/unlock/beyond-the-myth-onlyfans",
+      "humanCheckoutUrl": "https://tantra-authority.com/premium/beyond-the-myth-onlyfans-extended.html",
+      "freeReferenceUrl": "https://tantra-authority.com/articles/beyond-the-myth-onlyfans.html",
+      "price": { "sats": 300, "usdc_atomic": "60000" },
+      "schemes": ["lightning"],
+      "reAccessTtlSeconds": 86400,
+      "status": "live"
+    }
+  ],
+  "plannedServices": [
+    {
+      "slug": "ppt-deep-dive-personal-report",
+      "type": "ppt_score",
+      "title": "Personalized Deep-Dive PPT Report",
+      "description": "Personalized analysis of your 100-question Psychosexual Psychological Type Test result, including practice recommendations and compatibility hints.",
+      "price": { "sats": 1000 },
+      "status": "planned"
+    },
+    {
+      "slug": "ask-priority-routing",
+      "type": "ask_priority",
+      "title": "Priority Ask-an-Expert Routing",
+      "description": "Your submitted question routes to the front of Lawrence's reading queue and gets a personal response (not just article-cluster aggregation).",
+      "price": { "sats": 2500 },
+      "status": "planned"
+    },
+    {
+      "slug": "match-query",
+      "type": "match_query",
+      "title": "Honest Fetish Matching — Agent-Driven Query",
+      "description": "Agent-callable match query against the practitioner / partner directory using PPT axes and compatibility codes. Returns ranked matches with consent-respecting metadata.",
+      "price": { "sats": 5000 },
+      "status": "planned"
+    }
+  ],
+  "agentNotes": "Tantra Authority is an early node in the agent-to-agent payment graph. Endpoints follow HTTP 402 (x402) for machine-readable payment negotiation. Default rail is non-custodial Lightning. Re-access within the TTL window uses the Bearer token returned on first payment. For batch / enterprise rates contact the publisher."
+}
