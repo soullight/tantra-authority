@@ -111,7 +111,33 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </section>
 
+  <style>
+    #findbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:0 0 12px}
+    #findbar input{flex:1;min-width:200px;background:var(--bg-card,#1c1b24);border:1px solid var(--line,#2c2a36);color:inherit;border-radius:10px;padding:11px 13px;font:inherit;outline:none}
+    #findbar input:focus{border-color:var(--accent,#c8a36a)}
+    #findbar select{background:var(--bg-card,#1c1b24);border:1px solid var(--line,#2c2a36);color:inherit;border-radius:10px;padding:11px;font:inherit;cursor:pointer}
+    #tagchips{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 18px}
+    .tagchip{background:var(--bg-card,#1c1b24);border:1px solid var(--line,#2c2a36);color:inherit;border-radius:18px;padding:6px 13px;font-size:13px;cursor:pointer;opacity:.85}
+    .tagchip:hover{opacity:1}
+    .tagchip.active{background:var(--accent,#c8a36a);color:#1a1620;border-color:var(--accent,#c8a36a);opacity:1}
+    .card-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:9px}
+    .card-tag{font-size:12px;color:var(--accent,#c8a36a);cursor:pointer;opacity:.82}
+    .card-tag:hover{opacity:1;text-decoration:underline}
+    #findcount{color:var(--muted,#9b97a8);font-size:13px;margin:0 0 14px;display:none}
+    #article-results{display:none}
+  </style>
   <h2 style="margin-top:0">Recent Articles</h2>
+  <div id="findbar">
+    <input id="findsearch" type="search" placeholder="Search articles…" aria-label="Search articles" />
+    <select id="findsort" aria-label="Sort articles">
+      <option value="featured">Featured</option>
+      <option value="az">A–Z</option>
+      <option value="short">Shortest read</option>
+    </select>
+  </div>
+  <div id="tagchips"></div>
+  <div id="findcount"></div>
+  <div id="article-results" class="article-list"></div>
 
   <div class="article-list">
 
@@ -503,6 +529,76 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }
     form.reset();
   });
+})();
+</script>
+
+<script>
+/* Article discovery — auto-derived #hashtags + search + sort. Degrades gracefully:
+   if anything fails, every article still shows in its normal section. */
+(function(){
+  const TAGS = {
+    aging:['60','65','70','80','older','aging','menopaus','retire','later in life','widow','losing a partner','decade'],
+    pleasure:['pleasure','orgasm','climax','coming','ease of'],
+    body:['dryness','painful','pain ','pelvic','clitor','anatomy','estrogen','lube','coconut','tissue','arousal'],
+    desire:['desire','libido','blossom','listen','spark','fantasy','wanting'],
+    shadow:['shadow','fetish','submission','kink','foot','group sex','porn','whore','onlyfans','taboo'],
+    relationships:['partner','relationship','cheat','open relationship','marriage','dating','disclosure','couple'],
+    safety:['safe','safer','sti','testing','condom','consent','protect'],
+    practice:['practice','technique','breath','meditat','ritual']
+  };
+  const cards = Array.from(document.querySelectorAll('.article-card'));
+  const results = document.getElementById('article-results');
+  const chipsEl = document.getElementById('tagchips');
+  const searchEl = document.getElementById('findsearch');
+  const sortEl = document.getElementById('findsort');
+  const countEl = document.getElementById('findcount');
+  if (!cards.length || !results || !chipsEl) return;
+  const browseEls = Array.from(document.querySelectorAll('h2[style*="margin-top:0"], h2[style*="margin-top:64px"], .article-list')).filter(el => el !== results);
+  const tagSet = new Set();
+  let activeTag = null;
+
+  cards.forEach(card => {
+    const txt = (card.textContent || '').toLowerCase();
+    const tags = [];
+    for (const t in TAGS){ if (TAGS[t].some(k => txt.includes(k))){ tags.push(t); tagSet.add(t); } }
+    card._tags = tags; card._text = txt;
+    const m = txt.match(/(\d+)\s*min/); card._read = m ? parseInt(m[1],10) : 99;
+    const h3 = card.querySelector('h3'); card._title = h3 ? h3.textContent.trim().toLowerCase() : '';
+    const ph = document.createComment('c'); card.parentNode.insertBefore(ph, card); card._ph = ph;
+    if (tags.length){
+      const row = document.createElement('div'); row.className = 'card-tags';
+      tags.forEach(t => { const s = document.createElement('span'); s.className='card-tag'; s.textContent='#'+t;
+        s.addEventListener('click', ev => { ev.preventDefault(); ev.stopPropagation(); selectTag(t); }); row.appendChild(s); });
+      (card.querySelector('a') || card).appendChild(row);
+    }
+  });
+
+  function mkChip(label, t){ const b=document.createElement('button'); b.className='tagchip'+(t===null?' active':''); b.textContent=label; b.dataset.tag=t||''; b.addEventListener('click',()=>selectTag(t)); return b; }
+  chipsEl.appendChild(mkChip('All', null));
+  Array.from(tagSet).sort().forEach(t => chipsEl.appendChild(mkChip('#'+t, t)));
+
+  function selectTag(t){ activeTag = (activeTag===t) ? null : t; apply();
+    const b = document.getElementById('findbar'); if (b) window.scrollTo({top: b.offsetTop - 16, behavior:'smooth'}); }
+  function homeAll(){ cards.forEach(c => { if (c.parentNode === results) c._ph.parentNode.insertBefore(c, c._ph); }); }
+
+  function apply(){
+    const q = searchEl.value.trim().toLowerCase();
+    const sort = sortEl.value;
+    Array.from(chipsEl.children).forEach(c => c.classList.toggle('active', (c.dataset.tag||null)===activeTag));
+    const filtering = q || activeTag || sort !== 'featured';
+    homeAll();
+    if (!filtering){ browseEls.forEach(e => e.style.display=''); results.style.display='none'; countEl.style.display='none'; return; }
+    let match = cards.filter(c => (!q || c._text.includes(q)) && (!activeTag || c._tags.includes(activeTag)));
+    if (sort==='az') match.sort((a,b)=>a._title.localeCompare(b._title));
+    else if (sort==='short') match.sort((a,b)=>a._read-b._read);
+    browseEls.forEach(e => e.style.display='none');
+    results.innerHTML=''; match.forEach(c => results.appendChild(c));
+    results.style.display='';
+    countEl.textContent = match.length + (match.length===1?' article':' articles');
+    countEl.style.display='';
+  }
+  searchEl.addEventListener('input', apply);
+  sortEl.addEventListener('change', apply);
 })();
 </script>
 
