@@ -49,7 +49,10 @@
     <div id="form" style="display:none">
       <label for="email">Email <span style="opacity:.6">— so you can recover your access link later</span></label>
       <input type="email" id="email" placeholder="you@example.com" autocomplete="email">
-      <label style="margin-top:14px">Card</label>
+      <label style="margin-top:14px" for="code">Secret code <span style="opacity:.6">— optional</span></label>
+      <input type="text" id="code" placeholder="" autocapitalize="characters" autocomplete="off" style="width:100%; background:var(--bg); border:1px solid var(--border); border-radius:9px; color:var(--text); font:inherit; font-size:15px; padding:12px 13px; outline:none; text-transform:uppercase;">
+      <div id="code-msg" style="font-family:'Inter',sans-serif; font-size:12.5px; min-height:16px; margin-top:5px;"></div>
+      <label style="margin-top:8px">Card</label>
       <div id="card-element"></div>
       <button id="go" disabled>Loading…</button>
     </div>
@@ -68,7 +71,7 @@ const qs = new URLSearchParams(location.search);
 const productId = (qs.get("product") || "").trim();
 
 const $ = (id) => document.getElementById(id);
-const msg = $("msg"), go = $("go"), emailEl = $("email"), form = $("form"), done = $("done");
+const msg = $("msg"), go = $("go"), emailEl = $("email"), form = $("form"), done = $("done"), codeEl = $("code"), codeMsg = $("code-msg");
 function say(t, err) { msg.textContent = t; msg.className = "msg" + (err ? " err" : ""); }
 function money(cents) { return "$" + (cents / 100).toFixed(2); }
 
@@ -109,6 +112,30 @@ let product = null, clover = null, cardMounted = false;
   }
 })();
 
+// Live re-price when a secret code is entered (server decides the real price).
+let codeTimer = null;
+codeEl && codeEl.addEventListener("input", () => {
+  clearTimeout(codeTimer);
+  const code = codeEl.value.trim();
+  if (!product) return;
+  if (!code) { codeMsg.textContent = ""; codeMsg.style.color = ""; $("prod-price").textContent = money(product.priceCents); go.textContent = "Pay " + money(product.priceCents); return; }
+  codeTimer = setTimeout(async () => {
+    try {
+      const r = await fetch(API + "/api/quote?product=" + encodeURIComponent(product.id) + "&code=" + encodeURIComponent(code));
+      const d = await r.json();
+      if (d.ok && d.applied) {
+        $("prod-price").textContent = money(d.priceCents);
+        go.textContent = "Pay " + money(d.priceCents);
+        codeMsg.textContent = "✓ Code applied — " + money(d.priceCents); codeMsg.style.color = "var(--gold)";
+      } else {
+        $("prod-price").textContent = money(product.priceCents);
+        go.textContent = "Pay " + money(product.priceCents);
+        codeMsg.textContent = "That code isn’t valid."; codeMsg.style.color = "var(--accent)";
+      }
+    } catch { /* leave price as-is */ }
+  }, 400);
+});
+
 go.addEventListener("click", async () => {
   const email = emailEl.value.trim();
   if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { say("Add your email so you can recover access later.", true); emailEl.focus(); return; }
@@ -121,7 +148,7 @@ go.addEventListener("click", async () => {
 
     const r = await fetch(API + "/api/buy", {
       method: "POST", headers: { "content-type": "application/json" },
-      body: JSON.stringify({ productId: product.id, email, token: res.token }),
+      body: JSON.stringify({ productId: product.id, email, token: res.token, code: codeEl ? codeEl.value.trim() : "" }),
     });
     const data = await r.json();
     if (r.ok && data.ok && data.accessUrl) {
