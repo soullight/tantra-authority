@@ -103,6 +103,8 @@ function pretty(raw) {
   return s;
 }
 const pad2 = (n) => String(n).padStart(2, "0");
+// Sub-MB files are real (e.g. 0.4 MB PDFs) — show KB so they never read as "0 MB".
+function fmtSize(mb) { if (!mb) return ""; if (mb < 1) return Math.round(mb * 1000) + " KB"; if (mb < 10) return mb.toFixed(1) + " MB"; return Math.round(mb) + " MB"; }
 
 // ── symbolic cover: a deterministic sacred-geometry mandala per experience ──
 function _hash(s){ let h=2166136261; for(let i=0;i<s.length;i++){ h^=s.charCodeAt(i); h=Math.imul(h,16777619); } return h>>>0; }
@@ -150,7 +152,7 @@ function wireRecover() {
 
 const NOUN = (data) => /chakra|meditation|breath/i.test(data.title || "") ? "meditation" : "session";
 function epRow(f, i) {
-  const meta = f.sizeMB ? Math.round(f.sizeMB) + " MB" : "";
+  const meta = fmtSize(f.sizeMB);
   const player = f.type === "video"
     ? `<video controls preload="none" playsinline src="${esc(f.url)}" style="width:100%;border-radius:9px;margin-top:13px;background:#000;max-height:62vh"></video>`
     : `<audio controls preload="none" src="${esc(f.url)}"></audio>`;
@@ -162,7 +164,7 @@ function epRow(f, i) {
   </div>`;
 }
 function docRow(f) {
-  const meta = f.sizeMB ? Math.round(f.sizeMB) + " MB" : "PDF";
+  const meta = fmtSize(f.sizeMB) || "PDF";
   return `<div class="doc-row"><span class="nm">${esc(pretty(f.name))}</span><a href="${esc(f.url)}" download>↓ ${meta}</a></div>`;
 }
 
