@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Course — Tantra Authority</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>○</text></svg>">
+<style>
+  .access-wrap { max-width: 880px; margin: 0 auto; padding: 40px 24px 90px; }
+  .save-banner {
+    background: linear-gradient(180deg, rgba(184,134,11,0.10), rgba(139,58,58,0.05));
+    border: 1px solid var(--accent-soft); border-radius: 10px;
+    padding: 18px 20px; margin: 0 0 30px; font-family: 'Inter', sans-serif; font-size: 14.5px;
+  }
+  .save-banner strong { color: var(--accent); }
+  .save-banner .link-row { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+  .save-banner input { flex: 1; min-width: 240px; background: #fff; border: 1px solid var(--border);
+    border-radius: 7px; padding: 9px 11px; font: inherit; font-size: 13px; color: var(--text-muted); }
+  .save-banner button { background: var(--accent); color: #fff; border: none; border-radius: 7px;
+    padding: 9px 16px; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; }
+  .save-banner button:hover { background: var(--gold); }
+  .course-title { font-size: 38px; margin: 6px 0 6px; }
+  .course-sub { font-family: 'Inter', sans-serif; color: var(--text-muted); font-size: 14px; margin: 0 0 8px; }
+  .group-head { font-size: 24px; margin: 44px 0 4px; }
+  .group-note { font-family: 'Inter', sans-serif; color: var(--text-muted); font-size: 13.5px; margin: 0 0 18px; }
+  .file-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px;
+    padding: 18px 20px; margin: 0 0 18px; }
+  .file-head { display: flex; justify-content: space-between; align-items: baseline; gap: 14px; }
+  .file-name { font-family: 'Charter', serif; font-weight: 700; font-size: 17px; line-height: 1.3; }
+  .file-meta { font-family: 'Inter', sans-serif; font-size: 12px; color: var(--text-muted); white-space: nowrap; }
+  .file-card video, .file-card audio { width: 100%; margin-top: 14px; border-radius: 8px; display: block; }
+  .file-card video { background: #000; max-height: 60vh; }
+  .file-actions { margin-top: 12px; }
+  .dl-btn { display: inline-block; font-family: 'Inter', sans-serif; font-size: 12.5px; font-weight: 600;
+    letter-spacing: .5px; color: var(--accent); text-decoration: none; border: 1px solid var(--accent-soft);
+    border-radius: 7px; padding: 7px 14px; }
+  .dl-btn:hover { background: var(--accent); color: #fff; }
+  .doc-row { display: flex; justify-content: space-between; align-items: center; gap: 14px;
+    padding: 12px 0; border-bottom: 1px solid var(--border); }
+  .doc-row:last-child { border-bottom: none; }
+  .doc-list { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 6px 20px; }
+  .state-msg { font-family: 'Inter', sans-serif; font-size: 16px; color: var(--text-muted);
+    text-align: center; padding: 60px 0; }
+  .state-msg .recover { margin-top: 24px; }
+  .recover-form { max-width: 380px; margin: 18px auto 0; display: flex; gap: 8px; }
+  .recover-form input { flex: 1; background: #fff; border: 1px solid var(--border); border-radius: 8px;
+    padding: 11px 13px; font: inherit; font-size: 14px; }
+  .recover-form button { background: var(--accent); color: #fff; border: none; border-radius: 8px;
+    padding: 11px 18px; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; }
+  .recover-result { font-family: 'Inter', sans-serif; font-size: 14px; margin-top: 14px; }
+  @media (max-width: 640px) {
+    .course-title { font-size: 30px; }
+    .file-head { flex-direction: column; gap: 4px; }
+    .recover-form { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="site-header-inner">
+    <a href="index.html" class="site-logo">TANTRA <span>AUTHORITY</span></a>
+  </div>
+</header>
+
+<div class="access-wrap">
+  <div id="root">
+    <div class="state-msg">Opening your course…</div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div>Tantra Authority — published by <a href="https://thenaked.press">The Naked Press</a></div>
+</footer>
+
+<script>
+const API = "https://api.tantra-authority.com";
+const token = new URLSearchParams(location.search).get("token");
+const root = document.getElementById("root");
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+function recoverBlock(intro) {
+  return `<div class="recover">
+    <p>${intro}</p>
+    <form class="recover-form" id="recover-form">
+      <input type="email" id="recover-email" placeholder="you@example.com" autocomplete="email" required>
+      <button type="submit">Get my link</button>
+    </form>
+    <div class="recover-result" id="recover-result"></div>
+  </div>`;
+}
+
+function wireRecover() {
+  const form = document.getElementById("recover-form");
+  if (!form) return;
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const out = document.getElementById("recover-result");
+    const email = document.getElementById("recover-email").value.trim();
+    out.textContent = "Looking…";
+    try {
+      const r = await fetch(API + "/api/recover", {
+        method: "POST", headers: { "content-type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+      const d = await r.json();
+      if (d.ok && d.found) {
+        out.innerHTML = `Found your <strong>${esc(d.title)}</strong>. <a href="${esc(d.link)}">Open it →</a>`;
+      } else {
+        out.textContent = "No purchase found for that email. Check the address, or contact support.";
+      }
+    } catch { out.textContent = "Something went wrong — try again."; }
+  });
+}
+
+function fileCard(f) {
+  const meta = `${f.type.toUpperCase()}${f.sizeMB ? " · " + f.sizeMB + " MB" : ""}`;
+  if (f.type === "video") {
+    return `<div class="file-card">
+      <div class="file-head"><span class="file-name">${esc(f.name)}</span><span class="file-meta">${meta}</span></div>
+      <video controls preload="none" playsinline src="${esc(f.url)}"></video>
+      <div class="file-actions"><a class="dl-btn" href="${esc(f.url)}" download>↓ Download</a></div>
+    </div>`;
+  }
+  if (f.type === "audio") {
+    return `<div class="file-card">
+      <div class="file-head"><span class="file-name">${esc(f.name)}</span><span class="file-meta">${meta}</span></div>
+      <audio controls preload="none" src="${esc(f.url)}"></audio>
+      <div class="file-actions"><a class="dl-btn" href="${esc(f.url)}" download>↓ Download</a></div>
+    </div>`;
+  }
+  return `<div class="doc-row">
+    <span class="file-name" style="font-size:15px">${esc(f.name)}</span>
+    <a class="dl-btn" href="${esc(f.url)}" download>↓ ${meta}</a>
+  </div>`;
+}
+
+function render(data) {
+  const files = data.files || [];
+  const vids = files.filter((f) => f.type === "video");
+  const auds = files.filter((f) => f.type === "audio");
+  const docs = files.filter((f) => f.type === "doc");
+
+  let html = `<div class="save-banner">
+    <strong>💾 Save this link — it’s your access.</strong> Bookmark this page. It’s how you come back to your course any time.
+    <div class="link-row">
+      <input id="acc-link" readonly value="${esc(location.href)}">
+      <button id="copy-link">Copy</button>
+    </div>
+  </div>`;
+
+  html += `<h1 class="course-title">${esc(data.title)}</h1>
+    <p class="course-sub">Yours to keep. Stream it here, or download any file. ${files.length} ${files.length === 1 ? "item" : "items"}.</p>`;
+
+  if (vids.length) {
+    html += `<h2 class="group-head">Videos</h2><p class="group-note">Press play — they stream straight from here.</p>`;
+    html += vids.map(fileCard).join("");
+  }
+  if (auds.length) {
+    html += `<h2 class="group-head">Audio</h2><p class="group-note">Put one on, lie down, and let it do its thing.</p>`;
+    html += auds.map(fileCard).join("");
+  }
+  if (docs.length) {
+    html += `<h2 class="group-head">Workbooks &amp; PDFs</h2><p class="group-note">The written companions — download to read.</p>`;
+    html += `<div class="doc-list">` + docs.map(fileCard).join("") + `</div>`;
+  }
+
+  root.innerHTML = html;
+  const copyBtn = document.getElementById("copy-link");
+  if (copyBtn) copyBtn.addEventListener("click", () => {
+    document.getElementById("acc-link").select();
+    navigator.clipboard.writeText(location.href).then(() => { copyBtn.textContent = "Copied ✓"; });
+  });
+}
+
+(async function init() {
+  if (!token) {
+    root.innerHTML = `<div class="state-msg">No access token in this link.${recoverBlock("Already purchased? Enter your email and we’ll send you back to your course.")}</div>`;
+    wireRecover();
+    return;
+  }
+  try {
+    const r = await fetch(API + "/api/download/" + encodeURIComponent(token));
+    const d = await r.json();
+    if (r.ok && d.ok) { render(d); return; }
+    let intro = "This access link isn’t valid.";
+    if (d.error === "access_expired") intro = "This access link has expired.";
+    root.innerHTML = `<div class="state-msg">${intro}${recoverBlock("Already purchased? Enter your email to get a fresh access link.")}</div>`;
+    wireRecover();
+  } catch {
+    root.innerHTML = `<div class="state-msg">Couldn’t load your course. Refresh to try again.${recoverBlock("Already purchased? Enter your email to recover your link.")}</div>`;
+    wireRecover();
+  }
+})();
+</script>
+</body>
+</html>

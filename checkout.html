@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<title>Checkout — Tantra Authority</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>○</text></svg>">
+<script src="https://checkout.clover.com/sdk.js"></script>
+<style>
+  .checkout-wrap { max-width: 460px; margin: 48px auto; padding: 0 20px; }
+  .checkout-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 26px; }
+  .checkout-wrap h1 { font-size: 24px; margin: 0 0 4px; }
+  .checkout-sub { color: var(--text-muted); font-family: 'Inter', sans-serif; font-size: 14px; margin: 0 0 22px; }
+  .prod-line { display: flex; justify-content: space-between; align-items: baseline;
+    font-family: 'Inter', sans-serif; padding-bottom: 16px; margin-bottom: 18px; border-bottom: 1px solid var(--border); }
+  .prod-line .nm { font-weight: 600; font-size: 16px; }
+  .prod-line .pr { color: var(--accent); font-weight: 700; font-size: 18px; }
+  .checkout-card label { display: block; font-family: 'Inter', sans-serif; font-size: 13px; color: var(--text-muted); margin: 0 0 6px; }
+  .checkout-card input[type=email] { width: 100%; background: var(--bg); border: 1px solid var(--border); border-radius: 9px;
+    color: var(--text); font: inherit; font-size: 15px; padding: 12px 13px; outline: none; }
+  .checkout-card input[type=email]:focus { border-color: var(--accent); }
+  #card-element { background: var(--bg); border: 1px solid var(--border); border-radius: 9px; padding: 12px 13px; min-height: 46px; margin-top: 14px; }
+  #go { width: 100%; margin-top: 20px; background: var(--gold); color: #fff; border: none; border-radius: 10px;
+    padding: 14px; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 600; cursor: pointer; }
+  #go:disabled { opacity: .5; cursor: default; }
+  .msg { margin-top: 14px; font-family: 'Inter', sans-serif; font-size: 14px; text-align: center; min-height: 18px; }
+  .msg.err { color: var(--accent); }
+  .done a { display: inline-block; margin-top: 10px; }
+  .fine { color: var(--text-muted); font-family: 'Inter', sans-serif; font-size: 12px; text-align: center; margin-top: 16px; line-height: 1.5; }
+  .back { display: block; text-align: center; margin-top: 18px; font-family: 'Inter', sans-serif; font-size: 13px; }
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="site-header-inner">
+    <a href="index.html" class="site-logo">TANTRA <span>AUTHORITY</span></a>
+  </div>
+</header>
+
+<div class="checkout-wrap">
+  <h1>Checkout</h1>
+  <p class="checkout-sub">One-time purchase. Yours to keep. No subscription.</p>
+
+  <div class="checkout-card">
+    <div class="prod-line"><span class="nm" id="prod-name">Loading…</span><span class="pr" id="prod-price"></span></div>
+
+    <div id="form" style="display:none">
+      <label for="email">Email <span style="opacity:.6">— so you can recover your access link later</span></label>
+      <input type="email" id="email" placeholder="you@example.com" autocomplete="email">
+      <label style="margin-top:14px">Card</label>
+      <div id="card-element"></div>
+      <button id="go" disabled>Loading…</button>
+    </div>
+
+    <div class="msg" id="msg"></div>
+    <div id="done" class="done" style="display:none"></div>
+  </div>
+
+  <div class="fine">Card secured by Clover — your card details never touch our servers. Adults only.</div>
+  <a class="back" href="shop.html">← Back to the shop</a>
+</div>
+
+<script>
+const API = "https://api.tantra-authority.com";
+const qs = new URLSearchParams(location.search);
+const productId = (qs.get("product") || "").trim();
+
+const $ = (id) => document.getElementById(id);
+const msg = $("msg"), go = $("go"), emailEl = $("email"), form = $("form"), done = $("done");
+function say(t, err) { msg.textContent = t; msg.className = "msg" + (err ? " err" : ""); }
+function money(cents) { return "$" + (cents / 100).toFixed(2); }
+
+let product = null, clover = null, cardMounted = false;
+
+(async function init() {
+  if (!productId) { $("prod-name").textContent = "No product selected."; return; }
+  try {
+    const [prodRes, cfgRes] = await Promise.all([
+      fetch(API + "/api/products").then((r) => r.json()),
+      fetch(API + "/api/pay-config").then((r) => r.json()),
+    ]);
+    product = (prodRes.products || []).find((p) => p.id === productId);
+    if (!product) { $("prod-name").textContent = "Product not found."; return; }
+
+    $("prod-name").textContent = product.title;
+    $("prod-price").textContent = product.priceCents > 0 ? money(product.priceCents) : "—";
+
+    if (!product.buyable) {
+      $("prod-price").textContent = "Coming soon";
+      say("This isn’t open for purchase yet. Join the list and we’ll tell you when it opens.");
+      return;
+    }
+    if (!cfgRes.ready || !cfgRes.publicToken) {
+      say("Checkout isn’t available right now. Please try again shortly.", true);
+      return;
+    }
+
+    clover = new Clover(cfgRes.publicToken, cfgRes.merchantId ? { merchantId: cfgRes.merchantId } : undefined);
+    const card = clover.elements().create("CARD");
+    card.mount("#card-element");
+    cardMounted = true;
+    form.style.display = "block";
+    go.textContent = "Pay " + money(product.priceCents);
+    go.disabled = false;
+  } catch (e) {
+    say("Could not load checkout. Refresh to try again.", true);
+  }
+})();
+
+go.addEventListener("click", async () => {
+  const email = emailEl.value.trim();
+  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { say("Add your email so you can recover access later.", true); emailEl.focus(); return; }
+  if (!clover || !cardMounted) { say("Checkout isn’t ready yet.", true); return; }
+
+  go.disabled = true; say("Processing…");
+  try {
+    const res = await clover.createToken();
+    if (res.errors) { say(Object.values(res.errors)[0] || "Check your card details.", true); go.disabled = false; return; }
+
+    const r = await fetch(API + "/api/buy", {
+      method: "POST", headers: { "content-type": "application/json" },
+      body: JSON.stringify({ productId: product.id, email, token: res.token }),
+    });
+    const data = await r.json();
+    if (r.ok && data.ok && data.accessUrl) {
+      // Straight into the course page. Brief confirmation, then redirect.
+      form.style.display = "none";
+      say("You’re in — opening your course…");
+      window.location = data.accessUrl;
+    } else if (r.status === 402) {
+      say(data.message || "That card was declined — try another.", true); go.disabled = false;
+    } else {
+      say(data.message || "Something went wrong. Try again.", true); go.disabled = false;
+    }
+  } catch (e) {
+    say("Something went wrong. Try again.", true); go.disabled = false;
+  }
+});
+</script>
+</body>
+</html>
