@@ -191,6 +191,7 @@ function render(data) {
   const media = files.filter((f) => f.type === "video" || f.type === "audio");
   const docs = files.filter((f) => f.type === "doc");
   const n = media.length, noun = NOUN(data);
+  const isBook = n === 0 && docs.length > 0;   // book/PDF product, not a course
 
   const emblem = data.cover
     ? `<img class="emblem-img" src="${esc(data.cover)}" alt="">`
@@ -199,9 +200,11 @@ function render(data) {
   let html = `<div class="course-hero">
     ${emblem}
     <h1 class="course-title">${esc(data.title)}</h1>
-    <p class="course-welcome">Welcome in. Everything here is yours to experience — stream it right from this page, or download any ${noun}. Take your time. There is no finish line — only now.</p>
-    <div class="course-stats">${n} ${n === 1 ? "experience" : "experiences"} · stream or download</div>
-    <p class="course-live">Every one of these was recorded live — so the energy of each experience is transmitted, exactly as it moved through the room, into the recording.</p>
+    <p class="course-welcome">${isBook
+      ? "Your copy — yours to keep. Download it below in whichever format you like, and come back any time."
+      : `Welcome in. Everything here is yours to experience — stream it right from this page, or download any ${noun}. Take your time. There is no finish line — only now.`}</p>
+    ${isBook ? "" : `<div class="course-stats">${n} ${n === 1 ? "experience" : "experiences"} · stream or download</div>
+    <p class="course-live">Every one of these was recorded live — so the energy of each experience is transmitted, exactly as it moved through the room, into the recording.</p>`}
   </div>`;
 
   html += `<div class="save-bar"><b>💾 This is your private link.</b> Bookmark it — it's how you return any time.
@@ -212,7 +215,7 @@ function render(data) {
     html += `<div class="ep-list">` + media.map(epRow).join("") + `</div>`;
   }
   if (docs.length) {
-    html += `<h2 class="group-head">Workbooks</h2><p class="group-note">The written companions — download to keep.</p>`;
+    html += `<h2 class="group-head">${isBook ? "Your book" : "Workbooks"}</h2><p class="group-note">${isBook ? "Download in your preferred format — PDF or ePub." : "The written companions — download to keep."}</p>`;
     html += `<div class="doc-list">` + docs.map(docRow).join("") + `</div>`;
   }
   html += `<div class="course-foot">Questions? <a href="ask.html">Reach us here.</a> · Tantra Authority</div>`;
