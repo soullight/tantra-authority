@@ -156,11 +156,15 @@ function epRow(f, i) {
   const player = f.type === "video"
     ? `<video controls preload="none" playsinline src="${esc(f.url)}" style="width:100%;border-radius:9px;margin-top:13px;background:#000;max-height:62vh"></video>`
     : `<audio controls preload="none" src="${esc(f.url)}"></audio>`;
+  const vidLabel = f.audioUrl ? "↓ Video" : "↓ Download";
+  const audioDl = f.audioUrl
+    ? ` &nbsp;·&nbsp; <a class="ep-dl" href="${esc(f.audioUrl)}" download>♪ Audio${f.audioSizeMB ? " · " + fmtSize(f.audioSizeMB) : ""}</a>`
+    : "";
   return `<div class="ep" data-type="${f.type}">
     <div class="ep-art">${symbolicCover(f.name, i)}<div class="ep-play">▶</div></div>
     <div><div class="ep-num">Experience ${pad2(i + 1)}</div><div class="ep-title">${esc(pretty(f.name))}</div>
       ${player}
-      <a class="ep-dl" href="${esc(f.url)}" download>↓ Download${meta ? " · " + meta : ""}</a></div>
+      <a class="ep-dl" href="${esc(f.url)}" download>${vidLabel}${meta ? " · " + meta : ""}</a>${audioDl}</div>
   </div>`;
 }
 function docRow(f) {
