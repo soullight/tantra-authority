@@ -159,6 +159,7 @@ function wireRecover() {
   });
 }
 
+let COURSE_TILES = null;   // per-course themed episode tiles (else procedural gold mandala)
 const NOUN = (data) => /chakra|meditation|breath/i.test(data.title || "") ? "meditation" : "session";
 function epRow(f, i) {
   const meta = fmtSize(f.sizeMB);
@@ -169,8 +170,11 @@ function epRow(f, i) {
   const audioDl = f.audioUrl
     ? ` &nbsp;·&nbsp; <a class="ep-dl" href="${esc(f.audioUrl)}" download>♪ Audio${f.audioSizeMB ? " · " + fmtSize(f.audioSizeMB) : ""}</a>`
     : "";
+  const art = (COURSE_TILES && COURSE_TILES.length)
+    ? `<img class="cover-svg" src="${esc(COURSE_TILES[i % COURSE_TILES.length])}" alt="" loading="lazy">`
+    : symbolicCover(f.name, i);
   return `<div class="ep" data-type="${f.type}">
-    <div class="ep-art">${symbolicCover(f.name, i)}<div class="ep-play">▶</div></div>
+    <div class="ep-art">${art}<div class="ep-play">▶</div></div>
     <div><div class="ep-num">Experience ${pad2(i + 1)}</div><div class="ep-title">${esc(pretty(f.name))}</div>
       ${player}
       <a class="ep-dl" href="${esc(f.url)}" download>${vidLabel}${meta ? " · " + meta : ""}</a>${audioDl}</div>
@@ -182,6 +186,7 @@ function docRow(f) {
 }
 
 function render(data) {
+  COURSE_TILES = data.tiles && data.tiles.length ? data.tiles : null;
   const files = data.files || [];
   const media = files.filter((f) => f.type === "video" || f.type === "audio");
   const docs = files.filter((f) => f.type === "doc");
