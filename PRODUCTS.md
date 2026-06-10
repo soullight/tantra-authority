@@ -5,19 +5,13 @@ Sources: `~/command-center/MASTER_INVENTORY.md`, `INVENTORY_PLATFORMS.md`, `/Vol
 
 ---
 
-## 🚨 THE HEADLINE (read first)
+## 🚨 THE HEADLINE (read first — ✅ UPDATED 2026-06-10: CHECKOUT IS SOLVED)
 
-**The catalog is real and finished. NOT ONE of Lawrence's own products has a live, working checkout link.**
+**The store is LIVE.** Clover one-time checkout is wired + proven end-to-end on `tantra-authority.com/shop.html` (Buy → $97 → **course streams from S3** → recover-by-email). **2 products selling now @ $97: Tantra X (men, bucket `tantra-x`) + Chakra Healing (women, bucket `chakra-healing-program`).** S3 delivery works (AWS creds = Worker secrets; presigned URLs verified). Adding any product below = set `priceCents`+`bucket` in `tantra-authority-api/src/checkout.js` + a shop card → buyable.
 
-Verdict from the survey: the constraint is *distribution + a checkout*, not production. Lawrence already made ~14 courses, ~6+ finished books, and a large finished hypnosis/audio library. But:
+> ⚠️ **Re-reading the "NEEDS-LINK" status below:** it no longer means "no checkout exists." It now means **"this S3 bucket hasn't been verified + merchandised onto the shop yet."** The plumbing is done; the remaining work is per-product (verify the bucket has the right files, price it, add the card) + finished-product quality (e.g. the chakra audio restoration pass — see the dossier).
 
-- The **ClickFunnels products** were migrated OFF ClickFunnels to a Mac Mini (`boxys-mac-mini`, Tailscale 100.84.38.25) that **we cannot log into** (products not in `law`'s home; TCC-locked / wrong user). → no live store.
-- The **S3 course masters** (22+ buckets, 2013–2020) have **no AWS creds on the machine** → can't even list them, let alone host/sell.
-- `thenaked.press` (the imprint domain the footer links to) **does not resolve** (curl → 000). The book pre-order list is the only live capture funnel.
-
-**Conclusion:** Every Lawrence-made product below is **NEEDS-LINK**. The only **LIVE-LINK** items are third-party Amazon *affiliate* gear (verified, tracked) — useful for the Tools/Gear section but they are not the catalog.
-
-This is the GATE. See the bottom section.
+*(Historical survey context preserved — what the original gap was.)* Earlier the constraint was *distribution + a checkout*: ClickFunnels products were stranded on an un-loginnable Mac Mini, S3 had no creds on the machine, `thenaked.press` didn't resolve. **All of that is now bypassed** — the TA Worker holds AWS + Clover creds and streams directly from the S3 buckets.
 
 ---
 
