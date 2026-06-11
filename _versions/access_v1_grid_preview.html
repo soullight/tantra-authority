@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Course — Tantra Authority</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>○</text></svg>">
+<style>
+  .access-wrap { max-width: 820px; margin: 0 auto; padding: 30px 22px 100px; }
+
+  /* hero */
+  .course-hero { text-align: center; padding: 26px 0 14px; border-bottom: 1px solid var(--border); margin-bottom: 8px; }
+  .course-emblem { width: 64px; height: 64px; margin: 0 auto 18px; border-radius: 50%;
+    background: radial-gradient(circle at 50% 38%, var(--gold), var(--accent) 78%);
+    box-shadow: 0 6px 26px rgba(139,58,58,.28); display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 30px; }
+  .course-eyebrow { font-family: 'Inter', sans-serif; font-size: 11.5px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--accent); font-weight: 700; }
+  .course-title { font-family: 'Charter', Georgia, serif; font-size: 46px; line-height: 1.08; margin: 10px 0 14px; }
+  .course-welcome { font-family: 'Inter', sans-serif; font-size: 16px; line-height: 1.65; color: var(--text-muted);
+    max-width: 580px; margin: 0 auto; }
+  .course-stats { font-family: 'Inter', sans-serif; font-size: 12.5px; letter-spacing: 1px; text-transform: uppercase;
+    color: var(--gold); margin-top: 18px; font-weight: 600; }
+
+  /* save bar — slim + elegant */
+  .save-bar { display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+    background: linear-gradient(180deg, rgba(184,134,11,0.08), rgba(139,58,58,0.04));
+    border: 1px solid var(--accent-soft); border-radius: 12px; padding: 13px 18px; margin: 26px 0 36px;
+    font-family: 'Inter', sans-serif; font-size: 13.5px; color: var(--text-muted); }
+  .save-bar b { color: var(--accent); }
+  .save-bar input { flex: 1; min-width: 200px; background: #fff; border: 1px solid var(--border);
+    border-radius: 7px; padding: 8px 10px; font: inherit; font-size: 12px; color: var(--text-muted); }
+  .save-bar button { background: var(--accent); color: #fff; border: none; border-radius: 7px;
+    padding: 8px 15px; font: inherit; font-size: 12.5px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+  .save-bar button:hover { background: var(--gold); }
+
+  /* section heads */
+  .group-head { font-family: 'Charter', serif; font-size: 22px; margin: 40px 0 3px; display: flex; align-items: baseline; gap: 10px; }
+  .group-head::before { content: ""; flex: none; width: 22px; height: 2px; background: var(--gold); transform: translateY(-6px); }
+  .group-note { font-family: 'Inter', sans-serif; color: var(--text-muted); font-size: 13px; margin: 0 0 16px; }
+
+  /* cover grid (audio) — a symbolic cover for each piece, like an album */
+  .cover-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(188px, 1fr)); gap: 26px 20px; }
+  .cover-card { display: flex; flex-direction: column; }
+  .cover-art { position: relative; aspect-ratio: 1 / 1; border-radius: 14px; overflow: hidden; cursor: pointer;
+    box-shadow: 0 10px 28px rgba(40,20,20,.22); border: 1px solid rgba(217,178,94,.28); }
+  .cover-svg { width: 100%; height: 100%; display: block; transition: transform .5s ease; }
+  .cover-art:hover .cover-svg { transform: scale(1.05); }
+  .cover-play { position: absolute; inset: 0; margin: auto; width: 52px; height: 52px; border-radius: 50%;
+    background: rgba(18,10,10,.42); color: #f6e6c2; border: 1px solid rgba(246,230,194,.55); font-size: 15px;
+    display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity .25s; backdrop-filter: blur(2px); }
+  .cover-art:hover .cover-play, .cover-card.playing .cover-play { opacity: 1; }
+  .cover-title { font-family: 'Charter', serif; font-size: 15.5px; line-height: 1.32; margin: 13px 2px 2px; }
+  .cover-meta { font-family: 'Inter', sans-serif; font-size: 11px; color: var(--text-muted); margin: 1px 2px 0; letter-spacing: .3px; }
+  .cover-card audio { width: 100%; height: 32px; margin-top: 10px; }
+  .cover-dl { font-family: 'Inter', sans-serif; font-size: 11.5px; font-weight: 600; color: var(--accent); text-decoration: none; margin-top: 8px; align-self: flex-start; }
+  .cover-dl:hover { color: var(--gold); }
+
+  /* video cards */
+  .vid-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px;
+    padding: 16px 18px; margin: 0 0 16px; }
+  .vid-head { display: flex; justify-content: space-between; align-items: baseline; gap: 14px; }
+  .vid-title { font-family: 'Charter', serif; font-weight: 700; font-size: 17px; line-height: 1.3; }
+  .vid-meta { font-family: 'Inter', sans-serif; font-size: 11.5px; color: var(--text-muted); white-space: nowrap; }
+  .vid-card video { width: 100%; margin-top: 12px; border-radius: 9px; display: block; background: #000; max-height: 62vh; }
+  .vid-card .dl-btn { display: inline-block; margin-top: 11px; font-family: 'Inter', sans-serif; font-size: 12px;
+    font-weight: 600; letter-spacing: .5px; color: var(--accent); text-decoration: none;
+    border: 1px solid var(--accent-soft); border-radius: 7px; padding: 6px 13px; }
+  .vid-card .dl-btn:hover { background: var(--accent); color: #fff; }
+
+  .doc-list { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 4px 20px; }
+  .doc-row { display: flex; justify-content: space-between; align-items: center; gap: 14px; padding: 13px 0; border-bottom: 1px solid var(--border); }
+  .doc-row:last-child { border-bottom: none; }
+  .doc-row .nm { font-family: 'Charter', serif; font-size: 15.5px; }
+  .doc-row a { font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; color: var(--accent); text-decoration: none;
+    border: 1px solid var(--accent-soft); border-radius: 7px; padding: 6px 12px; white-space: nowrap; }
+
+  .course-foot { text-align: center; font-family: 'Inter', sans-serif; font-size: 13px; color: var(--text-muted);
+    margin-top: 56px; padding-top: 26px; border-top: 1px solid var(--border); }
+  .course-foot a { color: var(--accent); }
+
+  .state-msg { font-family: 'Inter', sans-serif; font-size: 16px; color: var(--text-muted); text-align: center; padding: 70px 0; }
+  .recover { margin-top: 24px; }
+  .recover-form { max-width: 380px; margin: 18px auto 0; display: flex; gap: 8px; }
+  .recover-form input { flex: 1; background: #fff; border: 1px solid var(--border); border-radius: 8px; padding: 11px 13px; font: inherit; font-size: 14px; }
+  .recover-form button { background: var(--accent); color: #fff; border: none; border-radius: 8px; padding: 11px 18px; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; }
+  .recover-result { font-family: 'Inter', sans-serif; font-size: 14px; margin-top: 14px; }
+
+  @media (max-width: 640px) {
+    .course-title { font-size: 34px; }
+    .track { grid-template-columns: 30px 1fr auto; gap: 10px; }
+    .vid-head { flex-direction: column; gap: 4px; }
+    .recover-form { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="site-header-inner">
+    <a href="index.html" class="site-logo">TANTRA <span>AUTHORITY</span></a>
+  </div>
+</header>
+
+<div class="access-wrap">
+  <div id="root">
+    <div class="state-msg">Opening your course…</div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div>Tantra Authority — published by <a href="https://thenaked.press">The Naked Press</a></div>
+</footer>
+
+<script>
+const API = "https://api.tantra-authority.com";
+const token = new URLSearchParams(location.search).get("token");
+const root = document.getElementById("root");
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+// turn an ugly S3 filename into a human title
+function pretty(raw) {
+  let s = String(raw).split("/").pop().replace(/\.[a-z0-9]{1,5}$/i, "");
+  s = s.replace(/\b\d{1,2}[-./]\d{1,2}[-./]\d{2,4}\b.*$/, "");          // trailing dates/timestamps
+  s = s.replace(/[,\s]+\d{1,2}[.:]\d{2}\s*(am|pm)?$/i, "");             // trailing clock times
+  s = s.replace(/^[\s\-_.]*\d+[\s\-_.]+/, "");                          // leading order numbers
+  s = s.replace(/[_+]+/g, " ").replace(/\s{2,}/g, " ").trim();
+  if (s.length < 2) s = String(raw).split("/").pop().replace(/\.[a-z0-9]{1,5}$/i, "").replace(/[_+]+/g, " ").trim();
+  if (s === s.toLowerCase() || s === s.toUpperCase())
+    s = s.replace(/\w\S*/g, (w) => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase());
+  return s;
+}
+const pad2 = (n) => String(n).padStart(2, "0");
+
+// ── symbolic cover: a deterministic sacred-geometry mandala per piece ──
+function _hash(s){ let h=2166136261; for(let i=0;i<s.length;i++){ h^=s.charCodeAt(i); h=Math.imul(h,16777619); } return h>>>0; }
+function _rng(seed){ let t=seed>>>0; return ()=>{ t=(t+0x6D2B79F5)>>>0; let r=Math.imul(t^t>>>15,1|t); r=(r+Math.imul(r^r>>>7,61|r))^r; return ((r^r>>>14)>>>0)/4294967296; }; }
+const _HUES=[352,16,40,140,176,256,288]; // root→crown spectrum
+function symbolicCover(name, i){
+  const rnd=_rng(_hash(name)+i*2654435761>>>0);
+  const hue=_HUES[i%_HUES.length], hue2=(hue+ (rnd()<.5?22:-22)+360)%360;
+  const petals=6+2*Math.floor(rnd()*4);          // 6,8,10,12
+  const rot=(rnd()*40).toFixed(1);
+  const g1=`hsl(${hue} 46% ${15+Math.floor(rnd()*6)}%)`, g2=`hsl(${hue2} 52% 7%)`;
+  const gold="#d9b25e", accent=`hsl(${hue} 72% 70%)`, accent2=`hsl(${hue2} 60% 60%)`;
+  let petalSvg="";
+  for(let k=0;k<petals;k++){ const a=(360/petals)*k+ +rot;
+    petalSvg+=`<path d="M50 50 C 57 28, 57 16, 50 7 C 43 16, 43 28, 50 50 Z" transform="rotate(${a} 50 50)" fill="none" stroke="${accent}" stroke-width="0.7" opacity="0.85"/>`; }
+  const N=petals, M=Math.max(2,Math.floor(N/2)-(rnd()<.5?0:1)); let pts=[];
+  for(let k=0;k<N;k++){ const a=2*Math.PI*k*M/N - Math.PI/2 + (+rot)*Math.PI/180; pts.push((50+30*Math.cos(a)).toFixed(1)+","+(50+30*Math.sin(a)).toFixed(1)); }
+  let dots=""; const D=28+Math.floor(rnd()*14);
+  for(let k=0;k<D;k++){ const a=2*Math.PI*k/D; dots+=`<circle cx="${(50+40.5*Math.cos(a)).toFixed(1)}" cy="${(50+40.5*Math.sin(a)).toFixed(1)}" r="0.7" fill="${gold}" opacity="0.55"/>`; }
+  return `<svg viewBox="0 0 100 100" class="cover-svg" preserveAspectRatio="xMidYMid slice">
+    <defs><radialGradient id="cg${i}" cx="50%" cy="42%" r="68%"><stop offset="0%" stop-color="${g1}"/><stop offset="100%" stop-color="${g2}"/></radialGradient></defs>
+    <rect width="100" height="100" fill="url(#cg${i})"/>
+    <circle cx="50" cy="50" r="44" fill="none" stroke="${gold}" stroke-width="0.5" opacity="0.5"/>
+    <circle cx="50" cy="50" r="40.5" fill="none" stroke="${accent2}" stroke-width="0.4" opacity="0.4"/>
+    ${dots}
+    <polygon points="${pts.join(" ")}" fill="none" stroke="${gold}" stroke-width="0.55" opacity="0.7"/>
+    ${petalSvg}
+    <circle cx="50" cy="50" r="5" fill="${gold}" opacity="0.92"/><circle cx="50" cy="50" r="2.1" fill="${g2}"/>
+  </svg>`;
+}
+
+function recoverBlock(intro) {
+  return `<div class="recover"><p>${intro}</p>
+    <form class="recover-form" id="recover-form">
+      <input type="email" id="recover-email" placeholder="you@example.com" autocomplete="email" required>
+      <button type="submit">Get my link</button>
+    </form><div class="recover-result" id="recover-result"></div></div>`;
+}
+function wireRecover() {
+  const form = document.getElementById("recover-form");
+  if (!form) return;
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const out = document.getElementById("recover-result");
+    const email = document.getElementById("recover-email").value.trim();
+    out.textContent = "Looking…";
+    try {
+      const r = await fetch(API + "/api/recover", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ email }) });
+      const d = await r.json();
+      out.innerHTML = (d.ok && d.found)
+        ? `Found your <strong>${esc(d.title)}</strong>. <a href="${esc(d.link)}">Open it →</a>`
+        : "No purchase found for that email. Check the address, or contact support.";
+    } catch { out.textContent = "Something went wrong — try again."; }
+  });
+}
+
+function videoCard(f) {
+  const meta = `Video${f.sizeMB ? " · " + Math.round(f.sizeMB) + " MB" : ""}`;
+  return `<div class="vid-card">
+    <div class="vid-head"><span class="vid-title">${esc(pretty(f.name))}</span><span class="vid-meta">${meta}</span></div>
+    <video controls preload="none" playsinline src="${esc(f.url)}"></video>
+    <a class="dl-btn" href="${esc(f.url)}" download>↓ Download</a>
+  </div>`;
+}
+function coverCard(f, i) {
+  const meta = `${pad2(i + 1)}${f.sizeMB ? " · " + Math.round(f.sizeMB) + " MB" : ""}`;
+  return `<div class="cover-card">
+    <div class="cover-art">${symbolicCover(f.name, i)}<div class="cover-play">▶</div></div>
+    <div class="cover-title">${esc(pretty(f.name))}</div>
+    <div class="cover-meta">${meta}</div>
+    <audio controls preload="none" src="${esc(f.url)}"></audio>
+    <a class="cover-dl" href="${esc(f.url)}" download>↓ Download</a>
+  </div>`;
+}
+function docRow(f) {
+  const meta = `${f.sizeMB ? Math.round(f.sizeMB) + " MB" : "PDF"}`;
+  return `<div class="doc-row"><span class="nm">${esc(pretty(f.name))}</span><a href="${esc(f.url)}" download>↓ ${meta}</a></div>`;
+}
+
+function render(data) {
+  const files = data.files || [];
+  const vids = files.filter((f) => f.type === "video");
+  const auds = files.filter((f) => f.type === "audio");
+  const docs = files.filter((f) => f.type === "doc");
+  const n = files.length;
+
+  let html = `<div class="course-hero">
+    <div class="course-emblem">○</div>
+    <div class="course-eyebrow">Your Course · Yours Forever</div>
+    <h1 class="course-title">${esc(data.title)}</h1>
+    <p class="course-welcome">Welcome in. Everything here is yours to keep — stream it right on this page, or download any piece. Take your time. There's no finish line.</p>
+    <div class="course-stats">${n} ${n === 1 ? "piece" : "pieces"} · stream or download</div>
+  </div>`;
+
+  html += `<div class="save-bar"><b>💾 Save this link</b> — it's how you come back to your course anytime.
+    <input id="acc-link" readonly value="${esc(location.href)}"><button id="copy-link">Copy</button></div>`;
+
+  if (vids.length) {
+    html += `<h2 class="group-head">Watch</h2><p class="group-note">Press play — everything streams straight from here.</p>`;
+    html += vids.map(videoCard).join("");
+  }
+  if (auds.length) {
+    html += `<h2 class="group-head">Listen</h2><p class="group-note">Put one on, lie down, and let it do its thing.</p>`;
+    html += `<div class="cover-grid">` + auds.map(coverCard).join("") + `</div>`;
+  }
+  if (docs.length) {
+    html += `<h2 class="group-head">Workbooks</h2><p class="group-note">The written companions — download to keep.</p>`;
+    html += `<div class="doc-list">` + docs.map(docRow).join("") + `</div>`;
+  }
+
+  html += `<div class="course-foot">Questions? <a href="ask.html">Reach us here.</a> · Tantra Authority</div>`;
+
+  root.innerHTML = html;
+  const copyBtn = document.getElementById("copy-link");
+  if (copyBtn) copyBtn.addEventListener("click", () => {
+    document.getElementById("acc-link").select();
+    navigator.clipboard.writeText(location.href).then(() => { copyBtn.textContent = "Copied ✓"; });
+  });
+  // click the cover art to play/pause its meditation
+  root.querySelectorAll(".cover-card").forEach((card) => {
+    const art = card.querySelector(".cover-art"), audio = card.querySelector("audio");
+    if (!art || !audio) return;
+    art.addEventListener("click", () => { audio.paused ? audio.play() : audio.pause(); });
+    audio.addEventListener("play", () => card.classList.add("playing"));
+    audio.addEventListener("pause", () => card.classList.remove("playing"));
+  });
+}
+
+window.__PREVIEW__ = {"ok": true, "product": "chakra-healing", "title": "Chakra Healing", "files": [{"name": "00 The Sub-Root Chakra.mp3", "key": "00 The Sub-Root Chakra.mp3", "type": "audio", "url": "https://chakra-healing-program.s3.amazonaws.com/00%20The%20Sub-Root%20Chakra.mp3?AWSAccessKeyId=AKIAQFOQCYNAXDJ2ULQT&Signature=BDd27bh9t2pLVYPH7J0NyuZGs54%3D&Expires=1781190709", "sizeMB": 43.9}, {"name": "000 - Sub Root Chakra Meditation Two.mp3", "key": "000 - Sub Root Chakra Meditation Two.mp3", "type": "audio", "url": "https://chakra-healing-program.s3.amazonaws.com/000%20-%20Sub%20Root%20Chakra%20Meditation%20Two.mp3?AWSAccessKeyId=AKIAQFOQCYNAXDJ2ULQT&Signature=7JK%2BhAQt9%2BDWUIawzoNhqD%2BT9Ds%3D&Expires=1781190709", "sizeMB": 38.5}, {"name": "0000-Deep Earth Chakra Connection and Balancing Sub Root Chakra Clearing.mp3", "key": "0000-Deep Earth Chakra Connection and Balancing Sub Root Chakra Clearing.mp3", "type": "audio", "url": "https://chakra-healing-program.s3.amazonaws.com/0000-Deep%20Earth%20Chakra%20Connection%20and%20Balancing%20Sub%20Root%20Chakra%20Clearing.mp3?AWSAccessKeyId=AKIAQFOQCYNAXDJ2ULQT&Signature=YE2pN1OQ0Ld%2FSpWiisKSRBSeci4%3D&Expires=1781190709", "sizeMB": 26.5}, {"name": "03 - Chakra Power Solar Matrix Clearing Meditaiton.mp3", "key": "03 - Chakra Power Solar Matrix Clearing Meditaiton.mp3", "type": "audio", "url": "https://chakra-healing-program.s3.amazonaws.com/03%20-%20Chakra%20Power%20Solar%20Matrix%20Clearing%20Meditaiton.mp3?AWSAccessKeyId=AKIAQFOQCYNAXDJ2ULQT&Signature=rpx7NoWOGpsU%2BZPRbhCEj3HFP%2BE%3D&Expires=1781190709", "sizeMB": 38.5}, {"name": "04 - Heart Chakra Meditation.mp3", "key": "04 - Heart Chakra Meditation.mp3", "type": "audio", "url": "https://chakra-healing-program.s3.amazonaws.com/04%20-%20Heart%20Chakra%20Meditation.mp3?AWSAccessKeyId=AKIAQFOQCYNAXDJ2ULQT&Signature=yZndtWOLGFwPN6A%2BO8nwFtf1yEE%3D&Expires=1781190709", "sizeMB": 30.9}, {"name": "05 - Chakra Meditation on Transformation.mp3", "key": "05 - Chakra Meditation on Transformation.mp3", "type": "audio", "url": "https://chakra-healing-program.s3.amazonaws.com/05%20-%20Chakra%20Meditation%20on%20Transformation.mp3?AWSAccessKeyId=AKIAQFOQCYNAXDJ2ULQT&Signature=IeBSPJ7Sr%2Byh1a54zPLxSzMRktk%3D&Expires=1781190709", "sizeMB": 30.9}, {"name": "06_Secret+of+the+Unified+Eye_Change+Past_of_Abuse_Meditation.mp3", "key": "06_Secret+of+the+Unified+Eye_Change+Past_of_Abuse_Meditation.mp3", "type": "audio", "url": "https://chakra-healing-program.s3.amazonaws.com/06_Secret%2Bof%2Bthe%2BUnified%2BEye_Change%2BPast_of_Abuse_Meditation.mp3?AWSAccessKeyId=AKIAQFOQCYNAXDJ2ULQT&Signature=sQBbwTbB7JXnW3WmEtpJay0VAu4%3D&Expires=1781190709", "sizeMB": 18.1}, {"name": "07-Depth Training - Deep_Power_Center_Chakara_And_Billionaire_aBundance_Meditation.mp3", "key": "07-Depth Training - Deep_Power_Center_Chakara_And_Billionaire_aBundance_Meditation.mp3", "type": "audio", "url": "https://chakra-healing-program.s3.amazonaws.com/07-Depth%20Training%20-%20Deep_Power_Center_Chakara_And_Billionaire_aBundance_Meditation.mp3?AWSAccessKeyId=AKIAQFOQCYNAXDJ2ULQT&Signature=QvvqrTAluO6v%2BOLXX0kpDiKjzA0%3D&Expires=1781190709", "sizeMB": 24.7}, {"name": "07D_Chakara_DeepBrainClearing.mp3", "key": "07D_Chakara_DeepBrainClearing.mp3", "type": "audio", "url": "https://chakra-healing-program.s3.amazonaws.com/07D_Chakara_DeepBrainClearing.mp3?AWSAccessKeyId=AKIAQFOQCYNAXDJ2ULQT&Signature=5UxPWUxLC%2By3NLuQL%2F8w1p4sbls%3D&Expires=1781190709", "sizeMB": 23.1}, {"name": "07_Crown_Chakara_Meditation.mp3", "key": "07_Crown_Chakara_Meditation.mp3", "type": "audio", "url": "https://chakra-healing-program.s3.amazonaws.com/07_Crown_Chakara_Meditation.mp3?AWSAccessKeyId=AKIAQFOQCYNAXDJ2ULQT&Signature=jU5DAhRe8sp52dC08wurqRV3FVI%3D&Expires=1781190709", "sizeMB": 21.9}, {"name": "08 Crown Clearning Chakra_Energy_Windows_Training.mp3", "key": "08 Crown Clearning Chakra_Energy_Windows_Training.mp3", "type": "audio", "url": "https://chakra-healing-program.s3.amazonaws.com/08%20Crown%20Clearning%20Chakra_Energy_Windows_Training.mp3?AWSAccessKeyId=AKIAQFOQCYNAXDJ2ULQT&Signature=a7hPl4ohLAwYHX6xTSlohE1blMs%3D&Expires=1781190709", "sizeMB": 21.9}, {"name": "09 Chakra Advance Ultra+Chakara+Meditation.mp3", "key": "09 Chakra Advance Ultra+Chakara+Meditation.mp3", "type": "audio", "url": "https://chakra-healing-program.s3.amazonaws.com/09%20Chakra%20Advance%20Ultra%2BChakara%2BMeditation.mp3?AWSAccessKeyId=AKIAQFOQCYNAXDJ2ULQT&Signature=dBI1e3eykHS%2BOqmStXyBh16nzRw%3D&Expires=1781190709", "sizeMB": 23.2}, {"name": "1 Root Chakra - Intensive Energy Clearing.mp3", "key": "1 Root Chakra - Intensive Energy Clearing.mp3", "type": "audio", "url": "https://chakra-healing-program.s3.amazonaws.com/1%20Root%20Chakra%20-%20Intensive%20Energy%20Clearing.mp3?AWSAccessKeyId=AKIAQFOQCYNAXDJ2ULQT&Signature=VuV2DhHB%2BgjMVD6wibwTdADXTK4%3D&Expires=1781190709", "sizeMB": 26.3}, {"name": "10 Advanced Transformational Meditation .mp3", "key": "10 Advanced Transformational Meditation .mp3", "type": "audio", "url": "https://chakra-healing-program.s3.amazonaws.com/10%20Advanced%20Transformational%20Meditation%20.mp3?AWSAccessKeyId=AKIAQFOQCYNAXDJ2ULQT&Signature=YMT%2BxSLYJKo0Jz3JufNl%2BNa%2B08k%3D&Expires=1781190709", "sizeMB": 19.8}, {"name": "11 Energetic Reality and The Quantum Field.mp3", "key": "11 Energetic Reality and The Quantum Field.mp3", "type": "audio", "url": "https://chakra-healing-program.s3.amazonaws.com/11%20Energetic%20Reality%20and%20The%20Quantum%20Field.mp3?AWSAccessKeyId=AKIAQFOQCYNAXDJ2ULQT&Signature=PdesY1I9rTtD%2FG558NasA1S7E7E%3D&Expires=1781190709", "sizeMB": 27.1}, {"name": "18 Deep Power Center Chakra and Billionaire Abundance Meditation.mp3", "key": "18 Deep Power Center Chakra and Billionaire Abundance Meditation.mp3", "type": "audio", "url": "https://chakra-healing-program.s3.amazonaws.com/18%20Deep%20Power%20Center%20Chakra%20and%20Billionaire%20Abundance%20Meditation.mp3?AWSAccessKeyId=AKIAQFOQCYNAXDJ2ULQT&Signature=Qu2I0YdA8z1J82ehK6BLvEHVsWA%3D&Expires=1781190709", "sizeMB": 24.7}, {"name": "2 Sex Center Clearing and Empowerment.mp3", "key": "2 Sex Center Clearing and Empowerment.mp3", "type": "audio", "url": "https://chakra-healing-program.s3.amazonaws.com/2%20Sex%20Center%20Clearing%20and%20Empowerment.mp3?AWSAccessKeyId=AKIAQFOQCYNAXDJ2ULQT&Signature=3HRi3Ql4kvia6AR6pu8T3wG8RG0%3D&Expires=1781190709", "sizeMB": 33.9}, {"name": "6 Spiritual Keys.mp3", "key": "6 Spiritual Keys.mp3", "type": "audio", "url": "https://chakra-healing-program.s3.amazonaws.com/6%20Spiritual%20Keys.mp3?AWSAccessKeyId=AKIAQFOQCYNAXDJ2ULQT&Signature=fNs8mHDGPUCGAuu%2BLO%2FWd6PEVKs%3D&Expires=1781190709", "sizeMB": 35.0}, {"name": "Deep Lava Flow Meditation.mp3", "key": "Deep Lava Flow Meditation.mp3", "type": "audio", "url": "https://chakra-healing-program.s3.amazonaws.com/Deep%20Lava%20Flow%20Meditation.mp3?AWSAccessKeyId=AKIAQFOQCYNAXDJ2ULQT&Signature=jTbRITRsrGUgFuTUcZAqTjTBzwY%3D&Expires=1781190709", "sizeMB": 29.5}, {"name": "Focus Direction Wisdom Meditation.mp3", "key": "Focus Direction Wisdom Meditation.mp3", "type": "audio", "url": "https://chakra-healing-program.s3.amazonaws.com/Focus%20Direction%20Wisdom%20Meditation.mp3?AWSAccessKeyId=AKIAQFOQCYNAXDJ2ULQT&Signature=pN34i06uDpB%2BEbC6%2BR%2B4wFI5YNg%3D&Expires=1781190709", "sizeMB": 31.3}, {"name": "Laser Transformation Meditation.mp3", "key": "Laser Transformation Meditation.mp3", "type": "audio", "url": "https://chakra-healing-program.s3.amazonaws.com/Laser%20Transformation%20Meditation.mp3?AWSAccessKeyId=AKIAQFOQCYNAXDJ2ULQT&Signature=rDglMujwJW0UxyTmIGwyqXQZgJg%3D&Expires=1781190709", "sizeMB": 29.3}, {"name": "Luck Flow And Desire - Full Power Meditation.mp3", "key": "Luck Flow And Desire - Full Power Meditation.mp3", "type": "audio", "url": "https://chakra-healing-program.s3.amazonaws.com/Luck%20Flow%20And%20Desire%20-%20Full%20Power%20Meditation.mp3?AWSAccessKeyId=AKIAQFOQCYNAXDJ2ULQT&Signature=G2OU1iBv8nNmL2Grn8WqVtPXYlc%3D&Expires=1781190709", "sizeMB": 33.6}, {"name": "Pleasure As Purpose Meditation.mp3", "key": "Pleasure As Purpose Meditation.mp3", "type": "audio", "url": "https://chakra-healing-program.s3.amazonaws.com/Pleasure%20As%20Purpose%20Meditation.mp3?AWSAccessKeyId=AKIAQFOQCYNAXDJ2ULQT&Signature=4EGs66Eq0%2FJ%2B4mZ7hqx%2FCcw2ef4%3D&Expires=1781190709", "sizeMB": 25.2}, {"name": "STIR Integration Meditation.mp3", "key": "STIR Integration Meditation.mp3", "type": "audio", "url": "https://chakra-healing-program.s3.amazonaws.com/STIR%20Integration%20Meditation.mp3?AWSAccessKeyId=AKIAQFOQCYNAXDJ2ULQT&Signature=tvSCT5V1XCc844fp98jddoPWi8Y%3D&Expires=1781190709", "sizeMB": 46.7}, {"name": "Spiritual Adulthood.mp3", "key": "Spiritual Adulthood.mp3", "type": "audio", "url": "https://chakra-healing-program.s3.amazonaws.com/Spiritual%20Adulthood.mp3?AWSAccessKeyId=AKIAQFOQCYNAXDJ2ULQT&Signature=SluzqnwbUWU6OQEnhMFkq0r1W8w%3D&Expires=1781190709", "sizeMB": 41.9}, {"name": "Teleclass Meditation 02.mp3", "key": "Teleclass Meditation 02.mp3", "type": "audio", "url": "https://chakra-healing-program.s3.amazonaws.com/Teleclass%20Meditation%2002.mp3?AWSAccessKeyId=AKIAQFOQCYNAXDJ2ULQT&Signature=aWee0Kjo7YMj8poa70YdbS78r1s%3D&Expires=1781190709", "sizeMB": 27.0}, {"name": "lightbody - 9-21-15, 10.32 PM.mp3", "key": "lightbody - 9-21-15, 10.32 PM.mp3", "type": "audio", "url": "https://chakra-healing-program.s3.amazonaws.com/lightbody%20-%209-21-15%2C%2010.32%20PM.mp3?AWSAccessKeyId=AKIAQFOQCYNAXDJ2ULQT&Signature=8q8XlZUJONGbQPSFHMM%2BSGV9qhw%3D&Expires=1781190709", "sizeMB": 85.7}]};
+(async function init() {
+  if (!token) {
+    root.innerHTML = `<div class="state-msg">No access token in this link.${recoverBlock("Already purchased? Enter your email and we'll send you back to your course.")}</div>`;
+    wireRecover(); return;
+  }
+  try {
+    const d = window.__PREVIEW__;
+    if (d && d.ok) { render(d); return; }
+    let intro = "This access link isn't valid.";
+    if (d.error === "access_expired") intro = "This access link has expired.";
+    root.innerHTML = `<div class="state-msg">${intro}${recoverBlock("Already purchased? Enter your email to get a fresh access link.")}</div>`;
+    wireRecover();
+  } catch {
+    root.innerHTML = `<div class="state-msg">Couldn't load your course. Refresh to try again.${recoverBlock("Already purchased? Enter your email to recover your link.")}</div>`;
+    wireRecover();
+  }
+})();
+</script>
+</body>
+</html>
