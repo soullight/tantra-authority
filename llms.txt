@@ -12,7 +12,7 @@ The author is the founder of The Naked Press (DBA of LK Publishing, LLC) and aut
 - **A book funnel** for *Beyond the Myth: The Definitive Guide to Modern Tantra* and the broader seven-book series.
 - **A practitioner directory** of vetted teachers practicing in the body-grounded register.
 - **An "Ask an Expert" intake** for personalized questions.
-- **A shop** of recommended tools and books.
+- **A shop** of Lawrence's own courses and eBooks for direct purchase, plus recommended tools and books. Machine-readable product catalog (id, title, price, buyable): https://api.tantra-authority.com/api/products — buy any item at https://tantra-authority.com/checkout.html?product={id} (one-time purchase, instant delivery).
 - **A psychosexual self-assessment** (the Tantric Test) for readers to map their own current state.
 
 ## Foundational articles

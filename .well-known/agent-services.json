@@ -18,7 +18,16 @@
   },
   "discovery": {
     "catalogEndpoint": "https://api.tantra-authority.com/api/services",
+    "productCatalog": "https://api.tantra-authority.com/api/products",
+    "humanShopUrl": "https://tantra-authority.com/shop.html",
+    "checkoutUrlPattern": "https://tantra-authority.com/checkout.html?product={id}",
     "wellKnownUrl": "https://tantra-authority.com/.well-known/agent-services.json"
+  },
+  "shop": {
+    "description": "Direct-purchase catalog of courses and eBooks by Lawrence Lanoff / The Naked Press. Machine-readable list (id, title, priceCents, buyable) at productCatalog; buy any item via checkoutUrlPattern with its id. One-time purchase, instant streaming/download delivery.",
+    "currency": "usd",
+    "delivery": "instant (streaming course page + downloadable files / eBook PDF+ePub)",
+    "catalogEndpoint": "https://api.tantra-authority.com/api/products"
   },
   "paymentMethods": [
     { "scheme": "lightning", "network": "bitcoin", "asset": "BTC", "minUnit": "satoshi", "status": "active" },
