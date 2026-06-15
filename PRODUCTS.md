@@ -18,12 +18,12 @@ Sources: `~/command-center/MASTER_INVENTORY.md`, `INVENTORY_PLATFORMS.md`, `/Vol
 ## STATUS LEGEND
 
 - **LIVE-LINK** — a sales/landing URL was found AND verified HTTP 200 in this session.
-- **NEEDS-LINK** — real finished product, but no working checkout exists. Blocked on Lawrence providing a Gumroad/Teachable/Stripe/etc. link (or restoring access to the Mac Mini / S3).
+- **NEEDS-LINK** — ⚠️ STALE LABEL. Checkout IS solved (Clover + S3 streaming, LIVE since 2026-06-10). Now means: this S3 bucket isn't yet verified + merchandised onto `shop.html`. Work = verify bucket files, set `priceCents`+`bucket` in `checkout.js`, add a shop card → buyable. NOT blocked on any third-party processor (no Gumroad/Stripe — Lawrence's own Clover merchant, his money).
 - **COMING-SOON** — in production / not yet finished; merchandise as named "coming soon," no link.
 
 ---
 
-## 📦 COURSES (finished IP — the fastest money, all blocked on checkout)
+## 📦 COURSES (finished IP — the fastest money; checkout DONE, just need merchandising onto shop)
 
 | Title | Format | Topic / Cluster | Source location | Sales link | Price | Status |
 |---|---|---|---|---|---|---|
