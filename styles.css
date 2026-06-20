@@ -472,3 +472,9 @@ hr {
   main { padding: 24px 14px 48px; }
   .cta-card, .animal-cta { padding-left: 16px; padding-right: 16px; }
 }
+
+/* Take-the-Test nav button + homepage banner (2026-06-19) */
+.site-nav a.nav-cta { background: var(--accent); color:#fff; padding:6px 14px; border-radius:999px; font-weight:700; transition:background .15s; }
+.site-nav a.nav-cta:hover { background: var(--gold); color:#fff; }
+.test-banner { display:block; text-align:center; background:linear-gradient(90deg,var(--accent),var(--gold)); color:#fff; padding:11px 16px; font-size:15px; text-decoration:none; font-weight:600; letter-spacing:.2px; }
+.test-banner b { text-decoration:underline; }
