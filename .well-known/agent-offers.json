@@ -83,9 +83,10 @@
         "processor": "clover",
         "humanCheckoutBase": "https://tantra-authority.com/checkout.html?product=",
         "catalogApi": "https://api.tantra-authority.com/api/products",
-        "x402Endpoint": null,
+        "x402Endpoint": "https://api.tantra-authority.com/api/unlock/{slug}",
+        "x402Version": 1,
         "ap2MandateRequired": false,
-        "note": "Human card checkout today (Clover, PCI-handled in-iframe). Agent-native settlement (x402 / USDC on Base) is on the roadmap via tantra-authority-api, which already runs x402 rails."
+        "note": "Catalog products use human card checkout (Clover). Agent-native x402 settlement — USDC on Base, verified ON-CHAIN (receipt-checked, replay-guarded) — is LIVE on this publisher's API. Agent-payable resources are listed at https://api.tantra-authority.com/api/services; GET /api/unlock/<slug> returns an HTTP 402 with a USDC payTo, then present the Base tx hash in X-Payment {network:'base',txHash} to settle."
       },
       "sla": {
         "latencyP95Ms": null,
@@ -130,8 +131,8 @@
         "alg": "ed25519",
         "keyId": "did:web:tantra-authority.com#key-1",
         "canonicalization": "jcs",
-        "value": "Hd_hnZgkGFl0SEDSv5fQWkh286V_G88pBp-Q2jcIWqD7FHDPdzzJXVg7-Zqd7emIieGMdCBjyfgRJxrmRGv4BQ",
-        "payloadDigestSha256": "3b837efcdad1ce7cb29d4b0f158c4f3399fe1b733a5b2d439e58363309afbb93",
+        "value": "7TfidBgueNlNyArcBUIlaaCbsflYeuM7Oo27i3CYYsJ85Pmdj3avqIf3sIbytR3r0wJUY0V4L9-UMbQIw-WyBw",
+        "payloadDigestSha256": "4c450cd638bc6d8a6b4611396861715463be4c5fc91ec88006cbab4c17933a70",
         "note": "Detached ed25519 over the JCS-canonicalized offer (minus signature). Verify via the publisher's did:web /.well-known/did.json."
       }
     }
