@@ -278,7 +278,7 @@ document.getElementById('ask-form').addEventListener('submit', (e) => {
     localStorage.setItem('ta_ask_submissions', JSON.stringify(stored));
   } catch (err) {}
 
-  const ASK_ENDPOINT = window.TA_ASK_ENDPOINT || null;
+  const ASK_ENDPOINT = window.TA_ASK_ENDPOINT || "https://api.tantra-authority.com/api/ask/submit";
   if (ASK_ENDPOINT) {
     fetch(ASK_ENDPOINT, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(data) }).catch(()=>{});
   } else {
