@@ -83,10 +83,10 @@
         "processor": "clover",
         "humanCheckoutBase": "https://tantra-authority.com/checkout.html?product=",
         "catalogApi": "https://api.tantra-authority.com/api/products",
-        "x402Endpoint": "https://api.tantra-authority.com/api/unlock/{slug}",
+        "x402Endpoint": "https://api.tantra-authority.com/api/x402/{productId}",
         "x402Version": 1,
         "ap2MandateRequired": false,
-        "note": "Catalog products use human card checkout (Clover). Agent-native x402 settlement — USDC on Base, verified ON-CHAIN (receipt-checked, replay-guarded) — is LIVE on this publisher's API. Agent-payable resources are listed at https://api.tantra-authority.com/api/services; GET /api/unlock/<slug> returns an HTTP 402 with a USDC payTo, then present the Base tx hash in X-Payment {network:'base',txHash} to settle."
+        "note": "EVERY catalog product is agent-payable, no human needed. GET /api/x402/<productId> returns an HTTP 402 with a USDC-on-Base payTo + price; pay the USDC, then retry with header X-Payment: base64({\"network\":\"base\",\"txHash\":\"0x…\",\"email\":\"optional\"}). Settlement is verified ON-CHAIN (USDC Transfer receipt-checked, replay-guarded) and the real access link is returned. Product ids + USDC prices (priceUsdcAtomic) + per-product x402 URLs are in https://api.tantra-authority.com/api/products. Humans still use Clover checkout."
       },
       "sla": {
         "latencyP95Ms": null,
@@ -131,8 +131,8 @@
         "alg": "ed25519",
         "keyId": "did:web:tantra-authority.com#key-1",
         "canonicalization": "jcs",
-        "value": "7TfidBgueNlNyArcBUIlaaCbsflYeuM7Oo27i3CYYsJ85Pmdj3avqIf3sIbytR3r0wJUY0V4L9-UMbQIw-WyBw",
-        "payloadDigestSha256": "4c450cd638bc6d8a6b4611396861715463be4c5fc91ec88006cbab4c17933a70",
+        "value": "_HLGbkqZzrE30EpmMRrza6DeqKBbRWIkCsIo2Lr1M-5L5otL5X0DXL4Mc57eJh6RQTKOGEO4O1mIVLWPgoVQBg",
+        "payloadDigestSha256": "ffa0d8a914804c06322b90bbae3fbb6dbadd0ab94aaf9ba98b196d54689579bf",
         "note": "Detached ed25519 over the JCS-canonicalized offer (minus signature). Verify via the publisher's did:web /.well-known/did.json."
       }
     }
