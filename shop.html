@@ -311,9 +311,18 @@ function featHTML(p){
   </div>`;
 }
 
+let FEATURED_OVERRIDE = null;   // set from the optimizer's data-ranked order (ab:shop:featured) when published
+function featuredList(){
+  if (FEATURED_OVERRIDE && FEATURED_OVERRIDE.length){
+    const byId = {}; PRODUCTS.forEach(p => byId[p.id] = p);
+    const l = FEATURED_OVERRIDE.map(id => byId[id]).filter(Boolean);
+    if (l.length) return l;
+  }
+  return PRODUCTS.filter(p => p.feat);   // curated default until the data says otherwise
+}
 function render(){
   // featured strip
-  document.getElementById("featured").innerHTML = PRODUCTS.filter(p=>p.feat).map(featHTML).join("");
+  document.getElementById("featured").innerHTML = featuredList().map(featHTML).join("");
   // chips
   document.getElementById("chips").innerHTML = FILTERS.map(f =>
     `<button class="chip${f.k===activeFilter?' active':''}" data-k="${f.k}">${f.label}</button>`).join("");
@@ -357,17 +366,32 @@ const HEADLINES = [
   { k:"A", txt:"Lawrence Lanoff's courses, books, and practice audio — published by The Naked Press. Lifetime access." },
   { k:"B", txt:"Thirty years of the real work — courses, books, and audio, in plain language. Buy it once, it's yours for life." },
 ];
-(function(){
-  const v = Math.random() < 0.5 ? HEADLINES[0] : HEADLINES[1];
+/* CLOSES THE LOOP: read the Nevada optimizer's live decisions from /ab.
+   - ab:shop:headline decided → serve the WINNER 100% (stop collecting).
+     Not decided → split 50/50 and beacon impressions+buy-clicks so the brain can decide.
+   - ab:shop:featured present → render the data-ranked featured order. */
+(async function(){
+  let decided = null, featured = null;
+  try {
+    const r = await fetch("https://lanoff-links.pages.dev/ab", { cache: "no-store" });
+    const ab = await r.json();
+    if (ab["ab:shop:headline"] === "A" || ab["ab:shop:headline"] === "B") decided = ab["ab:shop:headline"];
+    if (Array.isArray(ab["ab:shop:featured"]) && ab["ab:shop:featured"].length) featured = ab["ab:shop:featured"];
+  } catch(e){}
+  if (featured) { FEATURED_OVERRIDE = featured; render(); }
+  const v = decided ? (HEADLINES.find(h => h.k === decided) || HEADLINES[0])
+                    : (Math.random() < 0.5 ? HEADLINES[0] : HEADLINES[1]);
   const el = document.getElementById("shop-sub");
   if (el) el.textContent = v.txt;
-  const beacon = (to, src) => { try { navigator.sendBeacon &&
-    navigator.sendBeacon("https://lanoff-links.pages.dev/go?to="+to+"&src="+src); } catch(e){} };
-  beacon("shophead", "shophead:"+v.k);                                  // impression for this headline
-  document.addEventListener("click", e => {                              // any Buy click → credit this headline
-    const b = e.target.closest && e.target.closest("a.buy");
-    if (b) beacon("shopbuy", "shopbuy:"+v.k);
-  }, true);
+  if (!decided) {                                                       // only collect while the test is still open
+    const beacon = (to, src) => { try { navigator.sendBeacon &&
+      navigator.sendBeacon("https://lanoff-links.pages.dev/go?to="+to+"&src="+src); } catch(e){} };
+    beacon("shophead", "shophead:"+v.k);                                // impression for this headline
+    document.addEventListener("click", e => {                            // any Buy click → credit this headline
+      const b = e.target.closest && e.target.closest("a.buy");
+      if (b) beacon("shopbuy", "shopbuy:"+v.k);
+    }, true);
+  }
 })();
 
 /* machine-readable catalog for AI shopping agents — generated from PRODUCTS */
