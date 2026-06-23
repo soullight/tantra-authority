@@ -77,9 +77,9 @@
   <p class="by">by <b>Lawrence Lanoff</b> · 30 years teaching the body we were never taught</p>
 </div>
 <script>
-  var q=new URLSearchParams(location.search), src=q.get("src")||q.get("utm_source")||"sell";
+  // route CTA through the tracker so THIS variant's click-through is scored (impressions = door split clk:women:variant:a)
   document.getElementById("cta").href=
-    "checkout.html?product=tantra-for-women-book&utm_source="+encodeURIComponent(src)+"&sell=A";
+    "https://lanoff-links.pages.dev/go?to=tantra-for-women-book&src=sellA-women";
 </script>
 </body>
 </html>

@@ -76,10 +76,9 @@
   <p class="by">by <b>Lawrence Lanoff</b> · 30 years teaching men the body they were never taught</p>
 </div>
 <script>
-  // carry the traffic source through to checkout so the tracker scores this page → sales
-  var q=new URLSearchParams(location.search), src=q.get("src")||q.get("utm_source")||"sell";
-  var c=document.getElementById("cta");
-  c.href="checkout.html?product=hard-alone-soft-with-her&utm_source="+encodeURIComponent(src)+"&sell=A";
+  // route CTA through the tracker so THIS variant's click-through is scored (impressions = door split clk:men:variant:a)
+  document.getElementById("cta").href=
+    "https://lanoff-links.pages.dev/go?to=hard-alone-soft-with-her&src=sellA-men";
 </script>
 </body>
 </html>
