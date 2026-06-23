@@ -161,7 +161,7 @@ function wireRecover() {
     try {
       const r = await fetch(API + "/api/recover", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ email: document.getElementById("recover-email").value.trim() }) });
       const d = await r.json();
-      out.innerHTML = (d.ok && d.found) ? `Found your <strong>${esc(d.title)}</strong>. <a href="${esc(d.link)}">Open it →</a>` : "No purchase found for that email. Check the address, or reach support.";
+      out.innerHTML = (d.ok && d.found) ? `Found your <strong>${esc(d.title)}</strong>. <a href="${esc(d.link)}">Open it →</a>` : "No purchase found for that email. Check the address, or <a href='support.html'>chat with support →</a>";
     } catch { out.textContent = "Something went wrong — try again."; }
   });
 }
@@ -225,7 +225,7 @@ function render(data) {
     html += `<h2 class="group-head">${isBook ? "Your book" : "Workbooks"}</h2><p class="group-note">${isBook ? "Download in your preferred format — PDF or ePub." : "The written companions — download to keep."}</p>`;
     html += `<div class="doc-list">` + docs.map(docRow).join("") + `</div>`;
   }
-  html += `<div class="course-foot">Questions? <a href="ask.html">Reach us here.</a> · Tantra Authority</div>`;
+  html += `<div class="course-foot">Questions? <a href="support.html">Chat with support.</a> · Tantra Authority</div>`;
 
   root.innerHTML = html;
   const copyBtn = document.getElementById("copy-link");
