@@ -331,6 +331,20 @@ function render(){
 document.getElementById("sort").addEventListener("change", render);
 render();
 
+/* PRICE = server truth. Pull live prices from the SAME API checkout uses (and the
+   price-A/B machine controls), so a shop card can never disagree with the checkout —
+   kills the $19.97-on-shop / $6.99-at-checkout drift. Hardcoded values are the fallback. */
+(async function(){
+  try{
+    const r = await fetch("https://api.tantra-authority.com/api/products");
+    const d = await r.json();
+    const live = {}; (d.products||[]).forEach(p => { live[p.id] = p.priceCents; });
+    let changed = false;
+    PRODUCTS.forEach(p => { if (live[p.id] > 0 && Math.round(p.p*100) !== live[p.id]) { p.p = live[p.id]/100; changed = true; } });
+    if (changed) render();
+  }catch(e){}
+})();
+
 /* ============================================================================
    HEADLINE SPLIT-TEST — the sub-headline is a tested element, not a guess.
    Two value-prop variants served 50/50. We log an impression per variant and

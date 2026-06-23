@@ -15,10 +15,21 @@
   .checkout-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 26px; }
   .checkout-wrap h1 { font-size: 24px; margin: 0 0 4px; }
   .checkout-sub { color: var(--text-muted); font-family: 'Inter', sans-serif; font-size: 14px; margin: 0 0 22px; }
-  .prod-line { display: flex; justify-content: space-between; align-items: baseline;
-    font-family: 'Inter', sans-serif; padding-bottom: 16px; margin-bottom: 18px; border-bottom: 1px solid var(--border); }
+  .prod-head { display: flex; gap: 14px; align-items: center; padding-bottom: 16px; margin-bottom: 8px; border-bottom: 1px solid var(--border); }
+  .prod-head .cover { width: 64px; height: 64px; border-radius: 9px; object-fit: cover; flex: none;
+    box-shadow: 0 6px 18px rgba(40,20,20,.22); border: 1px solid rgba(217,178,94,.4); background:#efe9e0; display:none; }
+  .prod-head .meta { flex: 1; min-width: 0; }
+  .prod-line { display: flex; justify-content: space-between; align-items: baseline; gap: 10px;
+    font-family: 'Inter', sans-serif; }
   .prod-line .nm { font-weight: 600; font-size: 16px; }
-  .prod-line .pr { color: var(--accent); font-weight: 700; font-size: 18px; }
+  .prod-line .pr { color: var(--accent); font-weight: 700; font-size: 18px; white-space: nowrap; }
+  .trust { display: flex; flex-wrap: wrap; gap: 6px 16px; font-family: 'Inter', sans-serif; font-size: 12.5px;
+    color: var(--text-muted); margin: 0 0 18px; }
+  .trust span { display: inline-flex; align-items: center; gap: 5px; }
+  .trust b { color: var(--gold); font-weight: 700; }
+  .codetoggle { display: inline-block; font-family: 'Inter', sans-serif; font-size: 12.5px; color: var(--text-muted);
+    cursor: pointer; margin: 4px 0 0; text-decoration: underline; text-underline-offset: 2px; }
+  #codewrap { display: none; }
   .checkout-card label { display: block; font-family: 'Inter', sans-serif; font-size: 13px; color: var(--text-muted); margin: 0 0 6px; }
   .checkout-card input[type=email] { width: 100%; background: var(--bg); border: 1px solid var(--border); border-radius: 9px;
     color: var(--text); font: inherit; font-size: 15px; padding: 12px 13px; outline: none; }
@@ -48,18 +59,31 @@
 
 <div class="checkout-wrap">
   <h1>Checkout</h1>
-  <p class="checkout-sub">One-time purchase. Yours to keep. No subscription.</p>
+  <p class="checkout-sub">One-time purchase · Lifetime access · No subscription.</p>
 
   <div class="checkout-card">
-    <div class="prod-line"><span class="nm" id="prod-name">Loading…</span><span class="pr" id="prod-price"></span></div>
+    <div class="prod-head">
+      <img class="cover" id="prod-cover" alt="">
+      <div class="meta">
+        <div class="prod-line"><span class="nm" id="prod-name">Loading…</span><span class="pr" id="prod-price"></span></div>
+      </div>
+    </div>
+    <div class="trust">
+      <span>⚡ <b>Instant access</b></span>
+      <span>♾️ Yours for life</span>
+      <span>🔒 Secure checkout</span>
+    </div>
 
     <div id="form" style="display:none">
       <label for="email">Email <span style="opacity:.6">— so you can recover your access link later</span></label>
       <input type="email" id="email" placeholder="you@example.com" autocomplete="email">
-      <label style="margin-top:14px" for="code">Secret code <span style="opacity:.6">— optional</span></label>
-      <input type="text" id="code" placeholder="" autocapitalize="characters" autocomplete="off" style="width:100%; background:var(--bg); border:1px solid var(--border); border-radius:9px; color:var(--text); font:inherit; font-size:15px; padding:12px 13px; outline:none; text-transform:uppercase;">
-      <div id="code-msg" style="font-family:'Inter',sans-serif; font-size:12.5px; min-height:16px; margin-top:5px;"></div>
-      <label style="margin-top:8px">Card</label>
+      <span class="codetoggle" id="codetoggle">Have a code?</span>
+      <div id="codewrap">
+        <label style="margin-top:8px" for="code">Code</label>
+        <input type="text" id="code" placeholder="" autocapitalize="characters" autocomplete="off" style="width:100%; background:var(--bg); border:1px solid var(--border); border-radius:9px; color:var(--text); font:inherit; font-size:15px; padding:12px 13px; outline:none; text-transform:uppercase;">
+        <div id="code-msg" style="font-family:'Inter',sans-serif; font-size:12.5px; min-height:16px; margin-top:5px;"></div>
+      </div>
+      <label style="margin-top:14px">Card</label>
       <div id="card-element"></div>
       <button id="go" disabled>Loading…</button>
     </div>
@@ -80,6 +104,15 @@ const productId = (qs.get("product") || "").trim();
 
 const $ = (id) => document.getElementById(id);
 const msg = $("msg"), go = $("go"), emailEl = $("email"), form = $("form"), done = $("done"), codeEl = $("code"), codeMsg = $("code-msg");
+// "Have a code?" — keep the discount field out of sight for the 99% (a visible code box
+// makes cold buyers leave to hunt for one). Insiders/gift codes still work via the toggle.
+const codeToggle = $("codetoggle");
+codeToggle && codeToggle.addEventListener("click", () => {
+  const w = $("codewrap"); const open = w.style.display === "block";
+  w.style.display = open ? "none" : "block";
+  codeToggle.textContent = open ? "Have a code?" : "Hide code";
+  if (!open && codeEl) codeEl.focus();
+});
 function say(t, err) { msg.textContent = t; msg.className = "msg" + (err ? " err" : ""); }
 function money(cents) { return "$" + (cents / 100).toFixed(2); }
 
@@ -97,6 +130,7 @@ let product = null, clover = null, cardMounted = false;
 
     $("prod-name").textContent = product.title;
     $("prod-price").textContent = product.priceCents > 0 ? money(product.priceCents) : "—";
+    if (product.cover) { const c = $("prod-cover"); c.src = product.cover; c.style.display = "block"; }
 
     if (!product.buyable) {
       $("prod-price").textContent = "Coming soon";
