@@ -729,7 +729,14 @@ document.getElementById('submit-test').addEventListener('click', () => {
     html += '<div style="margin-top:16px;font-size:14px;"><strong>Shadow appetite:</strong> ' + axisData.SH.multi.length + ' interests selected</div>';
   }
 
-  html += '<div style="margin-top:24px;padding:16px;background:white;border-radius:6px;border-left:3px solid var(--accent);"><strong>Save your code.</strong> When the matching service launches, this is your intake key. We have also logged your submission (with your email) for the queue.</div>';
+  html += '<div style="margin-top:14px;font-size:13px;color:var(--text-muted);"><strong>Save your code</strong> — it\'s your key when matching opens.</div>';
+  html += '<div style="margin-top:26px;padding:24px;background:linear-gradient(135deg,rgba(139,58,58,0.08),rgba(184,134,11,0.05));border:1px solid var(--accent-soft);border-radius:12px;text-align:center;">';
+  html += '<div style="font-family:Inter,sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:8px;">Your next step</div>';
+  html += '<h3 style="margin:0 0 10px;font-size:23px;">Now talk it through — privately.</h3>';
+  html += '<p style="color:var(--text-muted);max-width:32em;margin:0 auto 18px;">Your type is the map. Bring it to your own private coach and go as deep as you want — any question about sex, any time, fully yours. <strong>$29/mo.</strong></p>';
+  html += '<a href="https://safetoletgo.com/?from=quiz" class="cta-button">Talk to your coach →</a>';
+  html += '<div style="margin-top:14px;"><a href="shop.html" style="color:var(--accent);font-size:14px;text-decoration:none;">Or start with a course or book for your type →</a></div>';
+  html += '</div>';
 
   const submission = {
     timestamp: new Date().toISOString(),
