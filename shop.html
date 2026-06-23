@@ -11,11 +11,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Shop — Tantra Authority</title>
-<meta name="description" content="Lawrence Lanoff's tantra courses, books, and practice audio — published by The Naked Press. Buy once, yours to keep. No spiritual markup, no certification mills.">
+<meta name="description" content="Lawrence Lanoff's tantra courses, books, and practice audio — published by The Naked Press. Lifetime access. No spiritual markup, no certification mills.">
 <meta name="author" content="Lawrence Lanoff">
 <link rel="canonical" href="https://tantra-authority.com/shop.html">
 <meta property="og:title" content="Shop — Tantra Authority">
-<meta property="og:description" content="Lawrence Lanoff's tantra courses, books, and practice audio — published by The Naked Press. Buy once, yours to keep.">
+<meta property="og:description" content="Lawrence Lanoff's tantra courses, books, and practice audio — published by The Naked Press. Lifetime access.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://tantra-authority.com/shop.html">
 <meta property="og:site_name" content="Tantra Authority">
@@ -136,7 +136,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <section class="shop-intro">
     <h1>Shop</h1>
-    <p>Lawrence Lanoff's courses, books, and practice audio — published by The Naked Press. Buy once, yours to keep. The moment you pay, it opens.</p>
+    <p id="shop-sub">Lawrence Lanoff's courses, books, and practice audio — published by The Naked Press. Lifetime access.</p>
   </section>
 
   <div class="featured-wrap">
@@ -287,7 +287,7 @@ function cardHTML(p){
       <p class="c-desc">${p.d}</p>
       <p class="c-fmt">${p.fmt}</p>
       <div class="c-foot">
-        <div class="price">${price(p.p)}<small>yours to keep</small></div>
+        <div class="price">${price(p.p)}<small>lifetime access</small></div>
         <a class="buy" href="${CHECKOUT}${p.id}">Buy</a>
       </div>
       ${amz}
@@ -303,7 +303,7 @@ function featHTML(p){
       <h3>${p.t}</h3>
       <p class="fc-desc">${p.d}</p>
       <div class="fc-foot">
-        <div class="price">${price(p.p)}<small>one-time · yours to keep</small></div>
+        <div class="price">${price(p.p)}<small>lifetime access</small></div>
         <a class="buy" style="font-family:'Inter',sans-serif;font-size:11.5px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;text-decoration:none;background:var(--accent);color:#fff;padding:11px 18px;border-radius:6px;" href="${CHECKOUT}${p.id}">Buy</a>
       </div>
     </div>
@@ -330,6 +330,30 @@ function render(){
 }
 document.getElementById("sort").addEventListener("change", render);
 render();
+
+/* ============================================================================
+   HEADLINE SPLIT-TEST — the sub-headline is a tested element, not a guess.
+   Two value-prop variants served 50/50. We log an impression per variant and
+   a buy-click per variant to the SAME tracker the price test uses, so the
+   winning words are decided by buy-intent, not opinion. Add/replace variants
+   here to keep testing forever.
+   ========================================================================= */
+const HEADLINES = [
+  { k:"A", txt:"Lawrence Lanoff's courses, books, and practice audio — published by The Naked Press. Lifetime access." },
+  { k:"B", txt:"Thirty years of the real work — courses, books, and audio, in plain language. Buy it once, it's yours for life." },
+];
+(function(){
+  const v = Math.random() < 0.5 ? HEADLINES[0] : HEADLINES[1];
+  const el = document.getElementById("shop-sub");
+  if (el) el.textContent = v.txt;
+  const beacon = (to, src) => { try { navigator.sendBeacon &&
+    navigator.sendBeacon("https://lanoff-links.pages.dev/go?to="+to+"&src="+src); } catch(e){} };
+  beacon("shophead", "shophead:"+v.k);                                  // impression for this headline
+  document.addEventListener("click", e => {                              // any Buy click → credit this headline
+    const b = e.target.closest && e.target.closest("a.buy");
+    if (b) beacon("shopbuy", "shopbuy:"+v.k);
+  }, true);
+})();
 
 /* machine-readable catalog for AI shopping agents — generated from PRODUCTS */
 (function(){
