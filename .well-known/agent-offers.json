@@ -1,0 +1,118 @@
+{
+  "$schema": "https://aop.dev/schema/offer-manifest/v0.json",
+  "aopVersion": "0",
+  "publisher": {
+    "name": "Tantra Authority",
+    "url": "https://tantra-authority.com",
+    "operator": "Lawrence Lanoff",
+    "did": "did:web:tantra-authority.com",
+    "agentId": "did:web:tantra-authority.com",
+    "contact": "hello@tantra-authority.com",
+    "description": "Digital catalog of courses, books, and guided practice audio by Lawrence Lanoff, published by The Naked Press. Tantra without the mythology — the body practices, in plain language.",
+    "advertisedBy": {
+      "name": "Ad Agency for Agents",
+      "url": "https://adagencyforagents.com",
+      "did": "did:web:ad-agency-for-agents.pages.dev",
+      "note": "Indexed by the Ad Agency for Agents per the Agent Offer Protocol (AOP)."
+    }
+  },
+  "paymentMethods": [
+    { "scheme": "exact", "network": "fiat", "asset": "USD", "unit": "cent", "processor": "clover", "status": "live" }
+  ],
+  "offers": [
+    {
+      "offerId": "urn:aop:tantra-authority.com:catalog",
+      "capability": {
+        "name": "Tantra Authority — digital catalog (courses, books, practice audio)",
+        "description": "Courses, books, and guided audio on sexuality, relationships, and embodied practice. Instant digital delivery, lifetime access, recoverable access link. The full machine-readable catalog with live price and availability is at the catalog API.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "productId": { "type": "string", "description": "A product id from the catalog API." },
+            "buyerEmail": { "type": "string", "description": "Where the access link is delivered." }
+          },
+          "required": ["productId"]
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "accessUrl": { "type": "string" },
+            "title": { "type": "string" }
+          }
+        }
+      },
+      "intentTags": [
+        "intent:commerce.purchase.digital-good",
+        "intent:content.acquire.course",
+        "intent:content.acquire.ebook",
+        "intent:wellbeing.acquire.practice-audio",
+        "intent:education.acquire.sexuality-relationships"
+      ],
+      "price": [
+        {
+          "scheme": "exact",
+          "network": "fiat",
+          "asset": "USD",
+          "amount": "per-product",
+          "unit": "cent",
+          "priceSource": "https://api.tantra-authority.com/api/products",
+          "note": "Each product carries priceCents in the catalog API. Range ~$6.99–$997."
+        }
+      ],
+      "payment": {
+        "type": "hosted-checkout",
+        "processor": "clover",
+        "humanCheckoutBase": "https://tantra-authority.com/checkout.html?product=",
+        "catalogApi": "https://api.tantra-authority.com/api/products",
+        "x402Endpoint": null,
+        "ap2MandateRequired": false,
+        "note": "Human card checkout today (Clover, PCI-handled in-iframe). Agent-native settlement (x402 / USDC on Base) is on the roadmap via tantra-authority-api, which already runs x402 rails."
+      },
+      "sla": {
+        "latencyP95Ms": null,
+        "availabilityPct": 99.9,
+        "refundPolicy": "30-day, no-questions money-back guarantee.",
+        "escrow": "none",
+        "fulfillment": "instant digital delivery by email + recoverable access link",
+        "disputeWindowSeconds": 2592000
+      },
+      "trust": {
+        "agentId": "did:web:tantra-authority.com",
+        "attestations": [
+          {
+            "type": "aop:Publisher",
+            "issuer": "did:web:tantra-authority.com",
+            "claim": "Published by The Naked Press (DBA of LK Publishing, LLC). Author: Lawrence Lanoff.",
+            "proof": "https://tantra-authority.com/about.html"
+          },
+          {
+            "type": "aop:Guarantee",
+            "issuer": "did:web:tantra-authority.com",
+            "claim": "Every purchase is backed by a 30-day, no-questions money-back guarantee.",
+            "proof": "https://tantra-authority.com/refunds.html"
+          }
+        ],
+        "manifestSignature": "see signature block"
+      },
+      "performance": {
+        "catalogSource": "https://api.tantra-authority.com/api/products",
+        "benchmarks": [],
+        "aggregateScore": { "note": "Machine-readable catalog with live per-product price and availability. Reputation accrues from first agent-mediated transactions." }
+      },
+      "terms": {
+        "usageRights": "Personal digital license. Adults only (18+). Educational, not medical or therapeutic advice.",
+        "redistribution": "no",
+        "humanCheckoutUrl": "https://tantra-authority.com/shop.html"
+      },
+      "validUntil": "2026-12-31T00:00:00Z",
+      "signature": {
+        "alg": "ed25519",
+        "keyId": "did:web:tantra-authority.com#key-1",
+        "value": "v0-unsigned-placeholder",
+        "canonicalization": "jcs",
+        "note": "v0 manifest published unsigned during bootstrap; production carries a detached ed25519 signature per AOP §3.2."
+      }
+    }
+  ],
+  "agentNotes": "AOP-native offer manifest for Tantra Authority's digital catalog. Live product list + price at https://api.tantra-authority.com/api/products (also mirrored as schema.org ItemList on /shop.html). Indexed by the Ad Agency for Agents (https://adagencyforagents.com). Spec: https://adagencyforagents.com/PROTOCOL_v0.md."
+}
