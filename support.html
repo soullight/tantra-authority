@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<title>Help & Support — Tantra Authority</title>
+<meta name="robots" content="noindex">
+<style>
+  :root{ --bg:#0e0c10; --card:#17141a; --ink:#f3eee8; --mut:#a99f95; --gold:#d8a24a; --line:#2a2530; --you:#23303a; }
+  *{box-sizing:border-box; -webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,sans-serif;line-height:1.5}
+  .wrap{max-width:560px;margin:0 auto;padding:24px 16px 28px;min-height:100vh;display:flex;flex-direction:column}
+  .brand{letter-spacing:.16em;font-weight:700;font-size:13px;color:var(--mut);text-decoration:none;display:block;text-align:center;margin:0 0 4px}
+  .brand b{color:var(--ink)}
+  h1{font-size:22px;text-align:center;margin:6px 0 2px;font-weight:800}
+  .sub{color:var(--mut);font-size:13.5px;text-align:center;margin:0 0 16px}
+  .sub a{color:var(--gold)}
+  #log{flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:10px;padding:6px 2px 12px}
+  .msg{max-width:86%;padding:11px 14px;border-radius:14px;font-size:15px;white-space:pre-wrap;word-wrap:break-word}
+  .bot{background:var(--card);border:1px solid var(--line);align-self:flex-start;border-bottom-left-radius:5px}
+  .me{background:var(--you);align-self:flex-end;border-bottom-right-radius:5px}
+  .esc{align-self:center;font-size:12.5px;color:var(--gold);background:rgba(216,162,74,.1);border:1px solid rgba(216,162,74,.35);padding:7px 12px;border-radius:10px;text-align:center}
+  form{display:flex;gap:8px;align-items:flex-end;border-top:1px solid var(--line);padding-top:12px}
+  #email{width:100%;background:var(--card);border:1px solid var(--line);color:var(--ink);border-radius:10px;padding:9px 12px;font:inherit;font-size:14px;margin:0 0 8px}
+  #q{flex:1;background:var(--card);border:1px solid var(--line);color:var(--ink);border-radius:12px;padding:12px 14px;font:inherit;font-size:15px;resize:none;max-height:120px}
+  button{background:var(--gold);color:#1a1206;border:none;border-radius:12px;padding:12px 18px;font-weight:800;font-size:15px;cursor:pointer}
+  button:disabled{opacity:.5}
+  .quick{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 12px}
+  .quick button{background:transparent;border:1px solid var(--line);color:var(--mut);font-weight:600;font-size:13px;padding:8px 12px;border-radius:999px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="brand" href="index.html">TANTRA <b>AUTHORITY</b></a>
+  <h1>How can we help?</h1>
+  <p class="sub">Already bought something? Get your link instantly at <a href="access.html">access</a> with your purchase email.</p>
+
+  <div class="quick" id="quick">
+    <button data-q="I bought a book but never got the download link.">Where's my download?</button>
+    <button data-q="Is &quot;Hard Alone, Soft With Her&quot; right for me?">Is this book for me?</button>
+    <button data-q="What will show up on my card statement?">Billing question</button>
+    <button data-q="I'd like a refund.">Refund</button>
+  </div>
+
+  <div id="log">
+    <div class="msg bot">Hey — I'm here to help with your order, getting your download, or any question before you buy. What's going on?</div>
+  </div>
+
+  <input type="email" id="email" placeholder="Your email (so we can follow up if needed)" autocomplete="email">
+  <form id="f">
+    <textarea id="q" rows="1" placeholder="Type your message…" autocomplete="off"></textarea>
+    <button id="send" type="submit">Send</button>
+  </form>
+</div>
+<script>
+const API="https://api.tantra-authority.com/api/support";
+const log=document.getElementById("log"), q=document.getElementById("q"), f=document.getElementById("f"), send=document.getElementById("send"), emailEl=document.getElementById("email");
+let history=[];
+function add(role,text){const d=document.createElement("div");d.className="msg "+(role==="user"?"me":"bot");d.textContent=text;log.appendChild(d);log.scrollTop=log.scrollHeight;return d;}
+function note(text){const d=document.createElement("div");d.className="esc";d.textContent=text;log.appendChild(d);log.scrollTop=log.scrollHeight;}
+q.addEventListener("input",()=>{q.style.height="auto";q.style.height=Math.min(q.scrollHeight,120)+"px";});
+document.getElementById("quick").addEventListener("click",e=>{if(e.target.dataset.q){q.value=e.target.dataset.q;f.requestSubmit();}});
+async function ask(text){
+  add("user",text); history.push({role:"user",content:text});
+  q.value="";q.style.height="auto";send.disabled=true;
+  const typing=add("assistant","…");
+  try{
+    const r=await fetch(API,{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({messages:history,email:emailEl.value||""})});
+    const j=await r.json();
+    typing.textContent=j.reply||"Sorry — please email hello@tantra-authority.com and we'll help.";
+    history.push({role:"assistant",content:j.reply||""});
+    if(j.escalated) note("✓ A real person has been notified and will follow up by email.");
+  }catch(e){ typing.textContent="Connection hiccup — please email hello@tantra-authority.com and we'll sort it out."; }
+  send.disabled=false; q.focus();
+}
+f.addEventListener("submit",e=>{e.preventDefault();const t=q.value.trim();if(t)ask(t);});
+</script>
+</body>
+</html>
