@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book Your First Session — Lawrence Lanoff</title>
+<meta name="robots" content="noindex">
+<script src="https://checkout.clover.com/sdk.js"></script>
+<style>
+  :root{ --bg:#faf8f4; --bg-card:#fff; --text:#1a1a1a; --muted:#6b6b6b; --accent:#8b3a3a; --soft:#c89d9c; --gold:#b8860b; --line:#e7e0d6; }
+  *{box-sizing:border-box;}
+  body{margin:0; background:var(--bg); color:var(--text); font-family:Georgia,"Times New Roman",serif; font-size:18px; line-height:1.6;}
+  .wrap{max-width:640px; margin:0 auto; padding:0 20px 60px;}
+  header{text-align:center; padding:28px 20px 6px;}
+  .logo{font-family:-apple-system,Segoe UI,Roboto,sans-serif; letter-spacing:.16em; font-weight:700; font-size:14px; color:var(--text); text-decoration:none;}
+  .logo span{color:var(--accent);}
+  h1{font-size:1.9rem; line-height:1.18; margin:22px 0 6px; text-align:center;}
+  .sub{color:var(--muted); text-align:center; margin:0 auto 6px; max-width:30em; font-size:1.05rem;}
+  .tzline{text-align:center; font-family:-apple-system,Segoe UI,Roboto,sans-serif; font-size:.82rem; color:var(--muted); margin:6px 0 18px;}
+  h2{font-family:-apple-system,Segoe UI,Roboto,sans-serif; font-size:.8rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); font-weight:700; margin:30px 0 10px;}
+  .daygroup{margin:0 0 14px;}
+  .dayname{font-family:-apple-system,Segoe UI,Roboto,sans-serif; font-weight:700; font-size:.95rem; margin:0 0 7px;}
+  .slots{display:flex; flex-wrap:wrap; gap:8px;}
+  .slot{font-family:-apple-system,Segoe UI,Roboto,sans-serif; font-size:.95rem; font-weight:600; padding:10px 14px; border:1.5px solid var(--soft); border-radius:10px; background:#fff; color:var(--accent); cursor:pointer; transition:.12s;}
+  .slot:hover{border-color:var(--accent);}
+  .slot.sel{background:var(--gold); color:#fff; border-color:var(--gold);}
+  .slot.taken{opacity:.32; text-decoration:line-through; cursor:not-allowed; color:var(--muted); border-color:var(--line);}
+  #pay{background:var(--bg-card); border:1px solid var(--line); border-radius:16px; padding:24px 22px; margin:24px 0;}
+  label{display:block; font-family:-apple-system,Segoe UI,Roboto,sans-serif; font-size:.82rem; font-weight:600; margin:12px 0 5px;}
+  input{width:100%; font-family:-apple-system,Segoe UI,Roboto,sans-serif; font-size:1rem; padding:12px 14px; border:1px solid var(--line); border-radius:9px; background:#fff;}
+  #card-element{padding:12px 14px; border:1px solid var(--line); border-radius:9px; background:#fff; min-height:46px;}
+  .btn{display:block; width:100%; font-family:-apple-system,Segoe UI,Roboto,sans-serif; font-weight:700; font-size:1.05rem; padding:15px; border-radius:11px; border:none; background:var(--gold); color:#fff; cursor:pointer; margin-top:18px;}
+  .btn:disabled{opacity:.5; cursor:default;}
+  .msg{margin-top:12px; font-family:-apple-system,Segoe UI,Roboto,sans-serif; font-size:.95rem;}
+  .fine{font-family:-apple-system,Segoe UI,Roboto,sans-serif; font-size:.8rem; color:var(--muted); text-align:center; margin-top:8px;}
+  .done{background:#fff; border:2px solid var(--gold); border-radius:16px; padding:28px 24px; text-align:center; margin:24px 0;}
+  .done a.room{display:inline-block; margin:12px 0; font-family:-apple-system,Segoe UI,Roboto,sans-serif; font-weight:700; color:var(--accent);}
+</style>
+</head>
+<body>
+<header><a class="logo" href="/work-with-lawrence.html">TANTRA <span>AUTHORITY</span></a></header>
+<div class="wrap">
+  <h1>Book your first session</h1>
+  <p class="sub">30 minutes, one-on-one with Lawrence — by phone or video. $250.</p>
+  <p class="tzline" id="tzline">Loading times…</p>
+
+  <div id="picker">
+    <h2>Pick a time</h2>
+    <div id="slots-wrap"><p class="fine">Loading available times…</p></div>
+  </div>
+
+  <div id="pay" style="display:none;">
+    <h2 style="margin-top:0;">Your details</h2>
+    <label for="name">Your name</label>
+    <input type="text" id="name" autocomplete="name">
+    <label for="email">Email (where your video link goes)</label>
+    <input type="email" id="email" placeholder="you@email.com" autocomplete="email">
+    <label>Card</label>
+    <div id="card-element"></div>
+    <button class="btn" id="go" disabled>Select a time first</button>
+    <div class="msg" id="msg"></div>
+    <p class="fine">Card secured by Clover. 30-min session · $250 · <a href="/refunds.html">refund policy</a>.</p>
+  </div>
+
+  <div id="done" class="done" style="display:none;"></div>
+</div>
+
+<script>
+const API = "https://api.tantra-authority.com";
+let LAWRENCE_TZ = "America/Los_Angeles";
+let CLIENT_TZ = Intl.DateTimeFormat().resolvedOptions().timeZone || "your local time";
+let selectedISO = null, clover = null, cardMounted = false;
+const SLOT_HOURS = [13, 14, 15, 16];   // afternoon, in Lawrence's tz
+const DOW = { Tue: 2, Thu: 4 };
+
+// UTC instant for a wall-clock (y,m,d,hour) in a given IANA tz
+function zonedToUtc(y, m, d, hour, tz) {
+  const guess = Date.UTC(y, m, d, hour, 0, 0);
+  const dtf = new Intl.DateTimeFormat("en-US", { timeZone: tz, year:"numeric", month:"2-digit", day:"2-digit", hour:"2-digit", minute:"2-digit", second:"2-digit", hour12:false });
+  const p = {}; dtf.formatToParts(new Date(guess)).forEach(x => p[x.type] = x.value);
+  const asUTC = Date.UTC(+p.year, +p.month - 1, +p.day, +(p.hour === "24" ? 0 : p.hour), +p.minute, +p.second);
+  return new Date(guess - (asUTC - guess));
+}
+// weekday short-name of a UTC instant, in a tz
+function weekdayIn(date, tz) {
+  return new Intl.DateTimeFormat("en-US", { timeZone: tz, weekday: "short" }).format(date);
+}
+function datePartsIn(date, tz) {
+  const p = {}; new Intl.DateTimeFormat("en-US", { timeZone: tz, year:"numeric", month:"2-digit", day:"2-digit" }).formatToParts(date).forEach(x => p[x.type] = x.value);
+  return { y:+p.year, m:+p.month - 1, d:+p.day };
+}
+
+async function init() {
+  try { const t = await fetch(API + "/api/session/tz").then(r => r.json()); if (t && t.tz) LAWRENCE_TZ = t.tz; } catch (e) {}
+  let taken = [];
+  try { const s = await fetch(API + "/api/slots").then(r => r.json()); taken = (s && s.taken) || []; } catch (e) {}
+  document.getElementById("tzline").textContent = "Times shown in YOUR timezone (" + CLIENT_TZ + ").";
+
+  // Build the next ~3 weeks of Tue/Thu afternoon slots, in Lawrence's tz
+  const now = Date.now(), out = [];
+  for (let off = 0; off < 25 && out.length < 60; off++) {
+    const probe = new Date(now + off * 86400000);
+    const wd = weekdayIn(probe, LAWRENCE_TZ);
+    if (wd !== "Tue" && wd !== "Thu") continue;
+    const { y, m, d } = datePartsIn(probe, LAWRENCE_TZ);
+    for (const h of SLOT_HOURS) {
+      const inst = zonedToUtc(y, m, d, h, LAWRENCE_TZ);
+      if (inst.getTime() < now + 3600000) continue;             // at least 1h out
+      const iso = inst.toISOString();
+      out.push({ iso, taken: taken.includes(iso) });
+    }
+  }
+  renderSlots(out);
+}
+
+function renderSlots(list) {
+  const wrap = document.getElementById("slots-wrap");
+  if (!list.length) { wrap.innerHTML = '<p class="fine">No open times right now — check back soon, or <a href="/work-with-lawrence.html">apply for a deeper session</a>.</p>'; return; }
+  // group by client-local day
+  const groups = {};
+  list.forEach(s => {
+    const dt = new Date(s.iso);
+    const dayKey = new Intl.DateTimeFormat("en-US", { weekday:"long", month:"short", day:"numeric" }).format(dt);
+    (groups[dayKey] = groups[dayKey] || []).push(s);
+  });
+  wrap.innerHTML = "";
+  Object.keys(groups).forEach(day => {
+    const g = document.createElement("div"); g.className = "daygroup";
+    g.innerHTML = '<div class="dayname">' + day + '</div>';
+    const row = document.createElement("div"); row.className = "slots";
+    groups[day].forEach(s => {
+      const b = document.createElement("button");
+      const time = new Intl.DateTimeFormat("en-US", { hour:"numeric", minute:"2-digit" }).format(new Date(s.iso));
+      b.className = "slot" + (s.taken ? " taken" : "");
+      b.textContent = time;
+      if (!s.taken) b.addEventListener("click", () => selectSlot(s.iso, b));
+      else b.disabled = true;
+      row.appendChild(b);
+    });
+    g.appendChild(row); wrap.appendChild(g);
+  });
+}
+
+function selectSlot(iso, btn) {
+  selectedISO = iso;
+  document.querySelectorAll(".slot.sel").forEach(s => s.classList.remove("sel"));
+  btn.classList.add("sel");
+  document.getElementById("pay").style.display = "block";
+  initClover();
+  const go = document.getElementById("go");
+  go.disabled = !cardMounted;
+  const when = new Intl.DateTimeFormat("en-US", { weekday:"short", month:"short", day:"numeric", hour:"numeric", minute:"2-digit" }).format(new Date(iso));
+  go.textContent = "Pay $250 & book — " + when;
+  document.getElementById("pay").scrollIntoView({ behavior:"smooth", block:"start" });
+}
+
+async function initClover() {
+  if (clover) return;
+  try {
+    const cfg = await fetch(API + "/api/pay-config").then(r => r.json());
+    if (!cfg.ready || !cfg.publicToken) { document.getElementById("msg").textContent = "Checkout isn't ready — try again shortly."; return; }
+    clover = new Clover(cfg.publicToken, cfg.merchantId ? { merchantId: cfg.merchantId } : undefined);
+    const card = clover.elements().create("CARD");
+    card.mount("#card-element");
+    cardMounted = true;
+    document.getElementById("go").disabled = !selectedISO;
+  } catch (e) { document.getElementById("msg").textContent = "Couldn't load the card form — refresh and retry."; }
+}
+
+document.getElementById("go").addEventListener("click", async () => {
+  const go = document.getElementById("go"), msg = document.getElementById("msg");
+  const name = document.getElementById("name").value.trim();
+  const email = document.getElementById("email").value.trim();
+  if (!selectedISO) { msg.textContent = "Pick a time first."; return; }
+  if (!email) { msg.style.color = "#8b3a3a"; msg.textContent = "Add your email — that's where your video link goes."; return; }
+  if (!clover || !cardMounted) { msg.textContent = "Card form still loading…"; return; }
+  go.disabled = true; go.textContent = "Processing…"; msg.textContent = "";
+  try {
+    const res = await clover.createToken();
+    if (res.errors) { msg.style.color = "#8b3a3a"; msg.textContent = Object.values(res.errors)[0] || "Check your card details."; go.disabled = false; go.textContent = "Pay $250 & book"; return; }
+    const pay = await fetch(API + "/api/buy", { method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({ product:"session-30", email, token: res.token }) }).then(r => r.json());
+    if (!pay.ok) { msg.style.color = "#8b3a3a"; msg.textContent = pay.message || "That card was declined — try another."; go.disabled = false; go.textContent = "Pay $250 & book"; return; }
+    const book = await fetch(API + "/api/book-session", { method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({ slot: selectedISO, name, email }) }).then(r => r.json());
+    if (!book.ok) { msg.style.color = "#8b3a3a"; msg.textContent = "Payment went through — email hello@lawrencetheenergymaster.com with your time and we'll lock it in."; return; }
+    const when = new Intl.DateTimeFormat("en-US", { weekday:"long", month:"long", day:"numeric", hour:"numeric", minute:"2-digit", timeZoneName:"short" }).format(new Date(selectedISO));
+    const z = (d) => d.toISOString().replace(/[-:]/g,"").replace(/\.\d{3}/,"");
+    const end = new Date(Date.parse(selectedISO) + 30*60000);
+    const gcal = "https://calendar.google.com/calendar/render?action=TEMPLATE&text=" + encodeURIComponent("My session with Lawrence") + "&dates=" + z(new Date(selectedISO)) + "/" + z(end) + "&details=" + encodeURIComponent("Your private room: " + book.room) + "&location=" + encodeURIComponent(book.room);
+    document.getElementById("picker").style.display = "none";
+    document.getElementById("pay").style.display = "none";
+    const done = document.getElementById("done");
+    done.style.display = "block";
+    done.innerHTML = "<h2 style='margin-top:0;color:var(--accent);'>You're booked.</h2><p style='font-size:1.1rem;'><strong>" + when + "</strong></p><p>Your private video room:</p><a class='room' href='" + book.room + "' target='_blank'>" + book.room + "</a><p class='fine'>Save this link — it's also in your confirmation. See you there.</p><p style='margin-top:14px;'><a class='room' href='" + gcal + "' target='_blank'>➕ Add to my calendar</a></p>";
+    done.scrollIntoView({ behavior:"smooth", block:"start" });
+  } catch (e) { msg.style.color = "#8b3a3a"; msg.textContent = "Something glitched — refresh and try again."; go.disabled = false; go.textContent = "Pay $250 & book"; }
+});
+
+init();
+</script>
+</body>
+</html>
