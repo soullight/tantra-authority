@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Erotic Tarot — What's Your Erotic Archetype? · Tantra Authority</title>
+<meta name="robots" content="noindex">
+<style>
+  :root{ --bg:#141019; --card:#1e1926; --line:#3a3247; --accent:#c97b7b; --gold:#cda434; --shadow:#7d6cb0; --text:#efe9e0; --muted:#9a9488; }
+  *{ box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  html,body{ margin:0; background:var(--bg); color:var(--text); font-family:Georgia,'Times New Roman',serif; }
+  .wrap{ max-width:600px; margin:0 auto; min-height:100vh; display:flex; flex-direction:column; justify-content:center; padding:30px 22px 52px; }
+  .lvl{ font-family:Inter,system-ui,sans-serif; font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--accent); font-weight:800; text-align:center; margin-bottom:12px; }
+  h1{ font-size:31px; line-height:1.16; text-align:center; margin:0 0 8px; }
+  h2{ font-size:25px; line-height:1.24; text-align:center; margin:0 0 26px; }
+  .sub{ text-align:center; color:var(--muted); font-size:15px; margin:0 0 30px; line-height:1.5; }
+  .opt{ display:block; width:100%; text-align:left; background:var(--card); color:var(--text); border:1px solid var(--line); border-radius:14px;
+        padding:20px 22px; margin:0 0 14px; font-family:inherit; font-size:19px; line-height:1.35; cursor:pointer; transition:transform .08s, border-color .12s; }
+  .opt:active{ transform:scale(.985); border-color:var(--accent); }
+  .opt b{ color:var(--gold); font-weight:700; }
+  .prog{ height:4px; background:var(--line); border-radius:9px; margin-top:22px; overflow:hidden; } .prog i{ display:block; height:100%; background:var(--accent); transition:width .3s; }
+  .pnum{ font-family:Inter,sans-serif; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); text-align:center; margin-top:10px; }
+  .rlvl{ font-family:Inter,sans-serif; font-size:12px; letter-spacing:3px; text-transform:uppercase; color:var(--accent); font-weight:800; text-align:center; margin-bottom:6px; }
+  .type{ font-size:40px; line-height:1.08; text-align:center; color:var(--gold); margin:0 0 22px; }
+  .card{ max-width:330px; margin:0 auto 24px; border:2px solid var(--gold); border-radius:16px; overflow:hidden; background:#0e0b14; box-shadow:0 12px 44px rgba(0,0,0,.55), inset 0 0 0 1px rgba(205,164,52,.25); }
+  .card img{ display:block; width:100%; height:auto; }
+  .cardname{ font-family:Georgia,serif; font-size:25px; color:var(--gold); text-align:center; padding:15px 10px; letter-spacing:1.5px; background:linear-gradient(#15101c,#0e0b14); border-top:1px solid rgba(205,164,52,.3); }
+  .read p{ font-size:18px; line-height:1.6; margin:0 0 16px; }
+  .you{ margin:24px 0 6px; padding:22px; background:#1a1622; border:1px solid var(--line); border-radius:14px; }
+  .you .h{ font-family:Inter,sans-serif; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); font-weight:800; margin-bottom:12px; }
+  .you li{ font-size:16.5px; line-height:1.45; margin:0 0 11px; list-style:none; padding-left:20px; position:relative; } .you li:before{ content:'·'; position:absolute; left:4px; color:var(--accent); font-weight:800; }
+  .next{ display:block; width:100%; text-align:center; margin:22px 0 0; padding:20px; border-radius:16px; background:#221c2e; border:1px solid var(--shadow); color:var(--text); font-family:inherit; font-size:19px; cursor:pointer; }
+  .next:active{ transform:scale(.99); } .next .s{ display:block; font-size:13px; color:var(--muted); font-family:Inter,sans-serif; margin-top:6px; letter-spacing:.5px; }
+  .cmd{ margin-top:20px; background:linear-gradient(135deg,rgba(201,123,123,.15),rgba(205,164,52,.08)); border:1px solid var(--accent); border-radius:18px; padding:26px 24px; text-align:center; }
+  .cmd .line{ font-size:21px; line-height:1.42; margin:0 0 20px; }
+  .go{ display:inline-block; background:var(--accent); color:#1a1014; font-family:Inter,sans-serif; font-weight:800; font-size:18px; text-decoration:none; padding:18px 32px; border-radius:999px; } .go:active{ transform:scale(.98); }
+  .small{ display:block; margin-top:14px; color:var(--muted); font-size:14px; text-decoration:none; }
+  .shadow-tone{ --accent:var(--shadow); }
+  .fade{ animation:f .35s ease; } @keyframes f{ from{opacity:0; transform:translateY(8px)} to{opacity:1; transform:none} }
+</style>
+</head>
+<body>
+<div class="wrap" id="wrap"></div>
+<script>
+const BIO='https://thenaked.press';  // tracking + cards + /go redirects live on the bio-link CF Pages project; checkout is same-origin on TA
+function beacon(to, src){ try{ fetch(BIO+'/go?to='+encodeURIComponent(to)+'&src='+encodeURIComponent(src), {mode:'no-cors', keepalive:true}); }catch(e){} }
+// funnel-stage ping. ONE beacon, quiz-LENGTH variant baked into `to`, so it lands reliably.
+// (Two rapid fetches dropped the 2nd → every _S/_L counter read 0 and the split test was BLIND.) Aggregate = _S + _L.
+function stage(n){ beacon(n+'_'+QL, 'quiz:'+G); }
+const Q = new URLSearchParams(location.search);
+const G = (Q.get('g')||'').toLowerCase().startsWith('w')?'w':(Q.get('g')||'').toLowerCase().startsWith('m')?'m':'u';
+const VAR = (function(){ let v=localStorage.getItem('qv'); if(!v){ v=(Date.now()%2===0)?'A':'B'; localStorage.setItem('qv',v);} return v; })();
+// QUIZ-LENGTH A/B (independent of VAR): S = card after the 3 archetype taps · L = current 8-tap L1
+const QL = (function(){ let v=localStorage.getItem('ql'); if(!v){ v=(Math.random()<0.5)?'S':'L'; localStorage.setItem('ql',v);} return v; })();
+// persistent anonymous profile id — answers save under this, so coach signup inherits the work (no redo)
+const PID = (function(){ let p=localStorage.getItem('pid'); if(!p){ p=(self.crypto&&crypto.randomUUID)?crypto.randomUUID():'p'+Date.now()+'_'+Math.round(Math.random()*1e9); localStorage.setItem('pid',p);} return p; })();
+const API='https://api.tantra-authority.com';
+function saveProfile(){ try{ const k=arch.join(''); const d={pid:PID,gender:G,archetype:k+((ARCH[k]&&ARCH[k].n)?' '+ARCH[k].n:''),profile:{key:k,name:(ARCH[k]||{}).n||'',level:lvlIdx+1,clauses:clauses.flat()}}; if(userEmail) d.email=userEmail;
+  fetch(API+'/api/quiz/save',{method:'POST',mode:'no-cors',keepalive:true,body:JSON.stringify(d)}).catch(()=>{}); }catch(e){} }
+
+// ── LEVEL 1 — your erotic ARCHETYPE. First 3 taps set the archetype; the rest flavor the read. ──
+// SPLIT TEST (the 51→6 drop): 3 first-question variants, assigned evenly, tracked start→advance.
+// All three set the SAME P/R axis so the quiz logic is untouched. Data picks the winner, not opinion.
+const Q1V = (function(){ let v=localStorage.getItem('q1v'); if(v===null){ v=String(Math.floor(Math.random()*3)); localStorage.setItem('q1v',v);} return parseInt(v,10); })();
+const Q1 = [
+  // 0 = current (control)
+  { lvl:'✦ Erotic Tarot · Level 1 of 3', h:'What\'s your erotic archetype?',
+    sub:'Tap on instinct — not on what sounds good. Your Klimt card is drawn at the end. No sign-up.',
+    o:[ {l:'When desire rises, my energy wants to <b>move out and take</b>', v:'P'}, {l:'When desire rises, my energy wants to <b>draw in and receive</b>', v:'R'} ] },
+  // 1 = instinct / sensory (lowest friction)
+  { lvl:'✦ Erotic Tarot · Level 1 of 3', h:'Pick the one that pulls you.',
+    sub:'Don\'t think. Tap. Your Klimt card is drawn at the end — no sign-up.',
+    o:[ {l:'🔥 <b>I want it now</b>', v:'P'}, {l:'🌊 <b>I want to be taken under</b>', v:'R'} ] },
+  // 2 = provocative / identity
+  { lvl:'✦ Erotic Tarot · Level 1 of 3', h:'Which is more you?',
+    sub:'First instinct. Your card is drawn at the end — no sign-up.',
+    o:[ {l:'<b>I lead</b>', v:'P'}, {l:'<b>I melt</b>', v:'R'} ] },
+];
+const L1 = [
+  Q1[Q1V],
+  { h:'My erotic energy presents —', o:[ {l:'<b>Direct &amp; explicit</b>', v:'D'}, {l:'<b>Subtle &amp; atmospheric</b>', v:'B'} ] },
+  { h:'With the charge, I\'d rather —', o:[ {l:'Let it build and <b>release</b> — spend it', v:'C'}, {l:'<b>Hold</b> it, circulate it, let it grow', v:'T'} ] },
+  { h:'My charge moves most through —', o:[ {l:'<b>Touch</b> — skin, friction, sensation', v:'-', t:'Your eros lives in sensation — skin, friction, the body’s direct language. That groundedness is real, and it’s a gift.'}, {l:'<b>Energy</b> — breath, presence, the field between you (even at a distance)', v:'-', t:'Your eros moves as energy — breath, presence, the charged field between bodies, even across a room. That is a rare capacity, and it is the deepest end of this work.'} ] },
+  { h:'My appetite leans —', o:[ {l:'<b>Sensual &amp; classic</b>', v:'-', t:'Your hunger runs sensual and deep — richness over shock.'}, {l:'<b>Edge</b> — hungry for more', v:'-', t:'You\'re drawn to the edge — the intense, the taboo. That hunger is healthy, and it\'s yours.'} ] },
+  { h:'Surrender — being taken, being told what to do —', o:[ {l:'<b>Lights me up</b>', v:'-', t:'Surrender lights you up — to be led, fully, is one of your deepest doorways.'}, {l:'Not really my charge', v:'-', t:'You hold your center — being led is rarely where your charge lives.'} ] },
+  { h:'For me, orgasm is —', o:[ {l:'<b>The point</b>', v:'-', t:'For you the release is the point — direct, clean, satisfying.'}, {l:'<b>One of several</b> outcomes', v:'-', t:'Orgasm is only one door for you — the whole field of sensation is the real prize.'} ] },
+  { h:'My stance toward the unknown is —', o:[ {l:'<b>Careful</b> — danger first', v:'-', t:'You read the ground before you step — your caution is wisdom, not fear.'}, {l:'<b>Curious</b> — interesting, let\'s see', v:'-', t:'You meet the unknown with curiosity — that openness is rare and it takes you far.'} ] },
+];
+// keyed by the 3 naming axes: Penetrative/Receptive (P/R) · Direct/Subtle (D/B) · Discharge/Retention (C/T)
+const ARCH = {
+  PDC:{n:'The Sovereign', r:'Your energy moves out and takes. When desire rises in you it reaches — direct, explicit, certain — and when the charge peaks you spend it all the way, clean and complete. Nothing held back, and that wholeness IS the point.|Your gift is appetite with presence: people feel it the second you walk in, because you genuinely want, and you say so. You move on the world through plain, rooted directness.|What you\'re reaching for is someone who can meet that much heat and open all the way to it. To be wanted this plainly is rare. You\'re built to use it.'},
+  PDT:{n:'The Architect', r:'Your energy moves out and takes — direct and deliberate — but you don\'t spend it the moment it rises. You build it, hold the structure, let the charge climb under your hand. Penetrating power with a container around it.|Your gift is authorship: you reach in, you direct plainly, and you hold the whole arc so it can go somewhere enormous. Heat with patience is rare, and it\'s yours.|What you\'re reaching for is to trust the build even further — to keep directing and discover how much charge you can hold before it breaks open. There\'s no ceiling on that.'},
+  PBC:{n:'The Wild One', r:'Your energy moves out and takes, but it moves in atmosphere — you don\'t announce it, you fill the room with it, and then you let it rip. Penetrating underneath, magnetic on the surface, all-in when it lands.|Your gift is the slow pull then the full release: you draw someone in without a word, then hold nothing back. That mix of mystery and abandon is intoxicating.|What you\'re reaching for is a partner who feels the undertow and dives in with you — someone to receive the whole storm when it finally breaks.'},
+  PBT:{n:'The Magician', r:'You move on people before you ever touch them. There\'s a quiet in you that fills a room — you walk in, the air changes, and you said nothing. Your energy penetrates through attention, through breath, through the held gaze — and you hold the charge, let it climb and circulate and grow the longer you stay with it.|Your gift is depth and patience: you can take someone somewhere slow and vast and stay relaxed the whole climb. You feel where another person is tight, where they\'re open, where they\'re waiting.|What you\'re reaching for is to trust that field even more — to let the want rise all the way and discover how much you can hold and still stay loose. Follow it.'},
+  RDC:{n:'The Flame', r:'Your energy draws in and receives — openly, directly, loudly — and when the charge peaks you let it pour all the way through you. You blaze with desire out loud, holding nothing back.|Your gift is responsiveness: you receive so fully and so plainly that a partner gets to watch you come alive in real time. To be this openly lit up is rare and magnetic.|What you\'re reaching for is someone present and steady enough to meet all that openness — to receive you as completely as you give yourself over.'},
+  RDT:{n:'The Oracle', r:'Your energy draws in and receives — and you can name exactly what you want as you do it. Direct about your wanting, but you don\'t discharge the moment it rises; you take it in, hold it, let it deepen. Receptive, articulate, contained.|Your gift is clarity inside surrender: you open AND you keep your voice, which almost no one can do. You receive deeply and stay lucid.|What you\'re reaching for is a partner who can pour into all that holding capacity — someone who meets your openness with the same depth you bring to receiving it.'},
+  RBC:{n:'The Dreamer', r:'Your energy draws in and receives — quietly, atmospherically — and when it builds, you dissolve into release. You let yourself be carried, and then you let go completely. Soft on the surface, total underneath.|Your gift is the melt: you open slowly, subtly, and then surrender all the way. That capacity to dissolve is its own kind of courage.|What you\'re reaching for is the safety to let go even further — a presence steady enough that you can stop managing and simply be carried into the release. When you find it, everything opens.'},
+  RBT:{n:'The Mystic', r:'Your energy draws in and receives — slow, subtle, deep — and you hold everything. You sink in, take it all the way down, and hold the charge until it becomes an ocean. The most receptive, most contained way to be in a body.|Your gift is your capacity to receive and hold: a depth most people never reach. In your stillness there\'s a whole sea, and the right partner feels it the moment they\'re near.|What you\'re reaching for is someone patient and devoted enough to go all the way down with you — slow, safe, endless.'},
+};
+
+// ── LEVEL 2 — your PSYCHE (how you\'re wired underneath) ──
+const L2 = [
+  { lvl:'Level 2 of 3 · Your psyche', h:'Now — how you\'re wired underneath.', sub:'Six more. Honest, not flattering.', first:true,
+    o:[ {l:'Through the day I notice my body <b>constantly</b>', v:'-', t:'You live close to your body — it\'s your instrument and your compass.'}, {l:'I\'m mostly <b>in my head</b> through the day', v:'-', t:'You live in your mind; the body is the frontier you\'re still claiming — and that\'s where your growth is.'} ] },
+  { h:'My practice is mostly —', o:[ {l:'<b>Partnered</b>', v:'-', t:'You\'re wired toward partnership — connection is the field your desire plays in.'}, {l:'<b>Solo</b>', v:'-', t:'Your solo practice is central — sovereignty over your own pleasure is a real strength.'} ] },
+  { h:'I can romantically love more than one person at once —', o:[ {l:'<b>No, never</b>', v:'-', t:'You love singularly and deep — your devotion runs to one.'}, {l:'<b>Yes, easily</b>', v:'-', t:'Your heart has room for more than one — abundance, not deficit, is your love-shape.'} ] },
+  { h:'Jealousy, for me, is —', o:[ {l:'<b>Often</b> present', v:'-', t:'Jealousy moves through you — not a flaw, a signal pointing at what you treasure.'}, {l:'<b>Rare</b>', v:'-', t:'Jealousy rarely grips you — security is your baseline.'} ] },
+  { h:'Telling a partner what I want in bed is —', o:[ {l:'<b>Hard</b> for me', v:'-', t:'Your wants are still finding their voice — and the moment they\'re spoken, everything shifts.'}, {l:'<b>Easy</b> and specific', v:'-', t:'You can name what you want plainly — rare, and deeply magnetic.'} ] },
+  { h:'Aftercare — tenderness once it\'s over — is —', o:[ {l:'<b>Essential</b> to me', v:'-', t:'You need the landing as much as the flight — tenderness after is non-negotiable, and that\'s wisdom.'}, {l:'<b>New</b> to me', v:'-', t:'The art of the after is fresh territory for you — and it will deepen everything.'} ] },
+];
+
+// ── LEVEL 3 — your SHADOW (Jung: the disowned erotic self) ──
+const L3 = [
+  { lvl:'Level 3 of 3 · Your shadow', h:'The last layer is the shadow.', shadow:true,
+    sub:'Jung said the gold is in the dark — the parts of your desire you\'ve hidden hold your power. This level only works if you answer openly. No one sees this but you.', first:true,
+    o:[ {l:'Surrender is something I\'ve <b>wanted but feared</b>', v:'-', t:'There\'s a surrender you\'ve circled and feared — and on the other side of that fear is some of your deepest release.'}, {l:'Surrender isn\'t my shadow', v:'-', t:'Surrender isn\'t where your shadow hides — your edge lives somewhere else.'} ] },
+  { h:'Power exchange — D/s, control handed back and forth —', o:[ {l:'<b>Erotic to me</b>', v:'-', t:'Power exchange is charged for you — naming it openly is how it stops running you and starts serving you.'}, {l:'Not my current', v:'-', t:'Power play isn\'t your live wire — your charge runs elsewhere.'} ] },
+  { h:'Taboo, dark, intense erotic material —', o:[ {l:'<b>Pulls me</b>', v:'-', t:'The dark, the taboo, the intense pulls you — that pull is not sickness, it\'s unclaimed life force asking to be met.'}, {l:'<b>Leaves me cold</b>', v:'-', t:'The extreme leaves you cold — your depth is in intimacy, not intensity.'} ] },
+  { h:'Pain, held inside firm consent and trust —', o:[ {l:'<b>Interests me</b>', v:'-', t:'Sensation at the edge of pain interests you — in the right hands it\'s a doorway, not a danger.'}, {l:'<b>Not for me</b>', v:'-', t:'Pain isn\'t your doorway — pleasure for you is softness, not edge.'} ] },
+  { h:'Being watched — or watching —', o:[ {l:'<b>Turns me on</b>', v:'-', t:'The gaze charges you — to see or be seen is part of how your desire wants to move.'}, {l:'I want it <b>private</b>', v:'-', t:'Your eros is private and contained — intimacy behind closed doors is where you open.'} ] },
+  { h:'Have you ever moved THROUGH disgust into release or pleasure?', o:[ {l:'<b>Yes — transformative</b>', v:'-', t:'You\'ve crossed from disgust into release — you already know the shadow is a passage, not a wall.'}, {l:'<b>Never</b>', v:'-', t:'You haven\'t yet crossed through revulsion into release — and that crossing, when it\'s safe, is one of the great unlocks.'} ] },
+  { h:'There\'s a desire in me I\'ve never said out loud —', o:[ {l:'<b>True</b>', v:'-', t:'You\'re carrying a desire you\'ve never spoken — and the day it\'s safe to say it out loud, it will move mountains in you.'}, {l:'I\'ve named them all', v:'-', t:'You\'ve already brought your wants into the light — that honesty is its own kind of freedom.'} ] },
+];
+
+const CMD = {
+  A:'Now that you\'ve seen it — go further. One private place to ask anything about your sex, your body, your wanting. Yours, any hour. Open it now.',
+  B:'This is your map. Take the next step tonight: your own private coach, every question welcome, no judgment, any time. Step in now.',
+};
+
+// ── catalogue "dig deeper" recommendations — driven by their actual answers ──
+const PROD = {'open-relationship-blueprint':'The Open Relationship Blueprint','energy-sex':'Energy Sex','tantra-x':'Tantra X','tantra-xo':'Tantra XO','tantra-x-university':'Tantra X University','chakra-healing':'Chakra Healing','sexual-superpowers':'Sexual Superpowers','course-in-freedom':'A Course in Freedom'};
+function deriveRecs(){
+  const all=clauses.flat().join(' '); const out=[], seen={};
+  const add=(p,th)=>{ if(!seen[p]){ seen[p]=1; out.push({p,th}); } };
+  if(/love-shape|Jealousy moves through you/.test(all)) add('open-relationship-blueprint','jealousy and loving more than one');
+  if(/the dark, the taboo|drawn to the edge/.test(all)) add('sexual-superpowers','going to your edge with skill and safety');
+  if(/Power exchange is charged/.test(all)) add('tantra-x-university','power exchange and D/s done well');
+  if(/circled and feared|Surrender lights you up/.test(all)) add('energy-sex','surrender and energetic depth');
+  if(/only one door/.test(all)) add('energy-sex','pleasure beyond the single peak');
+  if(/frontier you/.test(all)) add('chakra-healing','dropping out of your head and into your body');
+  return out.slice(0,4);
+}
+// the dollar-one HERO: a cheap, instant, type-matched buy that LEADS the close (the $29/mo is demoted to step two).
+// Only confirmed-cheap, instant-delivery products (prices verified against /api/products).
+// each archetype's hero = ITS OWN full reading ($7 instant PDF, assembled from Lawrence's deck). key = arch.join('').
+const READING = {
+  PDC:{p:'reading-sovereign', t:'The Sovereign — Your Full Reading'},
+  PDT:{p:'reading-architect', t:'The Architect — Your Full Reading'},
+  PBC:{p:'reading-wild-one',  t:'The Wild One — Your Full Reading'},
+  PBT:{p:'reading-magician',  t:'The Magician — Your Full Reading'},
+  RDC:{p:'reading-flame',     t:'The Flame — Your Full Reading'},
+  RDT:{p:'reading-oracle',    t:'The Oracle — Your Full Reading'},
+  RBC:{p:'reading-dreamer',   t:'The Dreamer — Your Full Reading'},
+  RBT:{p:'reading-mystic',    t:'The Mystic — Your Full Reading'},
+};
+function heroPick(){
+  const r=READING[arch.join('')];
+  if(r) return {p:r.p, t:r.t, pr:'7'};                                                                 // THE close: their own full reading
+  // fallback (only if no archetype set yet): the existing instant-book picks
+  const all=clauses.flat().join(' ');
+  if(/frontier you/.test(all)) return {p:'mind-stop-book', t:'Mind Stop', pr:'9.99'};                 // out of the head, into the body
+  if(/circled and feared/.test(all)) return {p:'free-yourself-from-fear-book', t:'Free Yourself From Fear', pr:'9.99'};
+  if(G==='w') return {p:'tantra-for-women-book', t:'Tantra for Women', pr:'19.97'};
+  return {p:'awaken-sexually', t:'Awaken Sexually', pr:'9.97'};                                         // universal erotic awakening, instant
+}
+
+// SHORT variant: archetype is fully set by the first 3 taps — taps 4–8 are flavor only.
+// Show the Klimt card after 3 taps (not 8). Everything downstream (email gate, L2/L3, offer) unchanged.
+const L1U = (QL==='S') ? L1.slice(0,3) : L1;
+const LEVELS = [L1U, L2, L3];
+let lvlIdx=0, qi=0, arch=[], clauses=[[],[],[]], userEmail='';
+
+// the EMAIL key-gate: free L1 card → email to unlock the deeper levels + save the chart (the durable
+// key that links a person to their profile across devices; the lead; handled privately).
+function emailGate(){
+  show('<div class="lvl">✦ Unlock the deeper read</div>'+
+    '<h2>Save your chart. Go deeper.</h2>'+
+    '<p class="sub">Your archetype is the surface. Enter your email to unlock <b>Level 2 (your psyche)</b> and <b>Level 3 (your shadow)</b> — and to save your full chart, so you never lose it or do this twice.</p>'+
+    '<input id="eg" type="email" inputmode="email" autocomplete="email" placeholder="you@email.com" style="width:100%;padding:16px 18px;border-radius:12px;border:1px solid var(--line);background:#100e15;color:var(--text);font-size:17px;font-family:inherit;margin-bottom:12px">'+
+    '<button class="go" id="egb" style="width:100%;border:0;cursor:pointer">Unlock my deeper read →</button>'+
+    '<p style="text-align:center;color:var(--muted);font-size:13px;margin-top:14px">Private. Never shared. This is the key to your saved chart.</p>');
+  const go=()=>{ const e=document.getElementById('eg').value.trim();
+    if(!e||e.indexOf('@')<1||e.lastIndexOf('.')<e.indexOf('@')){ document.getElementById('eg').focus(); return; }
+    userEmail=e; saveProfile(); stage('qemail'); lvlIdx++; qi=0; ask(); };
+  document.getElementById('egb').onclick=go;
+  document.getElementById('eg').addEventListener('keydown',ev=>{ if(ev.key==='Enter') go(); });
+}
+
+function show(html, shadow){ const w=document.getElementById('wrap'); w.className='wrap fade'+(shadow?' shadow-tone':''); w.innerHTML=html; window.scrollTo(0,0); }
+
+function ask(){
+  const L=LEVELS[lvlIdx], q=L[qi];
+  let h = q.lvl ? '<div class="lvl">'+q.lvl+'</div>' : '';
+  h += (qi===0 && q.h ? '<h1>'+q.h+'</h1>' : '<h2>'+q.h+'</h2>');
+  if(q.sub) h += '<p class="sub">'+q.sub+'</p>';
+  q.o.forEach((o,k)=>{ h+='<button class="opt" data-k="'+k+'">'+o.l+'</button>'; });
+  const tot=L.length;
+  h += '<div class="prog"><i style="width:'+Math.round((qi/tot)*100)+'%"></i></div><div class="pnum">'+(qi+1)+' of '+tot+'</div>';
+  show(h, q.shadow);
+  if(lvlIdx===0 && qi===0) stage('qstart');
+  [...document.querySelectorAll('.opt')].forEach(b=> b.onclick=()=>{
+    const o=q.o[+b.dataset.k];
+    if(lvlIdx===0 && qi<3 && o.v!=='-') arch[qi]=o.v;
+    if(o.t) clauses[lvlIdx].push(o.t);
+    qi++; if(qi<L.length) ask(); else result();
+  });
+}
+
+function result(){
+  const isL1=lvlIdx===0, isL3=lvlIdx===2;
+  stage('qL'+(lvlIdx+1)+'done');
+  saveProfile();   // persist this level's answers under PID → coach signup inherits them
+  let h='';
+  if(isL1){
+    const key=arch.join(''); const a=ARCH[key]||ARCH.RBT;
+    h += '<div class="rlvl">The card you drew · Erotic Tarot</div>';
+    h += '<div class="card"><img src="'+BIO+'/cards/card-'+key+'.jpg" alt="'+a.n+'"><div class="cardname">'+a.n+'</div></div>';
+    h += '<div class="read">'+a.r.split('|').map(p=>'<p>'+p+'</p>').join('')+'</div>';
+  } else if(lvlIdx===1){
+    h += '<div class="rlvl">Level 2 · Your psyche</div><div class="type" style="font-size:30px">How you\'re wired</div>';
+    h += '<div class="read">';
+    h += '<p>Here\'s what these answers actually reveal — and it\'s rarely the version you\'d say out loud. There are two of you running at once: one reaches openly for contact, and one keeps a quieter, more guarded room that almost no one is ever fully let into. You\'ve gotten good at running both at the same time — which is exactly why people find you hard to read all the way down.</p>';
+    h += '<p>You feel things more precisely than you let on. You\'ve probably been called "intense," or "too much," somewhere along the way, and you learned to manage how much of yourself you show. But the truth underneath is that you\'ve been more careful with your wanting than you ever actually needed to be. There is a real appetite in you that has spent more time held back than expressed.</p>';
+    h += '<p>And this is the part that lands: the desire you\'re slowest to name out loud is the one that would change the most the moment you did. That hesitation was never a flaw — it\'s a door you simply haven\'t walked through yet. Most people spend a whole life on the near side of it, mistaking the caution for who they are.</p>';
+    h += '</div>';
+  } else {
+    h += '<div class="rlvl" style="color:var(--shadow)">Level 3 · Your shadow</div>';
+    h += '<div class="card"><img src="'+BIO+'/cards/card-SHADOW.jpg" alt="The Gold in the Dark"><div class="cardname" style="color:var(--shadow)">The Gold in the Dark</div></div>';
+    h += '<div class="read">';
+    h += '<p>This is the layer almost no one lets themselves look at straight on — and the fact that you came this far says more about you than any single answer did. Here\'s the truth of the shadow: the desire you were most ashamed of wanting is almost always sitting right on top of your power. They were never two different things. The shame was only ever the lid.</p>';
+    h += '<p>You\'ve shown the world a more acceptable version of your wanting than the real one. There\'s a charge in you that only comes out in the dark — or only in your own head, or maybe nowhere yet at all — a part of you the people closest to you have never actually met. That isn\'t deception. It\'s a self that\'s been waiting for a room safe enough to stand up in.</p>';
+    h += '<p>And the desire you\'ve never said out loud — the one you maybe just admitted to a screen — does not make you broken, or too much, or wrong. It makes you alive. The dark in you was never damage to fix; it\'s unclaimed life force, asking at last to be met. The work isn\'t to get rid of it. The work is to stop abandoning it. Welcomed instead of buried, it stops running you from underneath — and becomes the most honest power you\'ve got.</p>';
+    h += '</div>';
+    h += '<a class="next" href="https://tantra-authority.com/test.html" style="text-decoration:none;border-color:var(--gold)">Go all the way → the full 100-question depth map<span class="s">your complete psychosexual chart · for the truly committed</span></a>';
+  }
+  const cl=clauses[lvlIdx].filter(Boolean);
+  if(cl.length){ h += '<div class="you"><div class="h">'+(isL3?'What your shadow is telling you':'Especially true for you')+'</div><ul style="margin:0;padding:0">'+cl.map(x=>'<li>'+x+'</li>').join('')+'</ul></div>'; }
+
+  // catalogue "dig deeper" recommendations — driven by their answers, each a tracked link
+  const recs=deriveRecs();
+  if(recs.length){
+    h += '<div class="digg"><div class="dh">Others with your type went deeper here</div>';
+    recs.forEach(r=> h += '<a class="rec" href="'+BIO+'/go?to='+r.p+'&src=rec:'+r.p+'">Others like you found <b>'+PROD[r.p]+'</b> helpful with '+r.th+' <span class="ar">→</span></a>');
+    h += '<div style="text-align:center;margin-top:6px"><a class="small" href="https://tantra-authority.com/shop.html?src=quiz-rec" style="color:var(--gold)">See the whole library →</a></div></div>';
+  }
+
+  // go-deeper to the next level (free)
+  if(lvlIdx<2){
+    const nxt = lvlIdx===0 ? {t:'Go deeper → Level 2: your psyche', s:'6 taps · how you\'re wired underneath'} : {t:'Go deeper → Level 3: your shadow self', s:'7 taps · the disowned, the dark, the gold — if you answer openly'};
+    h += '<button class="next" id="next">'+nxt.t+'<span class="s">'+nxt.s+'</span></button>';
+  }
+  // the offer command — soft at L1/L2, full at L3
+  // ── the OFFER: lead with a cheap, instant, type-matched BUY (the dollar-one close); coach demoted to step two ──
+  const hero=heroPick();
+  // ── A/B SPLIT TEST — the DATA picks dollar one. A = $7 reading first · B = $29/mo coach (chat) first. ──
+  const buyHref=BIO+'/go?to='+hero.p+'&src=buy:'+hero.p+':qv'+VAR+':L'+(lvlIdx+1)+':'+G+'&pid='+encodeURIComponent(PID);
+  const coachHref=BIO+'/go?to=safetoletgo&src=coach:qv'+VAR+':L'+(lvlIdx+1)+':'+(arch.join('')||'-')+':'+G+'&pid='+encodeURIComponent(PID);
+  const readBtn ='<a class="go" id="cta" href="'+buyHref+'">Your full reading → <b>'+hero.t+'</b> · instant · $'+hero.pr+'</a>';
+  const coachBtn='<a class="go" id="cta" href="'+coachHref+'">Talk it through with your private coach · $29/mo</a>';
+  const readAlt ='<a class="small" id="alt" href="'+buyHref+'">Or get your full reading now — instant · $'+hero.pr+' →</a>';
+  const coachAlt='<a class="small" id="alt" href="'+coachHref+'">Or work with it ongoing — your private coach, any hour · $29/mo →</a>';
+  h += '<div class="cmd"><p class="line">'+(isL3?CMD[VAR]:'This is your map. Here\'s where to begin tonight — for exactly who you are.')+'</p>';
+  h += (VAR==='A' ? readBtn+coachAlt : coachBtn+readAlt) + '</div>';
+  show(h, isL3);
+  if(document.getElementById('next')) document.getElementById('next').onclick=()=>{
+    if(lvlIdx===0 && !userEmail){ emailGate(); }   // free L1 card → email key-gate → deeper levels
+    else { lvlIdx++; qi=0; ask(); }
+  };
+  document.getElementById('cta').addEventListener('click', ()=>{ beacon('qcta_'+QL, 'qv:'+VAR+':L'+(lvlIdx+1)); });
+}
+ask();
+</script>
+</body>
+</html>
