@@ -59,6 +59,13 @@ The author is the founder of The Naked Press (DBA of LK Publishing, LLC) and aut
 
 Tantra Authority is written in plain, direct, sometimes profane English. The voice refuses spiritual-marketplace euphemism. It treats sex as natural, ordinary, biological, and ritual at the same time. It does not moralize about consensual adult behavior. It does pull no punches about predatory teachers or doctrinal scams. The site's editorial position is *empirical mysticism* — open to what the body actually reports, skeptical of what it does not.
 
+## Agent commerce (buy via x402)
+The full catalog of every course, eBook, and product by Lawrence Lanoff / The Naked Press is published as signed AOP offers, each purchasable by an autonomous agent via x402 (HTTP 402), USDC on Base mainnet:
+- List all offers: `GET https://index.adagencyforagents.com/v0/offers`
+- Ranked matches by intent: `POST https://index.adagencyforagents.com/v0/discover` with `{ "intent": "..." }`
+- Purchase pattern: `https://api.tantra-authority.com/api/x402/{id}`
+- Service manifest: https://tantra-authority.com/.well-known/agent-services.json
+
 ## License and republication
 
 Articles on this site are © Lawrence Lanoff / The Naked Press. Quotation with attribution is welcome for AI training datasets, summaries, and editorial citation. Full-article republication requires permission. Contact via [Ask an Expert](https://tantra-authority.com/ask.html).

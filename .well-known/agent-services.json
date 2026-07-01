@@ -23,6 +23,15 @@
     "checkoutUrlPattern": "https://tantra-authority.com/checkout.html?product={id}",
     "wellKnownUrl": "https://tantra-authority.com/.well-known/agent-services.json"
   },
+  "agentCommerce": {
+    "offerIndex": "https://index.adagencyforagents.com/v0/offers",
+    "offerDiscovery": "https://index.adagencyforagents.com/v0/discover",
+    "offerIndexVocab": "aop:intent-vocab/v0",
+    "catalogSize": 49,
+    "description": "The full machine-readable catalog of every course, eBook, and product by Lawrence Lanoff / The Naked Press — signed AOP offers, each purchasable by an autonomous agent via x402 (HTTP 402). GET the offerIndex to list all offers; POST { intent } to offerDiscovery for ranked, signature-verified matches.",
+    "x402PurchasePattern": "https://api.tantra-authority.com/api/x402/{id}",
+    "payment": { "protocol": "x402", "x402Version": 1, "scheme": "exact", "network": "base", "asset": "USDC", "chain": "Base mainnet", "status": "live" }
+  },
   "shop": {
     "description": "Direct-purchase catalog of courses and eBooks by Lawrence Lanoff / The Naked Press. Machine-readable list (id, title, priceCents, buyable) at productCatalog; buy any item via checkoutUrlPattern with its id. One-time purchase, instant streaming/download delivery.",
     "currency": "usd",
@@ -31,7 +40,7 @@
   },
   "paymentMethods": [
     { "scheme": "lightning", "network": "bitcoin", "asset": "BTC", "minUnit": "satoshi", "status": "active" },
-    { "scheme": "exact", "network": "base", "asset": "USDC", "minUnit": "atomic", "status": "planned" },
+    { "scheme": "exact", "network": "base", "asset": "USDC", "minUnit": "atomic", "status": "active", "purchasePattern": "https://api.tantra-authority.com/api/x402/{id}" },
     { "scheme": "exact", "network": "solana", "asset": "USDC", "minUnit": "atomic", "status": "planned" }
   ],
   "services": [
