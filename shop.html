@@ -120,6 +120,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   .badge { display:inline-block; font-family:'Inter',sans-serif; font-size:9px; font-weight:700; letter-spacing:1px;
     text-transform:uppercase; background:var(--gold); color:#fff; padding:3px 7px; border-radius:4px; margin-bottom:8px; }
 
+  .card .c-quote { font-size:12.5px; font-style:italic; color:var(--text-muted); line-height:1.45; margin:0 0 10px;
+    border-left:2px solid var(--gold); padding-left:9px; }
+
+  /* Reader quotes — REAL testimonials from the praise pages of A Course in Freedom (2007). Verbatim; never invented. */
+  .quotes-wrap { margin:34px 0 6px; }
+  .quotes-wrap .kicker { font-family:'Inter',sans-serif; font-size:11px; font-weight:700; letter-spacing:3px;
+    text-transform:uppercase; color:var(--gold); margin:0 0 14px; }
+  .quotes-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+  @media (max-width:860px){ .quotes-grid { grid-template-columns:1fr; } }
+  .quote-card { background:var(--bg-card); border:1px solid var(--border); border-radius:12px; padding:18px 20px; }
+  .quote-card p { font-style:italic; font-size:15px; line-height:1.55; margin:0 0 10px; }
+  .quote-card .who { font-family:'Inter',sans-serif; font-size:12.5px; color:var(--text-muted); }
+
   .more-line { text-align:center; color:var(--text-muted); font-family:'Inter',sans-serif; font-size:14px;
     margin:34px 0 10px; }
   .recover { text-align:center; font-family:'Inter',sans-serif; font-size:13px; opacity:.8; margin:6px 0 0; }
@@ -143,6 +156,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="featured-wrap">
     <p class="kicker">★ Start here</p>
     <div class="featured-grid" id="featured"></div>
+  </div>
+
+  <!-- REAL reader testimonials — verbatim from the praise pages of A Course in Freedom (2007). Do not invent or paraphrase. -->
+  <div class="quotes-wrap">
+    <p class="kicker">What readers say</p>
+    <div class="quotes-grid">
+      <div class="quote-card">
+        <p>“Lawrence is red-hot, and so are his radical ideas. This book and his teachings have literally changed my life.”</p>
+        <div class="who">— Kelly Russ, massage therapist &amp; yoga instructor · <i>A Course in Freedom</i></div>
+      </div>
+      <div class="quote-card">
+        <p>“Everything man has ever built has just been un-built within these pages.”</p>
+        <div class="who">— Kelso Coleman · <i>A Course in Freedom</i></div>
+      </div>
+      <div class="quote-card">
+        <p>“Lawrence’s workshops are amazing. He has a way of extending truth that is incredibly real and honest.”</p>
+        <div class="who">— Rita T. Henry, Inner Prosperity Inc</div>
+      </div>
+    </div>
   </div>
 
   <div class="shopbar">
@@ -192,8 +224,12 @@ const PRODUCTS = [
    d:"Sexual mastery for men without the mythology — the core formula: mindset, technique, lasting longer, the language of better sex.", fmt:"9 video volumes + audio + written guides."},
   {id:"chakra-healing", t:"Chakra Healing", a:"all", type:"course", p:197, img:"cover-chakra-healing.png", eye:"A deep dive · for anyone", feat:true,
    d:"28 guided chakra meditations — clear what's stuck, come home to the body, feel safe enough to open. No dogma. Press play.", fmt:"28 guided audio sessions — streaming + download."},
+  {id:"infinite-mind", t:"Infinite Mind", a:"all", type:"course", p:197, img:"cover-infinite-mind.png", eye:"Free your mind · for anyone", feat:true,
+   d:"The course Lawrence almost forgot he made. Your mind is a story-making machine — see how it builds your fears, your self, your shame, and you can build something better. Eleven sessions to free your head and come home to your body.", fmt:"11 video sessions — streaming + download."},
   {id:"hard-alone-soft-with-her", t:"Hard Alone, Soft With Her", a:"men", type:"book", p:6.99, img:"cover-hard-alone-soft-with-her.jpg", eye:"eBook · the $7 way in", feat:true,
    d:"Hard alone but soft with her? Your body already proved it isn't your body. The real reason — and how to stay hard, without pills.", fmt:"eBook (ePub + PDF) — instant download."},
+  {id:"complete-ebook-library", t:"The Complete eBook Library", a:"all", type:"book", p:97, img:"cover-complete-ebook-library.jpg", eye:"Best value · all 13 eBooks", feat:true,
+   d:"Every Lawrence Lanoff eBook in one purchase — all 13 titles, $175 bought separately. One payment, one access page, a lifetime link to each book.", fmt:"13 eBooks (PDF + ePub) — instant access to all."},
 
   // men
   {id:"get-out-of-your-head", t:"Get Out of Your Head", a:"men", type:"course", p:197, img:"cover-get-out-of-your-head.jpg", eye:"The full course · for men",
@@ -219,7 +255,8 @@ const PRODUCTS = [
 
   // books (all)
   {id:"course-in-freedom", t:"A Course in Freedom", a:"all", type:"book", p:19.97, img:"cover-course-in-freedom.jpg", eye:"eBook",
-   d:"The foundational book underneath all of it — how inherited mythology runs the mind, and how to take your power back.", fmt:"eBook — PDF + ePub.", amz:"https://amzn.to/4e2CDCl"},
+   d:"The foundational book underneath all of it — how inherited mythology runs the mind, and how to take your power back.", fmt:"eBook — PDF + ePub.", amz:"https://amzn.to/4e2CDCl",
+   q:"“Everything man has ever built has just been un-built within these pages.” — Kelso Coleman"},
   {id:"tantra-for-women-book", t:"Tantra for Women", a:"women", type:"book", p:19.97, img:"cover-tantra-for-women-book.jpg", eye:"eBook",
    d:"Get out of your head and into your body — the warm, plain-spoken beginner's guide to deeper pleasure and present sex.", fmt:"eBook — PDF + ePub.", amz:"https://www.amazon.com/dp/B0H567LK3F"},
   {id:"chakra-healing-book", t:"Chakra Healing (Book)", a:"all", type:"book", p:19.97, img:"cover-chakra-healing-book.jpg", eye:"eBook",
@@ -286,6 +323,7 @@ function cardHTML(p){
       <div class="c-eyebrow">${p.eye||""}</div>
       <h3>${p.t}</h3>
       <p class="c-desc">${p.d}</p>
+      ${p.q ? `<p class="c-quote">${p.q}</p>` : ""}
       <p class="c-fmt">${p.fmt}</p>
       <div class="c-foot">
         <div class="price">${price(p.p)}<small>lifetime access</small></div>

@@ -86,10 +86,17 @@
         <input type="text" id="code" placeholder="" autocapitalize="characters" autocomplete="off" style="width:100%; background:var(--bg); border:1px solid var(--border); border-radius:9px; color:var(--text); font:inherit; font-size:15px; padding:12px 13px; outline:none; text-transform:uppercase;">
         <div id="code-msg" style="font-family:'Inter',sans-serif; font-size:12.5px; min-height:16px; margin-top:5px;"></div>
       </div>
+      <div id="bumpwrap" style="display:none; margin-top:16px; border:1px dashed var(--gold); border-radius:9px; padding:12px 13px;">
+        <label style="display:flex; gap:9px; align-items:flex-start; margin:0; cursor:pointer; font-family:'Inter',sans-serif; font-size:13.5px; line-height:1.5; color:var(--text);">
+          <input type="checkbox" id="bump" style="margin-top:3px; accent-color:var(--gold);">
+          <span><b>Add the companion meditation — $9.97.</b> <i>Entering the Heart of God</i>, one deep guided audio session by Lawrence. Delivered instantly with your order.</span>
+        </label>
+      </div>
       <label style="margin-top:14px">Card</label>
       <div id="card-element"></div>
       <button id="go" disabled>Loading…</button>
       <div class="guarantee">🛡️ <b>30-day money-back guarantee.</b> Not happy? Email us — we refund you. No questions.</div>
+      <div class="guarantee" style="font-style:italic;">“Lawrence is red-hot, and so are his radical ideas. This book and his teachings have literally changed my life.”<br><span style="font-style:normal;">— Kelly Russ, from the praise pages of <i>A Course in Freedom</i></span></div>
     </div>
 
     <div class="msg" id="msg"></div>
@@ -119,6 +126,25 @@ codeToggle && codeToggle.addEventListener("click", () => {
 });
 function say(t, err) { msg.textContent = t; msg.className = "msg" + (err ? " err" : ""); }
 function money(cents) { return "$" + (cents / 100).toFixed(2); }
+
+/* ── ORDER BUMP — 50/50 test. Arm A sees the companion-meditation checkbox, arm B doesn't.
+   Impressions + outcomes beacon to the SAME tracker the shop tests use; the number decides.
+   Server re-derives the bump price from its own catalog — the client never sets an amount. */
+const BUMP_ID = "heart-of-god", BUMP_CENTS = 997;
+const bumpArm = Math.random() < 0.5 ? "A" : "B";
+let bumpShown = false, baseCents = 0;
+const beacon = (to, src) => { try { navigator.sendBeacon && navigator.sendBeacon("https://lanoff-links.pages.dev/go?to=" + to + "&src=" + src); } catch (e) {} };
+function payLabel() {
+  const b = $("bump");
+  go.textContent = "Pay " + money(baseCents + ((bumpShown && b && b.checked) ? BUMP_CENTS : 0));
+}
+
+/* Post-purchase upsell: ONE offer, shown only after a BOOK buy — the flagship at the
+   server-side UPGRADE price ($497 instead of $997). Everything else redirects straight in. */
+const BOOK_IDS = ["course-in-freedom","tantra-for-women-book","tantra-for-women-book-b","chakra-healing-book",
+  "hard-alone-soft-with-her","hard-alone-soft-with-her-b","mind-stop-book","free-yourself-from-fear-book",
+  "prophets-training-manual","tantra-for-men-book","reignite-your-desire-book","infinite-mind-book",
+  "symbolic-mind-book","true-power-of-myth-book","open-relationship-blueprint-book"];
 
 let product = null, clover = null, cardMounted = false;
 
@@ -151,8 +177,29 @@ let product = null, clover = null, cardMounted = false;
     card.mount("#card-element");
     cardMounted = true;
     form.style.display = "block";
-    go.textContent = "Pay " + money(product.priceCents);
+    baseCents = product.priceCents;
+    payLabel();
     go.disabled = false;
+
+    // Order bump: only where it makes sense (never on itself, a session, or a bundle that already includes it).
+    const bumpEligible = product.id !== BUMP_ID && !(product.items || []).includes(BUMP_ID) && product.priceCents > 0;
+    if (bumpEligible) {
+      beacon("bumpimp", "bump:" + bumpArm);          // eligible checkout view, both arms — the denominator
+      if (bumpArm === "A") {
+        bumpShown = true;
+        $("bumpwrap").style.display = "block";
+        $("bump").addEventListener("change", payLabel);
+      }
+    }
+
+    // Prefill a code carried in the URL (used by the post-purchase upsell link).
+    const urlCode = (qs.get("code") || "").trim();
+    if (urlCode && codeEl) {
+      $("codewrap").style.display = "block";
+      codeToggle.textContent = "Hide code";
+      codeEl.value = urlCode;
+      codeEl.dispatchEvent(new Event("input"));
+    }
   } catch (e) {
     say("Could not load checkout. Refresh to try again.", true);
   }
@@ -164,18 +211,18 @@ codeEl && codeEl.addEventListener("input", () => {
   clearTimeout(codeTimer);
   const code = codeEl.value.trim();
   if (!product) return;
-  if (!code) { codeMsg.textContent = ""; codeMsg.style.color = ""; $("prod-price").textContent = money(product.priceCents); go.textContent = "Pay " + money(product.priceCents); return; }
+  if (!code) { codeMsg.textContent = ""; codeMsg.style.color = ""; $("prod-price").textContent = money(product.priceCents); baseCents = product.priceCents; payLabel(); return; }
   codeTimer = setTimeout(async () => {
     try {
       const r = await fetch(API + "/api/quote?product=" + encodeURIComponent(product.id) + "&code=" + encodeURIComponent(code));
       const d = await r.json();
       if (d.ok && d.applied) {
         $("prod-price").textContent = money(d.priceCents);
-        go.textContent = "Pay " + money(d.priceCents);
+        baseCents = d.priceCents; payLabel();
         codeMsg.textContent = "✓ Code applied — " + money(d.priceCents); codeMsg.style.color = "var(--gold)";
       } else {
         $("prod-price").textContent = money(product.priceCents);
-        go.textContent = "Pay " + money(product.priceCents);
+        baseCents = product.priceCents; payLabel();
         codeMsg.textContent = "That code isn’t valid."; codeMsg.style.color = "var(--accent)";
       }
     } catch { /* leave price as-is */ }
@@ -192,16 +239,39 @@ go.addEventListener("click", async () => {
     const res = await clover.createToken();
     if (res.errors) { say(Object.values(res.errors)[0] || "Check your card details.", true); go.disabled = false; return; }
 
+    const bumpTaken = !!(bumpShown && $("bump") && $("bump").checked);
     const r = await fetch(API + "/api/buy", {
       method: "POST", headers: { "content-type": "application/json" },
-      body: JSON.stringify({ productId: product.id, email, token: res.token, code: codeEl ? codeEl.value.trim() : "" }),
+      body: JSON.stringify({ productId: product.id, email, token: res.token, code: codeEl ? codeEl.value.trim() : "",
+                             bump: bumpTaken, abBump: bumpArm }),
     });
     const data = await r.json();
     if (r.ok && data.ok && data.accessUrl) {
-      // Straight into the course page. Brief confirmation, then redirect.
-      form.style.display = "none";
-      say("You’re in — opening your course…");
-      window.location = data.accessUrl;
+      beacon("bumpbuy", "bump:" + bumpArm + ":" + (bumpTaken ? "1" : "0"));   // outcome per arm — the numerator
+      if (BOOK_IDS.indexOf(product.id) !== -1 && product.id !== "energy-sex") {
+        // BOOK buy → success screen with the ONE post-purchase upsell (flagship at the UPGRADE price).
+        form.style.display = "none";
+        say("");
+        beacon("upsellimp", "upsell:energy-sex");
+        done.style.display = "block";
+        done.innerHTML =
+          '<p style="font-family:\'Inter\',sans-serif;font-size:15px;line-height:1.55;">✓ You’re in. Your book is ready — the link is also in your email.' +
+          (data.bump ? "<br>Your companion meditation is in your email too." : "") + '</p>' +
+          '<a href="' + data.accessUrl + '" style="display:inline-block;background:var(--gold);color:#fff;text-decoration:none;border-radius:10px;padding:13px 22px;font-family:\'Inter\',sans-serif;font-size:15px;font-weight:600;">Open your book →</a>' +
+          '<div style="margin-top:22px;padding:16px;border:1px solid var(--border);border-radius:12px;text-align:left;font-family:\'Inter\',sans-serif;">' +
+            '<div style="font-size:10.5px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:7px;">For book buyers</div>' +
+            '<div style="font-size:15px;font-weight:600;margin-bottom:5px;">Energy Sex — The Complete Course</div>' +
+            '<div style="font-size:13.5px;color:var(--text-muted);line-height:1.5;margin-bottom:11px;">The flagship. Arousal, devotion and exchange moving through attention, breath and presence — contact optional. The full course, start to finish. Because you just bought a book: <b style="color:var(--text);">$497 instead of $997</b>.</div>' +
+            '<a id="upsell-link" href="checkout.html?product=energy-sex&code=UPGRADE" style="display:inline-block;background:var(--accent);color:#fff;text-decoration:none;border-radius:8px;padding:11px 18px;font-size:13px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;">Take the half-off flagship →</a>' +
+          '</div>';
+        const ul = document.getElementById("upsell-link");
+        if (ul) ul.addEventListener("click", () => beacon("upsellclk", "upsell:energy-sex"));
+      } else {
+        // Straight into the course page. Brief confirmation, then redirect.
+        form.style.display = "none";
+        say("You’re in — opening your course…");
+        window.location = data.accessUrl;
+      }
     } else if (r.status === 402) {
       say(data.message || "That card was declined — try another.", true); go.disabled = false;
     } else {
