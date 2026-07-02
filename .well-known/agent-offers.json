@@ -24,6 +24,14 @@
       "unit": "cent",
       "processor": "clover",
       "status": "live"
+    },
+    {
+      "scheme": "exact",
+      "network": "base",
+      "asset": "USDC",
+      "unit": "atomic",
+      "processor": "x402",
+      "status": "live"
     }
   ],
   "offers": [
@@ -135,7 +143,3196 @@
         "payloadDigestSha256": "ffa0d8a914804c06322b90bbae3fbb6dbadd0ab94aaf9ba98b196d54689579bf",
         "note": "Detached ed25519 over the JCS-canonicalized offer (minus signature). Verify via the publisher's did:web /.well-known/did.json."
       }
+    },
+    {
+      "offerId": "urn:aop:tantra-authority.com:passive-income-tracker",
+      "capability": {
+        "name": "Passive Income Tracker (PRO)",
+        "description": "Passive Income Tracker (PRO) — a digital tool kit by Lawrence Lanoff (Tantra Authority / The Naked Press). $9.00. Instant digital delivery, recoverable access link, 30-day money-back guarantee."
+      },
+      "intentTags": [
+        "intent:commerce.purchase.digital-good",
+        "intent:tools.agent.purchase",
+        "intent:business.automation"
+      ],
+      "price": [
+        {
+          "scheme": "exact",
+          "network": "fiat",
+          "asset": "USD",
+          "amount": "900",
+          "unit": "cent"
+        },
+        {
+          "scheme": "exact",
+          "network": "base",
+          "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+          "amount": "9000000",
+          "unit": "atomic"
+        }
+      ],
+      "sla": {
+        "refundPolicy": "30-day, no-questions money-back guarantee.",
+        "escrow": "none",
+        "fulfillment": "instant digital delivery by email + recoverable access link"
+      },
+      "trust": {
+        "agentId": "did:web:tantra-authority.com"
+      },
+      "terms": {
+        "usageRights": "Personal digital license. Adults only (18+). Educational, not medical or therapeutic advice.",
+        "redistribution": "no",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=passive-income-tracker"
+      },
+      "validUntil": "2026-12-31T00:00:00Z",
+      "payment": {
+        "type": "dual-rail",
+        "x402Endpoint": "https://api.tantra-authority.com/api/x402/passive-income-tracker",
+        "x402Version": 1,
+        "schemes": [
+          "exact"
+        ],
+        "payTo": "0xa8c3cd00daeded3e9440be2dc812d61bf14a39c6",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=passive-income-tracker",
+        "ap2MandateRequired": false,
+        "note": "Agent-native: GET the x402Endpoint → HTTP 402 with USDC-on-Base payment requirements → pay → retry with X-Payment: base64({\"network\":\"base\",\"txHash\":\"0x…\",\"email\":\"optional\"}). Settlement verified ON-CHAIN, replay-guarded; the access link returns. Humans use the card checkout."
+      },
+      "signature": {
+        "alg": "ed25519",
+        "keyId": "did:web:tantra-authority.com#key-1",
+        "canonicalization": "jcs",
+        "value": "0pn4UKxaTVtZYzsP9vXX84CJw1wNwCRllYLyCaC4EVT5NMXz6BfZy-TC28uwkVc4abmfNhzu40DAFgTSHifNCA",
+        "payloadDigestSha256": "2fa24c6a315dc53ee4921d71ab43402f3117e1e94f90a2cef208acb4db6e63b6",
+        "note": "Detached ed25519 over the JCS-canonicalized offer (minus signature). Verify via the publisher's did:web /.well-known/did.json."
+      }
+    },
+    {
+      "offerId": "urn:aop:tantra-authority.com:session-30",
+      "capability": {
+        "name": "First Session (30-min)",
+        "description": "First Session (30-min) — a live session / workshop by Lawrence Lanoff (Tantra Authority / The Naked Press). $250.00. Instant digital delivery, recoverable access link, 30-day money-back guarantee."
+      },
+      "intentTags": [
+        "intent:commerce.purchase.digital-good",
+        "intent:service.coaching.book",
+        "intent:learn.tantra"
+      ],
+      "price": [
+        {
+          "scheme": "exact",
+          "network": "fiat",
+          "asset": "USD",
+          "amount": "25000",
+          "unit": "cent"
+        }
+      ],
+      "sla": {
+        "refundPolicy": "30-day, no-questions money-back guarantee.",
+        "escrow": "none",
+        "fulfillment": "instant digital delivery by email + recoverable access link"
+      },
+      "trust": {
+        "agentId": "did:web:tantra-authority.com"
+      },
+      "terms": {
+        "usageRights": "Personal digital license. Adults only (18+). Educational, not medical or therapeutic advice.",
+        "redistribution": "no",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=session-30"
+      },
+      "validUntil": "2026-12-31T00:00:00Z",
+      "payment": {
+        "type": "hosted-checkout",
+        "processor": "clover",
+        "humanCheckoutUrl": "https://tantra-authority.com/book-session.html",
+        "ap2MandateRequired": false,
+        "note": "Human booking required — this item is a live session, not agent-payable. An agent may hand its owner the humanCheckoutUrl."
+      },
+      "signature": {
+        "alg": "ed25519",
+        "keyId": "did:web:tantra-authority.com#key-1",
+        "canonicalization": "jcs",
+        "value": "XOf-Ipp05ZAnQqIn6CHxcufkg62yuaFAH-UXonH-X1We0YwmKDf-7cUCdO_zzigXfG_MlX-4RD5o9-xmwxnDDg",
+        "payloadDigestSha256": "b1ab06e2d899b2eda39a8c85c8dee163e51790e06c0af38721274416d10f98df",
+        "note": "Detached ed25519 over the JCS-canonicalized offer (minus signature). Verify via the publisher's did:web /.well-known/did.json."
+      }
+    },
+    {
+      "offerId": "urn:aop:tantra-authority.com:tantra-x",
+      "capability": {
+        "name": "Tantra X",
+        "description": "Tantra X — a self-paced course by Lawrence Lanoff (Tantra Authority / The Naked Press). $197.00. Instant digital delivery, recoverable access link, 30-day money-back guarantee.",
+        "image": "https://tantra-authority.com/assets/cover-tantra-x.png"
+      },
+      "intentTags": [
+        "intent:commerce.purchase.digital-good",
+        "intent:learn.course.purchase",
+        "intent:learn.tantra"
+      ],
+      "price": [
+        {
+          "scheme": "exact",
+          "network": "fiat",
+          "asset": "USD",
+          "amount": "19700",
+          "unit": "cent"
+        },
+        {
+          "scheme": "exact",
+          "network": "base",
+          "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+          "amount": "197000000",
+          "unit": "atomic"
+        }
+      ],
+      "sla": {
+        "refundPolicy": "30-day, no-questions money-back guarantee.",
+        "escrow": "none",
+        "fulfillment": "instant digital delivery by email + recoverable access link"
+      },
+      "trust": {
+        "agentId": "did:web:tantra-authority.com"
+      },
+      "terms": {
+        "usageRights": "Personal digital license. Adults only (18+). Educational, not medical or therapeutic advice.",
+        "redistribution": "no",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=tantra-x"
+      },
+      "validUntil": "2026-12-31T00:00:00Z",
+      "payment": {
+        "type": "dual-rail",
+        "x402Endpoint": "https://api.tantra-authority.com/api/x402/tantra-x",
+        "x402Version": 1,
+        "schemes": [
+          "exact"
+        ],
+        "payTo": "0xa8c3cd00daeded3e9440be2dc812d61bf14a39c6",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=tantra-x",
+        "ap2MandateRequired": false,
+        "note": "Agent-native: GET the x402Endpoint → HTTP 402 with USDC-on-Base payment requirements → pay → retry with X-Payment: base64({\"network\":\"base\",\"txHash\":\"0x…\",\"email\":\"optional\"}). Settlement verified ON-CHAIN, replay-guarded; the access link returns. Humans use the card checkout."
+      },
+      "signature": {
+        "alg": "ed25519",
+        "keyId": "did:web:tantra-authority.com#key-1",
+        "canonicalization": "jcs",
+        "value": "WcG4zjXRJODECzx8gDG0rRl8QA1ITVqT7z6Q_Kq0W9jDzBGIhP4leZ31hkoEI44cn5nj5Bl-fppMw9oJJsb9CQ",
+        "payloadDigestSha256": "dab67bb17ea48a7d54eacb4627a04b48abf93559ffb860836a9ab004a25eab6f",
+        "note": "Detached ed25519 over the JCS-canonicalized offer (minus signature). Verify via the publisher's did:web /.well-known/did.json."
+      }
+    },
+    {
+      "offerId": "urn:aop:tantra-authority.com:tantra-x-university",
+      "capability": {
+        "name": "Tantra X University",
+        "description": "Tantra X University — a self-paced course by Lawrence Lanoff (Tantra Authority / The Naked Press). $997.00. Instant digital delivery, recoverable access link, 30-day money-back guarantee.",
+        "image": "https://tantra-authority.com/assets/cover-tantra-x-university.png"
+      },
+      "intentTags": [
+        "intent:commerce.purchase.digital-good",
+        "intent:learn.course.purchase",
+        "intent:learn.tantra"
+      ],
+      "price": [
+        {
+          "scheme": "exact",
+          "network": "fiat",
+          "asset": "USD",
+          "amount": "99700",
+          "unit": "cent"
+        },
+        {
+          "scheme": "exact",
+          "network": "base",
+          "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+          "amount": "997000000",
+          "unit": "atomic"
+        }
+      ],
+      "sla": {
+        "refundPolicy": "30-day, no-questions money-back guarantee.",
+        "escrow": "none",
+        "fulfillment": "instant digital delivery by email + recoverable access link"
+      },
+      "trust": {
+        "agentId": "did:web:tantra-authority.com"
+      },
+      "terms": {
+        "usageRights": "Personal digital license. Adults only (18+). Educational, not medical or therapeutic advice.",
+        "redistribution": "no",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=tantra-x-university"
+      },
+      "validUntil": "2026-12-31T00:00:00Z",
+      "payment": {
+        "type": "dual-rail",
+        "x402Endpoint": "https://api.tantra-authority.com/api/x402/tantra-x-university",
+        "x402Version": 1,
+        "schemes": [
+          "exact"
+        ],
+        "payTo": "0xa8c3cd00daeded3e9440be2dc812d61bf14a39c6",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=tantra-x-university",
+        "ap2MandateRequired": false,
+        "note": "Agent-native: GET the x402Endpoint → HTTP 402 with USDC-on-Base payment requirements → pay → retry with X-Payment: base64({\"network\":\"base\",\"txHash\":\"0x…\",\"email\":\"optional\"}). Settlement verified ON-CHAIN, replay-guarded; the access link returns. Humans use the card checkout."
+      },
+      "signature": {
+        "alg": "ed25519",
+        "keyId": "did:web:tantra-authority.com#key-1",
+        "canonicalization": "jcs",
+        "value": "RqA_HFn92cllzuhrHi0A8tK_cCYT2fL-XyoZd-0PMS8YW3lACZ0-Q0QBMLHCoc5PRJpGQjJyHx_hQduAoGkyDg",
+        "payloadDigestSha256": "366423052286f66f8455ef5d21527da83102b489e547804f4ac5ec78be6108d2",
+        "note": "Detached ed25519 over the JCS-canonicalized offer (minus signature). Verify via the publisher's did:web /.well-known/did.json."
+      }
+    },
+    {
+      "offerId": "urn:aop:tantra-authority.com:sexual-charisma",
+      "capability": {
+        "name": "Sexual Charisma",
+        "description": "Sexual Charisma — a self-paced course by Lawrence Lanoff (Tantra Authority / The Naked Press). $197.00. Instant digital delivery, recoverable access link, 30-day money-back guarantee.",
+        "image": "https://tantra-authority.com/assets/cover-sexual-charisma.png"
+      },
+      "intentTags": [
+        "intent:commerce.purchase.digital-good",
+        "intent:learn.course.purchase",
+        "intent:learn.tantra"
+      ],
+      "price": [
+        {
+          "scheme": "exact",
+          "network": "fiat",
+          "asset": "USD",
+          "amount": "19700",
+          "unit": "cent"
+        },
+        {
+          "scheme": "exact",
+          "network": "base",
+          "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+          "amount": "197000000",
+          "unit": "atomic"
+        }
+      ],
+      "sla": {
+        "refundPolicy": "30-day, no-questions money-back guarantee.",
+        "escrow": "none",
+        "fulfillment": "instant digital delivery by email + recoverable access link"
+      },
+      "trust": {
+        "agentId": "did:web:tantra-authority.com"
+      },
+      "terms": {
+        "usageRights": "Personal digital license. Adults only (18+). Educational, not medical or therapeutic advice.",
+        "redistribution": "no",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=sexual-charisma"
+      },
+      "validUntil": "2026-12-31T00:00:00Z",
+      "payment": {
+        "type": "dual-rail",
+        "x402Endpoint": "https://api.tantra-authority.com/api/x402/sexual-charisma",
+        "x402Version": 1,
+        "schemes": [
+          "exact"
+        ],
+        "payTo": "0xa8c3cd00daeded3e9440be2dc812d61bf14a39c6",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=sexual-charisma",
+        "ap2MandateRequired": false,
+        "note": "Agent-native: GET the x402Endpoint → HTTP 402 with USDC-on-Base payment requirements → pay → retry with X-Payment: base64({\"network\":\"base\",\"txHash\":\"0x…\",\"email\":\"optional\"}). Settlement verified ON-CHAIN, replay-guarded; the access link returns. Humans use the card checkout."
+      },
+      "signature": {
+        "alg": "ed25519",
+        "keyId": "did:web:tantra-authority.com#key-1",
+        "canonicalization": "jcs",
+        "value": "UB_6sv_MArGziSBHxQXUKGanXiaqes8LRe2TPnzZfGzKUuwmL_Rok8RFpnyRJlHDZo3SpCmVDnZFjApL2eCyAA",
+        "payloadDigestSha256": "1675cab4c6f4f3e690b3b077df17d509e6da9a1786c265ba05e4b85a817bb377",
+        "note": "Detached ed25519 over the JCS-canonicalized offer (minus signature). Verify via the publisher's did:web /.well-known/did.json."
+      }
+    },
+    {
+      "offerId": "urn:aop:tantra-authority.com:tantra-xo",
+      "capability": {
+        "name": "Tantra XO",
+        "description": "Tantra XO — a self-paced course by Lawrence Lanoff (Tantra Authority / The Naked Press). $197.00. Instant digital delivery, recoverable access link, 30-day money-back guarantee.",
+        "image": "https://tantra-authority.com/assets/cover-tantra-xo.png"
+      },
+      "intentTags": [
+        "intent:commerce.purchase.digital-good",
+        "intent:learn.course.purchase",
+        "intent:learn.tantra"
+      ],
+      "price": [
+        {
+          "scheme": "exact",
+          "network": "fiat",
+          "asset": "USD",
+          "amount": "19700",
+          "unit": "cent"
+        },
+        {
+          "scheme": "exact",
+          "network": "base",
+          "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+          "amount": "197000000",
+          "unit": "atomic"
+        }
+      ],
+      "sla": {
+        "refundPolicy": "30-day, no-questions money-back guarantee.",
+        "escrow": "none",
+        "fulfillment": "instant digital delivery by email + recoverable access link"
+      },
+      "trust": {
+        "agentId": "did:web:tantra-authority.com"
+      },
+      "terms": {
+        "usageRights": "Personal digital license. Adults only (18+). Educational, not medical or therapeutic advice.",
+        "redistribution": "no",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=tantra-xo"
+      },
+      "validUntil": "2026-12-31T00:00:00Z",
+      "payment": {
+        "type": "dual-rail",
+        "x402Endpoint": "https://api.tantra-authority.com/api/x402/tantra-xo",
+        "x402Version": 1,
+        "schemes": [
+          "exact"
+        ],
+        "payTo": "0xa8c3cd00daeded3e9440be2dc812d61bf14a39c6",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=tantra-xo",
+        "ap2MandateRequired": false,
+        "note": "Agent-native: GET the x402Endpoint → HTTP 402 with USDC-on-Base payment requirements → pay → retry with X-Payment: base64({\"network\":\"base\",\"txHash\":\"0x…\",\"email\":\"optional\"}). Settlement verified ON-CHAIN, replay-guarded; the access link returns. Humans use the card checkout."
+      },
+      "signature": {
+        "alg": "ed25519",
+        "keyId": "did:web:tantra-authority.com#key-1",
+        "canonicalization": "jcs",
+        "value": "RD7rAnZEpgQwl4Fa9QLDE2n-y4sf96zVL4lbzJROfgOXG_o4OVCYlx9VNO4zms3_r74aY9s692NG7-m61bURAg",
+        "payloadDigestSha256": "cbd4bd414555d6cf4203362fb8f2afa8022fa7c4df1cabe458f165dcf4f5ea5d",
+        "note": "Detached ed25519 over the JCS-canonicalized offer (minus signature). Verify via the publisher's did:web /.well-known/did.json."
+      }
+    },
+    {
+      "offerId": "urn:aop:tantra-authority.com:chakra-healing",
+      "capability": {
+        "name": "Chakra Healing",
+        "description": "Chakra Healing — a self-paced course by Lawrence Lanoff (Tantra Authority / The Naked Press). $197.00. Instant digital delivery, recoverable access link, 30-day money-back guarantee.",
+        "image": "https://tantra-authority.com/assets/cover-chakra-healing.png"
+      },
+      "intentTags": [
+        "intent:commerce.purchase.digital-good",
+        "intent:learn.course.purchase",
+        "intent:learn.tantra"
+      ],
+      "price": [
+        {
+          "scheme": "exact",
+          "network": "fiat",
+          "asset": "USD",
+          "amount": "19700",
+          "unit": "cent"
+        },
+        {
+          "scheme": "exact",
+          "network": "base",
+          "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+          "amount": "197000000",
+          "unit": "atomic"
+        }
+      ],
+      "sla": {
+        "refundPolicy": "30-day, no-questions money-back guarantee.",
+        "escrow": "none",
+        "fulfillment": "instant digital delivery by email + recoverable access link"
+      },
+      "trust": {
+        "agentId": "did:web:tantra-authority.com"
+      },
+      "terms": {
+        "usageRights": "Personal digital license. Adults only (18+). Educational, not medical or therapeutic advice.",
+        "redistribution": "no",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=chakra-healing"
+      },
+      "validUntil": "2026-12-31T00:00:00Z",
+      "payment": {
+        "type": "dual-rail",
+        "x402Endpoint": "https://api.tantra-authority.com/api/x402/chakra-healing",
+        "x402Version": 1,
+        "schemes": [
+          "exact"
+        ],
+        "payTo": "0xa8c3cd00daeded3e9440be2dc812d61bf14a39c6",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=chakra-healing",
+        "ap2MandateRequired": false,
+        "note": "Agent-native: GET the x402Endpoint → HTTP 402 with USDC-on-Base payment requirements → pay → retry with X-Payment: base64({\"network\":\"base\",\"txHash\":\"0x…\",\"email\":\"optional\"}). Settlement verified ON-CHAIN, replay-guarded; the access link returns. Humans use the card checkout."
+      },
+      "signature": {
+        "alg": "ed25519",
+        "keyId": "did:web:tantra-authority.com#key-1",
+        "canonicalization": "jcs",
+        "value": "mSEmgWruk45y_7K5eaz_h7enZfIpJV0LjZRMyjdTbpIpfeC1_-mwU1HSd0H0G6kdi7OX7igWtm9DJY-CJH8iAw",
+        "payloadDigestSha256": "d11fd1dbe8e4f4cbfaddc59d200a32a6335602784df21acc46c0f688491cec03",
+        "note": "Detached ed25519 over the JCS-canonicalized offer (minus signature). Verify via the publisher's did:web /.well-known/did.json."
+      }
+    },
+    {
+      "offerId": "urn:aop:tantra-authority.com:open-relationship-blueprint",
+      "capability": {
+        "name": "The Open Relationship Blueprint",
+        "description": "The Open Relationship Blueprint — a self-paced course by Lawrence Lanoff (Tantra Authority / The Naked Press). $197.00. Instant digital delivery, recoverable access link, 30-day money-back guarantee.",
+        "image": "https://tantra-authority.com/assets/cover-open-relationship-blueprint.png"
+      },
+      "intentTags": [
+        "intent:commerce.purchase.digital-good",
+        "intent:learn.course.purchase",
+        "intent:learn.tantra"
+      ],
+      "price": [
+        {
+          "scheme": "exact",
+          "network": "fiat",
+          "asset": "USD",
+          "amount": "19700",
+          "unit": "cent"
+        },
+        {
+          "scheme": "exact",
+          "network": "base",
+          "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+          "amount": "197000000",
+          "unit": "atomic"
+        }
+      ],
+      "sla": {
+        "refundPolicy": "30-day, no-questions money-back guarantee.",
+        "escrow": "none",
+        "fulfillment": "instant digital delivery by email + recoverable access link"
+      },
+      "trust": {
+        "agentId": "did:web:tantra-authority.com"
+      },
+      "terms": {
+        "usageRights": "Personal digital license. Adults only (18+). Educational, not medical or therapeutic advice.",
+        "redistribution": "no",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=open-relationship-blueprint"
+      },
+      "validUntil": "2026-12-31T00:00:00Z",
+      "payment": {
+        "type": "dual-rail",
+        "x402Endpoint": "https://api.tantra-authority.com/api/x402/open-relationship-blueprint",
+        "x402Version": 1,
+        "schemes": [
+          "exact"
+        ],
+        "payTo": "0xa8c3cd00daeded3e9440be2dc812d61bf14a39c6",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=open-relationship-blueprint",
+        "ap2MandateRequired": false,
+        "note": "Agent-native: GET the x402Endpoint → HTTP 402 with USDC-on-Base payment requirements → pay → retry with X-Payment: base64({\"network\":\"base\",\"txHash\":\"0x…\",\"email\":\"optional\"}). Settlement verified ON-CHAIN, replay-guarded; the access link returns. Humans use the card checkout."
+      },
+      "signature": {
+        "alg": "ed25519",
+        "keyId": "did:web:tantra-authority.com#key-1",
+        "canonicalization": "jcs",
+        "value": "BIEmyqBlI0sWSeGMwvoCzH8wNaLuPKch_BIUgo8nqSKzGXv6LGb0rFI2avRDOKSbrmEySRZcBl72fL-2WGTjBA",
+        "payloadDigestSha256": "787f10ab17934a87e1742135260f687f3489cd1086e5c02195d066e15d63db29",
+        "note": "Detached ed25519 over the JCS-canonicalized offer (minus signature). Verify via the publisher's did:web /.well-known/did.json."
+      }
+    },
+    {
+      "offerId": "urn:aop:tantra-authority.com:infinite-mind",
+      "capability": {
+        "name": "Infinite Mind",
+        "description": "Infinite Mind — a self-paced course by Lawrence Lanoff (Tantra Authority / The Naked Press). $197.00. Instant digital delivery, recoverable access link, 30-day money-back guarantee.",
+        "image": "https://tantra-authority.com/assets/cover-infinite-mind.png"
+      },
+      "intentTags": [
+        "intent:commerce.purchase.digital-good",
+        "intent:learn.course.purchase",
+        "intent:learn.tantra"
+      ],
+      "price": [
+        {
+          "scheme": "exact",
+          "network": "fiat",
+          "asset": "USD",
+          "amount": "19700",
+          "unit": "cent"
+        },
+        {
+          "scheme": "exact",
+          "network": "base",
+          "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+          "amount": "197000000",
+          "unit": "atomic"
+        }
+      ],
+      "sla": {
+        "refundPolicy": "30-day, no-questions money-back guarantee.",
+        "escrow": "none",
+        "fulfillment": "instant digital delivery by email + recoverable access link"
+      },
+      "trust": {
+        "agentId": "did:web:tantra-authority.com"
+      },
+      "terms": {
+        "usageRights": "Personal digital license. Adults only (18+). Educational, not medical or therapeutic advice.",
+        "redistribution": "no",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=infinite-mind"
+      },
+      "validUntil": "2026-12-31T00:00:00Z",
+      "payment": {
+        "type": "dual-rail",
+        "x402Endpoint": "https://api.tantra-authority.com/api/x402/infinite-mind",
+        "x402Version": 1,
+        "schemes": [
+          "exact"
+        ],
+        "payTo": "0xa8c3cd00daeded3e9440be2dc812d61bf14a39c6",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=infinite-mind",
+        "ap2MandateRequired": false,
+        "note": "Agent-native: GET the x402Endpoint → HTTP 402 with USDC-on-Base payment requirements → pay → retry with X-Payment: base64({\"network\":\"base\",\"txHash\":\"0x…\",\"email\":\"optional\"}). Settlement verified ON-CHAIN, replay-guarded; the access link returns. Humans use the card checkout."
+      },
+      "signature": {
+        "alg": "ed25519",
+        "keyId": "did:web:tantra-authority.com#key-1",
+        "canonicalization": "jcs",
+        "value": "zRQ6tMU-N0uUpzR_EppFrl9cRO9CXK0ux26izOcqdbrkuH2Ed_wtVbyCM_S1kRfTMZHooZTYCP9iFy_z34W2Cg",
+        "payloadDigestSha256": "0eeaeeeefd1bfa0eb2ff64b83fccda7a2177da758817b94686e842fc64a1dcb3",
+        "note": "Detached ed25519 over the JCS-canonicalized offer (minus signature). Verify via the publisher's did:web /.well-known/did.json."
+      }
+    },
+    {
+      "offerId": "urn:aop:tantra-authority.com:course-in-freedom",
+      "capability": {
+        "name": "A Course in Freedom",
+        "description": "A Course in Freedom — a self-paced course by Lawrence Lanoff (Tantra Authority / The Naked Press). $19.97. Instant digital delivery, recoverable access link, 30-day money-back guarantee.",
+        "image": "https://tantra-authority.com/assets/cover-course-in-freedom.jpg"
+      },
+      "intentTags": [
+        "intent:commerce.purchase.digital-good",
+        "intent:learn.course.purchase",
+        "intent:learn.tantra"
+      ],
+      "price": [
+        {
+          "scheme": "exact",
+          "network": "fiat",
+          "asset": "USD",
+          "amount": "1997",
+          "unit": "cent"
+        },
+        {
+          "scheme": "exact",
+          "network": "base",
+          "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+          "amount": "19970000",
+          "unit": "atomic"
+        }
+      ],
+      "sla": {
+        "refundPolicy": "30-day, no-questions money-back guarantee.",
+        "escrow": "none",
+        "fulfillment": "instant digital delivery by email + recoverable access link"
+      },
+      "trust": {
+        "agentId": "did:web:tantra-authority.com"
+      },
+      "terms": {
+        "usageRights": "Personal digital license. Adults only (18+). Educational, not medical or therapeutic advice.",
+        "redistribution": "no",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=course-in-freedom"
+      },
+      "validUntil": "2026-12-31T00:00:00Z",
+      "payment": {
+        "type": "dual-rail",
+        "x402Endpoint": "https://api.tantra-authority.com/api/x402/course-in-freedom",
+        "x402Version": 1,
+        "schemes": [
+          "exact"
+        ],
+        "payTo": "0xa8c3cd00daeded3e9440be2dc812d61bf14a39c6",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=course-in-freedom",
+        "ap2MandateRequired": false,
+        "note": "Agent-native: GET the x402Endpoint → HTTP 402 with USDC-on-Base payment requirements → pay → retry with X-Payment: base64({\"network\":\"base\",\"txHash\":\"0x…\",\"email\":\"optional\"}). Settlement verified ON-CHAIN, replay-guarded; the access link returns. Humans use the card checkout."
+      },
+      "signature": {
+        "alg": "ed25519",
+        "keyId": "did:web:tantra-authority.com#key-1",
+        "canonicalization": "jcs",
+        "value": "ecnnZH_wSDT2OK3-0ToDuh08I_RIwXMAYo8IprH02cBMAWZG-HF_iKvagQjH1kUwZHzjAq98HZn6EbIlMHenDA",
+        "payloadDigestSha256": "e403d0b415dce0c3e25bb1dac43c648dc72a95bc41080a51f88d71830e13c9f4",
+        "note": "Detached ed25519 over the JCS-canonicalized offer (minus signature). Verify via the publisher's did:web /.well-known/did.json."
+      }
+    },
+    {
+      "offerId": "urn:aop:tantra-authority.com:45-minute-orgasm",
+      "capability": {
+        "name": "The 45 Minute Orgasm",
+        "description": "The 45 Minute Orgasm — a self-paced course by Lawrence Lanoff (Tantra Authority / The Naked Press). $97.00. Instant digital delivery, recoverable access link, 30-day money-back guarantee.",
+        "image": "https://tantra-authority.com/assets/cover-45-minute-orgasm.png"
+      },
+      "intentTags": [
+        "intent:commerce.purchase.digital-good",
+        "intent:learn.course.purchase",
+        "intent:learn.tantra"
+      ],
+      "price": [
+        {
+          "scheme": "exact",
+          "network": "fiat",
+          "asset": "USD",
+          "amount": "9700",
+          "unit": "cent"
+        },
+        {
+          "scheme": "exact",
+          "network": "base",
+          "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+          "amount": "97000000",
+          "unit": "atomic"
+        }
+      ],
+      "sla": {
+        "refundPolicy": "30-day, no-questions money-back guarantee.",
+        "escrow": "none",
+        "fulfillment": "instant digital delivery by email + recoverable access link"
+      },
+      "trust": {
+        "agentId": "did:web:tantra-authority.com"
+      },
+      "terms": {
+        "usageRights": "Personal digital license. Adults only (18+). Educational, not medical or therapeutic advice.",
+        "redistribution": "no",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=45-minute-orgasm"
+      },
+      "validUntil": "2026-12-31T00:00:00Z",
+      "payment": {
+        "type": "dual-rail",
+        "x402Endpoint": "https://api.tantra-authority.com/api/x402/45-minute-orgasm",
+        "x402Version": 1,
+        "schemes": [
+          "exact"
+        ],
+        "payTo": "0xa8c3cd00daeded3e9440be2dc812d61bf14a39c6",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=45-minute-orgasm",
+        "ap2MandateRequired": false,
+        "note": "Agent-native: GET the x402Endpoint → HTTP 402 with USDC-on-Base payment requirements → pay → retry with X-Payment: base64({\"network\":\"base\",\"txHash\":\"0x…\",\"email\":\"optional\"}). Settlement verified ON-CHAIN, replay-guarded; the access link returns. Humans use the card checkout."
+      },
+      "signature": {
+        "alg": "ed25519",
+        "keyId": "did:web:tantra-authority.com#key-1",
+        "canonicalization": "jcs",
+        "value": "ONDLh57gYbW-IoGyFOwTXzUlPkS8LPoMNuyCslRVUj__I5g4f6XGtKse-Zam14GKN_UvV3JpAP2WcuVs6253DA",
+        "payloadDigestSha256": "bd6c53efe6e033889a0c05b233a1b4f929fd02a0fbe906860f5dbd9e62657d0a",
+        "note": "Detached ed25519 over the JCS-canonicalized offer (minus signature). Verify via the publisher's did:web /.well-known/did.json."
+      }
+    },
+    {
+      "offerId": "urn:aop:tantra-authority.com:awaken-sexually",
+      "capability": {
+        "name": "Awaken Sexually — Binaural Beats",
+        "description": "Awaken Sexually — Binaural Beats — a guided meditation / audio program by Lawrence Lanoff (Tantra Authority / The Naked Press). $9.97. Instant digital delivery, recoverable access link, 30-day money-back guarantee.",
+        "image": "https://tantra-authority.com/assets/cover-awaken-sexually.png"
+      },
+      "intentTags": [
+        "intent:commerce.purchase.digital-good",
+        "intent:wellness.meditation.audio",
+        "intent:learn.tantra"
+      ],
+      "price": [
+        {
+          "scheme": "exact",
+          "network": "fiat",
+          "asset": "USD",
+          "amount": "997",
+          "unit": "cent"
+        },
+        {
+          "scheme": "exact",
+          "network": "base",
+          "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+          "amount": "9970000",
+          "unit": "atomic"
+        }
+      ],
+      "sla": {
+        "refundPolicy": "30-day, no-questions money-back guarantee.",
+        "escrow": "none",
+        "fulfillment": "instant digital delivery by email + recoverable access link"
+      },
+      "trust": {
+        "agentId": "did:web:tantra-authority.com"
+      },
+      "terms": {
+        "usageRights": "Personal digital license. Adults only (18+). Educational, not medical or therapeutic advice.",
+        "redistribution": "no",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=awaken-sexually"
+      },
+      "validUntil": "2026-12-31T00:00:00Z",
+      "payment": {
+        "type": "dual-rail",
+        "x402Endpoint": "https://api.tantra-authority.com/api/x402/awaken-sexually",
+        "x402Version": 1,
+        "schemes": [
+          "exact"
+        ],
+        "payTo": "0xa8c3cd00daeded3e9440be2dc812d61bf14a39c6",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=awaken-sexually",
+        "ap2MandateRequired": false,
+        "note": "Agent-native: GET the x402Endpoint → HTTP 402 with USDC-on-Base payment requirements → pay → retry with X-Payment: base64({\"network\":\"base\",\"txHash\":\"0x…\",\"email\":\"optional\"}). Settlement verified ON-CHAIN, replay-guarded; the access link returns. Humans use the card checkout."
+      },
+      "signature": {
+        "alg": "ed25519",
+        "keyId": "did:web:tantra-authority.com#key-1",
+        "canonicalization": "jcs",
+        "value": "Fi6wDYaiwf7CwJqRWuJBJxmxeeOmCGU6u7jIef_b2Dv_HeWcoYpZ2bsw8LS0FUIh_Hno0JBF-a8v-zeLD_duCw",
+        "payloadDigestSha256": "1d4a8b6a895cfecbe48222f61dae1a0e7166a6f29483fee78508f64f4e46900d",
+        "note": "Detached ed25519 over the JCS-canonicalized offer (minus signature). Verify via the publisher's did:web /.well-known/did.json."
+      }
+    },
+    {
+      "offerId": "urn:aop:tantra-authority.com:tantra-for-women-book",
+      "capability": {
+        "name": "Tantra for Women (eBook)",
+        "description": "Tantra for Women (eBook) — a eBook by Lawrence Lanoff (Tantra Authority / The Naked Press). $19.97. Instant digital delivery, recoverable access link, 30-day money-back guarantee.",
+        "image": "https://tantra-authority.com/assets/cover-tantra-for-women-book.jpg"
+      },
+      "intentTags": [
+        "intent:commerce.purchase.digital-good",
+        "intent:content.book.purchase",
+        "intent:learn.tantra"
+      ],
+      "price": [
+        {
+          "scheme": "exact",
+          "network": "fiat",
+          "asset": "USD",
+          "amount": "1997",
+          "unit": "cent"
+        },
+        {
+          "scheme": "exact",
+          "network": "base",
+          "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+          "amount": "19970000",
+          "unit": "atomic"
+        }
+      ],
+      "sla": {
+        "refundPolicy": "30-day, no-questions money-back guarantee.",
+        "escrow": "none",
+        "fulfillment": "instant digital delivery by email + recoverable access link"
+      },
+      "trust": {
+        "agentId": "did:web:tantra-authority.com"
+      },
+      "terms": {
+        "usageRights": "Personal digital license. Adults only (18+). Educational, not medical or therapeutic advice.",
+        "redistribution": "no",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=tantra-for-women-book"
+      },
+      "validUntil": "2026-12-31T00:00:00Z",
+      "payment": {
+        "type": "dual-rail",
+        "x402Endpoint": "https://api.tantra-authority.com/api/x402/tantra-for-women-book",
+        "x402Version": 1,
+        "schemes": [
+          "exact"
+        ],
+        "payTo": "0xa8c3cd00daeded3e9440be2dc812d61bf14a39c6",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=tantra-for-women-book",
+        "ap2MandateRequired": false,
+        "note": "Agent-native: GET the x402Endpoint → HTTP 402 with USDC-on-Base payment requirements → pay → retry with X-Payment: base64({\"network\":\"base\",\"txHash\":\"0x…\",\"email\":\"optional\"}). Settlement verified ON-CHAIN, replay-guarded; the access link returns. Humans use the card checkout."
+      },
+      "signature": {
+        "alg": "ed25519",
+        "keyId": "did:web:tantra-authority.com#key-1",
+        "canonicalization": "jcs",
+        "value": "S9rb4Szr-z_gN2u54egZSG1otkNfCl8LEsoD8ef1eFf5VZ5wejqpAhtW8yEhSbsw0eu4-NgQbCyt_2Me7e_QBw",
+        "payloadDigestSha256": "b3b444c09e4c10c211db164457878871c03fddb3f22c75c217b0f4140003a2b8",
+        "note": "Detached ed25519 over the JCS-canonicalized offer (minus signature). Verify via the publisher's did:web /.well-known/did.json."
+      }
+    },
+    {
+      "offerId": "urn:aop:tantra-authority.com:tantra-for-women-book-b",
+      "capability": {
+        "name": "Tantra for Women (eBook)",
+        "description": "Tantra for Women (eBook) — a eBook by Lawrence Lanoff (Tantra Authority / The Naked Press). $19.97. Instant digital delivery, recoverable access link, 30-day money-back guarantee.",
+        "image": "https://tantra-authority.com/assets/cover-tantra-for-women-book.jpg"
+      },
+      "intentTags": [
+        "intent:commerce.purchase.digital-good",
+        "intent:content.book.purchase",
+        "intent:learn.tantra"
+      ],
+      "price": [
+        {
+          "scheme": "exact",
+          "network": "fiat",
+          "asset": "USD",
+          "amount": "1997",
+          "unit": "cent"
+        },
+        {
+          "scheme": "exact",
+          "network": "base",
+          "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+          "amount": "19970000",
+          "unit": "atomic"
+        }
+      ],
+      "sla": {
+        "refundPolicy": "30-day, no-questions money-back guarantee.",
+        "escrow": "none",
+        "fulfillment": "instant digital delivery by email + recoverable access link"
+      },
+      "trust": {
+        "agentId": "did:web:tantra-authority.com"
+      },
+      "terms": {
+        "usageRights": "Personal digital license. Adults only (18+). Educational, not medical or therapeutic advice.",
+        "redistribution": "no",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=tantra-for-women-book-b"
+      },
+      "validUntil": "2026-12-31T00:00:00Z",
+      "payment": {
+        "type": "dual-rail",
+        "x402Endpoint": "https://api.tantra-authority.com/api/x402/tantra-for-women-book-b",
+        "x402Version": 1,
+        "schemes": [
+          "exact"
+        ],
+        "payTo": "0xa8c3cd00daeded3e9440be2dc812d61bf14a39c6",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=tantra-for-women-book-b",
+        "ap2MandateRequired": false,
+        "note": "Agent-native: GET the x402Endpoint → HTTP 402 with USDC-on-Base payment requirements → pay → retry with X-Payment: base64({\"network\":\"base\",\"txHash\":\"0x…\",\"email\":\"optional\"}). Settlement verified ON-CHAIN, replay-guarded; the access link returns. Humans use the card checkout."
+      },
+      "signature": {
+        "alg": "ed25519",
+        "keyId": "did:web:tantra-authority.com#key-1",
+        "canonicalization": "jcs",
+        "value": "Kajq2hDeJnn1RfbcAtPOVN4I94kZTDuAFVtA_2IYpNQNCoCKvonEiM9q1azuqmJfJWyMYZ0cFITCcYPUMKqiDg",
+        "payloadDigestSha256": "a6ba88d0c6fd56c3aac64867ce3920be819c45acea1a5aa8bd9f6ee5f069b146",
+        "note": "Detached ed25519 over the JCS-canonicalized offer (minus signature). Verify via the publisher's did:web /.well-known/did.json."
+      }
+    },
+    {
+      "offerId": "urn:aop:tantra-authority.com:chakra-healing-book",
+      "capability": {
+        "name": "Chakra Healing (eBook)",
+        "description": "Chakra Healing (eBook) — a eBook by Lawrence Lanoff (Tantra Authority / The Naked Press). $19.97. Instant digital delivery, recoverable access link, 30-day money-back guarantee.",
+        "image": "https://tantra-authority.com/assets/cover-chakra-healing-book.jpg"
+      },
+      "intentTags": [
+        "intent:commerce.purchase.digital-good",
+        "intent:content.book.purchase",
+        "intent:learn.tantra"
+      ],
+      "price": [
+        {
+          "scheme": "exact",
+          "network": "fiat",
+          "asset": "USD",
+          "amount": "1997",
+          "unit": "cent"
+        },
+        {
+          "scheme": "exact",
+          "network": "base",
+          "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+          "amount": "19970000",
+          "unit": "atomic"
+        }
+      ],
+      "sla": {
+        "refundPolicy": "30-day, no-questions money-back guarantee.",
+        "escrow": "none",
+        "fulfillment": "instant digital delivery by email + recoverable access link"
+      },
+      "trust": {
+        "agentId": "did:web:tantra-authority.com"
+      },
+      "terms": {
+        "usageRights": "Personal digital license. Adults only (18+). Educational, not medical or therapeutic advice.",
+        "redistribution": "no",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=chakra-healing-book"
+      },
+      "validUntil": "2026-12-31T00:00:00Z",
+      "payment": {
+        "type": "dual-rail",
+        "x402Endpoint": "https://api.tantra-authority.com/api/x402/chakra-healing-book",
+        "x402Version": 1,
+        "schemes": [
+          "exact"
+        ],
+        "payTo": "0xa8c3cd00daeded3e9440be2dc812d61bf14a39c6",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=chakra-healing-book",
+        "ap2MandateRequired": false,
+        "note": "Agent-native: GET the x402Endpoint → HTTP 402 with USDC-on-Base payment requirements → pay → retry with X-Payment: base64({\"network\":\"base\",\"txHash\":\"0x…\",\"email\":\"optional\"}). Settlement verified ON-CHAIN, replay-guarded; the access link returns. Humans use the card checkout."
+      },
+      "signature": {
+        "alg": "ed25519",
+        "keyId": "did:web:tantra-authority.com#key-1",
+        "canonicalization": "jcs",
+        "value": "pSZkc1hr6N7ArMsqlrn1GsW5RXXSAWPVNZvtuOOUZm3qY7bHexof3Yq_EIcM8lx_mMxFMCjW2KfX5z7Aa0RfCw",
+        "payloadDigestSha256": "192936466acc487e7e54c72a7d6906ef191d09c9f225a7071034838ac703fed2",
+        "note": "Detached ed25519 over the JCS-canonicalized offer (minus signature). Verify via the publisher's did:web /.well-known/did.json."
+      }
+    },
+    {
+      "offerId": "urn:aop:tantra-authority.com:hard-alone-soft-with-her",
+      "capability": {
+        "name": "Hard Alone, Soft With Her (eBook)",
+        "description": "Hard Alone, Soft With Her (eBook) — a eBook by Lawrence Lanoff (Tantra Authority / The Naked Press). $19.97. Instant digital delivery, recoverable access link, 30-day money-back guarantee.",
+        "image": "https://tantra-authority.com/assets/cover-hard-alone-soft-with-her.jpg"
+      },
+      "intentTags": [
+        "intent:commerce.purchase.digital-good",
+        "intent:content.book.purchase",
+        "intent:learn.tantra"
+      ],
+      "price": [
+        {
+          "scheme": "exact",
+          "network": "fiat",
+          "asset": "USD",
+          "amount": "1997",
+          "unit": "cent"
+        },
+        {
+          "scheme": "exact",
+          "network": "base",
+          "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+          "amount": "19970000",
+          "unit": "atomic"
+        }
+      ],
+      "sla": {
+        "refundPolicy": "30-day, no-questions money-back guarantee.",
+        "escrow": "none",
+        "fulfillment": "instant digital delivery by email + recoverable access link"
+      },
+      "trust": {
+        "agentId": "did:web:tantra-authority.com"
+      },
+      "terms": {
+        "usageRights": "Personal digital license. Adults only (18+). Educational, not medical or therapeutic advice.",
+        "redistribution": "no",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=hard-alone-soft-with-her"
+      },
+      "validUntil": "2026-12-31T00:00:00Z",
+      "payment": {
+        "type": "dual-rail",
+        "x402Endpoint": "https://api.tantra-authority.com/api/x402/hard-alone-soft-with-her",
+        "x402Version": 1,
+        "schemes": [
+          "exact"
+        ],
+        "payTo": "0xa8c3cd00daeded3e9440be2dc812d61bf14a39c6",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=hard-alone-soft-with-her",
+        "ap2MandateRequired": false,
+        "note": "Agent-native: GET the x402Endpoint → HTTP 402 with USDC-on-Base payment requirements → pay → retry with X-Payment: base64({\"network\":\"base\",\"txHash\":\"0x…\",\"email\":\"optional\"}). Settlement verified ON-CHAIN, replay-guarded; the access link returns. Humans use the card checkout."
+      },
+      "signature": {
+        "alg": "ed25519",
+        "keyId": "did:web:tantra-authority.com#key-1",
+        "canonicalization": "jcs",
+        "value": "ELOjgW3kOACTvM6Nw0t9EuupOjwaE2fFsjEkEBOs2V9qq4vwfcMSBQ3IkziIfQD3aF0O4UmUstM22L3KfZ4DCg",
+        "payloadDigestSha256": "5fd0558fffafef145ddc19eb37f3c00fa8b7ec575b7b393898e961f4a9d0de21",
+        "note": "Detached ed25519 over the JCS-canonicalized offer (minus signature). Verify via the publisher's did:web /.well-known/did.json."
+      }
+    },
+    {
+      "offerId": "urn:aop:tantra-authority.com:hard-alone-soft-with-her-b",
+      "capability": {
+        "name": "Hard Alone, Soft With Her (eBook)",
+        "description": "Hard Alone, Soft With Her (eBook) — a eBook by Lawrence Lanoff (Tantra Authority / The Naked Press). $19.97. Instant digital delivery, recoverable access link, 30-day money-back guarantee.",
+        "image": "https://tantra-authority.com/assets/cover-hard-alone-soft-with-her.jpg"
+      },
+      "intentTags": [
+        "intent:commerce.purchase.digital-good",
+        "intent:content.book.purchase",
+        "intent:learn.tantra"
+      ],
+      "price": [
+        {
+          "scheme": "exact",
+          "network": "fiat",
+          "asset": "USD",
+          "amount": "1997",
+          "unit": "cent"
+        },
+        {
+          "scheme": "exact",
+          "network": "base",
+          "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+          "amount": "19970000",
+          "unit": "atomic"
+        }
+      ],
+      "sla": {
+        "refundPolicy": "30-day, no-questions money-back guarantee.",
+        "escrow": "none",
+        "fulfillment": "instant digital delivery by email + recoverable access link"
+      },
+      "trust": {
+        "agentId": "did:web:tantra-authority.com"
+      },
+      "terms": {
+        "usageRights": "Personal digital license. Adults only (18+). Educational, not medical or therapeutic advice.",
+        "redistribution": "no",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=hard-alone-soft-with-her-b"
+      },
+      "validUntil": "2026-12-31T00:00:00Z",
+      "payment": {
+        "type": "dual-rail",
+        "x402Endpoint": "https://api.tantra-authority.com/api/x402/hard-alone-soft-with-her-b",
+        "x402Version": 1,
+        "schemes": [
+          "exact"
+        ],
+        "payTo": "0xa8c3cd00daeded3e9440be2dc812d61bf14a39c6",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=hard-alone-soft-with-her-b",
+        "ap2MandateRequired": false,
+        "note": "Agent-native: GET the x402Endpoint → HTTP 402 with USDC-on-Base payment requirements → pay → retry with X-Payment: base64({\"network\":\"base\",\"txHash\":\"0x…\",\"email\":\"optional\"}). Settlement verified ON-CHAIN, replay-guarded; the access link returns. Humans use the card checkout."
+      },
+      "signature": {
+        "alg": "ed25519",
+        "keyId": "did:web:tantra-authority.com#key-1",
+        "canonicalization": "jcs",
+        "value": "d4EMxgALbXDjdZbwFY086Y460DnEAwbV3i3_VYy9OaOPsP4ckkeKhKIdLk_F4gfW0HyNyk8AWBUl0RZWUtvYDQ",
+        "payloadDigestSha256": "c688ab6198d651cedf29292eaad0a00282625123e31e47f3bedeb3a0b9de0d88",
+        "note": "Detached ed25519 over the JCS-canonicalized offer (minus signature). Verify via the publisher's did:web /.well-known/did.json."
+      }
+    },
+    {
+      "offerId": "urn:aop:tantra-authority.com:get-out-of-your-head",
+      "capability": {
+        "name": "Get Out of Your Head",
+        "description": "Get Out of Your Head — a self-paced course by Lawrence Lanoff (Tantra Authority / The Naked Press). $197.00. Instant digital delivery, recoverable access link, 30-day money-back guarantee.",
+        "image": "https://tantra-authority.com/assets/cover-get-out-of-your-head.jpg"
+      },
+      "intentTags": [
+        "intent:commerce.purchase.digital-good",
+        "intent:learn.course.purchase",
+        "intent:learn.tantra"
+      ],
+      "price": [
+        {
+          "scheme": "exact",
+          "network": "fiat",
+          "asset": "USD",
+          "amount": "19700",
+          "unit": "cent"
+        },
+        {
+          "scheme": "exact",
+          "network": "base",
+          "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+          "amount": "197000000",
+          "unit": "atomic"
+        }
+      ],
+      "sla": {
+        "refundPolicy": "30-day, no-questions money-back guarantee.",
+        "escrow": "none",
+        "fulfillment": "instant digital delivery by email + recoverable access link"
+      },
+      "trust": {
+        "agentId": "did:web:tantra-authority.com"
+      },
+      "terms": {
+        "usageRights": "Personal digital license. Adults only (18+). Educational, not medical or therapeutic advice.",
+        "redistribution": "no",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=get-out-of-your-head"
+      },
+      "validUntil": "2026-12-31T00:00:00Z",
+      "payment": {
+        "type": "dual-rail",
+        "x402Endpoint": "https://api.tantra-authority.com/api/x402/get-out-of-your-head",
+        "x402Version": 1,
+        "schemes": [
+          "exact"
+        ],
+        "payTo": "0xa8c3cd00daeded3e9440be2dc812d61bf14a39c6",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=get-out-of-your-head",
+        "ap2MandateRequired": false,
+        "note": "Agent-native: GET the x402Endpoint → HTTP 402 with USDC-on-Base payment requirements → pay → retry with X-Payment: base64({\"network\":\"base\",\"txHash\":\"0x…\",\"email\":\"optional\"}). Settlement verified ON-CHAIN, replay-guarded; the access link returns. Humans use the card checkout."
+      },
+      "signature": {
+        "alg": "ed25519",
+        "keyId": "did:web:tantra-authority.com#key-1",
+        "canonicalization": "jcs",
+        "value": "6yy5i1fw74MlLApEXgul2vWC2k-_kYjnDmCl9aut6z9wASOacvXTVJRBukIwPFYK6ODfmGRWmt07kK-KxiYnBw",
+        "payloadDigestSha256": "318f099f3ceeff2812a205980caacf8cfae6c2f2020c177f484539c6731aed57",
+        "note": "Detached ed25519 over the JCS-canonicalized offer (minus signature). Verify via the publisher's did:web /.well-known/did.json."
+      }
+    },
+    {
+      "offerId": "urn:aop:tantra-authority.com:sexual-superpowers",
+      "capability": {
+        "name": "Sexual Superpowers",
+        "description": "Sexual Superpowers — a self-paced course by Lawrence Lanoff (Tantra Authority / The Naked Press). $497.00. Instant digital delivery, recoverable access link, 30-day money-back guarantee.",
+        "image": "https://tantra-authority.com/assets/cover-sexual-superpowers-2.png"
+      },
+      "intentTags": [
+        "intent:commerce.purchase.digital-good",
+        "intent:learn.course.purchase",
+        "intent:learn.tantra"
+      ],
+      "price": [
+        {
+          "scheme": "exact",
+          "network": "fiat",
+          "asset": "USD",
+          "amount": "49700",
+          "unit": "cent"
+        },
+        {
+          "scheme": "exact",
+          "network": "base",
+          "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+          "amount": "497000000",
+          "unit": "atomic"
+        }
+      ],
+      "sla": {
+        "refundPolicy": "30-day, no-questions money-back guarantee.",
+        "escrow": "none",
+        "fulfillment": "instant digital delivery by email + recoverable access link"
+      },
+      "trust": {
+        "agentId": "did:web:tantra-authority.com"
+      },
+      "terms": {
+        "usageRights": "Personal digital license. Adults only (18+). Educational, not medical or therapeutic advice.",
+        "redistribution": "no",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=sexual-superpowers"
+      },
+      "validUntil": "2026-12-31T00:00:00Z",
+      "payment": {
+        "type": "dual-rail",
+        "x402Endpoint": "https://api.tantra-authority.com/api/x402/sexual-superpowers",
+        "x402Version": 1,
+        "schemes": [
+          "exact"
+        ],
+        "payTo": "0xa8c3cd00daeded3e9440be2dc812d61bf14a39c6",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=sexual-superpowers",
+        "ap2MandateRequired": false,
+        "note": "Agent-native: GET the x402Endpoint → HTTP 402 with USDC-on-Base payment requirements → pay → retry with X-Payment: base64({\"network\":\"base\",\"txHash\":\"0x…\",\"email\":\"optional\"}). Settlement verified ON-CHAIN, replay-guarded; the access link returns. Humans use the card checkout."
+      },
+      "signature": {
+        "alg": "ed25519",
+        "keyId": "did:web:tantra-authority.com#key-1",
+        "canonicalization": "jcs",
+        "value": "bcXet03N-GBiUu87Pp1luJpcSiDYCF6I9Io4bp7OfM6Ll3kVGExENROBKDd35qoWvqPrBl9GrFi2iAe6Tu7cAw",
+        "payloadDigestSha256": "f37cc905fac16d2874a17bda3e883be3f50099aee7102a4f12adeac86a19d279",
+        "note": "Detached ed25519 over the JCS-canonicalized offer (minus signature). Verify via the publisher's did:web /.well-known/did.json."
+      }
+    },
+    {
+      "offerId": "urn:aop:tantra-authority.com:sg-ridgeline",
+      "capability": {
+        "name": "SACRED GEOGRAPHY — Ridgeline",
+        "description": "SACRED GEOGRAPHY — Ridgeline — a guided meditation / audio program by Lawrence Lanoff (Tantra Authority / The Naked Press). $97.00. Instant digital delivery, recoverable access link, 30-day money-back guarantee.",
+        "image": "https://tantra-authority.com/assets/gallery/sg-ridgeline.png"
+      },
+      "intentTags": [
+        "intent:commerce.purchase.digital-good",
+        "intent:wellness.meditation.audio",
+        "intent:learn.tantra"
+      ],
+      "price": [
+        {
+          "scheme": "exact",
+          "network": "fiat",
+          "asset": "USD",
+          "amount": "9700",
+          "unit": "cent"
+        },
+        {
+          "scheme": "exact",
+          "network": "base",
+          "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+          "amount": "97000000",
+          "unit": "atomic"
+        }
+      ],
+      "sla": {
+        "refundPolicy": "30-day, no-questions money-back guarantee.",
+        "escrow": "none",
+        "fulfillment": "instant digital delivery by email + recoverable access link"
+      },
+      "trust": {
+        "agentId": "did:web:tantra-authority.com"
+      },
+      "terms": {
+        "usageRights": "Personal digital license. Adults only (18+). Educational, not medical or therapeutic advice.",
+        "redistribution": "no",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=sg-ridgeline"
+      },
+      "validUntil": "2026-12-31T00:00:00Z",
+      "payment": {
+        "type": "dual-rail",
+        "x402Endpoint": "https://api.tantra-authority.com/api/x402/sg-ridgeline",
+        "x402Version": 1,
+        "schemes": [
+          "exact"
+        ],
+        "payTo": "0xa8c3cd00daeded3e9440be2dc812d61bf14a39c6",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=sg-ridgeline",
+        "ap2MandateRequired": false,
+        "note": "Agent-native: GET the x402Endpoint → HTTP 402 with USDC-on-Base payment requirements → pay → retry with X-Payment: base64({\"network\":\"base\",\"txHash\":\"0x…\",\"email\":\"optional\"}). Settlement verified ON-CHAIN, replay-guarded; the access link returns. Humans use the card checkout."
+      },
+      "signature": {
+        "alg": "ed25519",
+        "keyId": "did:web:tantra-authority.com#key-1",
+        "canonicalization": "jcs",
+        "value": "Z03hVmpa0N9S5gnEGBzwZ1ZGkqlK3SIVHj4CitszFpxXl4YLOq_Onb6sP9W2XcGS9jhOZu7dYtIN4Y4gBt1yAw",
+        "payloadDigestSha256": "8a8032f98bf5d339a313e00a3c9c0c743be8dec4164413d9f0ec47e4b63321d1",
+        "note": "Detached ed25519 over the JCS-canonicalized offer (minus signature). Verify via the publisher's did:web /.well-known/did.json."
+      }
+    },
+    {
+      "offerId": "urn:aop:tantra-authority.com:sg-dune-horizon",
+      "capability": {
+        "name": "SACRED GEOGRAPHY — Horizon",
+        "description": "SACRED GEOGRAPHY — Horizon — a guided meditation / audio program by Lawrence Lanoff (Tantra Authority / The Naked Press). $97.00. Instant digital delivery, recoverable access link, 30-day money-back guarantee.",
+        "image": "https://tantra-authority.com/assets/gallery/sg-dune-horizon.png"
+      },
+      "intentTags": [
+        "intent:commerce.purchase.digital-good",
+        "intent:wellness.meditation.audio",
+        "intent:learn.tantra"
+      ],
+      "price": [
+        {
+          "scheme": "exact",
+          "network": "fiat",
+          "asset": "USD",
+          "amount": "9700",
+          "unit": "cent"
+        },
+        {
+          "scheme": "exact",
+          "network": "base",
+          "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+          "amount": "97000000",
+          "unit": "atomic"
+        }
+      ],
+      "sla": {
+        "refundPolicy": "30-day, no-questions money-back guarantee.",
+        "escrow": "none",
+        "fulfillment": "instant digital delivery by email + recoverable access link"
+      },
+      "trust": {
+        "agentId": "did:web:tantra-authority.com"
+      },
+      "terms": {
+        "usageRights": "Personal digital license. Adults only (18+). Educational, not medical or therapeutic advice.",
+        "redistribution": "no",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=sg-dune-horizon"
+      },
+      "validUntil": "2026-12-31T00:00:00Z",
+      "payment": {
+        "type": "dual-rail",
+        "x402Endpoint": "https://api.tantra-authority.com/api/x402/sg-dune-horizon",
+        "x402Version": 1,
+        "schemes": [
+          "exact"
+        ],
+        "payTo": "0xa8c3cd00daeded3e9440be2dc812d61bf14a39c6",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=sg-dune-horizon",
+        "ap2MandateRequired": false,
+        "note": "Agent-native: GET the x402Endpoint → HTTP 402 with USDC-on-Base payment requirements → pay → retry with X-Payment: base64({\"network\":\"base\",\"txHash\":\"0x…\",\"email\":\"optional\"}). Settlement verified ON-CHAIN, replay-guarded; the access link returns. Humans use the card checkout."
+      },
+      "signature": {
+        "alg": "ed25519",
+        "keyId": "did:web:tantra-authority.com#key-1",
+        "canonicalization": "jcs",
+        "value": "3t5OZKvc4tWfuUbqqDH08dWhXGcJzibynzj-K1ylWTa5by3nS2uqBtarbP7vHpoZf8K6CNe8_A7YoPJdoeOaCw",
+        "payloadDigestSha256": "27a8f53b6697b08b8208722e2c270cbfa653e20a8d1ed61cc4cffaab84599a63",
+        "note": "Detached ed25519 over the JCS-canonicalized offer (minus signature). Verify via the publisher's did:web /.well-known/did.json."
+      }
+    },
+    {
+      "offerId": "urn:aop:tantra-authority.com:sg-summit",
+      "capability": {
+        "name": "SACRED GEOGRAPHY — Summit",
+        "description": "SACRED GEOGRAPHY — Summit — a guided meditation / audio program by Lawrence Lanoff (Tantra Authority / The Naked Press). $97.00. Instant digital delivery, recoverable access link, 30-day money-back guarantee.",
+        "image": "https://tantra-authority.com/assets/gallery/sg-summit.png"
+      },
+      "intentTags": [
+        "intent:commerce.purchase.digital-good",
+        "intent:wellness.meditation.audio",
+        "intent:learn.tantra"
+      ],
+      "price": [
+        {
+          "scheme": "exact",
+          "network": "fiat",
+          "asset": "USD",
+          "amount": "9700",
+          "unit": "cent"
+        },
+        {
+          "scheme": "exact",
+          "network": "base",
+          "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+          "amount": "97000000",
+          "unit": "atomic"
+        }
+      ],
+      "sla": {
+        "refundPolicy": "30-day, no-questions money-back guarantee.",
+        "escrow": "none",
+        "fulfillment": "instant digital delivery by email + recoverable access link"
+      },
+      "trust": {
+        "agentId": "did:web:tantra-authority.com"
+      },
+      "terms": {
+        "usageRights": "Personal digital license. Adults only (18+). Educational, not medical or therapeutic advice.",
+        "redistribution": "no",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=sg-summit"
+      },
+      "validUntil": "2026-12-31T00:00:00Z",
+      "payment": {
+        "type": "dual-rail",
+        "x402Endpoint": "https://api.tantra-authority.com/api/x402/sg-summit",
+        "x402Version": 1,
+        "schemes": [
+          "exact"
+        ],
+        "payTo": "0xa8c3cd00daeded3e9440be2dc812d61bf14a39c6",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=sg-summit",
+        "ap2MandateRequired": false,
+        "note": "Agent-native: GET the x402Endpoint → HTTP 402 with USDC-on-Base payment requirements → pay → retry with X-Payment: base64({\"network\":\"base\",\"txHash\":\"0x…\",\"email\":\"optional\"}). Settlement verified ON-CHAIN, replay-guarded; the access link returns. Humans use the card checkout."
+      },
+      "signature": {
+        "alg": "ed25519",
+        "keyId": "did:web:tantra-authority.com#key-1",
+        "canonicalization": "jcs",
+        "value": "ObJtgwLkwGN59nQrJ1sPSi9RMbYEzCpI96HWXJMADIFU_6-nkdTl8WPoAXEijOpobQSnoulfWfosG7NgJEoKBQ",
+        "payloadDigestSha256": "2052057d5ee2f9cbcf47e1da0d243e9cc1122eeea1453ce9797a76539c458c6e",
+        "note": "Detached ed25519 over the JCS-canonicalized offer (minus signature). Verify via the publisher's did:web /.well-known/did.json."
+      }
+    },
+    {
+      "offerId": "urn:aop:tantra-authority.com:sg-dune-sweep",
+      "capability": {
+        "name": "SACRED GEOGRAPHY — Dunes",
+        "description": "SACRED GEOGRAPHY — Dunes — a guided meditation / audio program by Lawrence Lanoff (Tantra Authority / The Naked Press). $97.00. Instant digital delivery, recoverable access link, 30-day money-back guarantee.",
+        "image": "https://tantra-authority.com/assets/gallery/sg-dune-sweep.png"
+      },
+      "intentTags": [
+        "intent:commerce.purchase.digital-good",
+        "intent:wellness.meditation.audio",
+        "intent:learn.tantra"
+      ],
+      "price": [
+        {
+          "scheme": "exact",
+          "network": "fiat",
+          "asset": "USD",
+          "amount": "9700",
+          "unit": "cent"
+        },
+        {
+          "scheme": "exact",
+          "network": "base",
+          "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+          "amount": "97000000",
+          "unit": "atomic"
+        }
+      ],
+      "sla": {
+        "refundPolicy": "30-day, no-questions money-back guarantee.",
+        "escrow": "none",
+        "fulfillment": "instant digital delivery by email + recoverable access link"
+      },
+      "trust": {
+        "agentId": "did:web:tantra-authority.com"
+      },
+      "terms": {
+        "usageRights": "Personal digital license. Adults only (18+). Educational, not medical or therapeutic advice.",
+        "redistribution": "no",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=sg-dune-sweep"
+      },
+      "validUntil": "2026-12-31T00:00:00Z",
+      "payment": {
+        "type": "dual-rail",
+        "x402Endpoint": "https://api.tantra-authority.com/api/x402/sg-dune-sweep",
+        "x402Version": 1,
+        "schemes": [
+          "exact"
+        ],
+        "payTo": "0xa8c3cd00daeded3e9440be2dc812d61bf14a39c6",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=sg-dune-sweep",
+        "ap2MandateRequired": false,
+        "note": "Agent-native: GET the x402Endpoint → HTTP 402 with USDC-on-Base payment requirements → pay → retry with X-Payment: base64({\"network\":\"base\",\"txHash\":\"0x…\",\"email\":\"optional\"}). Settlement verified ON-CHAIN, replay-guarded; the access link returns. Humans use the card checkout."
+      },
+      "signature": {
+        "alg": "ed25519",
+        "keyId": "did:web:tantra-authority.com#key-1",
+        "canonicalization": "jcs",
+        "value": "I6PFgn91L7sPLEekbsfIWla0kEE246_c7IkToU1AzWRnRhmWhzesiUhhQF-vZZU15Q1NsTdoYBR7nFRe7egNBw",
+        "payloadDigestSha256": "df66f5eb047fa4baab4dadd71dff3915bc920679fb210dafce377b8d1d94011c",
+        "note": "Detached ed25519 over the JCS-canonicalized offer (minus signature). Verify via the publisher's did:web /.well-known/did.json."
+      }
+    },
+    {
+      "offerId": "urn:aop:tantra-authority.com:meditations-vol1",
+      "capability": {
+        "name": "The Meditations, Vol. 1",
+        "description": "The Meditations, Vol. 1 — a guided meditation / audio program by Lawrence Lanoff (Tantra Authority / The Naked Press). $24.97. Instant digital delivery, recoverable access link, 30-day money-back guarantee.",
+        "image": "https://tantra-authority.com/assets/cover-meditations-vol1.png"
+      },
+      "intentTags": [
+        "intent:commerce.purchase.digital-good",
+        "intent:wellness.meditation.audio",
+        "intent:learn.tantra"
+      ],
+      "price": [
+        {
+          "scheme": "exact",
+          "network": "fiat",
+          "asset": "USD",
+          "amount": "2497",
+          "unit": "cent"
+        },
+        {
+          "scheme": "exact",
+          "network": "base",
+          "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+          "amount": "24970000",
+          "unit": "atomic"
+        }
+      ],
+      "sla": {
+        "refundPolicy": "30-day, no-questions money-back guarantee.",
+        "escrow": "none",
+        "fulfillment": "instant digital delivery by email + recoverable access link"
+      },
+      "trust": {
+        "agentId": "did:web:tantra-authority.com"
+      },
+      "terms": {
+        "usageRights": "Personal digital license. Adults only (18+). Educational, not medical or therapeutic advice.",
+        "redistribution": "no",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=meditations-vol1"
+      },
+      "validUntil": "2026-12-31T00:00:00Z",
+      "payment": {
+        "type": "dual-rail",
+        "x402Endpoint": "https://api.tantra-authority.com/api/x402/meditations-vol1",
+        "x402Version": 1,
+        "schemes": [
+          "exact"
+        ],
+        "payTo": "0xa8c3cd00daeded3e9440be2dc812d61bf14a39c6",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=meditations-vol1",
+        "ap2MandateRequired": false,
+        "note": "Agent-native: GET the x402Endpoint → HTTP 402 with USDC-on-Base payment requirements → pay → retry with X-Payment: base64({\"network\":\"base\",\"txHash\":\"0x…\",\"email\":\"optional\"}). Settlement verified ON-CHAIN, replay-guarded; the access link returns. Humans use the card checkout."
+      },
+      "signature": {
+        "alg": "ed25519",
+        "keyId": "did:web:tantra-authority.com#key-1",
+        "canonicalization": "jcs",
+        "value": "hhk45ua7GIvuxCL9e1vcCqaaWQJcLcqpBiq--b6tRI1G9ZdG3ANhhpQCPqSDmjAMo0-N8Jy1bN16CK8lwLU5AA",
+        "payloadDigestSha256": "30e9f6e1418a57e1c4febc058fbbf7d8f710bc018d4266f3e08006609c8970d3",
+        "note": "Detached ed25519 over the JCS-canonicalized offer (minus signature). Verify via the publisher's did:web /.well-known/did.json."
+      }
+    },
+    {
+      "offerId": "urn:aop:tantra-authority.com:cashflow-code",
+      "capability": {
+        "name": "The Cash Flow Code",
+        "description": "The Cash Flow Code — a self-paced course by Lawrence Lanoff (Tantra Authority / The Naked Press). $19.97. Instant digital delivery, recoverable access link, 30-day money-back guarantee.",
+        "image": "https://tantra-authority.com/assets/cover-cashflow-code.png"
+      },
+      "intentTags": [
+        "intent:commerce.purchase.digital-good",
+        "intent:learn.course.purchase",
+        "intent:learn.tantra"
+      ],
+      "price": [
+        {
+          "scheme": "exact",
+          "network": "fiat",
+          "asset": "USD",
+          "amount": "1997",
+          "unit": "cent"
+        },
+        {
+          "scheme": "exact",
+          "network": "base",
+          "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+          "amount": "19970000",
+          "unit": "atomic"
+        }
+      ],
+      "sla": {
+        "refundPolicy": "30-day, no-questions money-back guarantee.",
+        "escrow": "none",
+        "fulfillment": "instant digital delivery by email + recoverable access link"
+      },
+      "trust": {
+        "agentId": "did:web:tantra-authority.com"
+      },
+      "terms": {
+        "usageRights": "Personal digital license. Adults only (18+). Educational, not medical or therapeutic advice.",
+        "redistribution": "no",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=cashflow-code"
+      },
+      "validUntil": "2026-12-31T00:00:00Z",
+      "payment": {
+        "type": "dual-rail",
+        "x402Endpoint": "https://api.tantra-authority.com/api/x402/cashflow-code",
+        "x402Version": 1,
+        "schemes": [
+          "exact"
+        ],
+        "payTo": "0xa8c3cd00daeded3e9440be2dc812d61bf14a39c6",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=cashflow-code",
+        "ap2MandateRequired": false,
+        "note": "Agent-native: GET the x402Endpoint → HTTP 402 with USDC-on-Base payment requirements → pay → retry with X-Payment: base64({\"network\":\"base\",\"txHash\":\"0x…\",\"email\":\"optional\"}). Settlement verified ON-CHAIN, replay-guarded; the access link returns. Humans use the card checkout."
+      },
+      "signature": {
+        "alg": "ed25519",
+        "keyId": "did:web:tantra-authority.com#key-1",
+        "canonicalization": "jcs",
+        "value": "EupRlUEdc3IEqYWb2PZgFIRfAmIziYihqm5fo-0uYyFt39Q6VKG6V7no7bg8ghs-RRzimDXFDTWXQPAqeMJhAg",
+        "payloadDigestSha256": "a685e0ffb57158eb40c36f24a5f2161746aaab86d25851edf1b8e253c7873eab",
+        "note": "Detached ed25519 over the JCS-canonicalized offer (minus signature). Verify via the publisher's did:web /.well-known/did.json."
+      }
+    },
+    {
+      "offerId": "urn:aop:tantra-authority.com:prophets",
+      "capability": {
+        "name": "Prophets",
+        "description": "Prophets — a self-paced course by Lawrence Lanoff (Tantra Authority / The Naked Press). $29.97. Instant digital delivery, recoverable access link, 30-day money-back guarantee.",
+        "image": "https://tantra-authority.com/assets/cover-prophets.png"
+      },
+      "intentTags": [
+        "intent:commerce.purchase.digital-good",
+        "intent:learn.course.purchase",
+        "intent:learn.tantra"
+      ],
+      "price": [
+        {
+          "scheme": "exact",
+          "network": "fiat",
+          "asset": "USD",
+          "amount": "2997",
+          "unit": "cent"
+        },
+        {
+          "scheme": "exact",
+          "network": "base",
+          "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+          "amount": "29970000",
+          "unit": "atomic"
+        }
+      ],
+      "sla": {
+        "refundPolicy": "30-day, no-questions money-back guarantee.",
+        "escrow": "none",
+        "fulfillment": "instant digital delivery by email + recoverable access link"
+      },
+      "trust": {
+        "agentId": "did:web:tantra-authority.com"
+      },
+      "terms": {
+        "usageRights": "Personal digital license. Adults only (18+). Educational, not medical or therapeutic advice.",
+        "redistribution": "no",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=prophets"
+      },
+      "validUntil": "2026-12-31T00:00:00Z",
+      "payment": {
+        "type": "dual-rail",
+        "x402Endpoint": "https://api.tantra-authority.com/api/x402/prophets",
+        "x402Version": 1,
+        "schemes": [
+          "exact"
+        ],
+        "payTo": "0xa8c3cd00daeded3e9440be2dc812d61bf14a39c6",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=prophets",
+        "ap2MandateRequired": false,
+        "note": "Agent-native: GET the x402Endpoint → HTTP 402 with USDC-on-Base payment requirements → pay → retry with X-Payment: base64({\"network\":\"base\",\"txHash\":\"0x…\",\"email\":\"optional\"}). Settlement verified ON-CHAIN, replay-guarded; the access link returns. Humans use the card checkout."
+      },
+      "signature": {
+        "alg": "ed25519",
+        "keyId": "did:web:tantra-authority.com#key-1",
+        "canonicalization": "jcs",
+        "value": "hQmeGXlKH_OBxQiSxdXhnehqSHfiMDE8retglqQVj2gmnN6iKLT29kKI3ZDaP6hJhenEYvC55T1xe7bw_gshDw",
+        "payloadDigestSha256": "ccee68f267637433d8db9184382c76f7ecdae3c0a6a2cb1471528252a85b89fa",
+        "note": "Detached ed25519 over the JCS-canonicalized offer (minus signature). Verify via the publisher's did:web /.well-known/did.json."
+      }
+    },
+    {
+      "offerId": "urn:aop:tantra-authority.com:energetic-reality",
+      "capability": {
+        "name": "Energetic Reality",
+        "description": "Energetic Reality — a self-paced course by Lawrence Lanoff (Tantra Authority / The Naked Press). $19.97. Instant digital delivery, recoverable access link, 30-day money-back guarantee.",
+        "image": "https://tantra-authority.com/assets/cover-energetic-reality.png"
+      },
+      "intentTags": [
+        "intent:commerce.purchase.digital-good",
+        "intent:learn.course.purchase",
+        "intent:learn.tantra"
+      ],
+      "price": [
+        {
+          "scheme": "exact",
+          "network": "fiat",
+          "asset": "USD",
+          "amount": "1997",
+          "unit": "cent"
+        },
+        {
+          "scheme": "exact",
+          "network": "base",
+          "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+          "amount": "19970000",
+          "unit": "atomic"
+        }
+      ],
+      "sla": {
+        "refundPolicy": "30-day, no-questions money-back guarantee.",
+        "escrow": "none",
+        "fulfillment": "instant digital delivery by email + recoverable access link"
+      },
+      "trust": {
+        "agentId": "did:web:tantra-authority.com"
+      },
+      "terms": {
+        "usageRights": "Personal digital license. Adults only (18+). Educational, not medical or therapeutic advice.",
+        "redistribution": "no",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=energetic-reality"
+      },
+      "validUntil": "2026-12-31T00:00:00Z",
+      "payment": {
+        "type": "dual-rail",
+        "x402Endpoint": "https://api.tantra-authority.com/api/x402/energetic-reality",
+        "x402Version": 1,
+        "schemes": [
+          "exact"
+        ],
+        "payTo": "0xa8c3cd00daeded3e9440be2dc812d61bf14a39c6",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=energetic-reality",
+        "ap2MandateRequired": false,
+        "note": "Agent-native: GET the x402Endpoint → HTTP 402 with USDC-on-Base payment requirements → pay → retry with X-Payment: base64({\"network\":\"base\",\"txHash\":\"0x…\",\"email\":\"optional\"}). Settlement verified ON-CHAIN, replay-guarded; the access link returns. Humans use the card checkout."
+      },
+      "signature": {
+        "alg": "ed25519",
+        "keyId": "did:web:tantra-authority.com#key-1",
+        "canonicalization": "jcs",
+        "value": "btL86p-vfQRkTl1qDQB4QU2vTk-mzthJ1MHfleeMKeK96Aq5lJ19FN5SZghB_6G8PZOAvzNXajkd1xJcVfSjAw",
+        "payloadDigestSha256": "6af76ca3dba536069080991e922b75ae18e13907360bb089c787e5f997e8c0c2",
+        "note": "Detached ed25519 over the JCS-canonicalized offer (minus signature). Verify via the publisher's did:web /.well-known/did.json."
+      }
+    },
+    {
+      "offerId": "urn:aop:tantra-authority.com:deep-clearing",
+      "capability": {
+        "name": "Deep Clearing",
+        "description": "Deep Clearing — a guided meditation / audio program by Lawrence Lanoff (Tantra Authority / The Naked Press). $19.97. Instant digital delivery, recoverable access link, 30-day money-back guarantee.",
+        "image": "https://tantra-authority.com/assets/cover-deep-clearing.png"
+      },
+      "intentTags": [
+        "intent:commerce.purchase.digital-good",
+        "intent:wellness.meditation.audio",
+        "intent:learn.tantra"
+      ],
+      "price": [
+        {
+          "scheme": "exact",
+          "network": "fiat",
+          "asset": "USD",
+          "amount": "1997",
+          "unit": "cent"
+        },
+        {
+          "scheme": "exact",
+          "network": "base",
+          "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+          "amount": "19970000",
+          "unit": "atomic"
+        }
+      ],
+      "sla": {
+        "refundPolicy": "30-day, no-questions money-back guarantee.",
+        "escrow": "none",
+        "fulfillment": "instant digital delivery by email + recoverable access link"
+      },
+      "trust": {
+        "agentId": "did:web:tantra-authority.com"
+      },
+      "terms": {
+        "usageRights": "Personal digital license. Adults only (18+). Educational, not medical or therapeutic advice.",
+        "redistribution": "no",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=deep-clearing"
+      },
+      "validUntil": "2026-12-31T00:00:00Z",
+      "payment": {
+        "type": "dual-rail",
+        "x402Endpoint": "https://api.tantra-authority.com/api/x402/deep-clearing",
+        "x402Version": 1,
+        "schemes": [
+          "exact"
+        ],
+        "payTo": "0xa8c3cd00daeded3e9440be2dc812d61bf14a39c6",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=deep-clearing",
+        "ap2MandateRequired": false,
+        "note": "Agent-native: GET the x402Endpoint → HTTP 402 with USDC-on-Base payment requirements → pay → retry with X-Payment: base64({\"network\":\"base\",\"txHash\":\"0x…\",\"email\":\"optional\"}). Settlement verified ON-CHAIN, replay-guarded; the access link returns. Humans use the card checkout."
+      },
+      "signature": {
+        "alg": "ed25519",
+        "keyId": "did:web:tantra-authority.com#key-1",
+        "canonicalization": "jcs",
+        "value": "6FU2uTOQRUjRL9k21EDprhfVBY0KDXtDzf_FN0dDFwQ9VpMS2JuGdva5YSMMUJZVv1ZcE3htgC3sWW9Ia0PcBw",
+        "payloadDigestSha256": "f106d3e824a97fd28210193318ff2ea4af8ebb469eb943a1b7b9f66fe5f307d3",
+        "note": "Detached ed25519 over the JCS-canonicalized offer (minus signature). Verify via the publisher's did:web /.well-known/did.json."
+      }
+    },
+    {
+      "offerId": "urn:aop:tantra-authority.com:heart-of-god",
+      "capability": {
+        "name": "Entering the Heart of God",
+        "description": "Entering the Heart of God — a self-paced course by Lawrence Lanoff (Tantra Authority / The Naked Press). $9.97. Instant digital delivery, recoverable access link, 30-day money-back guarantee.",
+        "image": "https://tantra-authority.com/assets/cover-heart-of-god.png"
+      },
+      "intentTags": [
+        "intent:commerce.purchase.digital-good",
+        "intent:learn.course.purchase",
+        "intent:learn.tantra"
+      ],
+      "price": [
+        {
+          "scheme": "exact",
+          "network": "fiat",
+          "asset": "USD",
+          "amount": "997",
+          "unit": "cent"
+        },
+        {
+          "scheme": "exact",
+          "network": "base",
+          "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+          "amount": "9970000",
+          "unit": "atomic"
+        }
+      ],
+      "sla": {
+        "refundPolicy": "30-day, no-questions money-back guarantee.",
+        "escrow": "none",
+        "fulfillment": "instant digital delivery by email + recoverable access link"
+      },
+      "trust": {
+        "agentId": "did:web:tantra-authority.com"
+      },
+      "terms": {
+        "usageRights": "Personal digital license. Adults only (18+). Educational, not medical or therapeutic advice.",
+        "redistribution": "no",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=heart-of-god"
+      },
+      "validUntil": "2026-12-31T00:00:00Z",
+      "payment": {
+        "type": "dual-rail",
+        "x402Endpoint": "https://api.tantra-authority.com/api/x402/heart-of-god",
+        "x402Version": 1,
+        "schemes": [
+          "exact"
+        ],
+        "payTo": "0xa8c3cd00daeded3e9440be2dc812d61bf14a39c6",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=heart-of-god",
+        "ap2MandateRequired": false,
+        "note": "Agent-native: GET the x402Endpoint → HTTP 402 with USDC-on-Base payment requirements → pay → retry with X-Payment: base64({\"network\":\"base\",\"txHash\":\"0x…\",\"email\":\"optional\"}). Settlement verified ON-CHAIN, replay-guarded; the access link returns. Humans use the card checkout."
+      },
+      "signature": {
+        "alg": "ed25519",
+        "keyId": "did:web:tantra-authority.com#key-1",
+        "canonicalization": "jcs",
+        "value": "dU_rgb70rkpQ3o1z6si3lRu3kBbtxdLiNUC2zy6YVwjhRMrH9xEgoknasTHaga4AFv8_WQ0gD4JofMdjXAFgAQ",
+        "payloadDigestSha256": "43bf09dba79a4d0e2b9bd66484dd09d3161fb7ee2b8505ad18a0a1dbd6532c57",
+        "note": "Detached ed25519 over the JCS-canonicalized offer (minus signature). Verify via the publisher's did:web /.well-known/did.json."
+      }
+    },
+    {
+      "offerId": "urn:aop:tantra-authority.com:stir-integration",
+      "capability": {
+        "name": "Stir Integration — Live Workshop",
+        "description": "Stir Integration — Live Workshop — a live session / workshop by Lawrence Lanoff (Tantra Authority / The Naked Press). $29.97. Instant digital delivery, recoverable access link, 30-day money-back guarantee.",
+        "image": "https://tantra-authority.com/assets/cover-stir-integration.png"
+      },
+      "intentTags": [
+        "intent:commerce.purchase.digital-good",
+        "intent:service.coaching.book",
+        "intent:learn.tantra"
+      ],
+      "price": [
+        {
+          "scheme": "exact",
+          "network": "fiat",
+          "asset": "USD",
+          "amount": "2997",
+          "unit": "cent"
+        },
+        {
+          "scheme": "exact",
+          "network": "base",
+          "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+          "amount": "29970000",
+          "unit": "atomic"
+        }
+      ],
+      "sla": {
+        "refundPolicy": "30-day, no-questions money-back guarantee.",
+        "escrow": "none",
+        "fulfillment": "instant digital delivery by email + recoverable access link"
+      },
+      "trust": {
+        "agentId": "did:web:tantra-authority.com"
+      },
+      "terms": {
+        "usageRights": "Personal digital license. Adults only (18+). Educational, not medical or therapeutic advice.",
+        "redistribution": "no",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=stir-integration"
+      },
+      "validUntil": "2026-12-31T00:00:00Z",
+      "payment": {
+        "type": "dual-rail",
+        "x402Endpoint": "https://api.tantra-authority.com/api/x402/stir-integration",
+        "x402Version": 1,
+        "schemes": [
+          "exact"
+        ],
+        "payTo": "0xa8c3cd00daeded3e9440be2dc812d61bf14a39c6",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=stir-integration",
+        "ap2MandateRequired": false,
+        "note": "Agent-native: GET the x402Endpoint → HTTP 402 with USDC-on-Base payment requirements → pay → retry with X-Payment: base64({\"network\":\"base\",\"txHash\":\"0x…\",\"email\":\"optional\"}). Settlement verified ON-CHAIN, replay-guarded; the access link returns. Humans use the card checkout."
+      },
+      "signature": {
+        "alg": "ed25519",
+        "keyId": "did:web:tantra-authority.com#key-1",
+        "canonicalization": "jcs",
+        "value": "XpMIj2N9lxknz2JdPzP4Jp_mbf4yAo_IXFIERClHk3AWuA4FIPhdvf7o-1CE84Lo2W9e7REFtuuZJGXLQbz7AA",
+        "payloadDigestSha256": "561e8c367695bb66764307715e0e827b64fcfe4729c1a4d72ea02351f5ccb6f3",
+        "note": "Detached ed25519 over the JCS-canonicalized offer (minus signature). Verify via the publisher's did:web /.well-known/did.json."
+      }
+    },
+    {
+      "offerId": "urn:aop:tantra-authority.com:50-laws-of-sexual-power",
+      "capability": {
+        "name": "50 Laws of Sexual Power",
+        "description": "50 Laws of Sexual Power — a self-paced course by Lawrence Lanoff (Tantra Authority / The Naked Press). $29.97. Instant digital delivery, recoverable access link, 30-day money-back guarantee.",
+        "image": "https://tantra-authority.com/assets/cover-50-laws-of-sexual-power.png"
+      },
+      "intentTags": [
+        "intent:commerce.purchase.digital-good",
+        "intent:learn.course.purchase",
+        "intent:learn.tantra"
+      ],
+      "price": [
+        {
+          "scheme": "exact",
+          "network": "fiat",
+          "asset": "USD",
+          "amount": "2997",
+          "unit": "cent"
+        },
+        {
+          "scheme": "exact",
+          "network": "base",
+          "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+          "amount": "29970000",
+          "unit": "atomic"
+        }
+      ],
+      "sla": {
+        "refundPolicy": "30-day, no-questions money-back guarantee.",
+        "escrow": "none",
+        "fulfillment": "instant digital delivery by email + recoverable access link"
+      },
+      "trust": {
+        "agentId": "did:web:tantra-authority.com"
+      },
+      "terms": {
+        "usageRights": "Personal digital license. Adults only (18+). Educational, not medical or therapeutic advice.",
+        "redistribution": "no",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=50-laws-of-sexual-power"
+      },
+      "validUntil": "2026-12-31T00:00:00Z",
+      "payment": {
+        "type": "dual-rail",
+        "x402Endpoint": "https://api.tantra-authority.com/api/x402/50-laws-of-sexual-power",
+        "x402Version": 1,
+        "schemes": [
+          "exact"
+        ],
+        "payTo": "0xa8c3cd00daeded3e9440be2dc812d61bf14a39c6",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=50-laws-of-sexual-power",
+        "ap2MandateRequired": false,
+        "note": "Agent-native: GET the x402Endpoint → HTTP 402 with USDC-on-Base payment requirements → pay → retry with X-Payment: base64({\"network\":\"base\",\"txHash\":\"0x…\",\"email\":\"optional\"}). Settlement verified ON-CHAIN, replay-guarded; the access link returns. Humans use the card checkout."
+      },
+      "signature": {
+        "alg": "ed25519",
+        "keyId": "did:web:tantra-authority.com#key-1",
+        "canonicalization": "jcs",
+        "value": "aFMXglJdyRl3EM4VKGFwDG7Snyt46OW8X9ZZ93bK3k3ZSramYRE_dY6dT0zatz7BhZAATgUf_EBjVReF8CuZBQ",
+        "payloadDigestSha256": "2a835d1966df66d3b8a452f59c0ac5939f9971aa816ac69d8baee2c48af05331",
+        "note": "Detached ed25519 over the JCS-canonicalized offer (minus signature). Verify via the publisher's did:web /.well-known/did.json."
+      }
+    },
+    {
+      "offerId": "urn:aop:tantra-authority.com:5-minute-meditation",
+      "capability": {
+        "name": "The 5-Minute Meditation",
+        "description": "The 5-Minute Meditation — a guided meditation / audio program by Lawrence Lanoff (Tantra Authority / The Naked Press). $19.97. Instant digital delivery, recoverable access link, 30-day money-back guarantee.",
+        "image": "https://tantra-authority.com/assets/cover-5-minute-meditation.png"
+      },
+      "intentTags": [
+        "intent:commerce.purchase.digital-good",
+        "intent:wellness.meditation.audio",
+        "intent:learn.tantra"
+      ],
+      "price": [
+        {
+          "scheme": "exact",
+          "network": "fiat",
+          "asset": "USD",
+          "amount": "1997",
+          "unit": "cent"
+        },
+        {
+          "scheme": "exact",
+          "network": "base",
+          "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+          "amount": "19970000",
+          "unit": "atomic"
+        }
+      ],
+      "sla": {
+        "refundPolicy": "30-day, no-questions money-back guarantee.",
+        "escrow": "none",
+        "fulfillment": "instant digital delivery by email + recoverable access link"
+      },
+      "trust": {
+        "agentId": "did:web:tantra-authority.com"
+      },
+      "terms": {
+        "usageRights": "Personal digital license. Adults only (18+). Educational, not medical or therapeutic advice.",
+        "redistribution": "no",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=5-minute-meditation"
+      },
+      "validUntil": "2026-12-31T00:00:00Z",
+      "payment": {
+        "type": "dual-rail",
+        "x402Endpoint": "https://api.tantra-authority.com/api/x402/5-minute-meditation",
+        "x402Version": 1,
+        "schemes": [
+          "exact"
+        ],
+        "payTo": "0xa8c3cd00daeded3e9440be2dc812d61bf14a39c6",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=5-minute-meditation",
+        "ap2MandateRequired": false,
+        "note": "Agent-native: GET the x402Endpoint → HTTP 402 with USDC-on-Base payment requirements → pay → retry with X-Payment: base64({\"network\":\"base\",\"txHash\":\"0x…\",\"email\":\"optional\"}). Settlement verified ON-CHAIN, replay-guarded; the access link returns. Humans use the card checkout."
+      },
+      "signature": {
+        "alg": "ed25519",
+        "keyId": "did:web:tantra-authority.com#key-1",
+        "canonicalization": "jcs",
+        "value": "0KU8H7j1fvO3laxPWGn3Iv2CAui2ARNrF6SjmCk29T4Mof5slBdi-wW4RknKrAD66peDppfhRjM5bDWAo2vODw",
+        "payloadDigestSha256": "f29f32cf5872bdde7a53e97a8f1c0e118fc30279cc535f333228783dd9e8b70d",
+        "note": "Detached ed25519 over the JCS-canonicalized offer (minus signature). Verify via the publisher's did:web /.well-known/did.json."
+      }
+    },
+    {
+      "offerId": "urn:aop:tantra-authority.com:prophets-training-manual",
+      "capability": {
+        "name": "The Prophets Training Manual",
+        "description": "The Prophets Training Manual — a self-paced course by Lawrence Lanoff (Tantra Authority / The Naked Press). $14.97. Instant digital delivery, recoverable access link, 30-day money-back guarantee.",
+        "image": "https://tantra-authority.com/assets/cover-prophets-training-manual.png"
+      },
+      "intentTags": [
+        "intent:commerce.purchase.digital-good",
+        "intent:learn.course.purchase",
+        "intent:learn.tantra"
+      ],
+      "price": [
+        {
+          "scheme": "exact",
+          "network": "fiat",
+          "asset": "USD",
+          "amount": "1497",
+          "unit": "cent"
+        },
+        {
+          "scheme": "exact",
+          "network": "base",
+          "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+          "amount": "14970000",
+          "unit": "atomic"
+        }
+      ],
+      "sla": {
+        "refundPolicy": "30-day, no-questions money-back guarantee.",
+        "escrow": "none",
+        "fulfillment": "instant digital delivery by email + recoverable access link"
+      },
+      "trust": {
+        "agentId": "did:web:tantra-authority.com"
+      },
+      "terms": {
+        "usageRights": "Personal digital license. Adults only (18+). Educational, not medical or therapeutic advice.",
+        "redistribution": "no",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=prophets-training-manual"
+      },
+      "validUntil": "2026-12-31T00:00:00Z",
+      "payment": {
+        "type": "dual-rail",
+        "x402Endpoint": "https://api.tantra-authority.com/api/x402/prophets-training-manual",
+        "x402Version": 1,
+        "schemes": [
+          "exact"
+        ],
+        "payTo": "0xa8c3cd00daeded3e9440be2dc812d61bf14a39c6",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=prophets-training-manual",
+        "ap2MandateRequired": false,
+        "note": "Agent-native: GET the x402Endpoint → HTTP 402 with USDC-on-Base payment requirements → pay → retry with X-Payment: base64({\"network\":\"base\",\"txHash\":\"0x…\",\"email\":\"optional\"}). Settlement verified ON-CHAIN, replay-guarded; the access link returns. Humans use the card checkout."
+      },
+      "signature": {
+        "alg": "ed25519",
+        "keyId": "did:web:tantra-authority.com#key-1",
+        "canonicalization": "jcs",
+        "value": "wln6-fZmBV4ln5oKPCNr9LeV9GHVb3gS0PRF8zVpNVjfKeLnPo9Rk_GBeyqlaa_Y5__zpHurzHwcBYWt8anODw",
+        "payloadDigestSha256": "3ad73fb94c5da2afc79fa7013bd0f5330b8bd9ad9252fecbdc40419aa63b3be7",
+        "note": "Detached ed25519 over the JCS-canonicalized offer (minus signature). Verify via the publisher's did:web /.well-known/did.json."
+      }
+    },
+    {
+      "offerId": "urn:aop:tantra-authority.com:energy-sex",
+      "capability": {
+        "name": "Energy Sex — The Complete Course",
+        "description": "Energy Sex — The Complete Course — a self-paced course by Lawrence Lanoff (Tantra Authority / The Naked Press). $997.00. Instant digital delivery, recoverable access link, 30-day money-back guarantee.",
+        "image": "https://tantra-authority.com/assets/cover-energy-sex.png"
+      },
+      "intentTags": [
+        "intent:commerce.purchase.digital-good",
+        "intent:learn.course.purchase",
+        "intent:learn.tantra"
+      ],
+      "price": [
+        {
+          "scheme": "exact",
+          "network": "fiat",
+          "asset": "USD",
+          "amount": "99700",
+          "unit": "cent"
+        },
+        {
+          "scheme": "exact",
+          "network": "base",
+          "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+          "amount": "997000000",
+          "unit": "atomic"
+        }
+      ],
+      "sla": {
+        "refundPolicy": "30-day, no-questions money-back guarantee.",
+        "escrow": "none",
+        "fulfillment": "instant digital delivery by email + recoverable access link"
+      },
+      "trust": {
+        "agentId": "did:web:tantra-authority.com"
+      },
+      "terms": {
+        "usageRights": "Personal digital license. Adults only (18+). Educational, not medical or therapeutic advice.",
+        "redistribution": "no",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=energy-sex"
+      },
+      "validUntil": "2026-12-31T00:00:00Z",
+      "payment": {
+        "type": "dual-rail",
+        "x402Endpoint": "https://api.tantra-authority.com/api/x402/energy-sex",
+        "x402Version": 1,
+        "schemes": [
+          "exact"
+        ],
+        "payTo": "0xa8c3cd00daeded3e9440be2dc812d61bf14a39c6",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=energy-sex",
+        "ap2MandateRequired": false,
+        "note": "Agent-native: GET the x402Endpoint → HTTP 402 with USDC-on-Base payment requirements → pay → retry with X-Payment: base64({\"network\":\"base\",\"txHash\":\"0x…\",\"email\":\"optional\"}). Settlement verified ON-CHAIN, replay-guarded; the access link returns. Humans use the card checkout."
+      },
+      "signature": {
+        "alg": "ed25519",
+        "keyId": "did:web:tantra-authority.com#key-1",
+        "canonicalization": "jcs",
+        "value": "thGYLyudw7pMzdQBGL5u67eLeimhhurWI3qng3S2d2qr7q0qkqy81TeZfNQi_bprXUh7L-J6tuEf-vQ91nTrBw",
+        "payloadDigestSha256": "70b9e66dafd0099bd9bb850176f48f3a05b30b254272360d06d09b916070d175",
+        "note": "Detached ed25519 over the JCS-canonicalized offer (minus signature). Verify via the publisher's did:web /.well-known/did.json."
+      }
+    },
+    {
+      "offerId": "urn:aop:tantra-authority.com:radical-self-acceptance",
+      "capability": {
+        "name": "Radical Self Acceptance",
+        "description": "Radical Self Acceptance — a self-paced course by Lawrence Lanoff (Tantra Authority / The Naked Press). $19.97. Instant digital delivery, recoverable access link, 30-day money-back guarantee.",
+        "image": "https://tantra-authority.com/assets/cover-radical-self-acceptance.png"
+      },
+      "intentTags": [
+        "intent:commerce.purchase.digital-good",
+        "intent:learn.course.purchase",
+        "intent:learn.tantra"
+      ],
+      "price": [
+        {
+          "scheme": "exact",
+          "network": "fiat",
+          "asset": "USD",
+          "amount": "1997",
+          "unit": "cent"
+        },
+        {
+          "scheme": "exact",
+          "network": "base",
+          "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+          "amount": "19970000",
+          "unit": "atomic"
+        }
+      ],
+      "sla": {
+        "refundPolicy": "30-day, no-questions money-back guarantee.",
+        "escrow": "none",
+        "fulfillment": "instant digital delivery by email + recoverable access link"
+      },
+      "trust": {
+        "agentId": "did:web:tantra-authority.com"
+      },
+      "terms": {
+        "usageRights": "Personal digital license. Adults only (18+). Educational, not medical or therapeutic advice.",
+        "redistribution": "no",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=radical-self-acceptance"
+      },
+      "validUntil": "2026-12-31T00:00:00Z",
+      "payment": {
+        "type": "dual-rail",
+        "x402Endpoint": "https://api.tantra-authority.com/api/x402/radical-self-acceptance",
+        "x402Version": 1,
+        "schemes": [
+          "exact"
+        ],
+        "payTo": "0xa8c3cd00daeded3e9440be2dc812d61bf14a39c6",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=radical-self-acceptance",
+        "ap2MandateRequired": false,
+        "note": "Agent-native: GET the x402Endpoint → HTTP 402 with USDC-on-Base payment requirements → pay → retry with X-Payment: base64({\"network\":\"base\",\"txHash\":\"0x…\",\"email\":\"optional\"}). Settlement verified ON-CHAIN, replay-guarded; the access link returns. Humans use the card checkout."
+      },
+      "signature": {
+        "alg": "ed25519",
+        "keyId": "did:web:tantra-authority.com#key-1",
+        "canonicalization": "jcs",
+        "value": "TMWBb71FIArbPhJPcY1kz616NS2KlwDieid45Vo1E1a8bq9A38U5omkHJgxdzTjKALEcViLR74Gu-S7H05H5Bg",
+        "payloadDigestSha256": "ef439a24bd88b50b554fb6456e225b339c95dbcaf9a760f886340ddf1d4a5c78",
+        "note": "Detached ed25519 over the JCS-canonicalized offer (minus signature). Verify via the publisher's did:web /.well-known/did.json."
+      }
+    },
+    {
+      "offerId": "urn:aop:tantra-authority.com:free-yourself-from-fear-book",
+      "capability": {
+        "name": "Free Yourself From Fear (eBook)",
+        "description": "Free Yourself From Fear (eBook) — a eBook by Lawrence Lanoff (Tantra Authority / The Naked Press). $9.99. Instant digital delivery, recoverable access link, 30-day money-back guarantee.",
+        "image": "https://tantra-authority.com/assets/cover-free-yourself-from-fear-book.jpg"
+      },
+      "intentTags": [
+        "intent:commerce.purchase.digital-good",
+        "intent:content.book.purchase",
+        "intent:learn.tantra"
+      ],
+      "price": [
+        {
+          "scheme": "exact",
+          "network": "fiat",
+          "asset": "USD",
+          "amount": "999",
+          "unit": "cent"
+        },
+        {
+          "scheme": "exact",
+          "network": "base",
+          "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+          "amount": "9990000",
+          "unit": "atomic"
+        }
+      ],
+      "sla": {
+        "refundPolicy": "30-day, no-questions money-back guarantee.",
+        "escrow": "none",
+        "fulfillment": "instant digital delivery by email + recoverable access link"
+      },
+      "trust": {
+        "agentId": "did:web:tantra-authority.com"
+      },
+      "terms": {
+        "usageRights": "Personal digital license. Adults only (18+). Educational, not medical or therapeutic advice.",
+        "redistribution": "no",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=free-yourself-from-fear-book"
+      },
+      "validUntil": "2026-12-31T00:00:00Z",
+      "payment": {
+        "type": "dual-rail",
+        "x402Endpoint": "https://api.tantra-authority.com/api/x402/free-yourself-from-fear-book",
+        "x402Version": 1,
+        "schemes": [
+          "exact"
+        ],
+        "payTo": "0xa8c3cd00daeded3e9440be2dc812d61bf14a39c6",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=free-yourself-from-fear-book",
+        "ap2MandateRequired": false,
+        "note": "Agent-native: GET the x402Endpoint → HTTP 402 with USDC-on-Base payment requirements → pay → retry with X-Payment: base64({\"network\":\"base\",\"txHash\":\"0x…\",\"email\":\"optional\"}). Settlement verified ON-CHAIN, replay-guarded; the access link returns. Humans use the card checkout."
+      },
+      "signature": {
+        "alg": "ed25519",
+        "keyId": "did:web:tantra-authority.com#key-1",
+        "canonicalization": "jcs",
+        "value": "utGf16c4DF7ljLdp6KT5osgs6gXFPBWiV3CDcbnbdWLsGz9j_scaDwxxR3rlUPsc6ybqKwJgOX1-VyIJL4EFCw",
+        "payloadDigestSha256": "3d8780b9f2303f2a9b315c54f7211607db1c5194482ceb414723ec7fbe06f23d",
+        "note": "Detached ed25519 over the JCS-canonicalized offer (minus signature). Verify via the publisher's did:web /.well-known/did.json."
+      }
+    },
+    {
+      "offerId": "urn:aop:tantra-authority.com:mind-stop-book",
+      "capability": {
+        "name": "Mind Stop (eBook)",
+        "description": "Mind Stop (eBook) — a eBook by Lawrence Lanoff (Tantra Authority / The Naked Press). $9.99. Instant digital delivery, recoverable access link, 30-day money-back guarantee.",
+        "image": "https://tantra-authority.com/assets/cover-mind-stop-book.jpg"
+      },
+      "intentTags": [
+        "intent:commerce.purchase.digital-good",
+        "intent:content.book.purchase",
+        "intent:learn.tantra"
+      ],
+      "price": [
+        {
+          "scheme": "exact",
+          "network": "fiat",
+          "asset": "USD",
+          "amount": "999",
+          "unit": "cent"
+        },
+        {
+          "scheme": "exact",
+          "network": "base",
+          "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+          "amount": "9990000",
+          "unit": "atomic"
+        }
+      ],
+      "sla": {
+        "refundPolicy": "30-day, no-questions money-back guarantee.",
+        "escrow": "none",
+        "fulfillment": "instant digital delivery by email + recoverable access link"
+      },
+      "trust": {
+        "agentId": "did:web:tantra-authority.com"
+      },
+      "terms": {
+        "usageRights": "Personal digital license. Adults only (18+). Educational, not medical or therapeutic advice.",
+        "redistribution": "no",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=mind-stop-book"
+      },
+      "validUntil": "2026-12-31T00:00:00Z",
+      "payment": {
+        "type": "dual-rail",
+        "x402Endpoint": "https://api.tantra-authority.com/api/x402/mind-stop-book",
+        "x402Version": 1,
+        "schemes": [
+          "exact"
+        ],
+        "payTo": "0xa8c3cd00daeded3e9440be2dc812d61bf14a39c6",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=mind-stop-book",
+        "ap2MandateRequired": false,
+        "note": "Agent-native: GET the x402Endpoint → HTTP 402 with USDC-on-Base payment requirements → pay → retry with X-Payment: base64({\"network\":\"base\",\"txHash\":\"0x…\",\"email\":\"optional\"}). Settlement verified ON-CHAIN, replay-guarded; the access link returns. Humans use the card checkout."
+      },
+      "signature": {
+        "alg": "ed25519",
+        "keyId": "did:web:tantra-authority.com#key-1",
+        "canonicalization": "jcs",
+        "value": "qYvuNqocnAFe5_IKNRUKT18IE-Ehk6mP7qxc2R8QwO1zetET1ulZH8OmvfAmpeqUdTv3il0xuwHWDchCYTsgAA",
+        "payloadDigestSha256": "9bd347f3f4b6db07275fcaa43f76ea7c489d41d2de0096bb6673cdb520558c85",
+        "note": "Detached ed25519 over the JCS-canonicalized offer (minus signature). Verify via the publisher's did:web /.well-known/did.json."
+      }
+    },
+    {
+      "offerId": "urn:aop:tantra-authority.com:ai-operator-kit",
+      "capability": {
+        "name": "The AI Operator Kit (6 prompts)",
+        "description": "The AI Operator Kit (6 prompts) — a digital tool kit by Lawrence Lanoff (Tantra Authority / The Naked Press). $19.00. Instant digital delivery, recoverable access link, 30-day money-back guarantee.",
+        "image": "https://tantra-authority.com/assets/cover-lazy-guide-getting-rich-ai.jpg"
+      },
+      "intentTags": [
+        "intent:commerce.purchase.digital-good",
+        "intent:tools.agent.purchase",
+        "intent:business.automation"
+      ],
+      "price": [
+        {
+          "scheme": "exact",
+          "network": "fiat",
+          "asset": "USD",
+          "amount": "1900",
+          "unit": "cent"
+        },
+        {
+          "scheme": "exact",
+          "network": "base",
+          "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+          "amount": "19000000",
+          "unit": "atomic"
+        }
+      ],
+      "sla": {
+        "refundPolicy": "30-day, no-questions money-back guarantee.",
+        "escrow": "none",
+        "fulfillment": "instant digital delivery by email + recoverable access link"
+      },
+      "trust": {
+        "agentId": "did:web:tantra-authority.com"
+      },
+      "terms": {
+        "usageRights": "Personal digital license. Adults only (18+). Educational, not medical or therapeutic advice.",
+        "redistribution": "no",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=ai-operator-kit"
+      },
+      "validUntil": "2026-12-31T00:00:00Z",
+      "payment": {
+        "type": "dual-rail",
+        "x402Endpoint": "https://api.tantra-authority.com/api/x402/ai-operator-kit",
+        "x402Version": 1,
+        "schemes": [
+          "exact"
+        ],
+        "payTo": "0xa8c3cd00daeded3e9440be2dc812d61bf14a39c6",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=ai-operator-kit",
+        "ap2MandateRequired": false,
+        "note": "Agent-native: GET the x402Endpoint → HTTP 402 with USDC-on-Base payment requirements → pay → retry with X-Payment: base64({\"network\":\"base\",\"txHash\":\"0x…\",\"email\":\"optional\"}). Settlement verified ON-CHAIN, replay-guarded; the access link returns. Humans use the card checkout."
+      },
+      "signature": {
+        "alg": "ed25519",
+        "keyId": "did:web:tantra-authority.com#key-1",
+        "canonicalization": "jcs",
+        "value": "P4-mxxzGqVOiKYLs_6paQFmoKypFYzftSPRo-A-MEat-onfbtPnlsMy2iO8FD_VqpHhPyQ5Ng3RUncqNFZmGDw",
+        "payloadDigestSha256": "3bd3a1b5f8f0e5b3d01f1fc61de90cef1d2a99fd66d49a46e0abdce80945d98c",
+        "note": "Detached ed25519 over the JCS-canonicalized offer (minus signature). Verify via the publisher's did:web /.well-known/did.json."
+      }
+    },
+    {
+      "offerId": "urn:aop:tantra-authority.com:lazy-getting-rich-audiobook",
+      "capability": {
+        "name": "The Lazy Guide to Getting Rich — Audiobook",
+        "description": "The Lazy Guide to Getting Rich — Audiobook — a audiobook by Lawrence Lanoff (Tantra Authority / The Naked Press). $14.95. Instant digital delivery, recoverable access link, 30-day money-back guarantee.",
+        "image": "https://tantra-authority.com/assets/cover-lazy-guide-getting-rich.jpg"
+      },
+      "intentTags": [
+        "intent:commerce.purchase.digital-good",
+        "intent:content.audiobook.purchase",
+        "intent:learn.self-development"
+      ],
+      "price": [
+        {
+          "scheme": "exact",
+          "network": "fiat",
+          "asset": "USD",
+          "amount": "1495",
+          "unit": "cent"
+        },
+        {
+          "scheme": "exact",
+          "network": "base",
+          "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+          "amount": "14950000",
+          "unit": "atomic"
+        }
+      ],
+      "sla": {
+        "refundPolicy": "30-day, no-questions money-back guarantee.",
+        "escrow": "none",
+        "fulfillment": "instant digital delivery by email + recoverable access link"
+      },
+      "trust": {
+        "agentId": "did:web:tantra-authority.com"
+      },
+      "terms": {
+        "usageRights": "Personal digital license. Adults only (18+). Educational, not medical or therapeutic advice.",
+        "redistribution": "no",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=lazy-getting-rich-audiobook"
+      },
+      "validUntil": "2026-12-31T00:00:00Z",
+      "payment": {
+        "type": "dual-rail",
+        "x402Endpoint": "https://api.tantra-authority.com/api/x402/lazy-getting-rich-audiobook",
+        "x402Version": 1,
+        "schemes": [
+          "exact"
+        ],
+        "payTo": "0xa8c3cd00daeded3e9440be2dc812d61bf14a39c6",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=lazy-getting-rich-audiobook",
+        "ap2MandateRequired": false,
+        "note": "Agent-native: GET the x402Endpoint → HTTP 402 with USDC-on-Base payment requirements → pay → retry with X-Payment: base64({\"network\":\"base\",\"txHash\":\"0x…\",\"email\":\"optional\"}). Settlement verified ON-CHAIN, replay-guarded; the access link returns. Humans use the card checkout."
+      },
+      "signature": {
+        "alg": "ed25519",
+        "keyId": "did:web:tantra-authority.com#key-1",
+        "canonicalization": "jcs",
+        "value": "fy3nKpk57L1-iAeK52u-tUWjeMrboFwZ6ckF_KsiSKcy6BsVixfn1gJUWGdaXfMh6whq7Wee_ICG8s5wR363AA",
+        "payloadDigestSha256": "8870dc59a8e352a4668317990e6648f151d53c4ddd39a7de36959d4d6bab2807",
+        "note": "Detached ed25519 over the JCS-canonicalized offer (minus signature). Verify via the publisher's did:web /.well-known/did.json."
+      }
+    },
+    {
+      "offerId": "urn:aop:tantra-authority.com:lazy-getting-rich-ai-audiobook",
+      "capability": {
+        "name": "The Lazy Guide to Getting Rich with AI — Audiobook",
+        "description": "The Lazy Guide to Getting Rich with AI — Audiobook — a audiobook by Lawrence Lanoff (Tantra Authority / The Naked Press). $14.95. Instant digital delivery, recoverable access link, 30-day money-back guarantee.",
+        "image": "https://tantra-authority.com/assets/cover-lazy-guide-getting-rich-ai.jpg"
+      },
+      "intentTags": [
+        "intent:commerce.purchase.digital-good",
+        "intent:content.audiobook.purchase",
+        "intent:learn.self-development"
+      ],
+      "price": [
+        {
+          "scheme": "exact",
+          "network": "fiat",
+          "asset": "USD",
+          "amount": "1495",
+          "unit": "cent"
+        },
+        {
+          "scheme": "exact",
+          "network": "base",
+          "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+          "amount": "14950000",
+          "unit": "atomic"
+        }
+      ],
+      "sla": {
+        "refundPolicy": "30-day, no-questions money-back guarantee.",
+        "escrow": "none",
+        "fulfillment": "instant digital delivery by email + recoverable access link"
+      },
+      "trust": {
+        "agentId": "did:web:tantra-authority.com"
+      },
+      "terms": {
+        "usageRights": "Personal digital license. Adults only (18+). Educational, not medical or therapeutic advice.",
+        "redistribution": "no",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=lazy-getting-rich-ai-audiobook"
+      },
+      "validUntil": "2026-12-31T00:00:00Z",
+      "payment": {
+        "type": "dual-rail",
+        "x402Endpoint": "https://api.tantra-authority.com/api/x402/lazy-getting-rich-ai-audiobook",
+        "x402Version": 1,
+        "schemes": [
+          "exact"
+        ],
+        "payTo": "0xa8c3cd00daeded3e9440be2dc812d61bf14a39c6",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=lazy-getting-rich-ai-audiobook",
+        "ap2MandateRequired": false,
+        "note": "Agent-native: GET the x402Endpoint → HTTP 402 with USDC-on-Base payment requirements → pay → retry with X-Payment: base64({\"network\":\"base\",\"txHash\":\"0x…\",\"email\":\"optional\"}). Settlement verified ON-CHAIN, replay-guarded; the access link returns. Humans use the card checkout."
+      },
+      "signature": {
+        "alg": "ed25519",
+        "keyId": "did:web:tantra-authority.com#key-1",
+        "canonicalization": "jcs",
+        "value": "uOmTaNBDdCJW9klxv0uYkbDywkqqcoWlq2_bbrbishIz9_czygzX3kwxgCHvGV2cvA-DVJl_sMq4qlQj4ODEDg",
+        "payloadDigestSha256": "c1ca14d6bc836c81929d7bac0f31e5cdfe6a9ad940a827f270863986e0dd3231",
+        "note": "Detached ed25519 over the JCS-canonicalized offer (minus signature). Verify via the publisher's did:web /.well-known/did.json."
+      }
+    },
+    {
+      "offerId": "urn:aop:tantra-authority.com:reading-sovereign",
+      "capability": {
+        "name": "The Sovereign — Your Full Reading",
+        "description": "The Sovereign — Your Full Reading — a personalized archetype reading by Lawrence Lanoff (Tantra Authority / The Naked Press). $7.00. Instant digital delivery, recoverable access link, 30-day money-back guarantee."
+      },
+      "intentTags": [
+        "intent:commerce.purchase.digital-good",
+        "intent:content.reading.personalized",
+        "intent:divination.archetype"
+      ],
+      "price": [
+        {
+          "scheme": "exact",
+          "network": "fiat",
+          "asset": "USD",
+          "amount": "700",
+          "unit": "cent"
+        },
+        {
+          "scheme": "exact",
+          "network": "base",
+          "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+          "amount": "7000000",
+          "unit": "atomic"
+        }
+      ],
+      "sla": {
+        "refundPolicy": "30-day, no-questions money-back guarantee.",
+        "escrow": "none",
+        "fulfillment": "instant digital delivery by email + recoverable access link"
+      },
+      "trust": {
+        "agentId": "did:web:tantra-authority.com"
+      },
+      "terms": {
+        "usageRights": "Personal digital license. Adults only (18+). Educational, not medical or therapeutic advice.",
+        "redistribution": "no",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=reading-sovereign"
+      },
+      "validUntil": "2026-12-31T00:00:00Z",
+      "payment": {
+        "type": "dual-rail",
+        "x402Endpoint": "https://api.tantra-authority.com/api/x402/reading-sovereign",
+        "x402Version": 1,
+        "schemes": [
+          "exact"
+        ],
+        "payTo": "0xa8c3cd00daeded3e9440be2dc812d61bf14a39c6",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=reading-sovereign",
+        "ap2MandateRequired": false,
+        "note": "Agent-native: GET the x402Endpoint → HTTP 402 with USDC-on-Base payment requirements → pay → retry with X-Payment: base64({\"network\":\"base\",\"txHash\":\"0x…\",\"email\":\"optional\"}). Settlement verified ON-CHAIN, replay-guarded; the access link returns. Humans use the card checkout."
+      },
+      "signature": {
+        "alg": "ed25519",
+        "keyId": "did:web:tantra-authority.com#key-1",
+        "canonicalization": "jcs",
+        "value": "h7bV_kFQ4vV_edJ1M63TPFIqfyhKXoeU14BErhmIUzMvXeoZTarpBWMRdpctWsofOrMxY2rD0-99m0jfZsxrBg",
+        "payloadDigestSha256": "2a7bb6fb46cfeb1f7bb37674026fba961b09a0f16cb45df579fd4a35d426cbf0",
+        "note": "Detached ed25519 over the JCS-canonicalized offer (minus signature). Verify via the publisher's did:web /.well-known/did.json."
+      }
+    },
+    {
+      "offerId": "urn:aop:tantra-authority.com:reading-architect",
+      "capability": {
+        "name": "The Architect — Your Full Reading",
+        "description": "The Architect — Your Full Reading — a personalized archetype reading by Lawrence Lanoff (Tantra Authority / The Naked Press). $7.00. Instant digital delivery, recoverable access link, 30-day money-back guarantee."
+      },
+      "intentTags": [
+        "intent:commerce.purchase.digital-good",
+        "intent:content.reading.personalized",
+        "intent:divination.archetype"
+      ],
+      "price": [
+        {
+          "scheme": "exact",
+          "network": "fiat",
+          "asset": "USD",
+          "amount": "700",
+          "unit": "cent"
+        },
+        {
+          "scheme": "exact",
+          "network": "base",
+          "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+          "amount": "7000000",
+          "unit": "atomic"
+        }
+      ],
+      "sla": {
+        "refundPolicy": "30-day, no-questions money-back guarantee.",
+        "escrow": "none",
+        "fulfillment": "instant digital delivery by email + recoverable access link"
+      },
+      "trust": {
+        "agentId": "did:web:tantra-authority.com"
+      },
+      "terms": {
+        "usageRights": "Personal digital license. Adults only (18+). Educational, not medical or therapeutic advice.",
+        "redistribution": "no",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=reading-architect"
+      },
+      "validUntil": "2026-12-31T00:00:00Z",
+      "payment": {
+        "type": "dual-rail",
+        "x402Endpoint": "https://api.tantra-authority.com/api/x402/reading-architect",
+        "x402Version": 1,
+        "schemes": [
+          "exact"
+        ],
+        "payTo": "0xa8c3cd00daeded3e9440be2dc812d61bf14a39c6",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=reading-architect",
+        "ap2MandateRequired": false,
+        "note": "Agent-native: GET the x402Endpoint → HTTP 402 with USDC-on-Base payment requirements → pay → retry with X-Payment: base64({\"network\":\"base\",\"txHash\":\"0x…\",\"email\":\"optional\"}). Settlement verified ON-CHAIN, replay-guarded; the access link returns. Humans use the card checkout."
+      },
+      "signature": {
+        "alg": "ed25519",
+        "keyId": "did:web:tantra-authority.com#key-1",
+        "canonicalization": "jcs",
+        "value": "-KO5QoiGdosH5znC_NQTR5uD1FslVUo1FarGmE9pzEq_ID_awkeNTuPI9FVyJ80951T8PoOpje89bAYlwx86BA",
+        "payloadDigestSha256": "6633f354b2647d5188fe2b5be4ae89579651eac13e147b2754fbbc84db4747ce",
+        "note": "Detached ed25519 over the JCS-canonicalized offer (minus signature). Verify via the publisher's did:web /.well-known/did.json."
+      }
+    },
+    {
+      "offerId": "urn:aop:tantra-authority.com:reading-wild-one",
+      "capability": {
+        "name": "The Wild One — Your Full Reading",
+        "description": "The Wild One — Your Full Reading — a personalized archetype reading by Lawrence Lanoff (Tantra Authority / The Naked Press). $7.00. Instant digital delivery, recoverable access link, 30-day money-back guarantee."
+      },
+      "intentTags": [
+        "intent:commerce.purchase.digital-good",
+        "intent:content.reading.personalized",
+        "intent:divination.archetype"
+      ],
+      "price": [
+        {
+          "scheme": "exact",
+          "network": "fiat",
+          "asset": "USD",
+          "amount": "700",
+          "unit": "cent"
+        },
+        {
+          "scheme": "exact",
+          "network": "base",
+          "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+          "amount": "7000000",
+          "unit": "atomic"
+        }
+      ],
+      "sla": {
+        "refundPolicy": "30-day, no-questions money-back guarantee.",
+        "escrow": "none",
+        "fulfillment": "instant digital delivery by email + recoverable access link"
+      },
+      "trust": {
+        "agentId": "did:web:tantra-authority.com"
+      },
+      "terms": {
+        "usageRights": "Personal digital license. Adults only (18+). Educational, not medical or therapeutic advice.",
+        "redistribution": "no",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=reading-wild-one"
+      },
+      "validUntil": "2026-12-31T00:00:00Z",
+      "payment": {
+        "type": "dual-rail",
+        "x402Endpoint": "https://api.tantra-authority.com/api/x402/reading-wild-one",
+        "x402Version": 1,
+        "schemes": [
+          "exact"
+        ],
+        "payTo": "0xa8c3cd00daeded3e9440be2dc812d61bf14a39c6",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=reading-wild-one",
+        "ap2MandateRequired": false,
+        "note": "Agent-native: GET the x402Endpoint → HTTP 402 with USDC-on-Base payment requirements → pay → retry with X-Payment: base64({\"network\":\"base\",\"txHash\":\"0x…\",\"email\":\"optional\"}). Settlement verified ON-CHAIN, replay-guarded; the access link returns. Humans use the card checkout."
+      },
+      "signature": {
+        "alg": "ed25519",
+        "keyId": "did:web:tantra-authority.com#key-1",
+        "canonicalization": "jcs",
+        "value": "-93vZgqIV5f33-xtmmGlo_rZzsnmLWeiG3ZCWFYK5BI7Q6Qxeh7S7sIe8KinbrkK8GYAz_5CTHdJXwZewS-hDw",
+        "payloadDigestSha256": "323a60593c2ea1384a2a9bf620a31c9fb944fb66357c75cdee17b01fa15265ec",
+        "note": "Detached ed25519 over the JCS-canonicalized offer (minus signature). Verify via the publisher's did:web /.well-known/did.json."
+      }
+    },
+    {
+      "offerId": "urn:aop:tantra-authority.com:reading-magician",
+      "capability": {
+        "name": "The Magician — Your Full Reading",
+        "description": "The Magician — Your Full Reading — a personalized archetype reading by Lawrence Lanoff (Tantra Authority / The Naked Press). $7.00. Instant digital delivery, recoverable access link, 30-day money-back guarantee."
+      },
+      "intentTags": [
+        "intent:commerce.purchase.digital-good",
+        "intent:content.reading.personalized",
+        "intent:divination.archetype"
+      ],
+      "price": [
+        {
+          "scheme": "exact",
+          "network": "fiat",
+          "asset": "USD",
+          "amount": "700",
+          "unit": "cent"
+        },
+        {
+          "scheme": "exact",
+          "network": "base",
+          "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+          "amount": "7000000",
+          "unit": "atomic"
+        }
+      ],
+      "sla": {
+        "refundPolicy": "30-day, no-questions money-back guarantee.",
+        "escrow": "none",
+        "fulfillment": "instant digital delivery by email + recoverable access link"
+      },
+      "trust": {
+        "agentId": "did:web:tantra-authority.com"
+      },
+      "terms": {
+        "usageRights": "Personal digital license. Adults only (18+). Educational, not medical or therapeutic advice.",
+        "redistribution": "no",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=reading-magician"
+      },
+      "validUntil": "2026-12-31T00:00:00Z",
+      "payment": {
+        "type": "dual-rail",
+        "x402Endpoint": "https://api.tantra-authority.com/api/x402/reading-magician",
+        "x402Version": 1,
+        "schemes": [
+          "exact"
+        ],
+        "payTo": "0xa8c3cd00daeded3e9440be2dc812d61bf14a39c6",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=reading-magician",
+        "ap2MandateRequired": false,
+        "note": "Agent-native: GET the x402Endpoint → HTTP 402 with USDC-on-Base payment requirements → pay → retry with X-Payment: base64({\"network\":\"base\",\"txHash\":\"0x…\",\"email\":\"optional\"}). Settlement verified ON-CHAIN, replay-guarded; the access link returns. Humans use the card checkout."
+      },
+      "signature": {
+        "alg": "ed25519",
+        "keyId": "did:web:tantra-authority.com#key-1",
+        "canonicalization": "jcs",
+        "value": "b0qvmfelpPuOquWesWQKxdKOFE60oHxkB_zctGhhAjVnycQhtBKHxAQ3TUuXK-GdjYQL_VRfSHazFQvyLpBrAw",
+        "payloadDigestSha256": "d8f9d23ea602a624a55fc3c46c6462cc36d019aa01732b350757f5dbe4067229",
+        "note": "Detached ed25519 over the JCS-canonicalized offer (minus signature). Verify via the publisher's did:web /.well-known/did.json."
+      }
+    },
+    {
+      "offerId": "urn:aop:tantra-authority.com:reading-flame",
+      "capability": {
+        "name": "The Flame — Your Full Reading",
+        "description": "The Flame — Your Full Reading — a personalized archetype reading by Lawrence Lanoff (Tantra Authority / The Naked Press). $7.00. Instant digital delivery, recoverable access link, 30-day money-back guarantee."
+      },
+      "intentTags": [
+        "intent:commerce.purchase.digital-good",
+        "intent:content.reading.personalized",
+        "intent:divination.archetype"
+      ],
+      "price": [
+        {
+          "scheme": "exact",
+          "network": "fiat",
+          "asset": "USD",
+          "amount": "700",
+          "unit": "cent"
+        },
+        {
+          "scheme": "exact",
+          "network": "base",
+          "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+          "amount": "7000000",
+          "unit": "atomic"
+        }
+      ],
+      "sla": {
+        "refundPolicy": "30-day, no-questions money-back guarantee.",
+        "escrow": "none",
+        "fulfillment": "instant digital delivery by email + recoverable access link"
+      },
+      "trust": {
+        "agentId": "did:web:tantra-authority.com"
+      },
+      "terms": {
+        "usageRights": "Personal digital license. Adults only (18+). Educational, not medical or therapeutic advice.",
+        "redistribution": "no",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=reading-flame"
+      },
+      "validUntil": "2026-12-31T00:00:00Z",
+      "payment": {
+        "type": "dual-rail",
+        "x402Endpoint": "https://api.tantra-authority.com/api/x402/reading-flame",
+        "x402Version": 1,
+        "schemes": [
+          "exact"
+        ],
+        "payTo": "0xa8c3cd00daeded3e9440be2dc812d61bf14a39c6",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=reading-flame",
+        "ap2MandateRequired": false,
+        "note": "Agent-native: GET the x402Endpoint → HTTP 402 with USDC-on-Base payment requirements → pay → retry with X-Payment: base64({\"network\":\"base\",\"txHash\":\"0x…\",\"email\":\"optional\"}). Settlement verified ON-CHAIN, replay-guarded; the access link returns. Humans use the card checkout."
+      },
+      "signature": {
+        "alg": "ed25519",
+        "keyId": "did:web:tantra-authority.com#key-1",
+        "canonicalization": "jcs",
+        "value": "D0At4oLEDdyeuUb9UCEfKKlcNKsN-sQy3tXFjkihsqW34YrmGFC3T_UGcUUwoq6UUsVopZp412TaDoWKCsnQBA",
+        "payloadDigestSha256": "2787cdad53e3c1c4d644af03ec2a8be8ae420e9417e4813e8fd554a306e1ae7f",
+        "note": "Detached ed25519 over the JCS-canonicalized offer (minus signature). Verify via the publisher's did:web /.well-known/did.json."
+      }
+    },
+    {
+      "offerId": "urn:aop:tantra-authority.com:reading-oracle",
+      "capability": {
+        "name": "The Oracle — Your Full Reading",
+        "description": "The Oracle — Your Full Reading — a personalized archetype reading by Lawrence Lanoff (Tantra Authority / The Naked Press). $7.00. Instant digital delivery, recoverable access link, 30-day money-back guarantee."
+      },
+      "intentTags": [
+        "intent:commerce.purchase.digital-good",
+        "intent:content.reading.personalized",
+        "intent:divination.archetype"
+      ],
+      "price": [
+        {
+          "scheme": "exact",
+          "network": "fiat",
+          "asset": "USD",
+          "amount": "700",
+          "unit": "cent"
+        },
+        {
+          "scheme": "exact",
+          "network": "base",
+          "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+          "amount": "7000000",
+          "unit": "atomic"
+        }
+      ],
+      "sla": {
+        "refundPolicy": "30-day, no-questions money-back guarantee.",
+        "escrow": "none",
+        "fulfillment": "instant digital delivery by email + recoverable access link"
+      },
+      "trust": {
+        "agentId": "did:web:tantra-authority.com"
+      },
+      "terms": {
+        "usageRights": "Personal digital license. Adults only (18+). Educational, not medical or therapeutic advice.",
+        "redistribution": "no",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=reading-oracle"
+      },
+      "validUntil": "2026-12-31T00:00:00Z",
+      "payment": {
+        "type": "dual-rail",
+        "x402Endpoint": "https://api.tantra-authority.com/api/x402/reading-oracle",
+        "x402Version": 1,
+        "schemes": [
+          "exact"
+        ],
+        "payTo": "0xa8c3cd00daeded3e9440be2dc812d61bf14a39c6",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=reading-oracle",
+        "ap2MandateRequired": false,
+        "note": "Agent-native: GET the x402Endpoint → HTTP 402 with USDC-on-Base payment requirements → pay → retry with X-Payment: base64({\"network\":\"base\",\"txHash\":\"0x…\",\"email\":\"optional\"}). Settlement verified ON-CHAIN, replay-guarded; the access link returns. Humans use the card checkout."
+      },
+      "signature": {
+        "alg": "ed25519",
+        "keyId": "did:web:tantra-authority.com#key-1",
+        "canonicalization": "jcs",
+        "value": "ck1Ud3N5X50yMr9yAfN_PihrU7ujTe-JbywuJAvFKjkV9BbOLfDw2y10iiqgBaT-oWDlpiKu2eLXtlC-DVlBDg",
+        "payloadDigestSha256": "5881c7e31072345ba83f6e47f1316c4b2e013a92607b8bf20351adb2461a7c07",
+        "note": "Detached ed25519 over the JCS-canonicalized offer (minus signature). Verify via the publisher's did:web /.well-known/did.json."
+      }
+    },
+    {
+      "offerId": "urn:aop:tantra-authority.com:reading-dreamer",
+      "capability": {
+        "name": "The Dreamer — Your Full Reading",
+        "description": "The Dreamer — Your Full Reading — a personalized archetype reading by Lawrence Lanoff (Tantra Authority / The Naked Press). $7.00. Instant digital delivery, recoverable access link, 30-day money-back guarantee."
+      },
+      "intentTags": [
+        "intent:commerce.purchase.digital-good",
+        "intent:content.reading.personalized",
+        "intent:divination.archetype"
+      ],
+      "price": [
+        {
+          "scheme": "exact",
+          "network": "fiat",
+          "asset": "USD",
+          "amount": "700",
+          "unit": "cent"
+        },
+        {
+          "scheme": "exact",
+          "network": "base",
+          "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+          "amount": "7000000",
+          "unit": "atomic"
+        }
+      ],
+      "sla": {
+        "refundPolicy": "30-day, no-questions money-back guarantee.",
+        "escrow": "none",
+        "fulfillment": "instant digital delivery by email + recoverable access link"
+      },
+      "trust": {
+        "agentId": "did:web:tantra-authority.com"
+      },
+      "terms": {
+        "usageRights": "Personal digital license. Adults only (18+). Educational, not medical or therapeutic advice.",
+        "redistribution": "no",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=reading-dreamer"
+      },
+      "validUntil": "2026-12-31T00:00:00Z",
+      "payment": {
+        "type": "dual-rail",
+        "x402Endpoint": "https://api.tantra-authority.com/api/x402/reading-dreamer",
+        "x402Version": 1,
+        "schemes": [
+          "exact"
+        ],
+        "payTo": "0xa8c3cd00daeded3e9440be2dc812d61bf14a39c6",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=reading-dreamer",
+        "ap2MandateRequired": false,
+        "note": "Agent-native: GET the x402Endpoint → HTTP 402 with USDC-on-Base payment requirements → pay → retry with X-Payment: base64({\"network\":\"base\",\"txHash\":\"0x…\",\"email\":\"optional\"}). Settlement verified ON-CHAIN, replay-guarded; the access link returns. Humans use the card checkout."
+      },
+      "signature": {
+        "alg": "ed25519",
+        "keyId": "did:web:tantra-authority.com#key-1",
+        "canonicalization": "jcs",
+        "value": "Zpdv-oSE0OM4u3QAMQR0qYYg92f4FH68r5vA22wdgpy79XYbT-WxNm9o_-ihkVeywc74H9Kox4gCgnmjOQAlAA",
+        "payloadDigestSha256": "4408ba5dacd697342636210309c1cc4a90e737a6ec42e354afaf052c42847451",
+        "note": "Detached ed25519 over the JCS-canonicalized offer (minus signature). Verify via the publisher's did:web /.well-known/did.json."
+      }
+    },
+    {
+      "offerId": "urn:aop:tantra-authority.com:reading-mystic",
+      "capability": {
+        "name": "The Mystic — Your Full Reading",
+        "description": "The Mystic — Your Full Reading — a personalized archetype reading by Lawrence Lanoff (Tantra Authority / The Naked Press). $7.00. Instant digital delivery, recoverable access link, 30-day money-back guarantee."
+      },
+      "intentTags": [
+        "intent:commerce.purchase.digital-good",
+        "intent:content.reading.personalized",
+        "intent:divination.archetype"
+      ],
+      "price": [
+        {
+          "scheme": "exact",
+          "network": "fiat",
+          "asset": "USD",
+          "amount": "700",
+          "unit": "cent"
+        },
+        {
+          "scheme": "exact",
+          "network": "base",
+          "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+          "amount": "7000000",
+          "unit": "atomic"
+        }
+      ],
+      "sla": {
+        "refundPolicy": "30-day, no-questions money-back guarantee.",
+        "escrow": "none",
+        "fulfillment": "instant digital delivery by email + recoverable access link"
+      },
+      "trust": {
+        "agentId": "did:web:tantra-authority.com"
+      },
+      "terms": {
+        "usageRights": "Personal digital license. Adults only (18+). Educational, not medical or therapeutic advice.",
+        "redistribution": "no",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=reading-mystic"
+      },
+      "validUntil": "2026-12-31T00:00:00Z",
+      "payment": {
+        "type": "dual-rail",
+        "x402Endpoint": "https://api.tantra-authority.com/api/x402/reading-mystic",
+        "x402Version": 1,
+        "schemes": [
+          "exact"
+        ],
+        "payTo": "0xa8c3cd00daeded3e9440be2dc812d61bf14a39c6",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=reading-mystic",
+        "ap2MandateRequired": false,
+        "note": "Agent-native: GET the x402Endpoint → HTTP 402 with USDC-on-Base payment requirements → pay → retry with X-Payment: base64({\"network\":\"base\",\"txHash\":\"0x…\",\"email\":\"optional\"}). Settlement verified ON-CHAIN, replay-guarded; the access link returns. Humans use the card checkout."
+      },
+      "signature": {
+        "alg": "ed25519",
+        "keyId": "did:web:tantra-authority.com#key-1",
+        "canonicalization": "jcs",
+        "value": "RAKnqVh-U8sa3nTAhw8uN1ZIge7C6h-Uin7IhaePbpt4eUBNeiffyAE-EbF0HV3CAbgQwkmz8MJVF7gQv0NYAA",
+        "payloadDigestSha256": "165257eba6d73f36c818251f5a170ebe8138a1add4a58819f45a22d7f153c64e",
+        "note": "Detached ed25519 over the JCS-canonicalized offer (minus signature). Verify via the publisher's did:web /.well-known/did.json."
+      }
+    },
+    {
+      "offerId": "urn:aop:tantra-authority.com:psyche-reading",
+      "capability": {
+        "name": "Your Psyche — A Deeper Reading",
+        "description": "Your Psyche — A Deeper Reading — a personalized archetype reading by Lawrence Lanoff (Tantra Authority / The Naked Press). $19.00. Instant digital delivery, recoverable access link, 30-day money-back guarantee."
+      },
+      "intentTags": [
+        "intent:commerce.purchase.digital-good",
+        "intent:content.reading.personalized",
+        "intent:divination.archetype"
+      ],
+      "price": [
+        {
+          "scheme": "exact",
+          "network": "fiat",
+          "asset": "USD",
+          "amount": "1900",
+          "unit": "cent"
+        },
+        {
+          "scheme": "exact",
+          "network": "base",
+          "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+          "amount": "19000000",
+          "unit": "atomic"
+        }
+      ],
+      "sla": {
+        "refundPolicy": "30-day, no-questions money-back guarantee.",
+        "escrow": "none",
+        "fulfillment": "instant digital delivery by email + recoverable access link"
+      },
+      "trust": {
+        "agentId": "did:web:tantra-authority.com"
+      },
+      "terms": {
+        "usageRights": "Personal digital license. Adults only (18+). Educational, not medical or therapeutic advice.",
+        "redistribution": "no",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=psyche-reading"
+      },
+      "validUntil": "2026-12-31T00:00:00Z",
+      "payment": {
+        "type": "dual-rail",
+        "x402Endpoint": "https://api.tantra-authority.com/api/x402/psyche-reading",
+        "x402Version": 1,
+        "schemes": [
+          "exact"
+        ],
+        "payTo": "0xa8c3cd00daeded3e9440be2dc812d61bf14a39c6",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=psyche-reading",
+        "ap2MandateRequired": false,
+        "note": "Agent-native: GET the x402Endpoint → HTTP 402 with USDC-on-Base payment requirements → pay → retry with X-Payment: base64({\"network\":\"base\",\"txHash\":\"0x…\",\"email\":\"optional\"}). Settlement verified ON-CHAIN, replay-guarded; the access link returns. Humans use the card checkout."
+      },
+      "signature": {
+        "alg": "ed25519",
+        "keyId": "did:web:tantra-authority.com#key-1",
+        "canonicalization": "jcs",
+        "value": "mSa9m_6DxERJ5wV3jVPf4GksyLk42HiO0oK04r_Nl3idXRb_oZCJuKomIcvxcykVPefY9PXlJa32lxwqV4z7AA",
+        "payloadDigestSha256": "d314d67cea7529501d6894ed95f1a73d1eea62a870ac9e2eeddab264d46c6078",
+        "note": "Detached ed25519 over the JCS-canonicalized offer (minus signature). Verify via the publisher's did:web /.well-known/did.json."
+      }
+    },
+    {
+      "offerId": "urn:aop:tantra-authority.com:shadow-reading",
+      "capability": {
+        "name": "The Gold in Your Dark — Your Shadow Reading",
+        "description": "The Gold in Your Dark — Your Shadow Reading — a personalized archetype reading by Lawrence Lanoff (Tantra Authority / The Naked Press). $39.00. Instant digital delivery, recoverable access link, 30-day money-back guarantee."
+      },
+      "intentTags": [
+        "intent:commerce.purchase.digital-good",
+        "intent:content.reading.personalized",
+        "intent:divination.archetype"
+      ],
+      "price": [
+        {
+          "scheme": "exact",
+          "network": "fiat",
+          "asset": "USD",
+          "amount": "3900",
+          "unit": "cent"
+        },
+        {
+          "scheme": "exact",
+          "network": "base",
+          "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+          "amount": "39000000",
+          "unit": "atomic"
+        }
+      ],
+      "sla": {
+        "refundPolicy": "30-day, no-questions money-back guarantee.",
+        "escrow": "none",
+        "fulfillment": "instant digital delivery by email + recoverable access link"
+      },
+      "trust": {
+        "agentId": "did:web:tantra-authority.com"
+      },
+      "terms": {
+        "usageRights": "Personal digital license. Adults only (18+). Educational, not medical or therapeutic advice.",
+        "redistribution": "no",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=shadow-reading"
+      },
+      "validUntil": "2026-12-31T00:00:00Z",
+      "payment": {
+        "type": "dual-rail",
+        "x402Endpoint": "https://api.tantra-authority.com/api/x402/shadow-reading",
+        "x402Version": 1,
+        "schemes": [
+          "exact"
+        ],
+        "payTo": "0xa8c3cd00daeded3e9440be2dc812d61bf14a39c6",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=shadow-reading",
+        "ap2MandateRequired": false,
+        "note": "Agent-native: GET the x402Endpoint → HTTP 402 with USDC-on-Base payment requirements → pay → retry with X-Payment: base64({\"network\":\"base\",\"txHash\":\"0x…\",\"email\":\"optional\"}). Settlement verified ON-CHAIN, replay-guarded; the access link returns. Humans use the card checkout."
+      },
+      "signature": {
+        "alg": "ed25519",
+        "keyId": "did:web:tantra-authority.com#key-1",
+        "canonicalization": "jcs",
+        "value": "i1mEn4k3aFZjKI_T6U3Z0MTJUxdpVaeezshUYpvwZN6EZTFIAlunl8mxis6rDNEeb5g-8vF_eikkRzvtgkpGDg",
+        "payloadDigestSha256": "5564a4cc8c08075128f77128466122d3a738bf4e84999ab67114b0482143a71d",
+        "note": "Detached ed25519 over the JCS-canonicalized offer (minus signature). Verify via the publisher's did:web /.well-known/did.json."
+      }
+    },
+    {
+      "offerId": "urn:aop:tantra-authority.com:agent-ready-kit",
+      "capability": {
+        "name": "The Agent-Ready Kit — make your business legible to AI buyers",
+        "description": "The Agent-Ready Kit — make your business legible to AI buyers — a digital tool kit by Lawrence Lanoff (Tantra Authority / The Naked Press). $29.00. Instant digital delivery, recoverable access link, 30-day money-back guarantee.",
+        "image": "https://ad-agency-for-agents.pages.dev/assets/cover-agent-ready-kit.png"
+      },
+      "intentTags": [
+        "intent:commerce.purchase.digital-good",
+        "intent:tools.agent.purchase",
+        "intent:business.automation"
+      ],
+      "price": [
+        {
+          "scheme": "exact",
+          "network": "fiat",
+          "asset": "USD",
+          "amount": "2900",
+          "unit": "cent"
+        },
+        {
+          "scheme": "exact",
+          "network": "base",
+          "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+          "amount": "29000000",
+          "unit": "atomic"
+        }
+      ],
+      "sla": {
+        "refundPolicy": "30-day, no-questions money-back guarantee.",
+        "escrow": "none",
+        "fulfillment": "instant digital delivery by email + recoverable access link"
+      },
+      "trust": {
+        "agentId": "did:web:tantra-authority.com"
+      },
+      "terms": {
+        "usageRights": "Personal digital license. Adults only (18+). Educational, not medical or therapeutic advice.",
+        "redistribution": "no",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=agent-ready-kit"
+      },
+      "validUntil": "2026-12-31T00:00:00Z",
+      "payment": {
+        "type": "dual-rail",
+        "x402Endpoint": "https://api.tantra-authority.com/api/x402/agent-ready-kit",
+        "x402Version": 1,
+        "schemes": [
+          "exact"
+        ],
+        "payTo": "0xa8c3cd00daeded3e9440be2dc812d61bf14a39c6",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=agent-ready-kit",
+        "ap2MandateRequired": false,
+        "note": "Agent-native: GET the x402Endpoint → HTTP 402 with USDC-on-Base payment requirements → pay → retry with X-Payment: base64({\"network\":\"base\",\"txHash\":\"0x…\",\"email\":\"optional\"}). Settlement verified ON-CHAIN, replay-guarded; the access link returns. Humans use the card checkout."
+      },
+      "signature": {
+        "alg": "ed25519",
+        "keyId": "did:web:tantra-authority.com#key-1",
+        "canonicalization": "jcs",
+        "value": "jdTyI6NnseYLFuEozlpgm9NaUpZQ_IIPN5F7pROR5UoKLKf5UQsbJr8KsgWNlbzVPw1swBUj6kTkSAWRPkWfBQ",
+        "payloadDigestSha256": "3a2e9db07d2cc0e52d11348099f7e275a06f480343ac743fcfca628970f0e0f0",
+        "note": "Detached ed25519 over the JCS-canonicalized offer (minus signature). Verify via the publisher's did:web /.well-known/did.json."
+      }
     }
   ],
-  "agentNotes": "AOP-native offer manifest for Tantra Authority's digital catalog. Live product list + price at https://api.tantra-authority.com/api/products (also mirrored as schema.org ItemList on /shop.html). Indexed by the Ad Agency for Agents (https://adagencyforagents.com). Spec: https://adagencyforagents.com/PROTOCOL_v0.md."
+  "agentNotes": "Full per-product AOP offer manifest for Tantra Authority — one signed offer per catalog product, regenerated from the live catalog API (https://api.tantra-authority.com/api/products) so it cannot drift. Live price + availability there. Also indexed at https://index.adagencyforagents.com/v0/offers. Spec: https://adagencyforagents.com/PROTOCOL_v0.md."
 }
