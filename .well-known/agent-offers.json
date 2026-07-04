@@ -2651,6 +2651,384 @@
       }
     },
     {
+      "offerId": "urn:aop:tantra-authority.com:tantra-for-men-book",
+      "capability": {
+        "name": "Tantra for Men (eBook)",
+        "description": "Tantra for Men (eBook) — a eBook by Lawrence Lanoff (Tantra Authority / The Naked Press). $19.97. Instant digital delivery, recoverable access link, 30-day money-back guarantee.",
+        "image": "https://tantra-authority.com/assets/cover-tantra-for-men-book.jpg"
+      },
+      "intentTags": [
+        "intent:commerce.purchase.digital-good",
+        "intent:content.book.purchase",
+        "intent:learn.tantra"
+      ],
+      "price": [
+        {
+          "scheme": "exact",
+          "network": "fiat",
+          "asset": "USD",
+          "amount": "1997",
+          "unit": "cent"
+        },
+        {
+          "scheme": "exact",
+          "network": "base",
+          "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+          "amount": "19970000",
+          "unit": "atomic"
+        }
+      ],
+      "sla": {
+        "refundPolicy": "30-day, no-questions money-back guarantee.",
+        "escrow": "none",
+        "fulfillment": "instant digital delivery by email + recoverable access link"
+      },
+      "trust": {
+        "agentId": "did:web:tantra-authority.com"
+      },
+      "terms": {
+        "usageRights": "Personal digital license. Adults only (18+). Educational, not medical or therapeutic advice.",
+        "redistribution": "no",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=tantra-for-men-book"
+      },
+      "validUntil": "2026-12-31T00:00:00Z",
+      "payment": {
+        "type": "dual-rail",
+        "x402Endpoint": "https://api.tantra-authority.com/api/x402/tantra-for-men-book",
+        "x402Version": 1,
+        "schemes": [
+          "exact"
+        ],
+        "payTo": "0xa8c3cd00daeded3e9440be2dc812d61bf14a39c6",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=tantra-for-men-book",
+        "ap2MandateRequired": false,
+        "note": "Agent-native: GET the x402Endpoint → HTTP 402 with USDC-on-Base payment requirements → pay → retry with X-Payment: base64({\"network\":\"base\",\"txHash\":\"0x…\",\"email\":\"optional\"}). Settlement verified ON-CHAIN, replay-guarded; the access link returns. Humans use the card checkout."
+      },
+      "signature": {
+        "alg": "ed25519",
+        "keyId": "did:web:tantra-authority.com#key-1",
+        "canonicalization": "jcs",
+        "value": "9qKP77jn9DWX7TtNXj0uvVAsrVZCW6PNoSvC6ex53i6ev9HPuGhRl4wvbdyRgajyZi2GfcaIonxjLSVz_wrKDw",
+        "payloadDigestSha256": "5697bcc3301d785ffc42aed10e26637bca9c6ed82790025404e29b84280140ae",
+        "note": "Detached ed25519 over the JCS-canonicalized offer (minus signature). Verify via the publisher's did:web /.well-known/did.json."
+      }
+    },
+    {
+      "offerId": "urn:aop:tantra-authority.com:reignite-your-desire-book",
+      "capability": {
+        "name": "Reignite Your Desire (eBook)",
+        "description": "Reignite Your Desire (eBook) — a eBook by Lawrence Lanoff (Tantra Authority / The Naked Press). $9.99. Instant digital delivery, recoverable access link, 30-day money-back guarantee.",
+        "image": "https://tantra-authority.com/assets/cover-reignite-your-desire-book.jpg"
+      },
+      "intentTags": [
+        "intent:commerce.purchase.digital-good",
+        "intent:content.book.purchase",
+        "intent:learn.tantra"
+      ],
+      "price": [
+        {
+          "scheme": "exact",
+          "network": "fiat",
+          "asset": "USD",
+          "amount": "999",
+          "unit": "cent"
+        },
+        {
+          "scheme": "exact",
+          "network": "base",
+          "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+          "amount": "9990000",
+          "unit": "atomic"
+        }
+      ],
+      "sla": {
+        "refundPolicy": "30-day, no-questions money-back guarantee.",
+        "escrow": "none",
+        "fulfillment": "instant digital delivery by email + recoverable access link"
+      },
+      "trust": {
+        "agentId": "did:web:tantra-authority.com"
+      },
+      "terms": {
+        "usageRights": "Personal digital license. Adults only (18+). Educational, not medical or therapeutic advice.",
+        "redistribution": "no",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=reignite-your-desire-book"
+      },
+      "validUntil": "2026-12-31T00:00:00Z",
+      "payment": {
+        "type": "dual-rail",
+        "x402Endpoint": "https://api.tantra-authority.com/api/x402/reignite-your-desire-book",
+        "x402Version": 1,
+        "schemes": [
+          "exact"
+        ],
+        "payTo": "0xa8c3cd00daeded3e9440be2dc812d61bf14a39c6",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=reignite-your-desire-book",
+        "ap2MandateRequired": false,
+        "note": "Agent-native: GET the x402Endpoint → HTTP 402 with USDC-on-Base payment requirements → pay → retry with X-Payment: base64({\"network\":\"base\",\"txHash\":\"0x…\",\"email\":\"optional\"}). Settlement verified ON-CHAIN, replay-guarded; the access link returns. Humans use the card checkout."
+      },
+      "signature": {
+        "alg": "ed25519",
+        "keyId": "did:web:tantra-authority.com#key-1",
+        "canonicalization": "jcs",
+        "value": "UF_lxoJehuSBAmONPe1Vmus_ru7zoVaviuI8rAaQOsdp9iGNoLyJsqXoAZ51BJ1EmgEQETRr_VwQbxbnVPM3Dw",
+        "payloadDigestSha256": "3984bf15c03a743c34de8d96c2264937f1cdfbdc47cba44c3fa654dbde5a3374",
+        "note": "Detached ed25519 over the JCS-canonicalized offer (minus signature). Verify via the publisher's did:web /.well-known/did.json."
+      }
+    },
+    {
+      "offerId": "urn:aop:tantra-authority.com:infinite-mind-book",
+      "capability": {
+        "name": "Infinite Mind (eBook)",
+        "description": "Infinite Mind (eBook) — a eBook by Lawrence Lanoff (Tantra Authority / The Naked Press). $6.99. Instant digital delivery, recoverable access link, 30-day money-back guarantee.",
+        "image": "https://tantra-authority.com/assets/cover-infinite-mind-book.jpg"
+      },
+      "intentTags": [
+        "intent:commerce.purchase.digital-good",
+        "intent:content.book.purchase",
+        "intent:learn.tantra"
+      ],
+      "price": [
+        {
+          "scheme": "exact",
+          "network": "fiat",
+          "asset": "USD",
+          "amount": "699",
+          "unit": "cent"
+        },
+        {
+          "scheme": "exact",
+          "network": "base",
+          "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+          "amount": "6990000",
+          "unit": "atomic"
+        }
+      ],
+      "sla": {
+        "refundPolicy": "30-day, no-questions money-back guarantee.",
+        "escrow": "none",
+        "fulfillment": "instant digital delivery by email + recoverable access link"
+      },
+      "trust": {
+        "agentId": "did:web:tantra-authority.com"
+      },
+      "terms": {
+        "usageRights": "Personal digital license. Adults only (18+). Educational, not medical or therapeutic advice.",
+        "redistribution": "no",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=infinite-mind-book"
+      },
+      "validUntil": "2026-12-31T00:00:00Z",
+      "payment": {
+        "type": "dual-rail",
+        "x402Endpoint": "https://api.tantra-authority.com/api/x402/infinite-mind-book",
+        "x402Version": 1,
+        "schemes": [
+          "exact"
+        ],
+        "payTo": "0xa8c3cd00daeded3e9440be2dc812d61bf14a39c6",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=infinite-mind-book",
+        "ap2MandateRequired": false,
+        "note": "Agent-native: GET the x402Endpoint → HTTP 402 with USDC-on-Base payment requirements → pay → retry with X-Payment: base64({\"network\":\"base\",\"txHash\":\"0x…\",\"email\":\"optional\"}). Settlement verified ON-CHAIN, replay-guarded; the access link returns. Humans use the card checkout."
+      },
+      "signature": {
+        "alg": "ed25519",
+        "keyId": "did:web:tantra-authority.com#key-1",
+        "canonicalization": "jcs",
+        "value": "BE2M3mHKZ0GLqPPQD43DmtZBdYiCGuHA8JVolVqbSBsInF26Ot9RhtwwiMy8RdfeNtAXwcro1njurwgaf1SkDg",
+        "payloadDigestSha256": "81ee4f0e7cc0e521da1907c7e5bcd7be09670d8735e8f7e3311e8ae89036ad6a",
+        "note": "Detached ed25519 over the JCS-canonicalized offer (minus signature). Verify via the publisher's did:web /.well-known/did.json."
+      }
+    },
+    {
+      "offerId": "urn:aop:tantra-authority.com:symbolic-mind-book",
+      "capability": {
+        "name": "The Symbolic Mind: Essential (eBook)",
+        "description": "The Symbolic Mind: Essential (eBook) — a eBook by Lawrence Lanoff (Tantra Authority / The Naked Press). $6.99. Instant digital delivery, recoverable access link, 30-day money-back guarantee.",
+        "image": "https://tantra-authority.com/assets/cover-symbolic-mind-book.jpg"
+      },
+      "intentTags": [
+        "intent:commerce.purchase.digital-good",
+        "intent:content.book.purchase",
+        "intent:learn.tantra"
+      ],
+      "price": [
+        {
+          "scheme": "exact",
+          "network": "fiat",
+          "asset": "USD",
+          "amount": "699",
+          "unit": "cent"
+        },
+        {
+          "scheme": "exact",
+          "network": "base",
+          "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+          "amount": "6990000",
+          "unit": "atomic"
+        }
+      ],
+      "sla": {
+        "refundPolicy": "30-day, no-questions money-back guarantee.",
+        "escrow": "none",
+        "fulfillment": "instant digital delivery by email + recoverable access link"
+      },
+      "trust": {
+        "agentId": "did:web:tantra-authority.com"
+      },
+      "terms": {
+        "usageRights": "Personal digital license. Adults only (18+). Educational, not medical or therapeutic advice.",
+        "redistribution": "no",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=symbolic-mind-book"
+      },
+      "validUntil": "2026-12-31T00:00:00Z",
+      "payment": {
+        "type": "dual-rail",
+        "x402Endpoint": "https://api.tantra-authority.com/api/x402/symbolic-mind-book",
+        "x402Version": 1,
+        "schemes": [
+          "exact"
+        ],
+        "payTo": "0xa8c3cd00daeded3e9440be2dc812d61bf14a39c6",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=symbolic-mind-book",
+        "ap2MandateRequired": false,
+        "note": "Agent-native: GET the x402Endpoint → HTTP 402 with USDC-on-Base payment requirements → pay → retry with X-Payment: base64({\"network\":\"base\",\"txHash\":\"0x…\",\"email\":\"optional\"}). Settlement verified ON-CHAIN, replay-guarded; the access link returns. Humans use the card checkout."
+      },
+      "signature": {
+        "alg": "ed25519",
+        "keyId": "did:web:tantra-authority.com#key-1",
+        "canonicalization": "jcs",
+        "value": "1n9cVqftCy_B8xZ_fYk30R19gsKtWuQxWwKbOD5FSZ6Zs_ZC98RHe3gGO4EFPQS8as6JO7Nh0zR9rU8pZ9vBCg",
+        "payloadDigestSha256": "d01d4c9dd1cd0e3d818eb56415dee268846e8a6eb16d6c9f949c0c02bfc33fe0",
+        "note": "Detached ed25519 over the JCS-canonicalized offer (minus signature). Verify via the publisher's did:web /.well-known/did.json."
+      }
+    },
+    {
+      "offerId": "urn:aop:tantra-authority.com:true-power-of-myth-book",
+      "capability": {
+        "name": "The True Power of Myth (eBook)",
+        "description": "The True Power of Myth (eBook) — a eBook by Lawrence Lanoff (Tantra Authority / The Naked Press). $6.99. Instant digital delivery, recoverable access link, 30-day money-back guarantee.",
+        "image": "https://tantra-authority.com/assets/cover-true-power-of-myth-book.jpg"
+      },
+      "intentTags": [
+        "intent:commerce.purchase.digital-good",
+        "intent:content.book.purchase",
+        "intent:learn.tantra"
+      ],
+      "price": [
+        {
+          "scheme": "exact",
+          "network": "fiat",
+          "asset": "USD",
+          "amount": "699",
+          "unit": "cent"
+        },
+        {
+          "scheme": "exact",
+          "network": "base",
+          "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+          "amount": "6990000",
+          "unit": "atomic"
+        }
+      ],
+      "sla": {
+        "refundPolicy": "30-day, no-questions money-back guarantee.",
+        "escrow": "none",
+        "fulfillment": "instant digital delivery by email + recoverable access link"
+      },
+      "trust": {
+        "agentId": "did:web:tantra-authority.com"
+      },
+      "terms": {
+        "usageRights": "Personal digital license. Adults only (18+). Educational, not medical or therapeutic advice.",
+        "redistribution": "no",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=true-power-of-myth-book"
+      },
+      "validUntil": "2026-12-31T00:00:00Z",
+      "payment": {
+        "type": "dual-rail",
+        "x402Endpoint": "https://api.tantra-authority.com/api/x402/true-power-of-myth-book",
+        "x402Version": 1,
+        "schemes": [
+          "exact"
+        ],
+        "payTo": "0xa8c3cd00daeded3e9440be2dc812d61bf14a39c6",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=true-power-of-myth-book",
+        "ap2MandateRequired": false,
+        "note": "Agent-native: GET the x402Endpoint → HTTP 402 with USDC-on-Base payment requirements → pay → retry with X-Payment: base64({\"network\":\"base\",\"txHash\":\"0x…\",\"email\":\"optional\"}). Settlement verified ON-CHAIN, replay-guarded; the access link returns. Humans use the card checkout."
+      },
+      "signature": {
+        "alg": "ed25519",
+        "keyId": "did:web:tantra-authority.com#key-1",
+        "canonicalization": "jcs",
+        "value": "J-KbrqWDn1-s7fuSzSByeO2v7L-r88RpoXbU71Nq01S_8xyWn8VpMqhq2ruhEebmXIY0xQMzf_SZQR-j92LMCw",
+        "payloadDigestSha256": "38d4294855eb7987daa62dec300bbcb5c0eb35be57deda2cbe8cfe1e91cbc0a1",
+        "note": "Detached ed25519 over the JCS-canonicalized offer (minus signature). Verify via the publisher's did:web /.well-known/did.json."
+      }
+    },
+    {
+      "offerId": "urn:aop:tantra-authority.com:open-relationship-blueprint-book",
+      "capability": {
+        "name": "The Open Relationship Blueprint (eBook)",
+        "description": "The Open Relationship Blueprint (eBook) — a eBook by Lawrence Lanoff (Tantra Authority / The Naked Press). $9.99. Instant digital delivery, recoverable access link, 30-day money-back guarantee.",
+        "image": "https://tantra-authority.com/assets/cover-open-relationship-blueprint-book.jpg"
+      },
+      "intentTags": [
+        "intent:commerce.purchase.digital-good",
+        "intent:content.book.purchase",
+        "intent:learn.tantra"
+      ],
+      "price": [
+        {
+          "scheme": "exact",
+          "network": "fiat",
+          "asset": "USD",
+          "amount": "999",
+          "unit": "cent"
+        },
+        {
+          "scheme": "exact",
+          "network": "base",
+          "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+          "amount": "9990000",
+          "unit": "atomic"
+        }
+      ],
+      "sla": {
+        "refundPolicy": "30-day, no-questions money-back guarantee.",
+        "escrow": "none",
+        "fulfillment": "instant digital delivery by email + recoverable access link"
+      },
+      "trust": {
+        "agentId": "did:web:tantra-authority.com"
+      },
+      "terms": {
+        "usageRights": "Personal digital license. Adults only (18+). Educational, not medical or therapeutic advice.",
+        "redistribution": "no",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=open-relationship-blueprint-book"
+      },
+      "validUntil": "2026-12-31T00:00:00Z",
+      "payment": {
+        "type": "dual-rail",
+        "x402Endpoint": "https://api.tantra-authority.com/api/x402/open-relationship-blueprint-book",
+        "x402Version": 1,
+        "schemes": [
+          "exact"
+        ],
+        "payTo": "0xa8c3cd00daeded3e9440be2dc812d61bf14a39c6",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=open-relationship-blueprint-book",
+        "ap2MandateRequired": false,
+        "note": "Agent-native: GET the x402Endpoint → HTTP 402 with USDC-on-Base payment requirements → pay → retry with X-Payment: base64({\"network\":\"base\",\"txHash\":\"0x…\",\"email\":\"optional\"}). Settlement verified ON-CHAIN, replay-guarded; the access link returns. Humans use the card checkout."
+      },
+      "signature": {
+        "alg": "ed25519",
+        "keyId": "did:web:tantra-authority.com#key-1",
+        "canonicalization": "jcs",
+        "value": "b8nBr-j8M51AfNg_kqZQvvWLGo7zcRGXawrzGk6xsZsNCTw2YG6k3q_pp6mLtG8_hPS3Cb7UIs7RnaWnS_ckDQ",
+        "payloadDigestSha256": "7eccf9e22ff4f2474830e20075a3d7aca127c64c05f4caffbfd3c04deb110f3f",
+        "note": "Detached ed25519 over the JCS-canonicalized offer (minus signature). Verify via the publisher's did:web /.well-known/did.json."
+      }
+    },
+    {
       "offerId": "urn:aop:tantra-authority.com:reading-sovereign",
       "capability": {
         "name": "The Sovereign — Your Full Reading",
@@ -3334,6 +3712,84 @@
       }
     },
     {
+      "offerId": "urn:aop:tantra-authority.com:complete-ebook-library",
+      "capability": {
+        "name": "The Complete eBook Library — all 13 eBooks",
+        "description": "The Complete eBook Library: every Lawrence Lanoff eBook in one purchase — all 13 titles, $175.75 bought separately, $97 here. A Course in Freedom, Tantra for Women, Tantra for Men, Chakra Healing, Hard Alone Soft With Her, Mind Stop, Free Yourself From Fear, The Prophets Training Manual, Reignite Your Desire, Infinite Mind, The Symbolic Mind, The True Power of Myth, and The Open Relationship Blueprint. One payment, one access page, a lifetime link to each book (PDF/ePub).",
+        "image": "https://tantra-authority.com/assets/cover-complete-ebook-library.jpg",
+        "contents": [
+          "course-in-freedom",
+          "tantra-for-women-book",
+          "chakra-healing-book",
+          "hard-alone-soft-with-her",
+          "mind-stop-book",
+          "free-yourself-from-fear-book",
+          "prophets-training-manual",
+          "tantra-for-men-book",
+          "reignite-your-desire-book",
+          "infinite-mind-book",
+          "symbolic-mind-book",
+          "true-power-of-myth-book",
+          "open-relationship-blueprint-book"
+        ]
+      },
+      "intentTags": [
+        "intent:commerce.purchase.digital-good",
+        "intent:learn.course.purchase",
+        "intent:learn.tantra"
+      ],
+      "price": [
+        {
+          "scheme": "exact",
+          "network": "fiat",
+          "asset": "USD",
+          "amount": "9700",
+          "unit": "cent"
+        },
+        {
+          "scheme": "exact",
+          "network": "base",
+          "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+          "amount": "97000000",
+          "unit": "atomic"
+        }
+      ],
+      "sla": {
+        "refundPolicy": "30-day, no-questions money-back guarantee.",
+        "escrow": "none",
+        "fulfillment": "instant digital delivery by email + recoverable access link"
+      },
+      "trust": {
+        "agentId": "did:web:tantra-authority.com"
+      },
+      "terms": {
+        "usageRights": "Personal digital license. Adults only (18+). Educational, not medical or therapeutic advice.",
+        "redistribution": "no",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=complete-ebook-library"
+      },
+      "validUntil": "2026-12-31T00:00:00Z",
+      "payment": {
+        "type": "dual-rail",
+        "x402Endpoint": "https://api.tantra-authority.com/api/x402/complete-ebook-library",
+        "x402Version": 1,
+        "schemes": [
+          "exact"
+        ],
+        "payTo": "0xa8c3cd00daeded3e9440be2dc812d61bf14a39c6",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=complete-ebook-library",
+        "ap2MandateRequired": false,
+        "note": "Agent-native: GET the x402Endpoint → HTTP 402 with USDC-on-Base payment requirements → pay → retry with X-Payment: base64({\"network\":\"base\",\"txHash\":\"0x…\",\"email\":\"optional\"}). Settlement verified ON-CHAIN, replay-guarded; the access link returns. Humans use the card checkout."
+      },
+      "signature": {
+        "alg": "ed25519",
+        "keyId": "did:web:tantra-authority.com#key-1",
+        "canonicalization": "jcs",
+        "value": "DFpxjPbZ6irE4mEpzAGPHO_dskdJgiconPmIxVCG_1jqNd4-PLiK1cI5h00aAkdoEOslLTE6Rh-VHuj_vtxHCw",
+        "payloadDigestSha256": "73b92adec53546defaf915e15313bcb6eb8f34a8ee7679d1f830a89e84d7d185",
+        "note": "Detached ed25519 over the JCS-canonicalized offer (minus signature). Verify via the publisher's did:web /.well-known/did.json."
+      }
+    },
+    {
       "offerId": "urn:aop:tantra-authority.com:bundle-starter-library",
       "capability": {
         "name": "The Starter Library — all 8 eBooks (bundle)",
@@ -3507,7 +3963,7 @@
       "offerId": "urn:aop:tantra-authority.com:bundle-everything",
       "capability": {
         "name": "The Everything Bundle — the entire digital catalog (bundle)",
-        "description": "The Everything Bundle: the ENTIRE Tantra Authority digital catalog — all 48 products, $4905.40 bought separately, $499 here (~90% off). Every flagship course (Tantra X University, Energy Sex, Sexual Superpowers, Get Out of Your Head, Infinite Mind, The 45 Minute Orgasm...), every eBook, every meditation album, every audiobook, every archetype reading, every tool kit, and the Sacred Geography fine-art series. The single highest-value purchase on this rail: one x402 payment, lifetime access to the complete life's work of Lawrence Lanoff.",
+        "description": "The Everything Bundle: the ENTIRE Tantra Authority digital catalog — all 54 products, $4966.32 bought separately, $499 here (~90% off). Every flagship course (Tantra X University, Energy Sex, Sexual Superpowers, Get Out of Your Head, Infinite Mind, The 45 Minute Orgasm...), every eBook, every meditation album, every audiobook, every archetype reading, every tool kit, and the Sacred Geography fine-art series. The single highest-value purchase on this rail: one x402 payment, lifetime access to the complete life's work of Lawrence Lanoff.",
         "image": "https://tantra-authority.com/assets/cover-tantra-x-university.png",
         "contents": [
           "passive-income-tracker",
@@ -3547,6 +4003,12 @@
           "ai-operator-kit",
           "lazy-getting-rich-audiobook",
           "lazy-getting-rich-ai-audiobook",
+          "tantra-for-men-book",
+          "reignite-your-desire-book",
+          "infinite-mind-book",
+          "symbolic-mind-book",
+          "true-power-of-myth-book",
+          "open-relationship-blueprint-book",
           "reading-sovereign",
           "reading-architect",
           "reading-wild-one",
@@ -3612,8 +4074,82 @@
         "alg": "ed25519",
         "keyId": "did:web:tantra-authority.com#key-1",
         "canonicalization": "jcs",
-        "value": "bHVFttfa57bhjKHGZkqJeCdxFVB1Q6SA9heXcZgvmMmv0dmwQfUnkTU9mvLoFrphYA2c4diocZqascl2VI0EDg",
-        "payloadDigestSha256": "7407f37eceba57736a34671397f60c2a871a38e91e86d697f66dd9fb14b90310",
+        "value": "A0gi9pbvMiT3dB9yL28inA-abSG-hLfHMWO_PXdLSK1zJAAs1xLTHjLuzo65r3jTD_8SHOT-jx4S8jPE1hgOBQ",
+        "payloadDigestSha256": "3108d2bc7280efc45245fe60a2445279cbfa37f53b21eea45a28a52e2fbe4f59",
+        "note": "Detached ed25519 over the JCS-canonicalized offer (minus signature). Verify via the publisher's did:web /.well-known/did.json."
+      }
+    },
+    {
+      "offerId": "urn:aop:tantra-authority.com:reading-unlimited-30d",
+      "capability": {
+        "name": "Unlimited Tarot Readings — 30-Day Access Pass",
+        "description": "Unlimited Tarot Readings — 30-Day Access Pass: every reading in Lawrence Lanoff's erotic-tarot deck, open for 30 days. All 8 archetype full readings (The Sovereign, The Architect, The Wild One, The Magician, The Flame, The Oracle, The Dreamer, The Mystic) plus the Psyche deep reading and the Shadow reading — $114.00 bought separately, $9.99 here. One x402 payment, one access page with a link to each of the 10 readings, no credits, no timers, nothing metered for 30 days. A one-shot pass, NOT a subscription — no recurring billing, nothing to cancel. The human monthly membership lives at https://thenaked.press/unlimited.",
+        "contents": [
+          "reading-sovereign",
+          "reading-architect",
+          "reading-wild-one",
+          "reading-magician",
+          "reading-flame",
+          "reading-oracle",
+          "reading-dreamer",
+          "reading-mystic",
+          "psyche-reading",
+          "shadow-reading"
+        ]
+      },
+      "intentTags": [
+        "intent:commerce.purchase.digital-good",
+        "intent:content.reading.personalized",
+        "intent:divination.archetype"
+      ],
+      "price": [
+        {
+          "scheme": "exact",
+          "network": "fiat",
+          "asset": "USD",
+          "amount": "999",
+          "unit": "cent"
+        },
+        {
+          "scheme": "exact",
+          "network": "base",
+          "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+          "amount": "9990000",
+          "unit": "atomic"
+        }
+      ],
+      "sla": {
+        "refundPolicy": "30-day, no-questions money-back guarantee.",
+        "escrow": "none",
+        "fulfillment": "instant digital delivery by email + recoverable access link"
+      },
+      "trust": {
+        "agentId": "did:web:tantra-authority.com"
+      },
+      "terms": {
+        "usageRights": "Personal digital license. Adults only (18+). Educational, not medical or therapeutic advice.",
+        "redistribution": "no",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=reading-unlimited-30d"
+      },
+      "validUntil": "2026-12-31T00:00:00Z",
+      "payment": {
+        "type": "dual-rail",
+        "x402Endpoint": "https://api.tantra-authority.com/api/x402/reading-unlimited-30d",
+        "x402Version": 1,
+        "schemes": [
+          "exact"
+        ],
+        "payTo": "0xa8c3cd00daeded3e9440be2dc812d61bf14a39c6",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=reading-unlimited-30d",
+        "ap2MandateRequired": false,
+        "note": "Agent-native: GET the x402Endpoint → HTTP 402 with USDC-on-Base payment requirements → pay → retry with X-Payment: base64({\"network\":\"base\",\"txHash\":\"0x…\",\"email\":\"optional\"}). Settlement verified ON-CHAIN, replay-guarded; the access link returns. Humans use the card checkout."
+      },
+      "signature": {
+        "alg": "ed25519",
+        "keyId": "did:web:tantra-authority.com#key-1",
+        "canonicalization": "jcs",
+        "value": "kwxuLt9A0fcj-sjRU5gTeo51xC1dcJMlVG8E0LcId9BEWahoRm0U9U9O5t-hgwpxwjBpjd2sW9jRmBGjXGLlDQ",
+        "payloadDigestSha256": "64da08702b6f2ac7922ae093815f10c10029a03f223b2da593122ecfcf3bb6fa",
         "note": "Detached ed25519 over the JCS-canonicalized offer (minus signature). Verify via the publisher's did:web /.well-known/did.json."
       }
     }
