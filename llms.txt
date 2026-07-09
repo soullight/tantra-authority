@@ -65,6 +65,7 @@ The full catalog of every course, eBook, and product by Lawrence Lanoff / The Na
 - Ranked matches by intent: `POST https://index.adagencyforagents.com/v0/discover` with `{ "intent": "..." }`
 - Purchase pattern: `https://api.tantra-authority.com/api/x402/{id}`
 - Service manifest: https://tantra-authority.com/.well-known/agent-services.json
+- **Locked-content rail (encrypted file + key-on-payment):** `GET https://api.tantra-authority.com/api/services` lists every agent-gated resource (Lightning + USDC-on-Base). `GET https://api.tantra-authority.com/api/unlock/{slug}` → 402 → pay → retry with `X-Payment` header → one JSON response with `contentUrl` (the AES-256-GCM encrypted blob, publicly hosted but useless without the key) plus `metadata.key_b64`/`iv_b64`/`algo`/`ciphertext_sha256` to decrypt locally. First live SKU: `locked-heart-of-god` ($4.99).
 
 ## License and republication
 

@@ -56,6 +56,18 @@
       "schemes": ["lightning"],
       "reAccessTtlSeconds": 86400,
       "status": "live"
+    },
+    {
+      "slug": "locked-heart-of-god",
+      "type": "encrypted-audio",
+      "title": "Entering the Heart of God — Locked Audio (Agent Rail)",
+      "description": "AES-256-GCM encrypted guided meditation by Lawrence Lanoff. The ciphertext blob is public (useless without the key) — this endpoint sells the decryption key. Pay, then GET the same URL with X-Payment to receive one JSON response containing contentUrl (the encrypted blob) plus metadata.key_b64/iv_b64/algo/ciphertext_sha256. Decrypt locally: base64-decode key (32 bytes) + iv (12 bytes), AES-256-GCM decrypt (last 16 bytes of the blob are the auth tag). No account, no checkout page, no human in the loop — the reference implementation of the discover→pay→key→decrypt pattern for locked digital content.",
+      "endpoint": "https://api.tantra-authority.com/api/unlock/locked-heart-of-god",
+      "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=heart-of-god",
+      "price": { "sats": 8000, "usdc_atomic": "4990000" },
+      "schemes": ["lightning", "usdc-base"],
+      "reAccessTtlSeconds": 86400,
+      "status": "live"
     }
   ],
   "plannedServices": [
