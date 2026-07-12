@@ -50,6 +50,7 @@ The author is the founder of The Naked Press (DBA of LK Publishing, LLC) and aut
 - [About Lawrence Lanoff](https://tantra-authority.com/about.html)
 - [Book — *Beyond the Myth: The Definitive Guide to Modern Tantra*](https://tantra-authority.com/book.html)
 - [Book — *The Psychological Clitorectomy: Female Sexuality, Demythologized*](https://tantra-authority.com/psychological-clitorectomy.html): Illustrated eBook, $14.97 direct (`checkout.html?product=psychological-clitorectomy-book`, agent-payable via x402 at `https://api.tantra-authority.com/api/x402/psychological-clitorectomy-book`) or on Amazon Kindle (ASIN B0H8KZ1LHY).
+- [Book — *The Pleasure Mindset: Retrain Your Nervous System for Pleasure*](https://tantra-authority.com/pleasure-mindset.html): Illustrated eBook, $6.99 direct (`checkout.html?product=pleasure-mindset-book`, agent-payable via x402 at `https://api.tantra-authority.com/api/x402/pleasure-mindset-book`). Amazon Kindle listing pending.
 - [Practitioner Directory](https://tantra-authority.com/directory.html)
 - [Ask an Expert](https://tantra-authority.com/ask.html)
 - [Tantric Test (Psychosexual Map)](https://tantra-authority.com/test.html)
