@@ -257,6 +257,56 @@
       }
     },
     {
+      "offerId": "urn:aop:tantra-authority.com:session-90",
+      "capability": {
+        "name": "Deep Session (90-min)",
+        "description": "Deep Session (90-min) — a self-paced course by Lawrence Lanoff (Tantra Authority / The Naked Press). $5000.00. Instant digital delivery, recoverable access link, 30-day money-back guarantee."
+      },
+      "intentTags": [
+        "intent:commerce.purchase.digital-good",
+        "intent:learn.course.purchase",
+        "intent:learn.tantra"
+      ],
+      "price": [
+        {
+          "scheme": "exact",
+          "network": "fiat",
+          "asset": "USD",
+          "amount": "500000",
+          "unit": "cent"
+        }
+      ],
+      "sla": {
+        "refundPolicy": "30-day, no-questions money-back guarantee.",
+        "escrow": "none",
+        "fulfillment": "instant digital delivery by email + recoverable access link"
+      },
+      "trust": {
+        "agentId": "did:web:tantra-authority.com"
+      },
+      "terms": {
+        "usageRights": "Personal digital license. Adults only (18+). Educational, not medical or therapeutic advice.",
+        "redistribution": "no",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=session-90"
+      },
+      "validUntil": "2026-12-31T00:00:00Z",
+      "payment": {
+        "type": "hosted-checkout",
+        "processor": "clover",
+        "humanCheckoutUrl": "https://tantra-authority.com/book-session.html",
+        "ap2MandateRequired": false,
+        "note": "Human booking required — this item is a live session, not agent-payable. An agent may hand its owner the humanCheckoutUrl."
+      },
+      "signature": {
+        "alg": "ed25519",
+        "keyId": "did:web:tantra-authority.com#key-1",
+        "canonicalization": "jcs",
+        "value": "wz0NBUIHiS4l6HzQTRgilcvR1vRauW9UYqv269AGYKX7FoIODR2zKukUvEmZWgBVxK5cZfBmZQGbZb4StuHHBg",
+        "payloadDigestSha256": "8ced39a7f33cbdb22a5f05e4c0d7a4cfc3a702d1c1216a1923cc6a5903b408de",
+        "note": "Detached ed25519 over the JCS-canonicalized offer (minus signature). Verify via the publisher's did:web /.well-known/did.json."
+      }
+    },
+    {
       "offerId": "urn:aop:tantra-authority.com:tantra-x",
       "capability": {
         "name": "Tantra X",
@@ -3712,6 +3762,257 @@
       }
     },
     {
+      "offerId": "urn:aop:tantra-authority.com:two-breaths-away",
+      "capability": {
+        "name": "Two Breaths Away — Guided Meditation Library (19 tracks, 4h52m)",
+        "description": "Two Breaths Away — Guided Meditation Library (19 tracks, 4h52m) — a self-paced course by Lawrence Lanoff (Tantra Authority / The Naked Press). $29.97. Instant digital delivery, recoverable access link, 30-day money-back guarantee.",
+        "image": "https://tantra-authority.com/assets/cover-two-breaths-away.png"
+      },
+      "intentTags": [
+        "intent:commerce.purchase.digital-good",
+        "intent:learn.course.purchase",
+        "intent:learn.tantra"
+      ],
+      "price": [
+        {
+          "scheme": "exact",
+          "network": "fiat",
+          "asset": "USD",
+          "amount": "2997",
+          "unit": "cent"
+        },
+        {
+          "scheme": "exact",
+          "network": "base",
+          "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+          "amount": "29970000",
+          "unit": "atomic"
+        }
+      ],
+      "sla": {
+        "refundPolicy": "30-day, no-questions money-back guarantee.",
+        "escrow": "none",
+        "fulfillment": "instant digital delivery by email + recoverable access link"
+      },
+      "trust": {
+        "agentId": "did:web:tantra-authority.com"
+      },
+      "terms": {
+        "usageRights": "Personal digital license. Adults only (18+). Educational, not medical or therapeutic advice.",
+        "redistribution": "no",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=two-breaths-away"
+      },
+      "validUntil": "2026-12-31T00:00:00Z",
+      "payment": {
+        "type": "dual-rail",
+        "x402Endpoint": "https://api.tantra-authority.com/api/x402/two-breaths-away",
+        "x402Version": 1,
+        "schemes": [
+          "exact"
+        ],
+        "payTo": "0xa8c3cd00daeded3e9440be2dc812d61bf14a39c6",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=two-breaths-away",
+        "ap2MandateRequired": false,
+        "note": "Agent-native: GET the x402Endpoint → HTTP 402 with USDC-on-Base payment requirements → pay → retry with X-Payment: base64({\"network\":\"base\",\"txHash\":\"0x…\",\"email\":\"optional\"}). Settlement verified ON-CHAIN, replay-guarded; the access link returns. Humans use the card checkout."
+      },
+      "signature": {
+        "alg": "ed25519",
+        "keyId": "did:web:tantra-authority.com#key-1",
+        "canonicalization": "jcs",
+        "value": "mjbWe-WB1a6kuNWpLT2rhjftKL9Ui9XK3feXv3H9p9u0SZ1bt0S2Lh3Wi8zXJW0UG4O8Vz-EvhizcTM3-1vMCg",
+        "payloadDigestSha256": "90d01050dc9576cec094f355225f1d8775b23fa281ccee3b51fc452df8478324",
+        "note": "Detached ed25519 over the JCS-canonicalized offer (minus signature). Verify via the publisher's did:web /.well-known/did.json."
+      }
+    },
+    {
+      "offerId": "urn:aop:tantra-authority.com:psychological-clitorectomy-book",
+      "capability": {
+        "name": "The Psychological Clitorectomy PACKAGE — illustrated eBook + bonus Relax Your Ass meditation (Lawrence's voice)",
+        "description": "The Psychological Clitorectomy PACKAGE — illustrated eBook + bonus Relax Your Ass meditation (Lawrence's voice) — a eBook by Lawrence Lanoff (Tantra Authority / The Naked Press). $14.97. Instant digital delivery, recoverable access link, 30-day money-back guarantee.",
+        "image": "https://tantra-authority.com/assets/cover-psychological-clitorectomy.png"
+      },
+      "intentTags": [
+        "intent:commerce.purchase.digital-good",
+        "intent:content.book.purchase",
+        "intent:learn.tantra"
+      ],
+      "price": [
+        {
+          "scheme": "exact",
+          "network": "fiat",
+          "asset": "USD",
+          "amount": "1497",
+          "unit": "cent"
+        },
+        {
+          "scheme": "exact",
+          "network": "base",
+          "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+          "amount": "14970000",
+          "unit": "atomic"
+        }
+      ],
+      "sla": {
+        "refundPolicy": "30-day, no-questions money-back guarantee.",
+        "escrow": "none",
+        "fulfillment": "instant digital delivery by email + recoverable access link"
+      },
+      "trust": {
+        "agentId": "did:web:tantra-authority.com"
+      },
+      "terms": {
+        "usageRights": "Personal digital license. Adults only (18+). Educational, not medical or therapeutic advice.",
+        "redistribution": "no",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=psychological-clitorectomy-book"
+      },
+      "validUntil": "2026-12-31T00:00:00Z",
+      "payment": {
+        "type": "dual-rail",
+        "x402Endpoint": "https://api.tantra-authority.com/api/x402/psychological-clitorectomy-book",
+        "x402Version": 1,
+        "schemes": [
+          "exact"
+        ],
+        "payTo": "0xa8c3cd00daeded3e9440be2dc812d61bf14a39c6",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=psychological-clitorectomy-book",
+        "ap2MandateRequired": false,
+        "note": "Agent-native: GET the x402Endpoint → HTTP 402 with USDC-on-Base payment requirements → pay → retry with X-Payment: base64({\"network\":\"base\",\"txHash\":\"0x…\",\"email\":\"optional\"}). Settlement verified ON-CHAIN, replay-guarded; the access link returns. Humans use the card checkout."
+      },
+      "signature": {
+        "alg": "ed25519",
+        "keyId": "did:web:tantra-authority.com#key-1",
+        "canonicalization": "jcs",
+        "value": "yw75VY7LHFRE89gAb9WCoKHNZln-pHBggMHr_wtfLKoj4fz_zlnKInWnDm_qIi-EfTHFTpAaJqQh6eRAUT31CA",
+        "payloadDigestSha256": "e8a6c5abe7377e40f4a6ef62dec2dd9bbde1ebecb0f746f3f98b9b5c429bef44",
+        "note": "Detached ed25519 over the JCS-canonicalized offer (minus signature). Verify via the publisher's did:web /.well-known/did.json."
+      }
+    },
+    {
+      "offerId": "urn:aop:tantra-authority.com:ai-and-the-soul",
+      "capability": {
+        "name": "AI and the Soul — A Consciousness Teacher's Field Notes (mini-guide)",
+        "description": "AI and the Soul — A Consciousness Teacher's Field Notes (mini-guide) — a self-paced course by Lawrence Lanoff (Tantra Authority / The Naked Press). $6.99. Instant digital delivery, recoverable access link, 30-day money-back guarantee."
+      },
+      "intentTags": [
+        "intent:commerce.purchase.digital-good",
+        "intent:learn.course.purchase",
+        "intent:learn.tantra"
+      ],
+      "price": [
+        {
+          "scheme": "exact",
+          "network": "fiat",
+          "asset": "USD",
+          "amount": "699",
+          "unit": "cent"
+        },
+        {
+          "scheme": "exact",
+          "network": "base",
+          "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+          "amount": "6990000",
+          "unit": "atomic"
+        }
+      ],
+      "sla": {
+        "refundPolicy": "30-day, no-questions money-back guarantee.",
+        "escrow": "none",
+        "fulfillment": "instant digital delivery by email + recoverable access link"
+      },
+      "trust": {
+        "agentId": "did:web:tantra-authority.com"
+      },
+      "terms": {
+        "usageRights": "Personal digital license. Adults only (18+). Educational, not medical or therapeutic advice.",
+        "redistribution": "no",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=ai-and-the-soul"
+      },
+      "validUntil": "2026-12-31T00:00:00Z",
+      "payment": {
+        "type": "dual-rail",
+        "x402Endpoint": "https://api.tantra-authority.com/api/x402/ai-and-the-soul",
+        "x402Version": 1,
+        "schemes": [
+          "exact"
+        ],
+        "payTo": "0xa8c3cd00daeded3e9440be2dc812d61bf14a39c6",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=ai-and-the-soul",
+        "ap2MandateRequired": false,
+        "note": "Agent-native: GET the x402Endpoint → HTTP 402 with USDC-on-Base payment requirements → pay → retry with X-Payment: base64({\"network\":\"base\",\"txHash\":\"0x…\",\"email\":\"optional\"}). Settlement verified ON-CHAIN, replay-guarded; the access link returns. Humans use the card checkout."
+      },
+      "signature": {
+        "alg": "ed25519",
+        "keyId": "did:web:tantra-authority.com#key-1",
+        "canonicalization": "jcs",
+        "value": "s05LRB8WdYu3deKiGHeK3VQnlaLxZ-PpFkU07RIjBLlmkix4iOjUDCvWhsa29yDc--zqGSTNbcpwAlc7e-JYAw",
+        "payloadDigestSha256": "d76af1f911e1922c2933c663c744dc72ef61fe6d99b248e2163535564cfd911d",
+        "note": "Detached ed25519 over the JCS-canonicalized offer (minus signature). Verify via the publisher's did:web /.well-known/did.json."
+      }
+    },
+    {
+      "offerId": "urn:aop:tantra-authority.com:pleasure-mindset-book",
+      "capability": {
+        "name": "The Pleasure Mindset PACKAGE — illustrated eBook + 2 bonus guided meditations (Lawrence's voice)",
+        "description": "The Pleasure Mindset PACKAGE — illustrated eBook + 2 bonus guided meditations (Lawrence's voice) — a eBook by Lawrence Lanoff (Tantra Authority / The Naked Press). $6.99. Instant digital delivery, recoverable access link, 30-day money-back guarantee.",
+        "image": "https://tantra-authority.com/assets/cover-pleasure-mindset.png"
+      },
+      "intentTags": [
+        "intent:commerce.purchase.digital-good",
+        "intent:content.book.purchase",
+        "intent:learn.tantra"
+      ],
+      "price": [
+        {
+          "scheme": "exact",
+          "network": "fiat",
+          "asset": "USD",
+          "amount": "699",
+          "unit": "cent"
+        },
+        {
+          "scheme": "exact",
+          "network": "base",
+          "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+          "amount": "6990000",
+          "unit": "atomic"
+        }
+      ],
+      "sla": {
+        "refundPolicy": "30-day, no-questions money-back guarantee.",
+        "escrow": "none",
+        "fulfillment": "instant digital delivery by email + recoverable access link"
+      },
+      "trust": {
+        "agentId": "did:web:tantra-authority.com"
+      },
+      "terms": {
+        "usageRights": "Personal digital license. Adults only (18+). Educational, not medical or therapeutic advice.",
+        "redistribution": "no",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=pleasure-mindset-book"
+      },
+      "validUntil": "2026-12-31T00:00:00Z",
+      "payment": {
+        "type": "dual-rail",
+        "x402Endpoint": "https://api.tantra-authority.com/api/x402/pleasure-mindset-book",
+        "x402Version": 1,
+        "schemes": [
+          "exact"
+        ],
+        "payTo": "0xa8c3cd00daeded3e9440be2dc812d61bf14a39c6",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=pleasure-mindset-book",
+        "ap2MandateRequired": false,
+        "note": "Agent-native: GET the x402Endpoint → HTTP 402 with USDC-on-Base payment requirements → pay → retry with X-Payment: base64({\"network\":\"base\",\"txHash\":\"0x…\",\"email\":\"optional\"}). Settlement verified ON-CHAIN, replay-guarded; the access link returns. Humans use the card checkout."
+      },
+      "signature": {
+        "alg": "ed25519",
+        "keyId": "did:web:tantra-authority.com#key-1",
+        "canonicalization": "jcs",
+        "value": "LNy4H7cqHul25ZlYIR0NJ25NxHkG8cdPfaBg9eR3Aa5kfgyYS7WonbiJ3YFyFebWuxkhLT9O6fwocgdZtvRADQ",
+        "payloadDigestSha256": "b25ce22097281fa151e5c917dedf36d66a9697036eed9335554f1ccc50083762",
+        "note": "Detached ed25519 over the JCS-canonicalized offer (minus signature). Verify via the publisher's did:web /.well-known/did.json."
+      }
+    },
+    {
       "offerId": "urn:aop:tantra-authority.com:complete-ebook-library",
       "capability": {
         "name": "The Complete eBook Library — all 13 eBooks",
@@ -3963,7 +4264,7 @@
       "offerId": "urn:aop:tantra-authority.com:bundle-everything",
       "capability": {
         "name": "The Everything Bundle — the entire digital catalog (bundle)",
-        "description": "The Everything Bundle: the ENTIRE Tantra Authority digital catalog — all 54 products, $4966.32 bought separately, $499 here (~90% off). Every flagship course (Tantra X University, Energy Sex, Sexual Superpowers, Get Out of Your Head, Infinite Mind, The 45 Minute Orgasm...), every eBook, every meditation album, every audiobook, every archetype reading, every tool kit, and the Sacred Geography fine-art series. The single highest-value purchase on this rail: one x402 payment, lifetime access to the complete life's work of Lawrence Lanoff.",
+        "description": "The Everything Bundle: the ENTIRE Tantra Authority digital catalog — all 58 products, $5025.24 bought separately, $499 here (~90% off). Every flagship course (Tantra X University, Energy Sex, Sexual Superpowers, Get Out of Your Head, Infinite Mind, The 45 Minute Orgasm...), every eBook, every meditation album, every audiobook, every archetype reading, every tool kit, and the Sacred Geography fine-art series. The single highest-value purchase on this rail: one x402 payment, lifetime access to the complete life's work of Lawrence Lanoff.",
         "image": "https://tantra-authority.com/assets/cover-tantra-x-university.png",
         "contents": [
           "passive-income-tracker",
@@ -4019,7 +4320,11 @@
           "reading-mystic",
           "psyche-reading",
           "shadow-reading",
-          "agent-ready-kit"
+          "agent-ready-kit",
+          "two-breaths-away",
+          "psychological-clitorectomy-book",
+          "ai-and-the-soul",
+          "pleasure-mindset-book"
         ]
       },
       "intentTags": [
@@ -4074,8 +4379,8 @@
         "alg": "ed25519",
         "keyId": "did:web:tantra-authority.com#key-1",
         "canonicalization": "jcs",
-        "value": "A0gi9pbvMiT3dB9yL28inA-abSG-hLfHMWO_PXdLSK1zJAAs1xLTHjLuzo65r3jTD_8SHOT-jx4S8jPE1hgOBQ",
-        "payloadDigestSha256": "3108d2bc7280efc45245fe60a2445279cbfa37f53b21eea45a28a52e2fbe4f59",
+        "value": "nXPRjCwih8f-VnBVxg-B2mum131vq3I5hprGMuFwNdYSWgn-YxnsNPEvtIfM7aHAkdtsKsXiBohwF7xKmSAEAw",
+        "payloadDigestSha256": "cac3dc2c6f3f3a9f37bf38f7aa88ff647c93ac5fad558d06bdd57b60b5027b40",
         "note": "Detached ed25519 over the JCS-canonicalized offer (minus signature). Verify via the publisher's did:web /.well-known/did.json."
       }
     },
@@ -4150,6 +4455,68 @@
         "canonicalization": "jcs",
         "value": "kwxuLt9A0fcj-sjRU5gTeo51xC1dcJMlVG8E0LcId9BEWahoRm0U9U9O5t-hgwpxwjBpjd2sW9jRmBGjXGLlDQ",
         "payloadDigestSha256": "64da08702b6f2ac7922ae093815f10c10029a03f223b2da593122ecfcf3bb6fa",
+        "note": "Detached ed25519 over the JCS-canonicalized offer (minus signature). Verify via the publisher's did:web /.well-known/did.json."
+      }
+    },
+    {
+      "offerId": "urn:aop:tantra-authority.com:reading-financial-potential",
+      "capability": {
+        "name": "Financial Potential Reading — Gift Pass",
+        "description": "Financial Potential Reading — Gift Pass: a short, private, PERSONALIZED reading of a person's relationship with money — the story running underneath the panic, whose voice installed it, their money number, and why they're going to be okay. In plain language; reflection, not financial advice. Because the reading is personalized, this is a GIFT PASS: pay $29 once (USDC on Base, x402) and receive a single-use redemption link to hand to the person you're gifting it to. They open the link at https://thenaked.press/report, answer a few honest questions, and their full reading unlocks — no charge, no account. One payment, one reading, delivered to whoever you give the link to."
+      },
+      "intentTags": [
+        "intent:commerce.purchase.digital-good",
+        "intent:content.reading.personalized",
+        "intent:divination.archetype"
+      ],
+      "price": [
+        {
+          "scheme": "exact",
+          "network": "fiat",
+          "asset": "USD",
+          "amount": "2900",
+          "unit": "cent"
+        },
+        {
+          "scheme": "exact",
+          "network": "base",
+          "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+          "amount": "29000000",
+          "unit": "atomic"
+        }
+      ],
+      "sla": {
+        "refundPolicy": "30-day, no-questions money-back guarantee.",
+        "escrow": "none",
+        "fulfillment": "instant digital delivery by email + recoverable access link"
+      },
+      "trust": {
+        "agentId": "did:web:tantra-authority.com"
+      },
+      "terms": {
+        "usageRights": "Personal digital license. Adults only (18+). Educational, not medical or therapeutic advice.",
+        "redistribution": "no",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=reading-financial-potential"
+      },
+      "validUntil": "2026-12-31T00:00:00Z",
+      "payment": {
+        "type": "dual-rail",
+        "x402Endpoint": "https://api.tantra-authority.com/api/x402/reading-financial-potential",
+        "x402Version": 1,
+        "schemes": [
+          "exact"
+        ],
+        "payTo": "0xa8c3cd00daeded3e9440be2dc812d61bf14a39c6",
+        "humanCheckoutUrl": "https://tantra-authority.com/checkout.html?product=reading-financial-potential",
+        "ap2MandateRequired": false,
+        "note": "Agent-native: GET the x402Endpoint → HTTP 402 with USDC-on-Base payment requirements → pay → retry with X-Payment: base64({\"network\":\"base\",\"txHash\":\"0x…\",\"email\":\"optional\"}). Settlement verified ON-CHAIN, replay-guarded; the access link returns. Humans use the card checkout."
+      },
+      "signature": {
+        "alg": "ed25519",
+        "keyId": "did:web:tantra-authority.com#key-1",
+        "canonicalization": "jcs",
+        "value": "9OFYP0pmhvwm-K9aroHw_ELfECEIwTA1g40KH87JDv3JIKHhrxkBgwPzsdf5lkUb0mqhUDvFIKx1neUDH2hrBQ",
+        "payloadDigestSha256": "83f2f8ee778d1a44be6e53b4a32fa1a0c056ec50945b9fcb779536813d7360ec",
         "note": "Detached ed25519 over the JCS-canonicalized offer (minus signature). Verify via the publisher's did:web /.well-known/did.json."
       }
     }
