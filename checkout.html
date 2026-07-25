@@ -243,7 +243,15 @@ go.addEventListener("click", async () => {
     const r = await fetch(API + "/api/buy", {
       method: "POST", headers: { "content-type": "application/json" },
       body: JSON.stringify({ productId: product.id, email, token: res.token, code: codeEl ? codeEl.value.trim() : "",
-                             bump: bumpTaken, abBump: bumpArm }),
+                             bump: bumpTaken, abBump: bumpArm,
+                             // XPMT attribution — lets the engine decide tests on MONEY.
+                             // Optional-chained throughout: if the tracker failed to load,
+                             // these are undefined and the purchase proceeds untouched.
+                             xpVid: (window.xpmt && window.xpmt.vid) || "",
+                             xpProp: "tantra-authority",
+                             xpExp: (window.xpmt && Object.keys(window.xpmt.assignments || {})[0]) || "",
+                             xpArm: (window.xpmt && Object.values(window.xpmt.assignments || {})[0]) || "",
+                             src: new URLSearchParams(location.search).get("src") || localStorage.getItem("xpmt_src") || "" }),
     });
     const data = await r.json();
     if (r.ok && data.ok && data.accessUrl) {
