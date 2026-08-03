@@ -116,7 +116,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="hero-eyebrow">No Sanskrit. No Robes. No Bullshit.</div>
   <h1>Tantra without the mythology.</h1>
   <img src="assets/hero.jpg" alt="" style="display:block;width:100%;max-width:780px;margin:26px auto 30px;border-radius:16px;box-shadow:0 12px 44px rgba(0,0,0,.45);" />
-  <a href="erotic-tarot.html" class="cta-button">🔮 Draw your Erotic Tarot card — find your archetype</a>
+  <a href="erotic-tarot.html" class="cta-button" data-xp="tarot_start">🔮 Draw your Erotic Tarot card — find your archetype</a>
   <div style="margin-top:16px;display:flex;gap:20px;justify-content:center;flex-wrap:wrap;">
     <a href="test.html" style="color:var(--accent);font-size:14px;text-decoration:none;">Or take the full 100-question depth test →</a>
     <a href="#articles" style="color:var(--accent);font-size:14px;text-decoration:none;">Or just start reading →</a>
@@ -666,6 +666,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   sortEl.addEventListener('change', apply);
 })();
 </script>
+
+<!-- XPMT split-testing. Fails silent: an experiment can never break this page. -->
+<script src="https://xpmt.soullight.workers.dev/t.js" data-prop="tantra-authority" defer></script>
 
 </body>
 </html>
