@@ -401,42 +401,24 @@ render();
 })();
 
 /* ============================================================================
-   HEADLINE SPLIT-TEST — the sub-headline is a tested element, not a guess.
-   Two value-prop variants served 50/50. We log an impression per variant and
-   a buy-click per variant to the SAME tracker the price test uses, so the
-   winning words are decided by buy-intent, not opinion. Add/replace variants
-   here to keep testing forever.
-   ========================================================================= */
-const HEADLINES = [
-  { k:"A", txt:"Lawrence Lanoff's courses, books, and practice audio — published by The Naked Press. Lifetime access." },
-  { k:"B", txt:"Thirty years of the real work — courses, books, and audio, in plain language. Buy it once, it's yours for life." },
-];
-/* CLOSES THE LOOP: read the Nevada optimizer's live decisions from /ab.
-   - ab:shop:headline decided → serve the WINNER 100% (stop collecting).
-     Not decided → split 50/50 and beacon impressions+buy-clicks so the brain can decide.
-   - ab:shop:featured present → render the data-ranked featured order. */
+   FEATURED ORDER — data-ranked from real click counts by the Nevada optimizer.
+
+   The old sub-headline split-test lived here and is RETIRED 2026-08-03.
+   XPMT (registry key `tantra-authority-shop-headline`) now runs the real
+   headline test on this page, against the h1. Two simultaneous 50/50 headline
+   tests on one low-traffic page is four cells, and four cells on this traffic
+   resolves nothing — the exact over-slicing that stalled the quiz tests. This
+   one never resolved in ~6 weeks (ab:shop:headline was never decided), so it is
+   pinned to variant A, which is already the text in the static HTML above.
+   The featured-ranking override below is a separate feature and stays live. */
 (async function(){
-  let decided = null, featured = null;
+  let featured = null;
   try {
     const r = await fetch("https://lanoff-links.pages.dev/ab", { cache: "no-store" });
     const ab = await r.json();
-    if (ab["ab:shop:headline"] === "A" || ab["ab:shop:headline"] === "B") decided = ab["ab:shop:headline"];
     if (Array.isArray(ab["ab:shop:featured"]) && ab["ab:shop:featured"].length) featured = ab["ab:shop:featured"];
   } catch(e){}
   if (featured) { FEATURED_OVERRIDE = featured; render(); }
-  const v = decided ? (HEADLINES.find(h => h.k === decided) || HEADLINES[0])
-                    : (Math.random() < 0.5 ? HEADLINES[0] : HEADLINES[1]);
-  const el = document.getElementById("shop-sub");
-  if (el) el.textContent = v.txt;
-  if (!decided) {                                                       // only collect while the test is still open
-    const beacon = (to, src) => { try { navigator.sendBeacon &&
-      navigator.sendBeacon("https://lanoff-links.pages.dev/go?to="+to+"&src="+src); } catch(e){} };
-    beacon("shophead", "shophead:"+v.k);                                // impression for this headline
-    document.addEventListener("click", e => {                            // any Buy click → credit this headline
-      const b = e.target.closest && e.target.closest("a.buy");
-      if (b) beacon("shopbuy", "shopbuy:"+v.k);
-    }, true);
-  }
 })();
 
 /* machine-readable catalog for AI shopping agents — generated from PRODUCTS */
