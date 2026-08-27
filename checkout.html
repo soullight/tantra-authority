@@ -46,6 +46,11 @@
   .done a { display: inline-block; margin-top: 10px; }
   .fine { color: var(--text-muted); font-family: 'Inter', sans-serif; font-size: 12px; text-align: center; margin-top: 16px; line-height: 1.5; }
   .back { display: block; text-align: center; margin-top: 18px; font-family: 'Inter', sans-serif; font-size: 13px; }
+  /* A quiz reading is a single-purpose purchase, not a visit to the whole store. */
+  .reading-checkout .site-header, .reading-checkout .fine, .reading-checkout .back,
+  .reading-checkout .codetoggle, .reading-checkout #codewrap, .reading-checkout #bumpwrap,
+  .reading-checkout .guarantee + .guarantee { display: none !important; }
+  .reading-checkout .checkout-wrap { margin-top: 72px; }
 </style>
 <meta property="og:image" content="https://tantra-authority.com/assets/og-default.png">
 <meta property="og:image:width" content="1200">
@@ -112,6 +117,7 @@
 const API = "https://api.tantra-authority.com";
 const qs = new URLSearchParams(location.search);
 const productId = (qs.get("product") || "").trim();
+const source = qs.get("src") || qs.get("utm_source") || localStorage.getItem("xpmt_src") || "";
 
 const $ = (id) => document.getElementById(id);
 const msg = $("msg"), go = $("go"), emailEl = $("email"), form = $("form"), done = $("done"), codeEl = $("code"), codeMsg = $("code-msg");
@@ -157,6 +163,14 @@ let product = null, clover = null, cardMounted = false;
     ]);
     product = (prodRes.products || []).find((p) => p.id === productId);
     if (!product) { $("prod-name").textContent = "Product not found."; return; }
+
+    const isReading = product.id.startsWith("reading-");
+    if (isReading) {
+      document.body.classList.add("reading-checkout");
+      document.querySelector("h1").textContent = "Your reading is ready";
+      document.querySelector(".checkout-sub").textContent = "Secure checkout · delivered instantly · yours to keep.";
+      if (source.startsWith("buy:reading-")) beacon("qcheckout", source);
+    }
 
     $("prod-name").textContent = product.title;
     $("prod-price").textContent = product.priceCents > 0 ? money(product.priceCents) : "—";
@@ -251,10 +265,11 @@ go.addEventListener("click", async () => {
                              xpProp: "tantra-authority",
                              xpExp: (window.xpmt && Object.keys(window.xpmt.assignments || {})[0]) || "",
                              xpArm: (window.xpmt && Object.values(window.xpmt.assignments || {})[0]) || "",
-                             src: new URLSearchParams(location.search).get("src") || localStorage.getItem("xpmt_src") || "" }),
+                             src: source }),
     });
     const data = await r.json();
     if (r.ok && data.ok && data.accessUrl) {
+      if (product && product.id.startsWith("reading-") && source.startsWith("buy:reading-")) beacon("qpaid", source);
       beacon("bumpbuy", "bump:" + bumpArm + ":" + (bumpTaken ? "1" : "0"));   // outcome per arm — the numerator
       if (BOOK_IDS.indexOf(product.id) !== -1 && product.id !== "energy-sex") {
         // BOOK buy → success screen with the ONE post-purchase upsell (flagship at the UPGRADE price).
