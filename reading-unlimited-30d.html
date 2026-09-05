@@ -89,7 +89,7 @@
   }
 </style>
 </head>
-<body>
+<body data-product="reading-unlimited-30d">
 
 <header class="top">
   <a href="index.html" class="logo">TANTRA <span>AUTHORITY</span></a>
@@ -161,6 +161,17 @@
   </div>
 
   <p class="ps">The reason the timers exist is that a reading you waited for feels heavier than a reading you just opened. That's a real effect and I could use it on you. I'd rather hand you the deck and let the readings carry themselves. — Lawrence</p>
+
+<script>
+(function(){
+  try{
+    var id=document.body.getAttribute("data-product");
+    if(!id) return;
+    fetch("https://thenaked.press/go?to="+encodeURIComponent(id)+"&src=sellview:"+encodeURIComponent(id),
+          {mode:"no-cors",cache:"no-store"}).catch(function(){});
+  }catch(e){}
+})();
+</script>
 
 </main>
 

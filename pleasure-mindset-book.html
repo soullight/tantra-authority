@@ -89,7 +89,7 @@
   }
 </style>
 </head>
-<body>
+<body data-product="pleasure-mindset-book">
 
 <header class="top">
   <a href="index.html" class="logo">TANTRA <span>AUTHORITY</span></a>
@@ -145,6 +145,17 @@
   </div>
 
   <p class="ps">The meditations are the part people write to me about, and they're the part nobody knew existed. That's mostly why this page exists. — Lawrence</p>
+
+<script>
+(function(){
+  try{
+    var id=document.body.getAttribute("data-product");
+    if(!id) return;
+    fetch("https://thenaked.press/go?to="+encodeURIComponent(id)+"&src=sellview:"+encodeURIComponent(id),
+          {mode:"no-cors",cache:"no-store"}).catch(function(){});
+  }catch(e){}
+})();
+</script>
 
 </main>
 
