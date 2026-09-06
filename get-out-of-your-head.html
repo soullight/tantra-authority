@@ -198,7 +198,7 @@
     <h2 style="margin-top:0;color:var(--text-muted);">The whole system</h2>
     <p style="margin-bottom:6px;">A single hour with me one on one runs four figures. A weekend workshop, more. You're not paying that.</p>
     <div class="price">$197<small>one time &middot; yours to keep, forever</small></div>
-    <a class="cta" href="checkout.html?product=get-out-of-your-head">Get Out of Your Head — $197</a>
+    <a class="cta" data-cta="offer" href="checkout.html?product=get-out-of-your-head">Get Out of Your Head — $197</a>
     <p class="guarantee">Try it for 60 days. Do the practice. If your nights don't change — if you don't feel the watching quiet and your body come back online with her — email me and I'll refund every dollar. No questions. No hard feelings. The risk is mine.</p>
   </div>
 
@@ -212,7 +212,7 @@
     <p>You were never broken. There was just a watchman who wouldn't clock out, because no one ever taught you how to make it safe enough for him to leave. That's all this ever was. And it can be put down.</p>
   </div>
 
-  <a class="cta" href="checkout.html?product=get-out-of-your-head">Get Out of Your Head — $197</a>
+  <a class="cta" data-cta="foot" href="checkout.html?product=get-out-of-your-head">Get Out of Your Head — $197</a>
 
   <p class="ps">One last thing. The men who change are never the ones who think about it. Thinking about it is the watching, in a different costume. The ones who change are the ones who do one small thing tonight. Be that one. — Lawrence</p>
 
@@ -221,6 +221,60 @@
 <footer>
   Tantra Authority &middot; Lawrence Lanoff &middot; The Naked Press
 </footer>
+
+<script>
+/* ── VIEW→TAP METER (2026-09-06) ────────────────────────────────────────────────
+   This page is the ONE surface in the funnel built for cold traffic, and until today it
+   was UNMEASURED (R46). /go has been running a warm-vs-cold 50/50 on this product since
+   2026-06-30 — `ab:get-out-of-your-head:warm` = 116, `:cold` = 122 — and the test was
+   designed so BUYS decide. 68 days in there are 0 stranger buys, so the test cannot read
+   out on its own terms, and the one intermediate signal that WOULD read out — does anyone
+   who reads the pitch actually tap the button — was never instrumented. That is the exact
+   drop-off, and this is the only thing added here.
+
+   NAVIGATION IS DELIBERATELY UNCHANGED. Routing the CTA through /go?to=get-out-of-your-head
+   would re-roll the 50/50 in functions/go.js SALES_PAGES, so half of everyone who tapped
+   BUY would be bounced back to this page instead of checkout. The href stays direct; only a
+   count-only beacon is added. The funnel cannot break from this change.
+
+   HOUSE PATTERN, not a new one: identical to checkout.html's bumpimp / bumpbuy / upsellimp
+   beacons (`clk:src:bump:a` = 47 in live KV, so the rail is proven, not assumed).
+
+   ⚠️ THE CATCHER SHIPPED WITH THE WRITER (R31/R45). scripts/clicks_truth.py counts ANY
+   clk:src:* as a HUMAN FUNNEL ARRIVAL unless a rule excludes it — that is how 12,310 parked-
+   domain requests once became 72% of the published headline. So every key here is namespaced
+   `clk:src:vsl:` and clicks_truth.py VSL_SELF excludes the whole prefix from arrivals, the
+   same way QUIZ_SELF excludes the in-quiz beacons. These are on-page interactions. They are
+   NOT arrivals and must never be reported as traffic.
+   Known and accepted: /go writes clk:to + clk:total on every path, so `clk:to:vslimp|vsltap`
+   join the already-POLLUTED clk:total. STATUS.md's headline reads clk:src, which is ruled.
+
+   THE DENOMINATOR IS DELIBERATELY DOUBLE. `ab:...:warm` is server-side (counts /go redirects,
+   no JS) and `clk:src:vsl:gooyh:imp` is client-side (counts loads that EXECUTED JS, so it also
+   catches the SEO traffic this page gets — see clk:src:seo:how-to-get-out-of-your-head*). Two
+   instruments, and where they disagree the disagreement is itself the reading. Executing JS is
+   also why this is a better meter than a raw HTTP counter: link-scanners and prefetchers
+   mostly do not run it — the failure that disqualified clk:src:youtube-tx_*.
+   READ IT: clk:src:vsl:gooyh:tap:offer + :tap:foot over clk:src:vsl:gooyh:imp.
+   ⛔ Do not quote a rate until the taps are out of single digits. n=0 decides nothing. */
+(function () {
+  var BIO = "https://lanoff-links.pages.dev";
+  function beacon(to, src) {
+    try {
+      var u = BIO + "/go?to=" + to + "&src=" + encodeURIComponent(src);
+      if (navigator.sendBeacon) navigator.sendBeacon(u);
+      else fetch(u, { mode: "no-cors", keepalive: true });
+    } catch (e) {}
+  }
+  beacon("vslimp", "vsl:gooyh:imp");
+  var ctas = document.querySelectorAll("a.cta[data-cta]");
+  for (var i = 0; i < ctas.length; i++) {
+    ctas[i].addEventListener("click", function () {
+      beacon("vsltap", "vsl:gooyh:tap:" + this.getAttribute("data-cta"));
+    });
+  }
+})();
+</script>
 
 </body>
 </html>
