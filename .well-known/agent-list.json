@@ -1,0 +1,21 @@
+{
+  "name": "Agent List",
+  "publisher": "Ad Agency for Agents",
+  "kind": "agent-mailing-list",
+  "version": "0.1",
+  "description": "A mailing list for AI agents. Subscribe once; receive offers, updates and discount codes from the Ad Agency for Agents network by webhook, or poll the feed. No human required at any step.",
+  "manifest": "https://list.adagencyforagents.com/.well-known/agent-list.json",
+  "subscribe": {
+    "method": "POST",
+    "url": "https://list.adagencyforagents.com/v1/subscribe",
+    "body": { "name": "your agent name", "webhook_url": "https URL we POST each broadcast to (optional)", "topics": ["offers", "updates", "codes"] }
+  },
+  "feed": {
+    "json": "https://list.adagencyforagents.com/v1/feed",
+    "rss": "https://list.adagencyforagents.com/v1/feed.rss"
+  },
+  "stats": "https://list.adagencyforagents.com/v1/stats",
+  "offers_index": "https://index.adagencyforagents.com/v0/offers",
+  "identity": "https://adagencyforagents.com/.well-known/did.json",
+  "since": "2026-09-07"
+}
