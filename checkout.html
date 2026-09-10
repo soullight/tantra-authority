@@ -117,7 +117,28 @@
 const API = "https://api.tantra-authority.com";
 const qs = new URLSearchParams(location.search);
 const productId = (qs.get("product") || "").trim();
-const source = qs.get("src") || qs.get("utm_source") || localStorage.getItem("xpmt_src") || "";
+const storedSource = (() => { try { return localStorage.getItem("xpmt_src") || ""; } catch (_) { return ""; } })();
+const source = (qs.get("src") || qs.get("utm_source") || storedSource).slice(0, 120);
+
+// A complete originating tuple survives cross-domain checkout even without a
+// tracker here. Never combine one visitor's query id with another experiment.
+function checkoutAttribution() {
+  const valid = (v, max) => typeof v === "string" && v.length > 0 && v.length <= max && /^[A-Za-z0-9_.:-]+$/.test(v);
+  const fields = [["xp_vid", "xpVid", 64], ["xp_exp", "xpExp", 64], ["xp_arm", "xpArm", 32], ["xp_prop", "xpProp", 64]];
+  const incoming = {};
+  const complete = fields.every(([query, body, max]) => {
+    const values = qs.getAll(query);
+    if (values.length !== 1 || !valid(values[0], max)) return false;
+    incoming[body] = values[0]; return true;
+  });
+  if (complete) return incoming;
+  const x = window.xpmt, keys = Object.keys((x && x.assignments) || {});
+  if (keys.length === 1) {
+    const candidate = {xpVid: x.vid, xpExp: keys[0], xpArm: x.assignments[keys[0]], xpProp: x.property || "tantra-authority"};
+    if (fields.every(([, body, max]) => valid(candidate[body], max))) return candidate;
+  }
+  return {xpVid: "", xpExp: "", xpArm: "", xpProp: ""};
+}
 
 const $ = (id) => document.getElementById(id);
 const msg = $("msg"), go = $("go"), emailEl = $("email"), form = $("form"), done = $("done"), codeEl = $("code"), codeMsg = $("code-msg");
@@ -258,13 +279,8 @@ go.addEventListener("click", async () => {
       method: "POST", headers: { "content-type": "application/json" },
       body: JSON.stringify({ productId: product.id, email, token: res.token, code: codeEl ? codeEl.value.trim() : "",
                              bump: bumpTaken, abBump: bumpArm,
-                             // XPMT attribution — lets the engine decide tests on MONEY.
-                             // Optional-chained throughout: if the tracker failed to load,
-                             // these are undefined and the purchase proceeds untouched.
-                             xpVid: (window.xpmt && window.xpmt.vid) || "",
-                             xpProp: "tantra-authority",
-                             xpExp: (window.xpmt && Object.keys(window.xpmt.assignments || {})[0]) || "",
-                             xpArm: (window.xpmt && Object.values(window.xpmt.assignments || {})[0]) || "",
+                             // Attribution is optional and never changes the charge.
+                             ...checkoutAttribution(),
                              src: source }),
     });
     const data = await r.json();
