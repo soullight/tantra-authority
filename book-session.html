@@ -10,6 +10,7 @@
 {"@context":"https://schema.org","@type":"Service","name":"Private Session with Lawrence Lanoff","url":"https://tantra-authority.com/book-session.html","description":"A private one-on-one session with Lawrence Lanoff — remote, by phone or video.","provider":{"@type":"Person","name":"Lawrence Lanoff"}}
 </script>
 <script src="https://checkout.clover.com/sdk.js"></script>
+<script src="/booking-flow.js"></script>
 <style>
   :root{ --bg:#faf8f4; --bg-card:#fff; --text:#1a1a1a; --muted:#6b6b6b; --accent:#8b3a3a; --soft:#c89d9c; --gold:#b8860b; --line:#e7e0d6; }
   *{box-sizing:border-box;}
@@ -71,6 +72,7 @@
 
 <script>
 const API = "https://api.tantra-authority.com";
+const bookingFlow = createBookingFlow(API);
 let LAWRENCE_TZ = "America/Los_Angeles";
 let CLIENT_TZ = Intl.DateTimeFormat().resolvedOptions().timeZone || "your local time";
 let selectedISO = null, clover = null, cardMounted = false;
@@ -96,8 +98,9 @@ function datePartsIn(date, tz) {
 
 async function init() {
   try { const t = await fetch(API + "/api/session/tz").then(r => r.json()); if (t && t.tz) LAWRENCE_TZ = t.tz; } catch (e) {}
-  let taken = [];
-  try { const s = await fetch(API + "/api/slots").then(r => r.json()); taken = (s && s.taken) || []; } catch (e) {}
+  let intervals;
+  try { const r = await fetch(API + "/api/slots"); const s = await r.json(); if(!r.ok || s.ok!==true || !Array.isArray(s.intervals)) throw Error('slots'); intervals=s.intervals; LAWRENCE_TZ=s.tz; }
+  catch(e) { document.getElementById('slots-wrap').textContent='Availability could not be checked. Please try again shortly.'; return; }
   document.getElementById("tzline").textContent = "Times shown in YOUR timezone (" + CLIENT_TZ + ").";
 
   // Build the next ~3 weeks of Tue/Thu afternoon slots, in Lawrence's tz
@@ -111,7 +114,7 @@ async function init() {
       const inst = zonedToUtc(y, m, d, h, LAWRENCE_TZ);
       if (inst.getTime() < now + 3600000) continue;             // at least 1h out
       const iso = inst.toISOString();
-      out.push({ iso, taken: taken.includes(iso) });
+      out.push({ iso, taken: intervals.some(r=>r.start<inst.getTime()+30*60000 && r.end>inst.getTime()) });
     }
   }
   renderSlots(out);
@@ -152,7 +155,7 @@ function selectSlot(iso, btn) {
   document.getElementById("pay").style.display = "block";
   initClover();
   const go = document.getElementById("go");
-  go.disabled = !cardMounted;
+  go.disabled = false;  // A saved paid receipt can retry booking without card tokenization.
   const when = new Intl.DateTimeFormat("en-US", { weekday:"short", month:"short", day:"numeric", hour:"numeric", minute:"2-digit" }).format(new Date(iso));
   go.textContent = "Pay $250 & book — " + when;
   document.getElementById("pay").scrollIntoView({ behavior:"smooth", block:"start" });
@@ -177,15 +180,22 @@ document.getElementById("go").addEventListener("click", async () => {
   const email = document.getElementById("email").value.trim();
   if (!selectedISO) { msg.textContent = "Pick a time first."; return; }
   if (!email) { msg.style.color = "#8b3a3a"; msg.textContent = "Add your email — that's where your video link goes."; return; }
-  if (!clover || !cardMounted) { msg.textContent = "Card form still loading…"; return; }
   go.disabled = true; go.textContent = "Processing…"; msg.textContent = "";
   try {
-    const res = await clover.createToken();
-    if (res.errors) { msg.style.color = "#8b3a3a"; msg.textContent = Object.values(res.errors)[0] || "Check your card details."; go.disabled = false; go.textContent = "Pay $250 & book"; return; }
-    const pay = await fetch(API + "/api/buy", { method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({ product:"session-30", email, token: res.token }) }).then(r => r.json());
-    if (!pay.ok) { msg.style.color = "#8b3a3a"; msg.textContent = pay.message || "That card was declined — try another."; go.disabled = false; go.textContent = "Pay $250 & book"; return; }
-    const book = await fetch(API + "/api/book-session", { method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({ slot: selectedISO, name, email }) }).then(r => r.json());
-    if (!book.ok) { msg.style.color = "#8b3a3a"; msg.textContent = "Payment went through — email hello@lawrencetheenergymaster.com with your time and we'll lock it in."; return; }
+    const book = await bookingFlow.run({product:"session-30",email,name,slot:selectedISO,minutes:30,pay:async(attempt)=>{
+      let payload=attempt.payload;
+      if(!payload) {
+        if(!clover || !cardMounted) return {ok:false,error:'cancelled_before_charge'};
+        const res = await clover.createToken();
+        if(res.errors) return {ok:false,error:'cancelled_before_charge'};
+        payload=attempt.freeze({product:'session-30',email:email.trim().toLowerCase(),token:res.token,
+          attemptId:attempt.attemptId,attemptSecret:attempt.attemptSecret,slot:attempt.slot,...bookingAttribution()});
+      }
+      const r = await fetch(API + '/api/buy', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+      const result = await r.json(); return r.ok ? result : {...result,ok:false};
+    }});
+    if(!book.ok) { msg.textContent=bookingFailureMessage(book); go.disabled=false; go.textContent='Continue booking'; return; }
+    selectedISO = book.slot;
     const when = new Intl.DateTimeFormat("en-US", { weekday:"long", month:"long", day:"numeric", hour:"numeric", minute:"2-digit", timeZoneName:"short" }).format(new Date(selectedISO));
     const z = (d) => d.toISOString().replace(/[-:]/g,"").replace(/\.\d{3}/,"");
     const end = new Date(Date.parse(selectedISO) + 30*60000);
@@ -194,7 +204,7 @@ document.getElementById("go").addEventListener("click", async () => {
     document.getElementById("pay").style.display = "none";
     const done = document.getElementById("done");
     done.style.display = "block";
-    done.innerHTML = "<h2 style='margin-top:0;color:var(--accent);'>You're booked.</h2><p style='font-size:1.1rem;'><strong>" + when + "</strong></p><p>Your private video room:</p><a class='room' href='" + book.room + "' target='_blank'>" + book.room + "</a><p class='fine'>Save this link — it's also in your confirmation. See you there.</p><p style='margin-top:14px;'><a class='room' href='" + gcal + "' target='_blank'>➕ Add to my calendar</a></p>";
+    done.innerHTML = "<h2 style='margin-top:0;color:var(--accent);'>You're booked.</h2><p style='font-size:1.1rem;'><strong>" + when + "</strong></p><p>Your private video room:</p><a class='room' href='" + book.room + "' target='_blank'>" + book.room + "</a><p class='fine'>Save this link. Your booking is recorded; email confirmation is queued.</p><p style='margin-top:14px;'><a class='room' href='" + gcal + "' target='_blank'>➕ Add to my calendar</a></p>";
     done.scrollIntoView({ behavior:"smooth", block:"start" });
   } catch (e) { msg.style.color = "#8b3a3a"; msg.textContent = "Something glitched — refresh and try again."; go.disabled = false; go.textContent = "Pay $250 & book"; }
 });
