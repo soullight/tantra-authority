@@ -89,7 +89,7 @@
   <div class="site-header-inner"><a href="index.html" class="site-logo">TANTRA <span>AUTHORITY</span></a></div>
 </header>
 
-<div class="access-wrap"><div id="root"><div class="state-msg">Opening your course…</div></div></div>
+<div class="access-wrap"><div id="root"><div class="state-msg">Opening your purchase…</div></div></div>
 
 <footer class="site-footer"><div>Tantra Authority — published by <a href="https://thenaked.press">The Naked Press</a></div></footer>
 
@@ -161,7 +161,13 @@ function wireRecover() {
     try {
       const r = await fetch(API + "/api/recover", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ email: document.getElementById("recover-email").value.trim() }) });
       const d = await r.json();
-      out.innerHTML = (d.ok && d.found) ? `Found your <strong>${esc(d.title)}</strong>. <a href="${esc(d.link)}">Open it →</a>` : "No purchase found for that email. Check the address, or <a href='support.html'>chat with support →</a>";
+      if(r.ok && d.ok && d.sent){
+        out.textContent='Your reading access link has been sent to the purchase email. Check your inbox and spam folder.';
+      }else if(r.ok && d.ok && d.found && d.link){
+        out.innerHTML=`Found your <strong>${esc(d.title)}</strong>. <a href="${esc(d.link)}">Open it →</a>`;
+      }else if(!r.ok){
+        out.innerHTML="Your access email could not be sent. Try again, or <a href='support.html'>contact support</a>.";
+      }else{out.innerHTML="Check the purchase email address, or <a href='support.html'>contact support</a>.";}
     } catch { out.textContent = "Something went wrong — try again."; }
   });
 }

@@ -146,9 +146,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <main>
 
-  <section class="ppt-hero">
+  <!-- One-path entry: the existing archetype card → optional $7 three-page PDF reading.
+       Hypothesis: an immediate, concrete first step advances social visitors to the existing offer.
+       Metric: cta_click here; quiz result / paid purchase tracked on the shared downstream offer A/B. -->
+  <section class="ppt-hero" aria-labelledby="card-entry-title">
+    <div class="acronym">Your free card</div>
+    <h1 id="card-entry-title">Draw your archetype card.</h1>
+    <p class="lede">One choice reveals your card. Read your free result, then take it further with your three-page reading PDF for $7.</p>
+    <p style="margin:24px 0 14px;"><a class="cta-button" href="https://thenaked.press/q?src=ta-test-card" data-xp="cta_click">Draw my free card →</a></p>
+    <p style="margin:0;font-size:14px;"><a href="#full-assessment" style="color:var(--text-muted);">Looking for the full psychosexual assessment? Continue below.</a></p>
+  </section>
+
+  <section class="ppt-hero" id="full-assessment" aria-labelledby="ppt-title">
     <div class="acronym">P · P · T</div>
-    <h1>The PPT.</h1>
+    <h2 id="ppt-title" style="font-size:42px;line-height:1;margin:0 0 14px;">The PPT.</h2>
     <div class="full-name">Psychosexual · Psychological · Type</div>
     <p class="lede">A three-tier diagnostic across the body's actual psychosexual architecture. Twenty-five axes when you go deep. Maps your appetite, polarity, openness, shadow appetite, disgust profile, world model, and shame-state onto a portable code you can keep, share, and use as your match key. Free to take. Pick your depth.</p>
   </section>
@@ -780,5 +791,6 @@ document.getElementById('submit-test').addEventListener('click', () => {
 
 </script>
 
+<script src="https://xpmt.soullight.workers.dev/t.js" data-prop="tantra-authority" defer></script>
 </body>
 </html>

@@ -99,7 +99,7 @@
       </div>
       <label style="margin-top:14px">Card</label>
       <div id="card-element"></div>
-      <button id="go" disabled>Loading…</button>
+      <button id="go" data-xp="cta_click" disabled>Loading…</button>
       <div class="guarantee">🛡️ <b>30-day money-back guarantee.</b> Not happy? Email us — we refund you. No questions.</div>
       <div class="guarantee" style="font-style:italic;">“Lawrence is red-hot, and so are his radical ideas. This book and his teachings have literally changed my life.”<br><span style="font-style:normal;">— Kelly Russ, from the praise pages of <i>A Course in Freedom</i></span></div>
     </div>
@@ -174,13 +174,37 @@ const BOOK_IDS = ["course-in-freedom","tantra-for-women-book","tantra-for-women-
   "symbolic-mind-book","true-power-of-myth-book","open-relationship-blueprint-book"];
 
 let product = null, clover = null, cardMounted = false;
+let readingCheckoutRecorded=false;
+function recordReadingCheckout(){
+  if(readingCheckoutRecorded || !product || !product.id.startsWith('reading-')) return;
+  const a=readingAttempt || checkoutAttribution();
+  if(a.xpExp!=='quiz-reading-offer-20260913' || !a.xpVid || !a.xpArm || a.xpProp!=='quiz') return;
+  readingCheckoutRecorded=true;
+  try {fetch('https://xpmt.soullight.workers.dev/e',{method:'POST',headers:{'content-type':'application/json'},keepalive:true,
+    body:JSON.stringify({v:a.xpVid,s:crypto.randomUUID(),p:a.xpProp,src:source,
+      e:[{t:'checkout_open',x:a.xpExp,a:a.xpArm,u:location.pathname+location.search,ts:Date.now()}]})}).catch(()=>{});}catch(_){}
+}
+const READING_ATTEMPT_KEY='ta-reading-attempt:'+productId;
+let readingAttempt=null;
+try { readingAttempt=JSON.parse(sessionStorage.getItem(READING_ATTEMPT_KEY)||'null'); } catch (_) {}
+function saveReadingAttempt(attempt){
+  // Persist BEFORE requesting payment. An uncertain response retries the same token/key.
+  if(attempt) sessionStorage.setItem(READING_ATTEMPT_KEY,JSON.stringify(attempt));
+  else sessionStorage.removeItem(READING_ATTEMPT_KEY);
+  readingAttempt=attempt;
+}
+function readingSecret(){
+  return Array.from(crypto.getRandomValues(new Uint8Array(32)),b=>b.toString(16).padStart(2,'0')).join('');
+}
+function lockReadingInputs(locked){ emailEl.disabled=locked; if(codeEl) codeEl.disabled=locked; }
+
 
 (async function init() {
   if (!productId) { $("prod-name").textContent = "No product selected."; return; }
   try {
     const [prodRes, cfgRes] = await Promise.all([
       fetch(API + "/api/products").then((r) => r.json()),
-      fetch(API + "/api/pay-config").then((r) => r.json()),
+      fetch(API + "/api/pay-config").then((r) => r.json()).catch(()=>({ready:false})),
     ]);
     product = (prodRes.products || []).find((p) => p.id === productId);
     if (!product) { $("prod-name").textContent = "Product not found."; return; }
@@ -188,8 +212,14 @@ let product = null, clover = null, cardMounted = false;
     const isReading = product.id.startsWith("reading-");
     if (isReading) {
       document.body.classList.add("reading-checkout");
-      document.querySelector("h1").textContent = "Your reading is ready";
-      document.querySelector(".checkout-sub").textContent = "Secure checkout · delivered instantly · yours to keep.";
+      document.querySelector("h1").textContent = "Your full reading";
+      document.querySelector(".checkout-sub").textContent = "Three-page PDF by Lawrence Lanoff. One payment. Download immediately.";
+      document.querySelector('.trust').innerHTML='<span>PDF to save and keep</span><span>Access link valid for one year</span>';
+      const proof=document.querySelectorAll('.guarantee');
+      if(proof[1]) proof[1].hidden=true; // This testimonial refers to another book.
+      const back=document.querySelector('.back');
+      if(back){ back.href='https://thenaked.press/q'; back.textContent='Return to my card'; }
+      document.querySelector('.guarantee').innerHTML='30-day money-back guarantee. <a href="refunds.html">Read the refund policy</a>.';
       if (source.startsWith("buy:reading-")) beacon("qcheckout", source);
     }
 
@@ -202,6 +232,16 @@ let product = null, clover = null, cardMounted = false;
       say("This isn’t open for purchase yet. Join the list and we’ll tell you when it opens.");
       return;
     }
+    if(isReading && readingAttempt){
+      emailEl.value=readingAttempt.email;lockReadingInputs(true);
+      baseCents=product.priceCents;form.style.display='block';
+      $('card-element').style.display='none';
+      $('card-element').previousElementSibling.style.display='none';
+      $('codetoggle').style.display='none';
+      go.disabled=false;go.textContent='Check my payment';recordReadingCheckout();
+      say('Your previous payment needs confirmation. Retry safely using the same payment attempt.');
+      return;
+    }
     if (!cfgRes.ready || !cfgRes.publicToken) {
       say("Checkout isn’t available right now. Please try again shortly.", true);
       return;
@@ -212,12 +252,19 @@ let product = null, clover = null, cardMounted = false;
     card.mount("#card-element");
     cardMounted = true;
     form.style.display = "block";
+    recordReadingCheckout();
     baseCents = product.priceCents;
     payLabel();
     go.disabled = false;
+    if(isReading && readingAttempt){
+      emailEl.value=readingAttempt.email;
+      lockReadingInputs(true);
+      say('Your previous payment needs confirmation. Retry safely using the same payment attempt.');
+      go.textContent='Check my payment';
+    }
 
     // Order bump: only where it makes sense (never on itself, a session, or a bundle that already includes it).
-    const bumpEligible = product.id !== BUMP_ID && !(product.items || []).includes(BUMP_ID) && product.priceCents > 0;
+    const bumpEligible = !isReading && product.id !== BUMP_ID && !(product.items || []).includes(BUMP_ID) && product.priceCents > 0;
     if (bumpEligible) {
       beacon("bumpimp", "bump:" + bumpArm);          // eligible checkout view, both arms — the denominator
       if (bumpArm === "A") {
@@ -267,24 +314,41 @@ codeEl && codeEl.addEventListener("input", () => {
 go.addEventListener("click", async () => {
   const email = emailEl.value.trim();
   if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { say("Add your email so you can recover access later.", true); emailEl.focus(); return; }
-  if (!clover || !cardMounted) { say("Checkout isn’t ready yet.", true); return; }
+  if (!(product && product.id.startsWith('reading-') && readingAttempt) && (!clover || !cardMounted)) { say("Checkout isn’t ready yet.", true); return; }
 
   go.disabled = true; say("Processing…");
   try {
-    const res = await clover.createToken();
-    if (res.errors) { say(Object.values(res.errors)[0] || "Check your card details.", true); go.disabled = false; return; }
-
-    const bumpTaken = !!(bumpShown && $("bump") && $("bump").checked);
+    const isReading=product.id.startsWith('reading-');
+    let payload;
+    let bumpTaken=false;
+    if(isReading && readingAttempt){
+      payload=readingAttempt;
+    }else{
+      const res = await clover.createToken();
+      if (res.errors) { say(Object.values(res.errors)[0] || "Check your card details.", true); go.disabled = false; return; }
+      bumpTaken = !!(bumpShown && $("bump") && $("bump").checked);
+      payload={productId:product.id,email,token:String(res.token||'').trim(),code:codeEl ? codeEl.value.trim() : '',
+        bump:bumpTaken,abBump:bumpArm,...checkoutAttribution(),src:source,ref:location.href};
+      if(isReading){
+        if(!payload.token.startsWith('clv_')){say('Card details could not be secured. Try again.',true);go.disabled=false;return;}
+        payload.attemptId=crypto.randomUUID();payload.attemptSecret=readingSecret();
+        saveReadingAttempt(payload);
+        lockReadingInputs(true);
+      }
+    }
     const r = await fetch(API + "/api/buy", {
-      method: "POST", headers: { "content-type": "application/json" },
-      body: JSON.stringify({ productId: product.id, email, token: res.token, code: codeEl ? codeEl.value.trim() : "",
-                             bump: bumpTaken, abBump: bumpArm,
-                             // Attribution is optional and never changes the charge.
-                             ...checkoutAttribution(),
-                             src: source }),
+      method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify(payload)
     });
     const data = await r.json();
     if (r.ok && data.ok && data.accessUrl) {
+      if(isReading){
+        try{saveReadingAttempt(null);}catch(_){}
+        // The paid access link is available even if automatic navigation is interrupted.
+        form.style.display='none';say('Your reading is ready.');done.style.display='block';
+        const access=document.createElement('a');access.textContent='Open and download my reading';access.href=data.accessUrl;
+        done.replaceChildren(access);
+        window.location=data.accessUrl;return;
+      }
       if (product && product.id.startsWith("reading-") && source.startsWith("buy:reading-")) beacon("qpaid", source);
       beacon("bumpbuy", "bump:" + bumpArm + ":" + (bumpTaken ? "1" : "0"));   // outcome per arm — the numerator
       if (BOOK_IDS.indexOf(product.id) !== -1 && product.id !== "energy-sex") {
@@ -308,18 +372,27 @@ go.addEventListener("click", async () => {
       } else {
         // Straight into the course page. Brief confirmation, then redirect.
         form.style.display = "none";
-        say("You’re in — opening your course…");
+        say(product.id.startsWith("reading-") ? "Your reading is ready. Opening your PDF access…" : "You’re in — opening your course…");
         window.location = data.accessUrl;
       }
-    } else if (r.status === 402) {
-      say(data.message || "That card was declined — try another.", true); go.disabled = false;
+    } else if (r.status === 402 && (!isReading || data.error==='card_declined')) {
+      if(isReading){saveReadingAttempt(null);lockReadingInputs(false);}
+      say(data.message || "That card was declined. Try another card.", true); go.disabled = false;payLabel();
+    } else if (isReading) {
+      const retry=['payment_uncertain'].includes(data.error) || r.status>=500;
+      say(data.message || (retry ? 'Your payment needs confirmation. Retry safely using the same payment attempt.' : 'This payment needs support. Keep this page open and use the support link below.'),true);
+      go.disabled=!retry;go.textContent=retry?'Check my payment':'Payment needs support';
     } else {
       say(data.message || "Something went wrong. Try again.", true); go.disabled = false;
     }
   } catch (e) {
-    say("Something went wrong. Try again.", true); go.disabled = false;
+    if(product && product.id.startsWith('reading-') && readingAttempt){
+      say('Connection interrupted. Check your payment safely using the same attempt.',true);
+      go.disabled=false;go.textContent='Check my payment';
+    }else{say('Payment could not start. Check your connection and try again.',true);go.disabled=false;}
   }
 });
 </script>
+<script src="https://xpmt.soullight.workers.dev/t.js" data-prop="tantra-authority" defer></script>
 </body>
 </html>
