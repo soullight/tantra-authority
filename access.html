@@ -208,6 +208,7 @@ function render(data) {
   const docs = files.filter((f) => f.type === "doc" || f.type === "link");
   const n = media.length, noun = NOUN(data);
   const isBundle = docs.length > 0 && docs.every((f) => f.type === "link");   // bundle manifest — every row opens an item's own access page
+  const isReading = /^reading-(sovereign|architect|wild-one|magician|flame|oracle|dreamer|mystic)$/.test(data.product || "");
   const isBook = n === 0 && docs.length > 0;   // book/PDF product, not a course
 
   const emblem = data.cover
@@ -217,7 +218,9 @@ function render(data) {
   let html = `<div class="course-hero">
     ${emblem}
     <h1 class="course-title">${esc(data.title)}</h1>
-    <p class="course-welcome">${isBundle
+    <p class="course-welcome">${isReading
+      ? "Your three-page reading PDF is ready. Download it now and save your copy."
+      : isBundle
       ? "Your bundle — everything below is yours. Each item opens its own access page with lifetime download links. Bookmark THIS page; it's the master key to all of it."
       : isBook
       ? "Your copy — yours to keep. Download it below in whichever format you like, and come back any time."
@@ -226,7 +229,7 @@ function render(data) {
     <p class="course-live">Every one of these was recorded live — so the energy of each experience is transmitted, exactly as it moved through the room, into the recording.</p>`}
   </div>`;
 
-  html += `<div class="save-bar"><b>💾 This is your private link.</b> Bookmark it — it's how you return any time.
+  html += `<div class="save-bar"><b>💾 This is your private link.</b> ${isReading ? "Bookmark this access page. Your link works for one year; the PDF you save is yours to keep." : "Bookmark it — it's how you return any time."}
     <input id="acc-link" readonly value="${esc(location.href)}"><button class="copy-btn" id="copy-link">Copy link</button></div>`;
 
   if (media.length) {
@@ -234,7 +237,7 @@ function render(data) {
     html += `<div class="ep-list">` + media.map(epRow).join("") + `</div>`;
   }
   if (docs.length) {
-    html += `<h2 class="group-head">${isBundle ? "Your library" : isBook ? "Your book" : "Workbooks"}</h2><p class="group-note">${isBundle ? "Each item opens its own access page — lifetime links, all yours." : isBook ? "Download in your preferred format — PDF or ePub." : "The written companions — download to keep."}</p>`;
+    html += `<h2 class="group-head">${isReading ? "Your reading" : isBundle ? "Your library" : isBook ? "Your book" : "Workbooks"}</h2><p class="group-note">${isReading ? "Three-page PDF. Download now and save a copy." : isBundle ? "Each item opens its own access page — lifetime links, all yours." : isBook ? "Download in your preferred format — PDF or ePub." : "The written companions — download to keep."}</p>`;
     html += `<div class="doc-list">` + docs.map(docRow).join("") + `</div>`;
   }
   html += `<div class="course-foot">Questions? <a href="support.html">Chat with support.</a> · Tantra Authority</div>`;

@@ -212,6 +212,7 @@ function lockReadingInputs(locked){ emailEl.disabled=locked; if(codeEl) codeEl.d
     const isReading = product.id.startsWith("reading-");
     if (isReading) {
       document.body.classList.add("reading-checkout");
+      $('codetoggle').hidden=true;$('codewrap').hidden=true;
       document.querySelector("h1").textContent = "Your full reading";
       document.querySelector(".checkout-sub").textContent = "Three-page PDF by Lawrence Lanoff. One payment. Download immediately.";
       document.querySelector('.trust').innerHTML='<span>PDF to save and keep</span><span>Access link valid for one year</span>';
@@ -276,7 +277,7 @@ function lockReadingInputs(locked){ emailEl.disabled=locked; if(codeEl) codeEl.d
 
     // Prefill a code carried in the URL (used by the post-purchase upsell link).
     const urlCode = (qs.get("code") || "").trim();
-    if (urlCode && codeEl) {
+    if (urlCode && codeEl && !isReading) {
       $("codewrap").style.display = "block";
       codeToggle.textContent = "Hide code";
       codeEl.value = urlCode;
@@ -327,7 +328,7 @@ go.addEventListener("click", async () => {
       const res = await clover.createToken();
       if (res.errors) { say(Object.values(res.errors)[0] || "Check your card details.", true); go.disabled = false; return; }
       bumpTaken = !!(bumpShown && $("bump") && $("bump").checked);
-      payload={productId:product.id,email,token:String(res.token||'').trim(),code:codeEl ? codeEl.value.trim() : '',
+      payload={productId:product.id,email,token:String(res.token||'').trim(),code:isReading ? '' : (codeEl ? codeEl.value.trim() : ''),
         bump:bumpTaken,abBump:bumpArm,...checkoutAttribution(),src:source,ref:location.href};
       if(isReading){
         if(!payload.token.startsWith('clv_')){say('Card details could not be secured. Try again.',true);go.disabled=false;return;}
