@@ -174,17 +174,20 @@ const BOOK_IDS = ["course-in-freedom","tantra-for-women-book","tantra-for-women-
   "symbolic-mind-book","true-power-of-myth-book","open-relationship-blueprint-book"];
 
 let product = null, clover = null, cardMounted = false;
+const QUESTION_BOOK='pleasure-mindset-book';
+function guardedProduct(p){return !!p&&(p.id.startsWith('reading-')||p.id===QUESTION_BOOK);}
 let readingCheckoutRecorded=false;
 function recordReadingCheckout(){
-  if(readingCheckoutRecorded || !product || !product.id.startsWith('reading-')) return;
+  if(readingCheckoutRecorded || !guardedProduct(product)) return;
   const a=readingAttempt || checkoutAttribution();
-  if(a.xpExp!=='quiz-reading-offer-20260913' || !a.xpVid || !a.xpArm || a.xpProp!=='quiz') return;
+  const book=product.id===QUESTION_BOOK;
+  if(a.xpExp!==(book?'question-reading-book-20260914':'quiz-reading-offer-20260913') || !a.xpVid || !a.xpArm || a.xpProp!==(book?'question-reading':'quiz')) return;
   readingCheckoutRecorded=true;
   try {fetch('https://xpmt.soullight.workers.dev/e',{method:'POST',headers:{'content-type':'application/json'},keepalive:true,
     body:JSON.stringify({v:a.xpVid,s:crypto.randomUUID(),p:a.xpProp,src:source,
       e:[{t:'checkout_open',x:a.xpExp,a:a.xpArm,u:location.pathname+location.search,ts:Date.now()}]})}).catch(()=>{});}catch(_){}
 }
-const READING_ATTEMPT_KEY='ta-reading-attempt:'+productId;
+const READING_ATTEMPT_KEY=(productId===QUESTION_BOOK?'ta-book-attempt:':'ta-reading-attempt:')+productId;
 let readingAttempt=null;
 try { readingAttempt=JSON.parse(sessionStorage.getItem(READING_ATTEMPT_KEY)||'null'); } catch (_) {}
 function saveReadingAttempt(attempt){
@@ -210,6 +213,7 @@ function lockReadingInputs(locked){ emailEl.disabled=locked; if(codeEl) codeEl.d
     if (!product) { $("prod-name").textContent = "Product not found."; return; }
 
     const isReading = product.id.startsWith("reading-");
+    const isGuarded=guardedProduct(product);
     if (isReading) {
       document.body.classList.add("reading-checkout");
       $('codetoggle').hidden=true;$('codewrap').hidden=true;
@@ -224,6 +228,17 @@ function lockReadingInputs(locked){ emailEl.disabled=locked; if(codeEl) codeEl.d
       if (source.startsWith("buy:reading-")) beacon("qcheckout", source);
     }
 
+    if(product.id===QUESTION_BOOK){
+      document.body.classList.add('reading-checkout');
+      $('codetoggle').hidden=true;$('codewrap').hidden=true;
+      document.querySelector('h1').textContent='Your book and meditations';
+      document.querySelector('.checkout-sub').textContent='The Pleasure Mindset by Lawrence Lanoff. Illustrated EPUB ebook + two guided MP3 meditations.';
+      document.querySelector('.trust').innerHTML='<span>One payment · $6.99</span><span>Download after checkout</span>';
+      const proof=document.querySelectorAll('.guarantee');if(proof[1])proof[1].hidden=true;
+      const back=document.querySelector('.back');if(back){back.href='https://thenaked.press/q';back.textContent='Return to my reading';}
+      document.querySelector('.guarantee').innerHTML='30-day money-back guarantee. <a href="refunds.html">Read the refund policy</a>.';
+    }
+
     $("prod-name").textContent = product.title;
     $("prod-price").textContent = product.priceCents > 0 ? money(product.priceCents) : "—";
     if (product.cover) { const c = $("prod-cover"); c.src = product.cover; c.style.display = "block"; }
@@ -233,7 +248,7 @@ function lockReadingInputs(locked){ emailEl.disabled=locked; if(codeEl) codeEl.d
       say("This isn’t open for purchase yet. Join the list and we’ll tell you when it opens.");
       return;
     }
-    if(isReading && readingAttempt){
+    if(isGuarded && readingAttempt){
       emailEl.value=readingAttempt.email;lockReadingInputs(true);
       baseCents=product.priceCents;form.style.display='block';
       $('card-element').style.display='none';
@@ -257,7 +272,7 @@ function lockReadingInputs(locked){ emailEl.disabled=locked; if(codeEl) codeEl.d
     baseCents = product.priceCents;
     payLabel();
     go.disabled = false;
-    if(isReading && readingAttempt){
+    if(isGuarded && readingAttempt){
       emailEl.value=readingAttempt.email;
       lockReadingInputs(true);
       say('Your previous payment needs confirmation. Retry safely using the same payment attempt.');
@@ -265,7 +280,7 @@ function lockReadingInputs(locked){ emailEl.disabled=locked; if(codeEl) codeEl.d
     }
 
     // Order bump: only where it makes sense (never on itself, a session, or a bundle that already includes it).
-    const bumpEligible = !isReading && product.id !== BUMP_ID && !(product.items || []).includes(BUMP_ID) && product.priceCents > 0;
+    const bumpEligible = !isGuarded && product.id !== BUMP_ID && !(product.items || []).includes(BUMP_ID) && product.priceCents > 0;
     if (bumpEligible) {
       beacon("bumpimp", "bump:" + bumpArm);          // eligible checkout view, both arms — the denominator
       if (bumpArm === "A") {
@@ -277,7 +292,7 @@ function lockReadingInputs(locked){ emailEl.disabled=locked; if(codeEl) codeEl.d
 
     // Prefill a code carried in the URL (used by the post-purchase upsell link).
     const urlCode = (qs.get("code") || "").trim();
-    if (urlCode && codeEl && !isReading) {
+    if (urlCode && codeEl && !isGuarded) {
       $("codewrap").style.display = "block";
       codeToggle.textContent = "Hide code";
       codeEl.value = urlCode;
@@ -315,38 +330,41 @@ codeEl && codeEl.addEventListener("input", () => {
 go.addEventListener("click", async () => {
   const email = emailEl.value.trim();
   if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { say("Add your email so you can recover access later.", true); emailEl.focus(); return; }
-  if (!(product && product.id.startsWith('reading-') && readingAttempt) && (!clover || !cardMounted)) { say("Checkout isn’t ready yet.", true); return; }
+  if (!(guardedProduct(product) && readingAttempt) && (!clover || !cardMounted)) { say("Checkout isn’t ready yet.", true); return; }
 
   go.disabled = true; say("Processing…");
   try {
-    const isReading=product.id.startsWith('reading-');
+    const isGuarded=guardedProduct(product);
     let payload;
     let bumpTaken=false;
-    if(isReading && readingAttempt){
+    if(isGuarded && readingAttempt){
       payload=readingAttempt;
     }else{
       const res = await clover.createToken();
       if (res.errors) { say(Object.values(res.errors)[0] || "Check your card details.", true); go.disabled = false; return; }
       bumpTaken = !!(bumpShown && $("bump") && $("bump").checked);
-      payload={productId:product.id,email,token:String(res.token||'').trim(),code:isReading ? '' : (codeEl ? codeEl.value.trim() : ''),
+      payload={productId:product.id,email,token:String(res.token||'').trim(),code:isGuarded ? '' : (codeEl ? codeEl.value.trim() : ''),
         bump:bumpTaken,abBump:bumpArm,...checkoutAttribution(),src:source,ref:location.href};
-      if(isReading){
+      if(isGuarded){
         if(!payload.token.startsWith('clv_')){say('Card details could not be secured. Try again.',true);go.disabled=false;return;}
         payload.attemptId=crypto.randomUUID();payload.attemptSecret=readingSecret();
         saveReadingAttempt(payload);
         lockReadingInputs(true);
       }
     }
-    const r = await fetch(API + "/api/buy", {
-      method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify(payload)
-    });
-    const data = await r.json();
+    const paymentAbort=isGuarded?new AbortController():null;
+    const paymentTimer=paymentAbort?setTimeout(()=>paymentAbort.abort(),25000):null;
+    let r,data;
+    try { r=await fetch(API + "/api/buy", {
+      method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify(payload),
+      ...(paymentAbort?{signal:paymentAbort.signal}:{})
+    }); data=await r.json(); } finally {if(paymentTimer)clearTimeout(paymentTimer);}
     if (r.ok && data.ok && data.accessUrl) {
-      if(isReading){
+      if(isGuarded){
         try{saveReadingAttempt(null);}catch(_){}
         // The paid access link is available even if automatic navigation is interrupted.
-        form.style.display='none';say('Your reading is ready.');done.style.display='block';
-        const access=document.createElement('a');access.textContent='Open and download my reading';access.href=data.accessUrl;
+        form.style.display='none';say(product.id===QUESTION_BOOK?'Your ebook and meditations are ready.':'Your reading is ready.');done.style.display='block';
+        const access=document.createElement('a');access.textContent=product.id===QUESTION_BOOK?'Open my ebook and meditations':'Open and download my reading';access.href=data.accessUrl;
         done.replaceChildren(access);
         window.location=data.accessUrl;return;
       }
@@ -376,10 +394,10 @@ go.addEventListener("click", async () => {
         say(product.id.startsWith("reading-") ? "Your reading is ready. Opening your PDF access…" : "You’re in — opening your course…");
         window.location = data.accessUrl;
       }
-    } else if (r.status === 402 && (!isReading || data.error==='card_declined')) {
-      if(isReading){saveReadingAttempt(null);lockReadingInputs(false);}
+    } else if (r.status === 402 && (!isGuarded || data.error==='card_declined')) {
+      if(isGuarded){saveReadingAttempt(null);lockReadingInputs(false);}
       say(data.message || "That card was declined. Try another card.", true); go.disabled = false;payLabel();
-    } else if (isReading) {
+    } else if (isGuarded) {
       const retry=['payment_uncertain'].includes(data.error) || r.status>=500;
       say(data.message || (retry ? 'Your payment needs confirmation. Retry safely using the same payment attempt.' : 'This payment needs support. Keep this page open and use the support link below.'),true);
       go.disabled=!retry;go.textContent=retry?'Check my payment':'Payment needs support';
@@ -387,7 +405,7 @@ go.addEventListener("click", async () => {
       say(data.message || "Something went wrong. Try again.", true); go.disabled = false;
     }
   } catch (e) {
-    if(product && product.id.startsWith('reading-') && readingAttempt){
+    if(guardedProduct(product) && readingAttempt){
       say('Connection interrupted. Check your payment safely using the same attempt.',true);
       go.disabled=false;go.textContent='Check my payment';
     }else{say('Payment could not start. Check your connection and try again.',true);go.disabled=false;}
