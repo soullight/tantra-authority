@@ -152,7 +152,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="acronym">Your free reading</div>
     <h1 id="card-entry-title">Bring a question. Get a card reading.</h1>
     <p class="lede">Trying to figure out what you want, say no, or choose yourself without guilt? Choose the question closest to yours and get a free reading for your situation. No email needed.</p>
-    <p style="margin:24px 0 14px;"><a class="cta-button" href="https://thenaked.press/q?src=ta-test-card" data-xp="cta_click">Choose my question →</a></p>
+    <p style="margin:24px 0 14px;"><a id="reading-doorway" class="cta-button" href="https://thenaked.press/q?src=ta-test-card" data-xp="cta_click">Choose my question →</a></p>
     <p style="margin:0;font-size:14px;"><a href="#full-assessment" style="color:var(--text-muted);">Looking for the full psychosexual assessment? Continue below.</a></p>
   </section>
 
@@ -664,6 +664,55 @@ function renderQuestions() {
 
 function scaleTo9(x) { return Math.round(((x - 1) / 4) * 9); }
 
+// In-memory acknowledgement only. No analytics, extra persistence or auto-resend.
+function createAssessmentCapture({fetchImpl, onState, setTimer = setTimeout, clearTimer = clearTimeout, timeoutMs = 15000}) {
+  const records = new Map();
+  let uncertain = null;
+  const keyFor = payload => JSON.stringify({...payload, timestamp: undefined});
+  function emit(record, state) { record.state = state; onState(state); }
+  function submit(endpoint, payload) {
+    const key = keyFor(payload), previous = records.get(key);
+    if (uncertain) { onState('unknown'); return uncertain.promise; }
+    if (previous && previous.state !== 'rejected') { onState(previous.state); return previous.promise; }
+    if (endpoint !== 'https://api.tantra-authority.com/api/test/submit') {
+      onState('unavailable'); return Promise.resolve('unavailable');
+    }
+    const record = {state: 'pending', promise: null}; records.set(key, record);
+    emit(record, 'pending');
+    const timer = setTimer(() => { uncertain = record; emit(record, 'unknown'); }, timeoutMs);
+    record.promise = Promise.resolve().then(() => fetchImpl(endpoint, {
+      method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(payload)
+    })).then(async response => {
+      // Existing handler rejects validation before any save. Other errors may follow a save.
+      if (response.status === 400) { if (uncertain === record) uncertain = null; emit(record, 'rejected'); return record.state; }
+      if (!response.ok) throw new Error('unconfirmed');
+      const result = await response.json();
+      if (result.ok !== true || typeof result.id !== 'string' || !/^[A-Za-z0-9_-]{1,128}$/.test(result.id) || result.code !== payload.code || typeof result.emailed !== 'boolean') throw new Error('unconfirmed');
+      if (uncertain === record) uncertain = null;
+      emit(record, result.emailed ? 'saved-email-accepted' : 'saved-email-unconfirmed');
+      return record.state;
+    }).catch(() => { uncertain = record; emit(record, 'unknown'); return record.state; })
+      .finally(() => clearTimer(timer));
+    return record.promise;
+  }
+  return {submit};
+}
+function assessmentCaptureMessage(state) {
+  return {
+    pending: 'Your code is ready below. Saving your result…',
+    'saved-email-accepted': 'Your result is saved. Your code email has been accepted for sending. Keep a copy of your code below.',
+    'saved-email-unconfirmed': 'Your result is saved. Email sending is unconfirmed. Keep a copy of your code below.',
+    rejected: 'Your code is ready below. Check your email and entries, then submit again to save your result.',
+    unknown: 'Your code is ready below. Save and email status are unconfirmed. Keep a copy of your code and wait before submitting again.',
+    unavailable: 'Your code is ready below. Saving is unavailable here. Keep a copy of your code.'
+  }[state];
+}
+
+const assessmentCapture = createAssessmentCapture({fetchImpl: (...args) => fetch(...args), onState: state => {
+  const status = document.getElementById('assessment-save-status');
+  if (status) status.textContent = assessmentCaptureMessage(state);
+  document.getElementById('submit-test').disabled = state === 'pending' || state === 'unknown';
+}});
 document.getElementById('submit-test').addEventListener('click', () => {
   const email = document.getElementById('user-email').value.trim();
   if (!email) { alert('Add your email so we can send you the code.'); document.getElementById('user-email').focus(); return; }
@@ -725,7 +774,7 @@ document.getElementById('submit-test').addEventListener('click', () => {
   const r = document.getElementById('result-area');
   let html = '<h3>Your code</h3>';
   html += '<div class="result-code">' + fullCode + '</div>';
-  html += '<div style="font-size:14px;color:var(--text-muted);line-height:1.5;">A copy of your code has been logged for your records. Save it. The matching service will use this as your match key when it goes live. The longer-form interpretation appears below.</div>';
+  html += '<div style="font-size:14px;color:var(--text-muted);line-height:1.5;">Your code is ready. Save it for your records. The matching service will use this as your match key when it goes live. The longer-form interpretation appears below.</div>';
 
   html += '<div class="result-axes">';
   publicAxes.forEach(ax => {
@@ -779,17 +828,28 @@ document.getElementById('submit-test').addEventListener('click', () => {
   } catch (e) {}
 
   const TEST_ENDPOINT = window.TA_TEST_ENDPOINT || null;
-  if (TEST_ENDPOINT) {
-    fetch(TEST_ENDPOINT, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(submission) }).catch(()=>{});
-  }
-
-  r.innerHTML = html;
+  r.innerHTML = html + '<p id="assessment-save-status" role="status" aria-live="polite"></p>';
   r.style.display = 'block';
   r.scrollIntoView({ behavior:'smooth', block:'start' });
+  assessmentCapture.submit(TEST_ENDPOINT, submission);
 });
 
 </script>
 
 <script src="https://xpmt.soullight.workers.dev/t.js" data-prop="tantra-authority" defer></script>
+<script>
+// Preserve a tagged arrival through the existing free-reading doorway.
+// One bounded source identifier only; no assessment answers or contact fields.
+function readingDoorwayUrl(search) {
+  const params = new URLSearchParams(search);
+  const sources = params.has('src') ? params.getAll('src') : params.getAll('utm_source');
+  const source = sources.length === 1 && /^[A-Za-z0-9_.:-]{1,120}$/.test(sources[0])
+    ? sources[0] : 'ta-test-card';
+  const url = new URL('https://thenaked.press/q');
+  url.searchParams.set('src', source);
+  return url.href;
+}
+document.getElementById('reading-doorway').href = readingDoorwayUrl(location.search);
+</script>
 </body>
 </html>
