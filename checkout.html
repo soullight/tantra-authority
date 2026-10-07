@@ -47,7 +47,7 @@
   .fine { color: var(--text-muted); font-family: 'Inter', sans-serif; font-size: 12px; text-align: center; margin-top: 16px; line-height: 1.5; }
   .back { display: block; text-align: center; margin-top: 18px; font-family: 'Inter', sans-serif; font-size: 13px; }
   /* A quiz reading is a single-purpose purchase, not a visit to the whole store. */
-  .reading-checkout .site-header, .reading-checkout .fine, .reading-checkout .back,
+  .reading-checkout .site-header, .reading-checkout .fine, .reading-checkout .back:not(.support-link),
   .reading-checkout .codetoggle, .reading-checkout #codewrap, .reading-checkout #bumpwrap,
   .reading-checkout .guarantee + .guarantee { display: none !important; }
   .reading-checkout .checkout-wrap { margin-top: 72px; }
@@ -110,7 +110,7 @@
 
   <div class="fine">Card secured by Clover — your card details never touch our servers. Adults only. <a href="refunds.html">30-day money-back guarantee</a>.</div>
   <a class="back" href="shop.html">← Back to the shop</a>
-  <a class="back" href="support.html" style="margin-top:6px">Questions? Chat with support →</a>
+  <a class="back support-link" href="support.html" style="margin-top:6px">Questions? Chat with support →</a>
 </div>
 
 <script>
@@ -328,6 +328,7 @@ codeEl && codeEl.addEventListener("input", () => {
 });
 
 go.addEventListener("click", async () => {
+  if (go.disabled) return; // A payment request or terminal recovery is already active.
   const email = emailEl.value.trim();
   if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { say("Add your email so you can recover access later.", true); emailEl.focus(); return; }
   if (!(guardedProduct(product) && readingAttempt) && (!clover || !cardMounted)) { say("Checkout isn’t ready yet.", true); return; }
@@ -395,7 +396,16 @@ go.addEventListener("click", async () => {
         window.location = data.accessUrl;
       }
     } else if (r.status === 402 && (!isGuarded || data.error==='card_declined')) {
-      if(isGuarded){saveReadingAttempt(null);lockReadingInputs(false);}
+      if(isGuarded){
+        saveReadingAttempt(null);lockReadingInputs(false);
+        if(!clover || !cardMounted){
+          // A restored attempt skipped card initialization. Reload only after a definitive decline.
+          form.style.display='none';go.disabled=true;
+          say('That card was declined. Enter another card to try again.',true);
+          const restart=document.createElement('a');restart.textContent='Enter another card';restart.href=location.href;
+          done.replaceChildren(restart);done.style.display='block';return;
+        }
+      }
       say(data.message || "That card was declined. Try another card.", true); go.disabled = false;payLabel();
     } else if (isGuarded) {
       const retry=['payment_uncertain'].includes(data.error) || r.status>=500;
