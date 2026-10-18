@@ -1,0 +1,44 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Orgasm is safety | Free from Lawrence Lanoff</title>
+<link rel="canonical" href="https://tantra-authority.com/yt/g-spot/"><meta name="description" content="A free excerpt from Lawrence Lanoff's book Beyond the Myth: Orgasm Is Safety. Education for adults.">
+<style>body{font-family:Georgia,serif;max-width:680px;margin:0 auto;padding:20px;line-height:1.7;color:#111}h1{font-size:2rem;line-height:1.2;margin:.4em 0}
+.kick{font:600 .8rem/1.4 -apple-system,Segoe UI,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#8a2a1e}
+.box{border:2px solid #b3261e;border-radius:8px;padding:20px;margin:28px 0;background:#fff7f6}form{display:flex;gap:8px;flex-wrap:wrap}
+input[type=email]{flex:1;min-width:220px;padding:12px;font-size:1rem;border:1px solid #bbb;border-radius:6px}button{padding:12px 18px;font-size:1rem;background:#b3261e;color:#fff;border:0;border-radius:6px;cursor:pointer}
+button[disabled]{opacity:.6}.offer{display:none;border-top:1px solid #ddd;margin-top:20px;padding-top:16px}.btn{display:inline-block;margin:6px 8px 6px 0;padding:12px 18px;background:#c9a25a;color:#111;border-radius:100px;text-decoration:none;font:600 .95rem -apple-system,Segoe UI,sans-serif}
+.small{font-size:.85rem;color:#666}footer{margin-top:40px;font-size:.85rem;color:#666}</style></head><body>
+<nav class="small"><a href="https://tantra-authority.com/">Tantra Authority</a> · <a href="https://tantra-authority.com/about.html">About Lawrence</a></nav>
+<p class="kick">Free for viewers of “My G-Spot Orgasm Meditation”</p>
+<h1>Orgasm is safety</h1>
+<p>The meditation you listened to runs on one idea: relaxation and feeling safe come first. The body lets go when nothing in it is still standing guard. Pressure, including the pressure of a goal, works against that.</p>
+<div class="box" id="free"><h2 style="margin-top:0">Free: “Orgasm Is Safety”</h2>
+<p>A 5-page excerpt from my book <em>Beyond the Myth: The Definitive Guide to Modern Tantra</em>. Inside:</p><ul><li>Why the arc of arousal matters more than the peak, and why slow changes the whole experience</li><li>Why a body that can let go alone may not let go with a partner, and the kinder question to ask</li><li>How to take the clock and the goal out of the room</li></ul>
+<form id="optin"><input type="email" name="email" required placeholder="you@email.com" aria-label="Email"><input type="hidden" name="source" value="yt-g-spot"><button type="submit">Send me the free excerpt</button></form>
+<p id="msg" role="status" aria-live="polite"></p>
+<div class="offer" id="offer"><p><strong>Ready for the next step?</strong> My short tantra books, one for each reader:</p>
+<a class="btn" href="https://tantra-authority.com/checkout.html?product=tantra-for-men-book&amp;src=yt-g-spot">Tantra for Men, $19.97</a><a class="btn" href="https://tantra-authority.com/checkout.html?product=tantra-for-women-book&amp;src=yt-g-spot">Tantra for Women, $19.97</a>
+<p class="small">Want the whole program, step by step? <a href="https://tantra-authority.com/checkout.html?product=tantra-x&amp;src=yt-g-spot">Tantra X, $197</a>.</p></div>
+<p class="small">The download appears right here as soon as you sign up. After that, occasional notes from me; unsubscribe any time. For adults (18+). Education, not therapy or medical care.</p></div>
+<p>I'm Lawrence Lanoff. I teach tantra without the mythology: breath, attention and the body, explained plainly.</p>
+<p class="small">Watch the video again: <a href="https://www.youtube.com/watch?v=IRTolFnrspo">My G-Spot Orgasm Meditation</a></p>
+<footer>© 2026 Lawrence Lanoff · <a href="https://tantra-authority.com/privacy.html">Privacy</a> · <a href="https://tantra-authority.com/refunds.html">Refunds</a></footer>
+<script>
+(function(){
+  var ENDPOINT='https://api.tantra-authority.com/api/subscribe/submit', PDF='/assets/yt-g-spot-free-practice.pdf';
+  var form=document.getElementById('optin'), msg=document.getElementById('msg'), offer=document.getElementById('offer'), btn=form.querySelector('button[type=submit]'), label=btn.textContent;
+  function fail(text){msg.innerHTML='';var x=document.createElement('span');x.style.color='#b00020';x.textContent=text+' ';var r=document.createElement('button');r.type='button';r.textContent='Try again';r.onclick=function(){send()};msg.appendChild(x);msg.appendChild(r);}
+  function send(){
+    var data=Object.fromEntries(new FormData(form));
+    btn.disabled=true;btn.textContent='Sending\u2026';msg.textContent='';
+    fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)})
+      .then(function(r){return r.json().catch(function(){return {};}).then(function(j){return {okHttp:r.ok,j:j};});})
+      .then(function(x){
+        if(x.okHttp && x.j && x.j.ok===true){form.style.display='none';msg.innerHTML='You\u2019re in. <a href="'+PDF+'">Download your free excerpt now</a>.';offer.style.display='block';}
+        else{fail(x.j&&(x.j.error==='bad_email'||x.j.error==='invalid email')?'That email address looks invalid.':'Sorry, we couldn\u2019t sign you up just now.');}
+      })
+      .catch(function(){fail('Network error: we couldn\u2019t reach the server.');})
+      .finally(function(){btn.disabled=false;btn.textContent=label;});
+  }
+  form.addEventListener('submit',function(e){e.preventDefault();send();});
+})();
+</script></body></html>
