@@ -10,7 +10,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="description" content="Numb, rushed, faking it, lasting too short, or a bedroom gone quiet? A frank, practical guide to getting your pleasure back. Read the first 32 pages free.">
 
 <meta property="og:title" content="The Definitive Guide to Modern Tantra — free excerpt"><meta property="og:image" content="/assets/cover-600.jpg">
-<link rel="stylesheet" href="/styles.css"><script src="/config.js"></script>
+<link rel="stylesheet" href="/styles.css"><script src="/config.js"></script><script src="/ta-events.js" defer></script>
 <style>
 .hero{display:grid;grid-template-columns:minmax(220px,340px) 1fr;gap:40px;align-items:center;max-width:1040px;margin:40px auto;padding:0 24px}
 .hero img{width:100%;box-shadow:0 18px 50px rgba(0,0,0,.45);border-radius:4px}
@@ -31,9 +31,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div><div class="pill" id="status">Coming soon from The Naked Press</div>
 <div class="hv" data-h="1"><h1>Sex should feel good. If it doesn't, you're not broken.</h1><p class="sub">Numb during sex. Can't orgasm with a partner. Quietly faking it. Almost always it comes down to rushing and nobody teaching you how your body actually works. This is the frank, practical guide to feeling it again.</p></div><div class="hv" data-h="2"><h1>Last longer. Naturally. No pills.</h1><p class="sub">Finishing too fast, losing your erection, getting in your head in bed. These are body skills, and they can be learned. I learned to control my orgasm at eleven, and I'll teach you, plainly.</p></div><div class="hv" data-h="3"><h1>From roommates back to lovers.</h1><p class="sub">If sex has gone quiet, touch has dried up, or desire disappeared after kids or at midlife, you're not doomed. Here's how to want each other again, without pressure or a script.</p></div><div class="hv" data-h="4"><h1>Your head knows sex isn't wrong. Your body hasn't got the message.</h1><p class="sub">Raised on purity culture, or just raised on shame? It lives in the body, not the beliefs, and you can't think your way out of it. This book helps you feel your way out.</p></div><div class="hv" data-h="5"><h1>Get your body back. Get your pleasure back.</h1><p class="sub">For anyone who feels cut off from their own body: tense, anxious, numb, or just going through the motions. Learn to feel more, enjoy more, and stop treating pleasure like something you have to earn.</p></div>
 <p style="font-size:15px;opacity:.8"><i>The Definitive Guide to Modern Tantra: Beyond the Myth</i> · Lawrence Lanoff · 624 pages</p>
-<div id="buybox" style="display:none;margin:18px 0"><a class="buy" id="buylink" href="#" data-ev="buy_amazon">Get the book on Amazon</a></div>
+<div id="buybox" style="margin:18px 0"><a class="buy" id="buylink" href="/checkout.html?product=tantra-for-men-book&amp;src=home-buy" data-ev="buy_direct">Buy now, $19.97</a></div>
 <div class="cap" id="cap"><b>Read the first 32 pages free.</b> Sent to your inbox now. <span id="notify">You'll also hear the day the book goes live.</span>
-<form id="fc"><input type="email" name="email" required placeholder="you@email.com"> <button>Send me the free pages</button>
+<form id="fc"><input type="email" name="email" required placeholder="you@email.com"> <button data-ev="free_pages_submit">Send me the free pages</button>
 <input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px"></form><div class="msg" id="msg"></div>
 <div style="font-size:12px;opacity:.6;margin-top:8px">One email a week at most. Unsubscribe anytime. <a href="https://tantra-authority.com/privacy.html">Privacy</a></div></div></div></section>
 <div class="wrap">
@@ -63,13 +63,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <li><b>Let go of the shame.</b> Body-first ways to unlearn what you were taught, because thinking alone doesn't do it.</li>
 <li><b>Skip the nonsense.</b> What tantra really is, what's hype, and how to spot a cult before it costs you.</li></ul>
 <div class="cta2"><p style="font-size:20px"><b>Start with the first 32 pages, free.</b><br>The Foreword and Chapter 1 arrive in your inbox in a minute.</p>
-<a class="buy" href="#cap" onclick="document.querySelector('#fc input').focus()">Send me the free pages</a></div>
+<a class="buy" href="#cap" data-ev="free_pages_cta" onclick="document.querySelector('#fc input').focus()">Send me the free pages</a></div>
 <p style="font-size:13px;opacity:.6">The Definitive Guide to Modern Tantra: Beyond the Myth · 624 pages · ISBN 979-8-951241-05-4 · The Naked Press · For adult readers.</p></div>
 <script>
 const B=window.TA_BOOK||{};const qs=new URLSearchParams(location.search);
 let H=parseInt(qs.get('h'))||1;if(H<1||H>5)H=1;document.querySelector('.hv[data-h="'+H+'"]').style.display='block';
 const src=(qs.get('src')||qs.get('utm_source')||document.referrer||'direct')+'|h'+H;
-if(B.amazonUrl){document.getElementById('buybox').style.display='block';document.getElementById('buylink').href=B.amazonUrl;document.getElementById('status').textContent='Available now'+(B.price?' · '+B.price:'');document.getElementById('notify').textContent='';}
+document.getElementById('buylink').href='/checkout.html?product='+encodeURIComponent(B.checkoutProduct||'tantra-for-men-book')+'&src='+encodeURIComponent(src);
+if(B.amazonUrl){document.getElementById('buylink').href=B.amazonUrl;document.getElementById('buylink').textContent='Get the book on Amazon';document.getElementById('buylink').setAttribute('data-ev','buy_amazon');document.getElementById('status').textContent='Available now'+(B.price?' · '+B.price:'');document.getElementById('notify').textContent='';}
 document.getElementById('fc').addEventListener('submit',async e=>{e.preventDefault();const f=e.target,m=document.getElementById('msg');m.textContent='Sending…';
 try{const r=await fetch('https://tantra-authority-funnel-v2.pages.dev/api/free-chapter',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:f.email.value,website:f.website.value,source:String(src).slice(0,200)})});const j=await r.json();
 if(j.ok){location.href='/thank-you.html'}else m.textContent=j.error==='bad_email'?'That email looks off. Try again?':'Something went wrong. Please try again.'}catch(_){m.textContent='Network error. Please try again.'}});
