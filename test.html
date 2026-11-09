@@ -3,7 +3,9 @@
 <head>
 <!-- The full 100-question depth test (Quick/Standard/Deep tiers). Reached from the one-tap quiz's deepest level as "the full 100-question depth map." -->
 <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+<script>const privateTypeTest = new URLSearchParams(location.search).get('private') === '1';
+const chooseExperience = privateTypeTest && new URLSearchParams(location.search).get('entry') === 'choose';
+if (!privateTypeTest) (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
@@ -122,10 +124,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </script>
 </head>
 <body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WTXBXKTS"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
+<!-- No noscript tracking: this assessment requires JavaScript; private mode must not load GTM. -->
 
 <header class="site-header">
   <div class="site-header-inner">
@@ -148,12 +147,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <!-- Question-led entry. The free reading and optional owned-book continuation
        are delivered downstream; cta_click keeps the existing source attribution. -->
-  <section class="ppt-hero" aria-labelledby="card-entry-title">
+  <section class="ppt-hero" id="free-experiences" aria-labelledby="card-entry-title">
     <div class="acronym">Your free reading</div>
     <h1 id="card-entry-title">Bring a question. Get a card reading.</h1>
-    <p class="lede">Trying to figure out what you want, say no, or choose yourself without guilt? Choose the question closest to yours and get a free reading for your situation. No email needed.</p>
+    <p class="lede" id="entry-description">Trying to figure out what you want, say no, or choose yourself without guilt? Choose the question closest to yours and get a free reading for your situation. No email needed.</p>
     <p style="margin:24px 0 14px;"><a id="reading-doorway" class="cta-button" href="https://thenaked.press/q?src=ta-test-card" data-xp="cta_click">Choose my question →</a></p>
-    <p style="margin:0;font-size:14px;"><a href="#full-assessment" style="color:var(--text-muted);">Looking for the full psychosexual assessment? Continue below.</a></p>
+    <p style="margin:0;font-size:14px;"><a id="type-doorway" href="#full-assessment" style="color:var(--text-muted);">Looking for the full psychosexual assessment? Continue below.</a></p>
   </section>
 
   <section class="ppt-hero" id="full-assessment" aria-labelledby="ppt-title">
@@ -273,6 +272,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div>Tantra Authority — published by <a href="https://thenaked.press">The Naked Press</a></div>
 </footer>
 
+<script>
+// The published type-test invitation has a separate browser-only entry mode.
+if (privateTypeTest) {
+ document.getElementById('user-email').required = false;
+ document.getElementById('user-email').parentElement.hidden = true;
+ document.getElementById('reading-doorway').closest('section').hidden = !chooseExperience;
+ if (chooseExperience) {
+   document.getElementById('card-entry-title').textContent = 'Choose your free experience.';
+   document.getElementById('entry-description').textContent = 'Take the private psychosexual type test, or bring a question for a free card reading. The test has Quick, Standard and Deep options below. No email needed for either.';
+   document.getElementById('reading-doorway').textContent = 'Get a free card reading →';
+   document.getElementById('type-doorway').textContent = 'Take the private type test →';
+ }
+
+ const notice = document.createElement('p');
+ notice.textContent = 'Free private type test. No email needed. Your answers and code stay on this page; they are not saved or submitted. Keep a copy of your code before closing or reloading.';
+ document.getElementById('meta-area').prepend(notice);
+ const gender = new URLSearchParams(location.search).get('g');
+ if (gender === 'w') document.getElementById('user-gender').value = 'female';
+ if (gender === 'm') document.getElementById('user-gender').value = 'male';
+}
+</script>
 <script>
 const QUESTIONS = [
   { id:'ar1', tiers:['quick','standard','deep'], axis:'AR', type:'scale', text:'In partnered sex, do you prefer to direct what happens or to be carried by what happens?', left:'Always direct', right:'Always carried' },
@@ -575,7 +595,7 @@ const AXES = {
 };
 
 let currentTier = null;
-let currentGender = '';
+let currentGender = privateTypeTest ? document.getElementById('user-gender').value : '';
 
 document.querySelectorAll('.tier-card').forEach(card => {
   card.addEventListener('click', () => {
@@ -715,7 +735,7 @@ const assessmentCapture = createAssessmentCapture({fetchImpl: (...args) => fetch
 }});
 document.getElementById('submit-test').addEventListener('click', () => {
   const email = document.getElementById('user-email').value.trim();
-  if (!email) { alert('Add your email so we can send you the code.'); document.getElementById('user-email').focus(); return; }
+  if (!privateTypeTest && !email) { alert('Add your email so we can send you the code.'); document.getElementById('user-email').focus(); return; }
 
   const qs = getApplicableQuestions();
   const axisData = {};
@@ -731,7 +751,7 @@ document.getElementById('submit-test').addEventListener('click', () => {
       axisData[q.axis].raw.push({ id:q.id, val });
     } else if (q.type === 'multi') {
       const codes = Array.from(document.querySelectorAll('input[name="' + q.id + '"]:checked')).map(c => c.value);
-      if (!axisData[q.axis]) axisData[q.axis] = { sum:0, count:0, multi:[], internal:q.internal };
+      if (!axisData[q.axis]) axisData[q.axis] = { sum:0, count:0, multi:[], internal:q.internal, raw:[] };
       axisData[q.axis].multi = (axisData[q.axis].multi || []).concat(codes);
     }
   }
@@ -790,6 +810,14 @@ document.getElementById('submit-test').addEventListener('click', () => {
   }
 
   html += '<div style="margin-top:14px;font-size:13px;color:var(--text-muted);"><strong>Save your code</strong> — it\'s your key when matching opens.</div>';
+  if (privateTypeTest) {
+    html += '<div style="margin-top:26px;padding:24px;border:1px solid var(--accent-soft);border-radius:12px;">';
+    html += '<h3 style="margin:0 0 10px;">Want somewhere to begin?</h3>';
+    html += '<p>Choose a book to keep exploring. Your answers and code are not sent to checkout.</p>';
+    html += '<p><a class="cta-button" href="' + typeBookUrl('tantra-for-men-book', location.search) + '">Tantra for Men · $19.97 →</a></p>';
+    html += '<p><a class="cta-button" href="' + typeBookUrl('tantra-for-women-book', location.search) + '">Tantra for Women · $19.97 →</a></p>';
+    html += '</div>';
+  } else {
   html += '<div style="margin-top:26px;padding:24px;background:linear-gradient(135deg,rgba(139,58,58,0.08),rgba(184,134,11,0.05));border:1px solid var(--accent-soft);border-radius:12px;text-align:center;">';
   html += '<div style="font-family:Inter,sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:8px;">Your next step</div>';
   html += '<h3 style="margin:0 0 10px;font-size:23px;">Now talk it through — privately.</h3>';
@@ -797,6 +825,8 @@ document.getElementById('submit-test').addEventListener('click', () => {
   html += '<a href="https://safetoletgo.com/?from=quiz" class="cta-button">Talk to your coach →</a>';
   html += '<div style="margin-top:14px;"><a href="shop.html" style="color:var(--accent);font-size:14px;text-decoration:none;">Or start with a course or book for your type →</a></div>';
   html += '</div>';
+
+  }
 
   const _q = new URLSearchParams(location.search);
   const submission = {
@@ -820,7 +850,7 @@ document.getElementById('submit-test').addEventListener('click', () => {
     }
   });
 
-  try {
+  if (!privateTypeTest) try {
     const stored = JSON.parse(localStorage.getItem('ta_test_submissions') || '[]');
     stored.push(submission);
     localStorage.setItem('ta_test_submissions', JSON.stringify(stored));
@@ -831,13 +861,36 @@ document.getElementById('submit-test').addEventListener('click', () => {
   r.innerHTML = html + '<p id="assessment-save-status" role="status" aria-live="polite"></p>';
   r.style.display = 'block';
   r.scrollIntoView({ behavior:'smooth', block:'start' });
-  assessmentCapture.submit(TEST_ENDPOINT, submission);
+  if (privateTypeTest) {
+    document.getElementById('assessment-save-status').textContent = 'Private result: not saved, submitted or emailed. Keep a copy before closing or reloading.';
+  } else assessmentCapture.submit(TEST_ENDPOINT, submission);
 });
 
 </script>
 
-<script src="https://xpmt.soullight.workers.dev/t.js" data-prop="tantra-authority" defer></script>
 <script>
+if (!privateTypeTest) {
+ const tracker = document.createElement('script');
+ tracker.src = 'https://xpmt.soullight.workers.dev/t.js';
+ tracker.setAttribute('data-prop', 'tantra-authority'); tracker.defer = true;
+ document.head.appendChild(tracker);
+}
+</script>
+<script>
+// Only arrival attribution follows an optional book link. No answers, gender, email or code.
+function typeBookUrl(productId, search) {
+  if (!['tantra-for-men-book', 'tantra-for-women-book'].includes(productId)) throw new Error('Unknown book');
+  const params = new URLSearchParams(search);
+  const sources = params.has('src') ? params.getAll('src') : params.getAll('utm_source');
+  const source = sources.length === 1 && /^[A-Za-z0-9_.:-]{1,120}$/.test(sources[0]) ? sources[0] : 'private-type-test';
+  const url = new URL('https://tantra-authority.com/checkout.html');
+  url.searchParams.set('product', productId); url.searchParams.set('src', source);
+  const fields = [['xp_vid',64],['xp_exp',64],['xp_arm',32],['xp_prop',64]];
+  const values = fields.map(([key]) => params.getAll(key));
+  if (fields.every(([, max], i) => values[i].length === 1 && values[i][0].length > 0 && values[i][0].length <= max && /^[A-Za-z0-9_.:-]+$/.test(values[i][0]))) fields.forEach(([key], i) => url.searchParams.set(key,values[i][0]));
+  return url.href;
+}
+
 // Preserve a tagged arrival through the existing free-reading doorway.
 // One bounded source identifier only; no assessment answers or contact fields.
 function readingDoorwayUrl(search) {
