@@ -146,31 +146,46 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 (function() {
   const form = document.getElementById('subscribe-form');
   if (!form) return;
-  form.addEventListener('submit', function(e) {
+  let pending = false;
+  form.addEventListener('submit', async function(e) {
     e.preventDefault();
+    if (pending) return;
     const input = form.querySelector('input[type=email]');
     const email = (input && input.value || '').trim();
-    if (!email) return;
-
-    const data = { timestamp: new Date().toISOString(), email: email, source: window.location.pathname };
-
-    try {
-      const stored = JSON.parse(localStorage.getItem('ta_subscriptions') || '[]');
-      stored.push(data);
-      localStorage.setItem('ta_subscriptions', JSON.stringify(stored));
-    } catch (err) {}
-
-    const ENDPOINT = window.TA_SUBSCRIBE_ENDPOINT || null;
-    if (ENDPOINT) {
-      fetch(ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) }).catch(function(){});
-    }
-
+    if (!email || !form.checkValidity()) { form.reportValidity(); return; }
+    const button = form.querySelector('button[type=submit]');
+    const label = button.textContent;
     const c = document.getElementById('subscribe-confirmation');
-    if (c) {
-      c.innerHTML = '<strong>You’re on the list.</strong> We’ll let you know when the book ships.';
-      c.style.display = 'block';
+    pending = true;
+    button.disabled = true;
+    button.textContent = 'Saving…';
+    if (c) { c.setAttribute('role', 'status'); c.textContent = ''; c.style.display = 'block'; }
+    const controller = typeof AbortController === 'function' ? new AbortController() : null;
+    let deadline;
+    try {
+      await Promise.race([(async function() {
+      const response = await fetch(window.TA_SUBSCRIBE_ENDPOINT, {
+        method: 'POST', signal: controller ? controller.signal : undefined, headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ timestamp: new Date().toISOString(), email: email, source: window.location.pathname })
+      });
+      const result = await response.json();
+      if (!response.ok || result.ok !== true) throw new Error('capture_failed');
+      })(), new Promise(function(resolve, reject) {
+        deadline = setTimeout(function() {
+          if (controller) controller.abort();
+          reject(new Error('capture_timeout'));
+        }, 15000);
+      })]);
+      if (c) c.textContent = 'You’re on the list. We’ll let you know when the book ships.';
+      form.reset();
+    } catch (error) {
+      if (c) c.textContent = 'We couldn’t confirm your email was saved. Please try again.';
+    } finally {
+      clearTimeout(deadline);
+      pending = false;
+      button.disabled = false;
+      button.textContent = label;
     }
-    form.reset();
   });
 })();
 </script>
