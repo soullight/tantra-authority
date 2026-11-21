@@ -1,0 +1,37 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex">
+<title>Your excerpt is on its way</title><link rel="stylesheet" href="/styles.css"><script src="/config.js"></script></head><body>
+<header class="site-header"><div class="site-header-inner"><a href="https://tantra-authority.com/" class="site-logo">TANTRA <span>AUTHORITY</span></a></div></header>
+<main style="max-width:680px;margin:50px auto;padding:0 24px;text-align:center"><h1>Check your inbox.</h1>
+<p>Your first 32 pages of <i>The Definitive Guide to Modern Tantra: Beyond the Myth</i> are on their way. If it isn't there in five minutes, check Promotions or Spam.</p>
+<p>Want to start right now? <a href="/free/definitive-guide-free-excerpt.pdf">Open the excerpt here</a>.</p>
+<div id="b" style="display:none;margin-top:28px"><a href="#" id="bl" style="padding:14px 24px;background:#c9a227;color:#111;font-weight:700;text-decoration:none;border-radius:4px">Get the full book on Amazon</a></div>
+<p style="margin-top:28px">Then try the first exercise tonight. It takes ten minutes, and you do it alone.</p><div class="book-links" style="border:1px solid #c9a25a;border-radius:8px;padding:16px 20px;margin:28px 0;background:#fbf8f2;color:#111;font-size:15.5px;line-height:1.6;">
+  <strong>Books by Lawrence Lanoff:</strong>
+  <ul style="margin:8px 0 0;padding-left:20px;">
+    <li><a href="https://tantra-authority.com/launch/?src=thank-you-v2" style="color:#8a2a1e;font-weight:700;">Beyond the Myth: The Definitive Guide to Modern Tantra, Vol. 1</a> — publishing Dec 24 (join the launch list + get 32 pages free)</li>
+    <li><a href="https://tantra-authority.com/checkout.html?product=course-in-freedom&amp;src=thank-you-v2" style="color:#8a2a1e;font-weight:700;">A Course in Freedom ($19.97)</a> — drop the inherited beliefs running your sex life and relationships</li>
+    <li><a href="https://tantra-authority.com/books/?src=thank-you-v2" style="color:#8a2a1e;">See all books</a> · <a href="https://tantra-authority.com/shop.html" style="color:#8a2a1e;">Full shop</a></li>
+  </ul>
+</div>
+</main>
+<script>const B=window.TA_BOOK||{};if(B.amazonUrl){b.style.display='block';bl.href=B.amazonUrl}</script><script>
+(function(){
+  try{
+    var qs=new URLSearchParams(location.search);
+    var s=(qs.get('src')||qs.get('utm_source')||'').trim().slice(0,120);
+    if(!s) return;
+    document.querySelectorAll('a[href*="checkout.html"], a[href*="/launch/"], a[href*="/books/"]').forEach(function(a){
+      try{
+        var u=new URL(a.getAttribute('href'), location.origin);
+        if(u.origin!==location.origin) return;
+        u.searchParams.set('src', s);
+        a.setAttribute('href', u.pathname + u.search + u.hash);
+      }catch(_){}
+    });
+    document.querySelectorAll('input[name="source"]').forEach(function(inp){
+      inp.value = s;
+    });
+  }catch(_){}
+})();
+</script>
+</body></html>

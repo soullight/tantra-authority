@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- The full 100-question depth test (Quick/Standard/Deep tiers). Reached from the one-tap quiz's deepest level as "the full 100-question depth map." -->
+<!-- Google Tag Manager -->
+<script>const privateTypeTest = new URLSearchParams(location.search).get('private') === '1';
+const chooseExperience = privateTypeTest && new URLSearchParams(location.search).get('entry') === 'choose';
+if (!privateTypeTest) (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-WTXBXKTS');</script>
+<!-- End Google Tag Manager -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+  window.TA_TEST_ENDPOINT = 'https://api.tantra-authority.com/api/test/submit';
+  window.TA_ASK_ENDPOINT  = 'https://api.tantra-authority.com/api/ask/submit';
+</script>
+<title>The PPT — Psychosexual Psychological Type Test — Tantra Authority</title>
+<meta name="description" content="The PPT — a three-tier psychosexual psychological type test. Quick (10 questions, 3 minutes), Standard (30 questions, 10 minutes), or Deep Dive (100 questions, 30 minutes). Generates a portable compatibility code across 25 axes. Free to take. The output becomes your match key on the Honest Fetish Matching service.">
+<meta name="author" content="Lawrence Lanoff">
+<link rel="canonical" href="https://tantra-authority.com/test-v2.html">
+<meta property="og:title" content="The PPT — Psychosexual Psychological Type Test — Tantra Authority">
+<meta property="og:description" content="The PPT — a three-tier psychosexual psychological type test. Quick (10 questions, 3 minutes), Standard (30 questions, 10 minutes), or Deep Dive (100 questions, 30 minutes). Generates a portable compatibility code across 25 axes. Free to take. The output becomes your match key on the Honest Fetish Matching service.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tantra-authority.com/test.html">
+<meta property="og:site_name" content="Tantra Authority">
+<meta property="og:image" content="https://tantra-authority.com/assets/og-default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:image" content="https://tantra-authority.com/assets/og-default.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The PPT — Psychosexual Psychological Type Test — Tantra Authority">
+<meta name="twitter:description" content="The PPT — a three-tier psychosexual psychological type test. Quick (10 questions, 3 minutes), Standard (30 questions, 10 minutes), or Deep Dive (100 questions, 30 minutes). Generates a portable compatibility code across 25 axes. Free to take. The output becomes your match key on the Honest Fetish Matching service.">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="/assets/favicon-32.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<style>
+.test-intro { background: linear-gradient(135deg, rgba(139,58,58,0.06), rgba(184,134,11,0.04)); padding: 32px; border-radius: 10px; margin-bottom: 32px; border: 1px solid var(--border); }
+.test-intro h2 { margin-top: 0; font-size: 22px; }
+.tier-picker { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin: 24px 0; }
+.tier-card { padding: 22px; background: rgba(255,255,255,0.6); border: 2px solid var(--border); border-radius: 8px; cursor: pointer; transition: all 0.15s; text-align: left; font-family: inherit; }
+.tier-card:hover { border-color: var(--accent); background: rgba(255,255,255,0.85); }
+.tier-card.active { border-color: var(--accent); background: var(--bg-card); }
+.tier-card .tier-label { font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+.tier-card .tier-name { font-size: 22px; font-weight: 600; margin-bottom: 4px; }
+.tier-card .tier-meta { font-family: 'Inter', sans-serif; font-size: 13px; color: var(--text-muted); margin-bottom: 12px; }
+.tier-card .tier-desc { font-size: 14px; line-height: 1.5; color: var(--text); }
+.ppt-hero { padding: 48px 40px; background: linear-gradient(135deg, rgba(139,58,58,0.10), rgba(184,134,11,0.06)); border-radius: 12px; border: 1px solid var(--border); margin-bottom: 32px; text-align: left; }
+.ppt-hero .acronym { font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 6px; text-transform: uppercase; color: var(--accent); margin-bottom: 18px; }
+.ppt-hero h1 { font-size: 56px; line-height: 1; margin: 0 0 14px; letter-spacing: -2px; }
+.ppt-hero .full-name { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 22px; }
+.ppt-hero .lede { font-size: 19px; line-height: 1.5; color: var(--text); max-width: 720px; margin: 0; }
+@media (max-width: 640px) { .ppt-hero h1 { font-size: 42px; letter-spacing: -1px; } }
+.test-meta-fields { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; padding: 20px; background: rgba(255,255,255,0.5); border: 1px solid var(--border); border-radius: 8px; margin: 24px 0; }
+.test-meta-fields label { display: block; font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; }
+.test-meta-fields input, .test-meta-fields select, .ask-form textarea, .ask-form input, .ask-form select { width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: 6px; font-family: inherit; font-size: 15px; background: white; box-sizing: border-box; }
+.question { padding: 24px; margin: 18px 0; background: rgba(255,255,255,0.6); border: 1px solid var(--border); border-radius: 8px; }
+.question .q-number { font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+.question .q-text { font-size: 17px; line-height: 1.5; margin-bottom: 16px; font-weight: 500; }
+.question .q-note { font-size: 13px; color: var(--text-muted); margin-top: 8px; line-height: 1.4; }
+.scale-row { display: grid; grid-template-columns: 1fr auto 1fr; gap: 12px; align-items: center; }
+.scale-options { display: flex; gap: 6px; justify-content: center; }
+.scale-options label { display: flex; flex-direction: column; align-items: center; padding: 8px 4px; min-width: 44px; border: 1px solid var(--border); border-radius: 6px; cursor: pointer; font-family: 'Inter', sans-serif; font-size: 11px; color: var(--text-muted); transition: all 0.1s; user-select: none; }
+.scale-options input[type=radio] { margin-bottom: 4px; cursor: pointer; }
+.scale-options label:has(input:checked) { border-color: var(--accent); background: rgba(139,58,58,0.06); color: var(--accent); font-weight: 600; }
+.scale-anchor { font-family: 'Inter', sans-serif; font-size: 12px; color: var(--text-muted); }
+.scale-anchor.left { text-align: right; }
+.scale-anchor.right { text-align: left; }
+.multi-options { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; }
+.multi-options label { display: flex; align-items: flex-start; gap: 10px; padding: 12px 14px; border: 1px solid var(--border); border-radius: 6px; cursor: pointer; font-size: 14px; line-height: 1.4; background: white; transition: all 0.1s; }
+.multi-options label:has(input:checked) { border-color: var(--accent); background: rgba(139,58,58,0.06); }
+.multi-options input[type=checkbox], .multi-options input[type=radio] { margin-top: 3px; flex-shrink: 0; cursor: pointer; }
+.choice-options { display: flex; flex-direction: column; gap: 10px; }
+.choice-options label { display: flex; align-items: flex-start; gap: 10px; padding: 12px 14px; border: 1px solid var(--border); border-radius: 6px; cursor: pointer; font-size: 14px; line-height: 1.4; background: white; transition: all 0.1s; }
+.choice-options label:has(input:checked) { border-color: var(--accent); background: rgba(139,58,58,0.06); }
+.choice-options input { margin-top: 3px; flex-shrink: 0; cursor: pointer; }
+.section-header { margin: 32px 0 12px; padding-top: 24px; border-top: 1px solid var(--border); }
+.section-header .section-label { font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 4px; }
+.section-header .section-name { font-size: 18px; font-weight: 600; margin-bottom: 4px; }
+.section-header .section-desc { font-size: 14px; color: var(--text-muted); line-height: 1.4; }
+.test-action { text-align: center; margin: 40px 0 20px; }
+.test-action button { padding: 14px 36px; font-size: 17px; font-weight: 600; border: none; border-radius: 6px; background: var(--accent); color: white; cursor: pointer; font-family: inherit; transition: all 0.15s; }
+.test-action button:hover { background: #6d2929; }
+.test-action .progress-note { font-family: 'Inter', sans-serif; font-size: 12px; color: var(--text-muted); margin-top: 10px; }
+#result-area { display: none; padding: 32px; background: linear-gradient(135deg, rgba(139,58,58,0.08), rgba(184,134,11,0.04)); border-radius: 10px; border: 1px solid var(--border); margin: 32px 0; }
+#result-area h3 { margin-top: 0; font-size: 22px; }
+.result-code { font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 700; letter-spacing: 1px; padding: 18px 22px; background: white; border: 2px solid var(--accent); border-radius: 8px; margin: 18px 0; word-break: break-all; line-height: 1.6; }
+.result-axes { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin: 20px 0; }
+.result-axis { padding: 12px 14px; background: white; border-left: 3px solid var(--accent); border-radius: 4px; }
+.result-axis .label { font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); margin-bottom: 4px; }
+.result-axis .value { font-size: 15px; font-weight: 600; }
+.result-axis .desc { font-size: 13px; color: var(--text-muted); margin-top: 2px; line-height: 1.3; }
+.ask-section { padding: 32px; background: linear-gradient(135deg, rgba(184,134,11,0.06), rgba(139,58,58,0.04)); border-radius: 10px; border: 1px solid var(--border); margin: 48px 0; }
+.ask-section h2 { margin-top: 0; }
+.ask-form { display: grid; gap: 16px; margin-top: 20px; }
+.ask-form .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.ask-form .checkbox-row { display: flex; align-items: flex-start; gap: 10px; padding: 10px; background: rgba(255,255,255,0.4); border-radius: 6px; }
+.ask-form .checkbox-row input { width: auto; margin-top: 4px; }
+.ask-form .checkbox-row label { font-size: 14px; color: var(--text); margin: 0; text-transform: none; letter-spacing: normal; font-weight: normal; }
+.ask-form button { padding: 12px 28px; font-size: 16px; font-weight: 600; border: none; border-radius: 6px; background: var(--accent); color: white; cursor: pointer; font-family: inherit; justify-self: start; }
+.ask-form button:hover { background: #6d2929; }
+.ask-confirmation { display: none; padding: 18px; background: rgba(255,255,255,0.7); border-left: 3px solid var(--accent); border-radius: 4px; margin-top: 16px; font-size: 15px; line-height: 1.5; }
+@media (max-width: 640px) {
+  .ask-form .form-row { grid-template-columns: 1fr; }
+  .scale-options label { min-width: 38px; padding: 6px 2px; }
+}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Tantra Authority",
+  "url": "https://tantra-authority.com/",
+  "description": "Tantra without the mythology. The body practices, in plain language.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Tantra Authority"
+  },
+  "inLanguage": "en-US"
+}
+</script>
+</head>
+<body>
+<!-- No noscript tracking: this assessment requires JavaScript; private mode must not load GTM. -->
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <a href="index.html" class="site-logo">TANTRA <span>AUTHORITY</span></a>
+    <nav class="site-nav">
+      <a href="index.html">Articles</a>
+      <a href="featured.html">Featured</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="directory.html">Directory</a>
+      <a href="shop.html">Shop</a>
+      <a href="test.html" class="nav-cta">🧠 Take the Test</a>
+      <a href="ask.html">Ask</a>
+      <a href="/launch/">Launch (Dec 24)</a>
+      <a href="/books/">Books</a>
+      <a href="about.html">About</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- Question-led entry. The free reading and optional owned-book continuation
+       are delivered downstream; cta_click keeps the existing source attribution. -->
+  <section class="ppt-hero" id="free-experiences" aria-labelledby="card-entry-title">
+    <div class="acronym">Your free reading</div>
+    <h1 id="card-entry-title">Bring a question. Get a card reading.</h1>
+    <p class="lede" id="entry-description">Trying to figure out what you want, say no, or choose yourself without guilt? Choose the question closest to yours and get a free reading for your situation. No email needed.</p>
+    <p style="margin:24px 0 14px;"><a id="reading-doorway" class="cta-button" href="https://tantra-authority.com/erotic-tarot.html?src=ta-test-card" data-xp="cta_click">Choose my question →</a></p>
+    <p style="margin:0;font-size:14px;"><a id="type-doorway" href="#full-assessment" style="color:var(--text-muted);">Looking for the full psychosexual assessment? Continue below.</a></p>
+  </section>
+
+  <section class="ppt-hero" id="full-assessment" aria-labelledby="ppt-title">
+    <div class="acronym">P · P · T</div>
+    <h2 id="ppt-title" style="font-size:42px;line-height:1;margin:0 0 14px;">The PPT.</h2>
+    <div class="full-name">Psychosexual · Psychological · Type</div>
+    <p class="lede">A three-tier diagnostic across the body's actual psychosexual architecture. Twenty-five axes when you go deep. Maps your appetite, polarity, openness, shadow appetite, disgust profile, world model, and shame-state onto a portable code you can keep, share, and use as your match key. Free to take. Pick your depth.</p>
+  </section>
+
+  <div class="test-intro">
+    <h2>What this is</h2>
+    <p>The test is structured around the axes of human sexual response that actually predict compatibility — not the gamified swipe-bait dating apps optimize for, but the real distinctions in how bodies meet bodies. Active vs receptive. Direct vs subtle. Open vs pair-bonded. Submission and dominance appetite. The trying-things willingness that separates people who explore from people who don't. The disgust profile that shapes what can never happen and what might. The world-model markers that determine whether a partnership runs from abundance or from scarcity.</p>
+    <p>Take the version that matches your appetite for self-knowledge. The Quick version gives you a clean signal in three minutes. The Standard fills in your match key for the eventual paid matching service. The Deep Dive maps you in the kind of detail that comes back useful for years.</p>
+
+    <div class="tier-picker">
+      <button class="tier-card" data-tier="quick" type="button">
+        <div class="tier-label">Tier 1 · Free</div>
+        <div class="tier-name">Quick</div>
+        <div class="tier-meta">10 questions · ~3 minutes</div>
+        <div class="tier-desc">Clean first signal. Generates a basic code across the nine core axes. Good for first encounter with the framework or for sharing the test concept with a partner.</div>
+      </button>
+      <button class="tier-card" data-tier="standard" type="button">
+        <div class="tier-label">Tier 2 · Free</div>
+        <div class="tier-name">Standard</div>
+        <div class="tier-meta">30 questions · ~10 minutes</div>
+        <div class="tier-desc">The main version. Three questions on each core axis, plus shadow appetite inventory, openness anchor, and the trying-things axis. Generates the code that becomes your match key.</div>
+      </button>
+      <button class="tier-card" data-tier="deep" type="button">
+        <div class="tier-label">Tier 3 · Free</div>
+        <div class="tier-name">Deep Dive</div>
+        <div class="tier-meta">100 questions · ~30 minutes</div>
+        <div class="tier-desc">Comprehensive. Adds disgust profile, communication style, aftercare appetite, frequency, orientation flexibility, solo-practice depth, energy-work appetite, shame-state, and gender-aware capacity markers. Richest data. Deepest mapping.</div>
+      </button>
+    </div>
+
+    <p style="font-size:14px;color:var(--text-muted);margin-bottom:0;"><em>All three tiers are free. The matching service is the paid layer that uses the code; the diagnostic itself stays open.</em></p>
+  </div>
+
+  <div id="meta-area" style="display:none;">
+    <div class="test-meta-fields">
+      <div>
+        <label for="user-email">Email (so we can send you your code)</label>
+        <input type="email" id="user-email" placeholder="you@email.com" required>
+        <p style="font-size:13px;color:var(--muted,#888);margin:8px 0 0;line-height:1.5;">
+          🔒 <strong>Your answers are private.</strong> Stored encrypted, never sold, never shared, never shown publicly or tied to your name anywhere. Used only to send your code and — if you choose — to match you when the service launches. <a href="privacy.html" style="color:var(--accent);">Privacy</a>.
+        </p>
+      </div>
+      <div>
+        <label for="user-gender">Gender (used for gender-specific questions)</label>
+        <select id="user-gender">
+          <option value="">Prefer not to say</option>
+          <option value="female">Female</option>
+          <option value="male">Male</option>
+          <option value="nonbinary">Non-binary / Other</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <form id="test-form" style="display:none;"></form>
+
+  <div class="test-action" id="action-area" style="display:none;">
+    <button type="button" id="submit-test">Generate my code</button>
+    <div class="progress-note" id="progress-note"></div>
+  </div>
+
+  <div id="result-area"></div>
+
+  <section style="padding: 32px; background: linear-gradient(135deg, rgba(184,134,11,0.06), rgba(139,58,58,0.04)); border-radius: 10px; border: 1px solid var(--border); margin: 48px 0; text-align:center;">
+    <div style="font-family:'Inter',sans-serif;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:14px;">Have a question instead?</div>
+    <h2 style="margin-top:0;font-size:28px;">Ask.</h2>
+    <p style="font-size:17px;color:var(--text-muted);max-width:600px;margin:0 auto 22px;line-height:1.5;">One question, one answer, one frame at a time. Submit something about your body, your relationship, a kink you're trying to understand. Selected questions become articles.</p>
+    <a href="ask.html" class="cta-button">Go to Ask</a>
+  </section>
+
+  <div class="animal-cta">
+    <div class="animal-cta-eyebrow">Invite the Animal In</div>
+    <h3 class="animal-cta-headline">Self-knowledge is the prerequisite for getting what you actually want.</h3>
+    <p class="animal-cta-intro">Below are the doors. Each is downstream of the diagnostic.</p>
+    <div class="rabbit-hole">
+      <a href="articles/safety-is-the-precondition.html" class="rabbit-hole-item">
+        <div class="rh-label">Foundation</div>
+        <div class="rh-title">Safety Is the Precondition</div>
+        <div class="rh-desc">The condition every result on this test points toward. Read this before doing anything with the code.</div>
+      </a>
+      <a href="match.html" class="rabbit-hole-item">
+        <div class="rh-label">Matching · Coming</div>
+        <div class="rh-title">Honest Fetish Matching</div>
+        <div class="rh-desc">The paid layer that uses your code as the match key. Built around structural compatibility instead of swipe-and-pray.</div>
+      </a>
+      <a href="articles/the-ease-of-orgasm.html" class="rabbit-hole-item">
+        <div class="rh-label">Practice</div>
+        <div class="rh-title">The Ease of Orgasm</div>
+        <div class="rh-desc">For respondents whose code shows a high chase / low ease profile — the practical entry point into the work.</div>
+      </a>
+      <a href="articles/cheating-isnt-a-thing.html" class="rabbit-hole-item">
+        <div class="rh-label">Foundation</div>
+        <div class="rh-title">Cheating Isn't a Thing</div>
+        <div class="rh-desc">For respondents whose code shows openness ambiguity — the structural piece on what relationship architectures are actually available.</div>
+      </a>
+      <a href="directory.html" class="rabbit-hole-item">
+        <div class="rh-label">Practitioner</div>
+        <div class="rh-title">Find a vetted practitioner</div>
+        <div class="rh-desc">Practitioners across coaching, somatic work, hypnosis, and bodywork — for respondents who want the deeper work.</div>
+      </a>
+      <a href="book.html" class="rabbit-hole-item">
+        <div class="rh-label">Book · Forthcoming</div>
+        <div class="rh-title">Beyond the Myth: Definitive Guide to Modern Tantra</div>
+        <div class="rh-desc">The full system. Every axis on the test is a chapter in the book.</div>
+      </a>
+    </div>
+  </div>
+
+<div class="book-links" style="border:1px solid #c9a25a;border-radius:8px;padding:16px 20px;margin:28px 0;background:#fbf8f2;color:#111;font-size:15.5px;line-height:1.6;">
+  <strong>Books by Lawrence Lanoff:</strong>
+  <ul style="margin:8px 0 0;padding-left:20px;">
+    <li><a href="https://tantra-authority.com/launch/?src=test-v2" style="color:#8a2a1e;font-weight:700;">Beyond the Myth: The Definitive Guide to Modern Tantra, Vol. 1</a> — publishing Dec 24 (join the launch list + get 32 pages free)</li>
+    <li><a href="https://tantra-authority.com/checkout.html?product=course-in-freedom&amp;src=test-v2" style="color:#8a2a1e;font-weight:700;">A Course in Freedom ($19.97)</a> — drop the inherited beliefs running your sex life and relationships</li>
+    <li><a href="https://tantra-authority.com/books/?src=test-v2" style="color:#8a2a1e;">See all books</a> · <a href="https://tantra-authority.com/shop.html" style="color:#8a2a1e;">Full shop</a></li>
+  </ul>
+</div>
+</main>
+
+<footer class="site-footer">
+  <div>Tantra Authority — published by <a href="https://tantra-authority.com/books/">The Naked Press</a></div>
+</footer>
+
+<script>
+// The published type-test invitation has a separate browser-only entry mode.
+if (privateTypeTest) {
+ document.getElementById('user-email').required = false;
+ document.getElementById('user-email').parentElement.hidden = true;
+ document.getElementById('reading-doorway').closest('section').hidden = !chooseExperience;
+ if (chooseExperience) {
+   document.getElementById('card-entry-title').textContent = 'Choose your free experience.';
+   document.getElementById('entry-description').textContent = 'Take the private psychosexual type test, or bring a question for a free card reading. The test has Quick, Standard and Deep options below. No email needed for either.';
+   document.getElementById('reading-doorway').textContent = 'Get a free card reading →';
+   document.getElementById('type-doorway').textContent = 'Take the private type test →';
+ }
+
+ const notice = document.createElement('p');
+ notice.textContent = 'Free private type test. No email needed. Your answers and code stay on this page; they are not saved or submitted. Keep a copy of your code before closing or reloading.';
+ document.getElementById('meta-area').prepend(notice);
+ const gender = new URLSearchParams(location.search).get('g');
+ if (gender === 'w') document.getElementById('user-gender').value = 'female';
+ if (gender === 'm') document.getElementById('user-gender').value = 'male';
+}
+</script>
+<script>
+const QUESTIONS = [
+  { id:'ar1', tiers:['quick','standard','deep'], axis:'AR', type:'scale', text:'In partnered sex, do you prefer to direct what happens or to be carried by what happens?', left:'Always direct', right:'Always carried' },
+  { id:'ar2', tiers:['standard','deep'], axis:'AR', type:'scale', text:'When intense sensation arrives in your body, your first impulse is to extend toward it or to receive it.', left:'Extend toward', right:'Receive in' },
+  { id:'ar3', tiers:['standard','deep'], axis:'AR', type:'scale', text:'You\'re more energized by giving pleasure or by receiving it.', left:'Giving', right:'Receiving' },
+  { id:'ar4', tiers:['deep'], axis:'AR', type:'scale', text:'When the dynamic shifts mid-encounter, you switch fluidly or stay in your preferred role.', left:'Switch fluidly', right:'Stay in role' },
+  { id:'ar5', tiers:['deep'], axis:'AR', type:'scale', text:'Outside the bedroom you tend to be the planner or the carried-along.', left:'Planner', right:'Carried' },
+  { id:'ar6', tiers:['deep'], axis:'AR', type:'scale', text:'When something exciting happens, your reflex is to act first or to take it in first.', left:'Act first', right:'Take in first' },
+
+  { id:'bg1', tiers:['standard','deep'], axis:'BG', type:'scale', text:'Where do you live most of the time — in your body or in your head?', left:'Almost all head', right:'Almost all body' },
+  { id:'bg2', tiers:['standard','deep'], axis:'BG', type:'scale', text:'You notice your breath, posture, and physical state during the day.', left:'Almost never', right:'Almost constantly' },
+  { id:'bg3', tiers:['standard','deep'], axis:'BG', type:'scale', text:'You engage in physical activities that require attention to sensation (yoga, dance, somatic work, sports that require presence).', left:'Never', right:'Almost daily' },
+  { id:'bg4', tiers:['deep'], axis:'BG', type:'scale', text:'When stressed, you turn to thinking your way through, or to body-based responses (breath, movement, sensation).', left:'Thinking only', right:'Body-based only' },
+
+  { id:'d1', tiers:['quick','standard','deep'], axis:'D', type:'scale', text:'In erotic energy, you\'re more direct and explicit, or more subtle and atmospheric.', left:'Direct, explicit', right:'Subtle, atmospheric' },
+  { id:'d2', tiers:['standard','deep'], axis:'D', type:'scale', text:'You prefer your partner to tell you what they want, or to let you discover it.', left:'Tell me plainly', right:'Let me discover' },
+  { id:'d3', tiers:['standard','deep'], axis:'D', type:'scale', text:'When you flirt, you state your interest plainly, or wait to be approached.', left:'State plainly', right:'Wait to be approached' },
+  { id:'d4', tiers:['deep'], axis:'D', type:'scale', text:'You think erotic art should be explicit or suggestive.', left:'Explicit', right:'Suggestive only' },
+
+  { id:'pv1', tiers:['standard','deep'], axis:'PV', type:'scale', text:'Your current sexual practice is mostly partnered or mostly solo.', left:'Almost all partnered', right:'Almost all solo' },
+  { id:'pv2', tiers:['standard','deep'], axis:'PV', type:'scale', text:'Solo sex is something you do regularly or rarely.', left:'Rarely or never', right:'Multiple times per week' },
+  { id:'pv3', tiers:['standard','deep'], axis:'PV', type:'scale', text:'You find solo and partnered sex equally satisfying or very different in what they offer.', left:'Equally satisfying', right:'Very different' },
+  { id:'pv4', tiers:['deep'], axis:'PV', type:'scale', text:'Solo practice is essential to your sexual health, or something you do only when no partner is available.', left:'Essential', right:'Only when alone' },
+
+  { id:'op1', tiers:['quick','standard','deep'], axis:'OP', type:'choice', text:'Your ideal relationship structure is:',
+    options: [
+      { value:1, text:'Strict monogamy — one partner, fully exclusive' },
+      { value:2, text:'Monogamish — primarily monogamous with occasional flexibility' },
+      { value:3, text:'Open — committed primary, sexual openness with others' },
+      { value:4, text:'Polyamorous — multiple committed loving relationships' },
+      { value:5, text:'Solo by choice — no primary partnership; full sexual sovereignty' }
+    ]},
+  { id:'op2', tiers:['standard','deep'], axis:'OP', type:'scale', text:'You believe you can romantically love more than one person at once.', left:'No, never', right:'Absolutely, easily' },
+  { id:'op3', tiers:['standard','deep'], axis:'OP', type:'scale', text:'Jealousy is something you experience often or rarely.', left:'Constantly', right:'Almost never' },
+  { id:'op4', tiers:['deep'], axis:'OP', type:'choice', text:'Your experience with non-monogamous structures:',
+    options: [
+      { value:1, text:'Never considered them' },
+      { value:2, text:'Considered but never tried' },
+      { value:3, text:'Tried once, not for me' },
+      { value:4, text:'Currently exploring' },
+      { value:5, text:'Long-term practice; it works' }
+    ]},
+  { id:'op5', tiers:['deep'], axis:'OP', type:'scale', text:'Privacy from your partner about your sexual experiences feels like betrayal, or their right.', left:'Betrayal', right:'Their right always' },
+
+  { id:'rt1', tiers:['quick','standard','deep'], axis:'RT', type:'scale', text:'For you, orgasm is the goal of sex, or one of several outcomes.', left:'The goal', right:'Not the point' },
+  { id:'rt2', tiers:['standard','deep'], axis:'RT', type:'scale', text:'You\'ve practiced or are interested in non-ejaculatory / extended / retained sex.', left:'Not interested', right:'Already practicing' },
+  { id:'rt3', tiers:['standard','deep'], axis:'RT', type:'scale', text:'Multi-orgasmic states interest you.', left:'Not at all', right:'Very much' },
+  { id:'rt4', tiers:['deep'], axis:'RT', type:'choice', text:'After orgasm, you typically want:',
+    options: [
+      { value:1, text:'Sleep / to drop out immediately' },
+      { value:2, text:'Quiet, alone or together' },
+      { value:3, text:'Cuddling and contact' },
+      { value:4, text:'Conversation, integration' },
+      { value:5, text:'More — keep going' }
+    ]},
+
+  { id:'s1', tiers:['quick','standard','deep'], axis:'S', type:'scale', text:'Being submissive — in a controlled, consensual, trusted way — appeals to you.', left:'Not at all', right:'Intensely' },
+  { id:'s2', tiers:['standard','deep'], axis:'S', type:'scale', text:'You enjoy being told what to do in bed.', left:'No', right:'Yes, deeply' },
+  { id:'s3', tiers:['standard','deep'], axis:'S', type:'scale', text:'Restraint, being held in place, or bondage interests you.', left:'No interest', right:'Strong interest' },
+  { id:'s4', tiers:['deep'], axis:'S', type:'scale', text:'You\'ve experienced submission and found it deeply releasing.', left:'Never experienced', right:'Yes, transformative' },
+  { id:'s5', tiers:['deep'], axis:'S', type:'scale', text:'Surrender in sex is what you\'ve wanted but felt afraid of.', left:'Not relevant', right:'Strongly relevant' },
+
+  { id:'dm1', tiers:['quick','standard','deep'], axis:'DM', type:'scale', text:'Being dominant — in a caring, attentive, consensual way — appeals to you.', left:'Not at all', right:'Intensely' },
+  { id:'dm2', tiers:['standard','deep'], axis:'DM', type:'scale', text:'You enjoy directing the encounter and watching your partner respond.', left:'No', right:'Yes, deeply' },
+  { id:'dm3', tiers:['standard','deep'], axis:'DM', type:'scale', text:'Power exchange (D/s dynamics) is erotic to you.', left:'Not at all', right:'Very erotic' },
+  { id:'dm4', tiers:['deep'], axis:'DM', type:'scale', text:'You\'ve experienced dominance and felt natural / generous / aroused in the role.', left:'Felt awkward', right:'Felt completely natural' },
+  { id:'dm5', tiers:['deep'], axis:'DM', type:'scale', text:'You suspect you may be more naturally dominant than your relationships have allowed (especially relevant for women).', left:'Not at all', right:'Strongly suspect this' },
+
+  { id:'v1', tiers:['quick','standard','deep'], axis:'V', type:'scale', text:'Your erotic appetite leans vanilla / classic / adventurous / edgy / extreme.', left:'Vanilla / classic', right:'Edge / extreme' },
+  { id:'v2', tiers:['standard','deep'], axis:'V', type:'scale', text:'Kink is something you\'re curious about.', left:'Not at all', right:'Always curious' },
+  { id:'v3', tiers:['standard','deep'], axis:'V', type:'scale', text:'You\'ve explored kink and found it: not for me, occasionally interesting, or core to who I am.', left:'Not for me', right:'Core to who I am' },
+  { id:'v4', tiers:['deep'], axis:'V', type:'scale', text:'Shadow material — taboo, dark, intense erotic content — interests you.', left:'Not at all', right:'Deeply' },
+  { id:'v5', tiers:['deep'], axis:'V', type:'scale', text:'Pain in a controlled, consensual context interests you.', left:'No interest', right:'Strong interest' },
+
+  { id:'sh_std', tiers:['standard'], axis:'SH', type:'multi', text:'Which of these specifically interest you? (Check all that apply — for matching, not judgment.)',
+    options: [
+      { code:'F', text:'Feet / foot worship' },
+      { code:'G', text:'Group sex (three or more people)' },
+      { code:'V', text:'Voyeurism or exhibitionism' },
+      { code:'A', text:'Anal play (giving or receiving)' },
+      { code:'R', text:'Restraint / rope / bondage' },
+      { code:'P', text:'Public-risk or semi-public sex' },
+      { code:'X', text:'Pain play (controlled, consensual)' },
+      { code:'L', text:'Role-play / scenarios / character work' },
+      { code:'D', text:'Daddy / Mommy / age-play dynamics' },
+      { code:'C', text:'Cuckolding / sharing / hotwifing' }
+    ]},
+  { id:'sh_feet', tiers:['deep'], axis:'SH', type:'scale', text:'Feet / foot worship / footwear interests you.', left:'Not at all', right:'Strongly' },
+  { id:'sh_group', tiers:['deep'], axis:'SH', type:'scale', text:'Group sex (three or more people) interests you.', left:'Not at all', right:'Strongly' },
+  { id:'sh_voy', tiers:['deep'], axis:'SH', type:'scale', text:'Voyeurism (watching) interests you.', left:'Not at all', right:'Strongly' },
+  { id:'sh_exh', tiers:['deep'], axis:'SH', type:'scale', text:'Exhibitionism (being watched) interests you.', left:'Not at all', right:'Strongly' },
+  { id:'sh_anal', tiers:['deep'], axis:'SH', type:'scale', text:'Anal play (giving or receiving) interests you.', left:'Not at all', right:'Strongly' },
+  { id:'sh_rope', tiers:['deep'], axis:'SH', type:'scale', text:'Restraint, rope, bondage interests you.', left:'Not at all', right:'Strongly' },
+  { id:'sh_public', tiers:['deep'], axis:'SH', type:'scale', text:'Public-risk or semi-public sex interests you.', left:'Not at all', right:'Strongly' },
+  { id:'sh_pain', tiers:['deep'], axis:'SH', type:'scale', text:'Pain play (within firm consent) interests you.', left:'Not at all', right:'Strongly' },
+  { id:'sh_role', tiers:['deep'], axis:'SH', type:'scale', text:'Role-play and scenario work interests you.', left:'Not at all', right:'Strongly' },
+  { id:'sh_age', tiers:['deep'], axis:'SH', type:'scale', text:'Daddy / Mommy / age-play dynamics interest you.', left:'Not at all', right:'Strongly' },
+  { id:'sh_cuck', tiers:['deep'], axis:'SH', type:'scale', text:'Cuckolding / sharing / hotwifing dynamics interest you.', left:'Not at all', right:'Strongly' },
+
+  { id:'dg1', tiers:['deep'], axis:'DG', type:'multi', text:'What disgusts you in a sexual context? (Check all that apply — informs limits, not judgment.)',
+    options: [
+      { code:'B', text:'Body fluids beyond standard' },
+      { code:'S', text:'Specific smells' },
+      { code:'A', text:'Specific acts' },
+      { code:'P', text:'Specific power dynamics' },
+      { code:'L', text:'Specific language / dirty talk' },
+      { code:'V', text:'Visible body types or features' },
+      { code:'N', text:'Nothing in particular disgusts me sexually' }
+    ]},
+  { id:'dg2', tiers:['deep'], axis:'DG', type:'scale', text:'Have you ever moved through initial disgust into release of energy or pleasure?', left:'Never', right:'Yes — transformative' },
+  { id:'dg3', tiers:['deep'], axis:'DG', type:'choice', text:'When something disgusts you sexually, you typically:',
+    options: [
+      { value:1, text:'Avoid it always, no exceptions' },
+      { value:2, text:'Avoid it but stay curious about why' },
+      { value:3, text:'Examine the disgust before deciding' },
+      { value:4, text:'Try it once to see what happens' },
+      { value:5, text:'Lean into disgust as growth edge' }
+    ]},
+  { id:'dg4', tiers:['deep'], axis:'DG', type:'scale', text:'Your disgust threshold (how much it takes to trigger disgust).', left:'Low (lots disgusts me)', right:'High (little disgusts me)' },
+  { id:'dg5', tiers:['deep'], axis:'DG', type:'scale', text:'Your interest in your partner\'s body (smells, fluids, textures, sounds).', left:'Limited / with rules', right:'Fully enthusiastic' },
+
+  { id:'open1', tiers:['quick','standard','deep'], axis:'OPEN', type:'scale', text:'In life generally, your stance leans toward "this is dangerous, be careful" or "this is interesting, let\'s see."', left:'Danger, be careful', right:'Interesting, let\'s see' },
+  { id:'open2', tiers:['standard','deep'], axis:'OPEN', type:'scale', text:'New experiences: you seek them out or avoid them.', left:'Avoid', right:'Actively seek' },
+  { id:'open3', tiers:['deep'], axis:'OPEN', type:'scale', text:'Your worldview leans toward scarcity or abundance.', left:'Scarcity, protect', right:'Abundance, flow' },
+  { id:'open4', tiers:['deep'], axis:'OPEN', type:'scale', text:'Anxiety about the future is a constant feature of your life or rare.', left:'Constant', right:'Rare' },
+  { id:'open5', tiers:['deep'], axis:'OPEN', type:'scale', text:'You\'re more drawn to stability or to novelty.', left:'Stability', right:'Novelty / edge' },
+
+  { id:'wm1', tiers:['deep'], axis:'WM', internal:true, type:'choice', text:'You believe at your core that:',
+    options: [
+      { value:1, text:'The world is fundamentally dangerous' },
+      { value:2, text:'The world has both danger and beauty' },
+      { value:3, text:'The world is fundamentally workable' },
+      { value:4, text:'Everything is love at the deepest level' },
+      { value:5, text:'I\'m not sure / don\'t hold a fixed position' }
+    ]},
+  { id:'wm2', tiers:['deep'], axis:'WM', internal:true, type:'choice', text:'People are:',
+    options: [
+      { value:1, text:'Mostly untrustworthy by default' },
+      { value:2, text:'Trustworthy after vetting' },
+      { value:3, text:'Fundamentally complex but mostly good' },
+      { value:4, text:'Fundamentally good given the right conditions' },
+      { value:5, text:'I don\'t make a single generalization' }
+    ]},
+  { id:'wm3', tiers:['deep'], axis:'WM', internal:true, type:'scale', text:'Your default state when alone is at ease or restless / anxious.', left:'Restless / anxious', right:'At ease' },
+  { id:'wm4', tiers:['deep'], axis:'WM', internal:true, type:'choice', text:'Spiritual realization is:',
+    options: [
+      { value:1, text:'Not real / not a meaningful concept' },
+      { value:2, text:'Real but requires lifetimes of work' },
+      { value:3, text:'Real and achievable in this life with effort' },
+      { value:4, text:'Available now — not earned' },
+      { value:5, text:'Already the case — recognition not achievement' }
+    ]},
+  { id:'wm5', tiers:['deep'], axis:'WM', internal:true, type:'choice', text:'When you encounter someone with strong opinions, you:',
+    options: [
+      { value:1, text:'Withdraw or stay quiet' },
+      { value:2, text:'Agree to avoid conflict' },
+      { value:3, text:'Engage but defer' },
+      { value:4, text:'Engage and challenge' },
+      { value:5, text:'Stay curious — let them have their position' }
+    ]},
+
+  { id:'woc1', tiers:['standard','deep'], axis:'WOC', type:'choice', text:'You get off most when:',
+    options: [
+      { value:1, text:'Taking pleasure in someone\'s body' },
+      { value:2, text:'Letting someone take pleasure in yours' },
+      { value:3, text:'Both equally — switching is the point' },
+      { value:4, text:'Depends entirely on the partner / context' },
+      { value:5, text:'Not sure / still figuring this out' }
+    ]},
+  { id:'woc2', tiers:['standard','deep'], axis:'WOC', type:'scale', text:'Being served (someone giving you exactly what you want) feels amazing or awkward.', left:'Awkward / weird', right:'Amazing / deeply right' },
+  { id:'woc3', tiers:['deep'], axis:'WOC', type:'scale', text:'Giving someone exactly what they want: lights you up or feels neutral.', left:'Neutral / depends', right:'Lights me up' },
+  { id:'woc4', tiers:['deep'], axis:'WOC', type:'scale', text:'Receiving someone\'s full attention: deeply welcome or uncomfortable.', left:'Uncomfortable', right:'Deeply welcome' },
+
+  { id:'try1', tiers:['quick','standard','deep'], axis:'TRY', type:'choice', text:'When you try something new sexually and it doesn\'t click the first time, you typically:',
+    options: [
+      { value:1, text:'Try once and then it\'s over' },
+      { value:2, text:'Try maybe twice if the situation invites' },
+      { value:3, text:'Try a few times before deciding' },
+      { value:4, text:'Try 4-5 times before deciding' },
+      { value:5, text:'Try many times — the body learns slowly sometimes' }
+    ]},
+  { id:'try2', tiers:['standard','deep'], axis:'TRY', type:'scale', text:'You\'re willing to try things outside your comfort zone.', left:'Rarely', right:'Enthusiastically' },
+  { id:'try3', tiers:['deep'], axis:'TRY', type:'choice', text:'The hardest thing about trying new sexual things, for you, is:',
+    options: [
+      { value:1, text:'Shame' },
+      { value:2, text:'Anxiety / fear' },
+      { value:3, text:'Partner concerns or unavailability' },
+      { value:4, text:'Lack of time or context' },
+      { value:5, text:'Honestly nothing — I just go' }
+    ]},
+
+  { id:'com1', tiers:['deep'], axis:'COM', type:'scale', text:'You can tell your partner what you want in bed.', left:'Barely / not at all', right:'Easily and specifically' },
+  { id:'com2', tiers:['deep'], axis:'COM', type:'choice', text:'When you want something, you typically:',
+    options: [
+      { value:1, text:'Hope they figure it out' },
+      { value:2, text:'Drop hints' },
+      { value:3, text:'Ask once, gently' },
+      { value:4, text:'Ask directly' },
+      { value:5, text:'State the want plainly and discuss' }
+    ]},
+  { id:'com3', tiers:['deep'], axis:'COM', type:'scale', text:'After sex, you discuss what happened with your partner.', left:'Never', right:'Often / always' },
+  { id:'com4', tiers:['deep'], axis:'COM', type:'scale', text:'Before sex, you negotiate what you want.', left:'Never', right:'Always' },
+
+  { id:'ac1', tiers:['deep'], axis:'AC', type:'choice', text:'After intense sex, what you need most is:',
+    options: [
+      { value:1, text:'Space and silence' },
+      { value:2, text:'Physical contact and quiet' },
+      { value:3, text:'Cuddling and talking it through' },
+      { value:4, text:'Water, food, and integration time' },
+      { value:5, text:'Going again, no return needed' }
+    ]},
+  { id:'ac2', tiers:['deep'], axis:'AC', type:'scale', text:'Aftercare is essential to you or a new concept.', left:'Never thought about it', right:'Essential, non-negotiable' },
+
+  { id:'freq1', tiers:['standard','deep'], axis:'FREQ', type:'choice', text:'Your ideal sexual frequency is:',
+    options: [
+      { value:1, text:'Daily or near-daily' },
+      { value:2, text:'A few times per week' },
+      { value:3, text:'Weekly' },
+      { value:4, text:'A few times per month' },
+      { value:5, text:'Less often — quality over quantity' }
+    ]},
+  { id:'freq2', tiers:['deep'], axis:'FREQ', type:'scale', text:'In your current relationship, sex happens more or less often than you\'d ideally want.', left:'Less than ideal', right:'More than ideal' },
+
+  { id:'fns1', tiers:['deep'], axis:'FNS', gender:'female', type:'scale', text:'You suspect you may be more dominant than your past partnerships have allowed.', left:'Not at all', right:'Strongly suspect this' },
+  { id:'fns2', tiers:['deep'], axis:'FNS', gender:'female', type:'scale', text:'Pegging a male partner (or strap-on play with any partner) interests you.', left:'No interest', right:'Strong interest' },
+  { id:'fns3', tiers:['deep'], axis:'FNS', gender:'female', type:'scale', text:'Telling a partner what to do erotically appeals to you.', left:'Not at all', right:'Deeply' },
+
+  { id:'mrc1', tiers:['deep'], axis:'MRC', gender:'male', type:'scale', text:'Being penetrated (digitally, with a toy, by a partner) interests you.', left:'No interest', right:'Strong interest' },
+  { id:'mrc2', tiers:['deep'], axis:'MRC', gender:'male', type:'scale', text:'Being told what to do erotically by a partner appeals to you.', left:'Not at all', right:'Deeply' },
+  { id:'mrc3', tiers:['deep'], axis:'MRC', gender:'male', type:'scale', text:'Receiving rather than giving pleasure is something you can sustain.', left:'Difficult', right:'Easily and deeply' },
+
+  { id:'so1', tiers:['deep'], axis:'SO', type:'choice', text:'Your sexual orientation:',
+    options: [
+      { value:1, text:'Straight / heterosexual' },
+      { value:2, text:'Mostly straight, occasional flexibility' },
+      { value:3, text:'Bisexual / pansexual' },
+      { value:4, text:'Mostly gay/lesbian, occasional flexibility' },
+      { value:5, text:'Gay / lesbian' },
+      { value:6, text:'Queer / fluid / other' }
+    ]},
+  { id:'so2', tiers:['deep'], axis:'SO', type:'scale', text:'You feel your orientation is fixed or fluid.', left:'Fixed', right:'Fluid' },
+  { id:'so3', tiers:['deep'], axis:'SO', type:'scale', text:'You\'re currently exploring orientation-related territory you didn\'t before.', left:'Not at all', right:'Actively' },
+
+  { id:'sp1', tiers:['deep'], axis:'SP', type:'multi', text:'Your solo practice currently includes: (check all that apply)',
+    options: [
+      { code:'O', text:'Orgasm / release' },
+      { code:'B', text:'Breath work' },
+      { code:'M', text:'Meditation' },
+      { code:'F', text:'Fantasy / mental sex work' },
+      { code:'H', text:'Hypnosis / audio installations' },
+      { code:'T', text:'Toys / technology' },
+      { code:'K', text:'Solo kink / restraint / sensation play' },
+      { code:'N', text:'I don\'t currently have a solo practice' }
+    ]},
+  { id:'sp2', tiers:['deep'], axis:'SP', type:'scale', text:'Solo orgasm is reliable for you.', left:'Rarely / never', right:'Always, easily' },
+  { id:'sp3', tiers:['deep'], axis:'SP', type:'scale', text:'You use toys (vibrators, etc.) in solo practice.', left:'Never / not interested', right:'Regularly' },
+
+  { id:'ew1', tiers:['deep'], axis:'EW', type:'scale', text:'Subtle-body / energy concepts are something you take seriously.', left:'Skeptical / dismissive', right:'Take it seriously' },
+  { id:'ew2', tiers:['deep'], axis:'EW', type:'scale', text:'You\'ve experienced something you\'d call energy in your body during sex or practice.', left:'Never', right:'Yes, repeatedly' },
+  { id:'ew3', tiers:['deep'], axis:'EW', type:'scale', text:'You\'re interested in non-physical / energetic sexual practice.', left:'Not interested', right:'Deeply interested' },
+
+  { id:'shp1', tiers:['deep'], axis:'SHP', type:'scale', text:'You feel shame about your sexual desires.', left:'Constantly', right:'Almost never' },
+  { id:'shp2', tiers:['deep'], axis:'SHP', type:'scale', text:'You\'ve done active work to dismantle sexual shame.', left:'No / not aware of any', right:'Substantial work' },
+  { id:'shp3', tiers:['deep'], axis:'SHP', type:'choice', text:'Your family of origin\'s view on sex was:',
+    options: [
+      { value:1, text:'Heavily negative / shame-based' },
+      { value:2, text:'Negative, not discussed' },
+      { value:3, text:'Neutral, not discussed' },
+      { value:4, text:'Positive, openly discussed' },
+      { value:5, text:'Very positive — sexually positive household' }
+    ]},
+  { id:'shp4', tiers:['deep'], axis:'SHP', type:'scale', text:'Religious or spiritual conditioning has lingering effect on your sexuality.', left:'No residue', right:'Strong residue' }
+];
+
+const AXES = {
+  AR:{ label:'Active / Receptive', desc:'Where you sit on the extending-vs-receiving polarity', public:true, shortCode:'AR' },
+  BG:{ label:'Body / Mind', desc:'Somatic vs cerebral default', public:true, shortCode:'BG' },
+  D:{ label:'Direct / Subtle', desc:'How your erotic energy presents', public:true, shortCode:'D' },
+  PV:{ label:'Partnered / Solo', desc:'Where your practice currently lives', public:true, shortCode:'PV' },
+  OP:{ label:'Open / Pair-bonded', desc:'Preferred relationship structure', public:true, shortCode:'OP' },
+  RT:{ label:'Discharge / Retention', desc:'Orgasm philosophy', public:true, shortCode:'RT' },
+  S:{ label:'Submission', desc:'Submission appetite', public:true, shortCode:'S' },
+  DM:{ label:'Dominance', desc:'Dominance appetite', public:true, shortCode:'DM' },
+  V:{ label:'Vanilla / Edge', desc:'Where your appetite sits on the explore spectrum', public:true, shortCode:'V' },
+  SH:{ label:'Shadow Appetite', desc:'Specific kink / fetish interests', public:true, shortCode:'SH' },
+  DG:{ label:'Disgust Profile', desc:'What disgusts you + capacity to move through it', public:true, shortCode:'DG' },
+  OPEN:{ label:'Openness', desc:'Big Five openness anchor — abundance vs scarcity worldview', public:true, shortCode:'OPEN' },
+  WM:{ label:'World Model', desc:'(internal) — Games framework markers', public:false, shortCode:'WM' },
+  WOC:{ label:'Active vs Receiving', desc:'Taking pleasure vs being taken pleasure in (wheel of consent reframed)', public:true, shortCode:'WOC' },
+  TRY:{ label:'Trying Willingness', desc:'How many attempts before deciding', public:true, shortCode:'TRY' },
+  COM:{ label:'Communication', desc:'Ability to articulate wants directly', public:true, shortCode:'COM' },
+  AC:{ label:'Aftercare Appetite', desc:'Integration needs after intense practice', public:true, shortCode:'AC' },
+  FREQ:{ label:'Frequency Desired', desc:'Ideal sexual frequency', public:true, shortCode:'FREQ' },
+  FNS:{ label:'Female Dominance', desc:'(female-only) — natural dominance markers', public:true, shortCode:'FNS' },
+  MRC:{ label:'Male Receiving', desc:'(male-only) — receiving capacity markers', public:true, shortCode:'MRC' },
+  SO:{ label:'Orientation Flexibility', desc:'Fixed vs evolving orientation', public:true, shortCode:'SO' },
+  SP:{ label:'Solo Practice Depth', desc:'What your solo practice includes', public:true, shortCode:'SP' },
+  EW:{ label:'Energy Work Appetite', desc:'Interest in subtle-body practice', public:true, shortCode:'EW' },
+  SHP:{ label:'Shame / Permission State', desc:'Where you are in shame-layer dismantling', public:true, shortCode:'SHP' }
+};
+
+let currentTier = null;
+let currentGender = privateTypeTest ? document.getElementById('user-gender').value : '';
+
+document.querySelectorAll('.tier-card').forEach(card => {
+  card.addEventListener('click', () => {
+    document.querySelectorAll('.tier-card').forEach(c => c.classList.remove('active'));
+    card.classList.add('active');
+    currentTier = card.dataset.tier;
+    startTest();
+  });
+});
+
+document.getElementById('user-gender').addEventListener('change', e => {
+  currentGender = e.target.value;
+  if (currentTier) renderQuestions();
+});
+
+function startTest() {
+  document.getElementById('meta-area').style.display = 'block';
+  document.getElementById('test-form').style.display = 'block';
+  document.getElementById('action-area').style.display = 'block';
+  document.getElementById('result-area').style.display = 'none';
+  document.getElementById('result-area').innerHTML = '';
+  renderQuestions();
+  document.getElementById('meta-area').scrollIntoView({ behavior:'smooth', block:'start' });
+}
+
+function getApplicableQuestions() {
+  return QUESTIONS.filter(q => {
+    if (!q.tiers.includes(currentTier)) return false;
+    if (q.gender && currentGender && q.gender !== currentGender) return false;
+    if (q.gender && !currentGender) return false;
+    return true;
+  });
+}
+
+function renderQuestions() {
+  const form = document.getElementById('test-form');
+  form.innerHTML = '';
+  const qs = getApplicableQuestions();
+  let currentAxis = null;
+  let num = 0;
+
+  qs.forEach(q => {
+    if (q.axis !== currentAxis) {
+      currentAxis = q.axis;
+      const a = AXES[q.axis];
+      if (a) {
+        const h = document.createElement('div');
+        h.className = 'section-header';
+        h.innerHTML = '<div class="section-label">Section · ' + a.shortCode + '</div><div class="section-name">' + a.label + '</div><div class="section-desc">' + a.desc + '</div>';
+        form.appendChild(h);
+      }
+    }
+    num++;
+    const div = document.createElement('div');
+    div.className = 'question';
+    div.dataset.qid = q.id;
+    div.dataset.qaxis = q.axis;
+    div.dataset.qtype = q.type;
+    let body = '<div class="q-number">Question ' + num + '</div><div class="q-text">' + q.text + '</div>';
+    if (q.type === 'scale') {
+      body += '<div class="scale-row"><div class="scale-anchor left">' + (q.left || '') + '</div><div class="scale-options">';
+      for (let i=1; i<=5; i++) {
+        body += '<label><input type="radio" name="' + q.id + '" value="' + i + '" required><span>' + i + '</span></label>';
+      }
+      body += '</div><div class="scale-anchor right">' + (q.right || '') + '</div></div>';
+    } else if (q.type === 'choice') {
+      body += '<div class="choice-options">';
+      q.options.forEach(opt => {
+        body += '<label><input type="radio" name="' + q.id + '" value="' + opt.value + '" required><span>' + opt.text + '</span></label>';
+      });
+      body += '</div>';
+    } else if (q.type === 'multi') {
+      body += '<div class="multi-options">';
+      q.options.forEach(opt => {
+        body += '<label><input type="checkbox" name="' + q.id + '" value="' + (opt.code || opt.value) + '"><span>' + opt.text + '</span></label>';
+      });
+      body += '</div>';
+    }
+    if (q.note) body += '<div class="q-note">' + q.note + '</div>';
+    div.innerHTML = body;
+    form.appendChild(div);
+  });
+
+  document.getElementById('progress-note').textContent = qs.length + ' questions in this tier';
+}
+
+function scaleTo9(x) { return Math.round(((x - 1) / 4) * 9); }
+
+// In-memory acknowledgement only. No analytics, extra persistence or auto-resend.
+function createAssessmentCapture({fetchImpl, onState, setTimer = setTimeout, clearTimer = clearTimeout, timeoutMs = 15000}) {
+  const records = new Map();
+  let uncertain = null;
+  const keyFor = payload => JSON.stringify({...payload, timestamp: undefined});
+  function emit(record, state) { record.state = state; onState(state); }
+  function submit(endpoint, payload) {
+    const key = keyFor(payload), previous = records.get(key);
+    if (uncertain) { onState('unknown'); return uncertain.promise; }
+    if (previous && previous.state !== 'rejected') { onState(previous.state); return previous.promise; }
+    if (endpoint !== 'https://api.tantra-authority.com/api/test/submit') {
+      onState('unavailable'); return Promise.resolve('unavailable');
+    }
+    const record = {state: 'pending', promise: null}; records.set(key, record);
+    emit(record, 'pending');
+    const timer = setTimer(() => { uncertain = record; emit(record, 'unknown'); }, timeoutMs);
+    record.promise = Promise.resolve().then(() => fetchImpl(endpoint, {
+      method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(payload)
+    })).then(async response => {
+      // Existing handler rejects validation before any save. Other errors may follow a save.
+      if (response.status === 400) { if (uncertain === record) uncertain = null; emit(record, 'rejected'); return record.state; }
+      if (!response.ok) throw new Error('unconfirmed');
+      const result = await response.json();
+      if (result.ok !== true || typeof result.id !== 'string' || !/^[A-Za-z0-9_-]{1,128}$/.test(result.id) || result.code !== payload.code || typeof result.emailed !== 'boolean') throw new Error('unconfirmed');
+      if (uncertain === record) uncertain = null;
+      emit(record, result.emailed ? 'saved-email-accepted' : 'saved-email-unconfirmed');
+      return record.state;
+    }).catch(() => { uncertain = record; emit(record, 'unknown'); return record.state; })
+      .finally(() => clearTimer(timer));
+    return record.promise;
+  }
+  return {submit};
+}
+function assessmentCaptureMessage(state) {
+  return {
+    pending: 'Your code is ready below. Saving your result…',
+    'saved-email-accepted': 'Your result is saved. Your code email has been accepted for sending. Keep a copy of your code below.',
+    'saved-email-unconfirmed': 'Your result is saved. Email sending is unconfirmed. Keep a copy of your code below.',
+    rejected: 'Your code is ready below. Check your email and entries, then submit again to save your result.',
+    unknown: 'Your code is ready below. Save and email status are unconfirmed. Keep a copy of your code and wait before submitting again.',
+    unavailable: 'Your code is ready below. Saving is unavailable here. Keep a copy of your code.'
+  }[state];
+}
+
+const assessmentCapture = createAssessmentCapture({fetchImpl: (...args) => fetch(...args), onState: state => {
+  const status = document.getElementById('assessment-save-status');
+  if (status) status.textContent = assessmentCaptureMessage(state);
+  document.getElementById('submit-test').disabled = state === 'pending' || state === 'unknown';
+}});
+document.getElementById('submit-test').addEventListener('click', () => {
+  const email = document.getElementById('user-email').value.trim();
+  if (!privateTypeTest && !email) { alert('Add your email so we can send you the code.'); document.getElementById('user-email').focus(); return; }
+
+  const qs = getApplicableQuestions();
+  const axisData = {};
+
+  for (const q of qs) {
+    if (q.type === 'scale' || q.type === 'choice') {
+      const checked = document.querySelector('input[name="' + q.id + '"]:checked');
+      if (!checked) { alert('Missing answer for: "' + q.text.slice(0,80) + '..."'); return; }
+      const val = parseInt(checked.value);
+      if (!axisData[q.axis]) axisData[q.axis] = { sum:0, count:0, internal:q.internal, raw:[] };
+      axisData[q.axis].sum += val;
+      axisData[q.axis].count++;
+      axisData[q.axis].raw.push({ id:q.id, val });
+    } else if (q.type === 'multi') {
+      const codes = Array.from(document.querySelectorAll('input[name="' + q.id + '"]:checked')).map(c => c.value);
+      if (!axisData[q.axis]) axisData[q.axis] = { sum:0, count:0, multi:[], internal:q.internal, raw:[] };
+      axisData[q.axis].multi = (axisData[q.axis].multi || []).concat(codes);
+    }
+  }
+
+  const publicAxes = ['AR','BG','D','PV','OP','RT','S','DM','V'];
+  const codeParts = [];
+  publicAxes.forEach(ax => {
+    if (axisData[ax] && axisData[ax].count > 0) {
+      codeParts.push(ax + '-' + scaleTo9(axisData[ax].sum / axisData[ax].count));
+    }
+  });
+  if (axisData.SH) {
+    const sh = (axisData.SH.multi || []).join('') || 'none';
+    codeParts.push('SH-' + sh);
+  }
+  if (axisData.OPEN && axisData.OPEN.count > 0) codeParts.push('OPEN-' + scaleTo9(axisData.OPEN.sum / axisData.OPEN.count));
+  if (axisData.TRY && axisData.TRY.count > 0) codeParts.push('TRY-' + scaleTo9(axisData.TRY.sum / axisData.TRY.count));
+
+  if (currentTier === 'deep') {
+    ['DG','WOC','COM','AC','FREQ','SO','EW','SHP'].forEach(ax => {
+      if (axisData[ax] && axisData[ax].count > 0) codeParts.push(ax + '-' + scaleTo9(axisData[ax].sum / axisData[ax].count));
+    });
+    if (axisData.FNS && axisData.FNS.count > 0) codeParts.push('FNS-' + scaleTo9(axisData.FNS.sum / axisData.FNS.count));
+    if (axisData.MRC && axisData.MRC.count > 0) codeParts.push('MRC-' + scaleTo9(axisData.MRC.sum / axisData.MRC.count));
+    if (axisData.SP && axisData.SP.multi) codeParts.push('SP-' + (axisData.SP.multi.join('') || 'none'));
+  }
+
+  const codeShort = codeParts.join(' / ');
+  const tierTag = currentTier === 'quick' ? 'Q' : currentTier === 'standard' ? 'S' : 'D';
+  const fullCode = '[' + tierTag + '] ' + codeShort;
+
+  const internalData = {};
+  ['WM'].forEach(ax => {
+    if (axisData[ax] && axisData[ax].count > 0) {
+      internalData[ax] = (axisData[ax].sum / axisData[ax].count).toFixed(2);
+      internalData[ax + '_raw'] = axisData[ax].raw;
+    }
+  });
+
+  const r = document.getElementById('result-area');
+  let html = '<h3>Your code</h3>';
+  html += '<div class="result-code">' + fullCode + '</div>';
+  html += '<div style="font-size:14px;color:var(--text-muted);line-height:1.5;">Your code is ready. Save it for your records. The matching service will use this as your match key when it goes live. The longer-form interpretation appears below.</div>';
+
+  html += '<div class="result-axes">';
+  publicAxes.forEach(ax => {
+    if (axisData[ax] && axisData[ax].count > 0) {
+      const val = scaleTo9(axisData[ax].sum / axisData[ax].count);
+      html += '<div class="result-axis"><div class="label">' + AXES[ax].label + '</div><div class="value">' + ax + '-' + val + '</div><div class="desc">' + AXES[ax].desc + '</div></div>';
+    }
+  });
+  html += '</div>';
+
+  if (axisData.SH && axisData.SH.multi && axisData.SH.multi.length) {
+    html += '<div style="margin-top:16px;font-size:14px;"><strong>Shadow appetite:</strong> ' + axisData.SH.multi.length + ' interests selected</div>';
+  }
+
+  html += '<div style="margin-top:14px;font-size:13px;color:var(--text-muted);"><strong>Save your code</strong> — it\'s your key when matching opens.</div>';
+  if (privateTypeTest) {
+    html += '<div style="margin-top:26px;padding:24px;border:1px solid var(--accent-soft);border-radius:12px;">';
+    html += '<h3 style="margin:0 0 10px;">Want somewhere to begin?</h3>';
+    html += '<p>Choose a book to keep exploring. Your answers and code are not sent to checkout.</p>';
+    html += '<p><a class="cta-button" href="' + typeBookUrl('tantra-for-men-book', location.search) + '">Tantra for Men · $19.97 →</a></p>';
+    html += '<p><a class="cta-button" href="' + typeBookUrl('tantra-for-women-book', location.search) + '">Tantra for Women · $19.97 →</a></p>';
+    html += '<p><a class="cta-button" href="' + typeBookUrl('course-in-freedom', location.search) + '">A Course in Freedom · $19.97 →</a></p>';
+    html += '<p><a href="/launch/">Join the Dec 24 Definitive Guide Vol. 1 Launch →</a></p>';
+    html += '</div>';
+  } else {
+  html += '<div style="margin-top:26px;padding:24px;background:linear-gradient(135deg,rgba(139,58,58,0.08),rgba(184,134,11,0.05));border:1px solid var(--accent-soft);border-radius:12px;text-align:center;">';
+  html += '<div style="font-family:Inter,sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:8px;">Your next step</div>';
+  html += '<h3 style="margin:0 0 10px;font-size:23px;">Now talk it through — privately.</h3>';
+  html += '<p style="color:var(--text-muted);max-width:32em;margin:0 auto 18px;">Your type is the map. Bring it to your own private coach and go as deep as you want — any question about sex, any time, fully yours. <strong>$29/mo.</strong></p>';
+  html += '<a href="https://tantra-authority.com/work-with-lawrence.html" class="cta-button">Talk to your coach →</a>';
+  html += '<div style="margin-top:14px;"><a href="shop.html" style="color:var(--accent);font-size:14px;text-decoration:none;">Or start with a course or book for your type →</a></div>';
+  html += '</div>';
+
+  }
+
+  const _q = new URLSearchParams(location.search);
+  const submission = {
+    timestamp: new Date().toISOString(),
+    tier: currentTier,
+    gender: currentGender || 'unspecified',
+    email,
+    code: fullCode,
+    source: _q.get('utm_source') || _q.get('src') || 'direct',   // traffic attribution (e.g. mgid:k07) → cost-per-lead
+    campaign: _q.get('utm_campaign') || '',
+    axes: {},
+    internal: internalData
+  };
+  Object.keys(axisData).forEach(ax => {
+    if (axisData[ax].count > 0) {
+      submission.axes[ax] = { avg: (axisData[ax].sum / axisData[ax].count).toFixed(2), count: axisData[ax].count };
+    }
+    if (axisData[ax].multi && axisData[ax].multi.length) {
+      submission.axes[ax] = submission.axes[ax] || {};
+      submission.axes[ax].multi = axisData[ax].multi;
+    }
+  });
+
+  if (!privateTypeTest) try {
+    const stored = JSON.parse(localStorage.getItem('ta_test_submissions') || '[]');
+    stored.push(submission);
+    localStorage.setItem('ta_test_submissions', JSON.stringify(stored));
+    localStorage.setItem('ta_test_latest', JSON.stringify(submission));
+  } catch (e) {}
+
+  const TEST_ENDPOINT = window.TA_TEST_ENDPOINT || null;
+  r.innerHTML = html + '<p id="assessment-save-status" role="status" aria-live="polite"></p>';
+  r.style.display = 'block';
+  r.scrollIntoView({ behavior:'smooth', block:'start' });
+  if (privateTypeTest) {
+    document.getElementById('assessment-save-status').textContent = 'Private result: not saved, submitted or emailed. Keep a copy before closing or reloading.';
+  } else assessmentCapture.submit(TEST_ENDPOINT, submission);
+});
+
+</script>
+
+<script>
+if (!privateTypeTest) {
+ const tracker = document.createElement('script');
+ tracker.src = 'https://xpmt.soullight.workers.dev/t.js';
+ tracker.setAttribute('data-prop', 'tantra-authority'); tracker.defer = true;
+ document.head.appendChild(tracker);
+}
+</script>
+<script>
+// Only arrival attribution follows an optional book link. No answers, gender, email or code.
+function typeBookUrl(productId, search) {
+  if (!['tantra-for-men-book', 'tantra-for-women-book', 'course-in-freedom'].includes(productId)) throw new Error('Unknown book');
+  const params = new URLSearchParams(search);
+  const sources = params.has('src') ? params.getAll('src') : params.getAll('utm_source');
+  const source = sources.length === 1 && /^[A-Za-z0-9_.:-]{1,120}$/.test(sources[0]) ? sources[0] : 'private-type-test';
+  const url = new URL('https://tantra-authority.com/checkout.html');
+  url.searchParams.set('product', productId); url.searchParams.set('src', source);
+  const fields = [['xp_vid',64],['xp_exp',64],['xp_arm',32],['xp_prop',64]];
+  const values = fields.map(([key]) => params.getAll(key));
+  if (fields.every(([, max], i) => values[i].length === 1 && values[i][0].length > 0 && values[i][0].length <= max && /^[A-Za-z0-9_.:-]+$/.test(values[i][0]))) fields.forEach(([key], i) => url.searchParams.set(key,values[i][0]));
+  return url.href;
+}
+
+// Preserve a tagged arrival through the existing free-reading doorway.
+// One bounded source identifier only; no assessment answers or contact fields.
+function readingDoorwayUrl(search) {
+  const params = new URLSearchParams(search);
+  const sources = params.has('src') ? params.getAll('src') : params.getAll('utm_source');
+  const source = sources.length === 1 && /^[A-Za-z0-9_.:-]{1,120}$/.test(sources[0])
+    ? sources[0] : 'ta-test-card';
+  const url = new URL('https://tantra-authority.com/erotic-tarot.html');
+  url.searchParams.set('src', source);
+  return url.href;
+}
+document.getElementById('reading-doorway').href = readingDoorwayUrl(location.search);
+</script>
+<script>
+(function(){
+  try{
+    var qs=new URLSearchParams(location.search);
+    var s=(qs.get('src')||qs.get('utm_source')||'').trim().slice(0,120);
+    if(!s) return;
+    document.querySelectorAll('a[href*="checkout.html"], a[href*="/launch/"], a[href*="/books/"]').forEach(function(a){
+      try{
+        var u=new URL(a.getAttribute('href'), location.origin);
+        if(u.origin!==location.origin) return;
+        u.searchParams.set('src', s);
+        a.setAttribute('href', u.pathname + u.search + u.hash);
+      }catch(_){}
+    });
+    document.querySelectorAll('input[name="source"]').forEach(function(inp){
+      inp.value = s;
+    });
+  }catch(_){}
+})();
+</script>
+</body>
+</html>
