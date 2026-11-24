@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<title>Checkout — Tantra Authority</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="/assets/favicon-32.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<script src="https://checkout.clover.com/sdk.js"></script>
+<style>
+  .checkout-wrap { max-width: 460px; margin: 48px auto; padding: 0 20px; }
+  .checkout-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 26px; }
+  .checkout-wrap h1 { font-size: 24px; margin: 0 0 4px; }
+  .checkout-sub { color: var(--text-muted); font-family: 'Inter', sans-serif; font-size: 14px; margin: 0 0 22px; }
+  .prod-head { display: flex; gap: 14px; align-items: center; padding-bottom: 16px; margin-bottom: 8px; border-bottom: 1px solid var(--border); }
+  .prod-head .cover { width: 64px; height: 64px; border-radius: 9px; object-fit: cover; flex: none;
+    box-shadow: 0 6px 18px rgba(40,20,20,.22); border: 1px solid rgba(217,178,94,.4); background:#efe9e0; display:none; }
+  .prod-head .meta { flex: 1; min-width: 0; }
+  .prod-line { display: flex; justify-content: space-between; align-items: baseline; gap: 10px;
+    font-family: 'Inter', sans-serif; }
+  .prod-line .nm { font-weight: 600; font-size: 16px; }
+  .prod-line .pr { color: var(--accent); font-weight: 700; font-size: 18px; white-space: nowrap; }
+  .trust { display: flex; flex-wrap: wrap; gap: 6px 16px; font-family: 'Inter', sans-serif; font-size: 12.5px;
+    color: var(--text-muted); margin: 0 0 18px; }
+  .trust span { display: inline-flex; align-items: center; gap: 5px; }
+  .trust b { color: var(--gold); font-weight: 700; }
+  .codetoggle { display: inline-block; font-family: 'Inter', sans-serif; font-size: 12.5px; color: var(--text-muted);
+    cursor: pointer; margin: 4px 0 0; text-decoration: underline; text-underline-offset: 2px; }
+  #codewrap { display: none; }
+  .guarantee { text-align: center; font-family: 'Inter', sans-serif; font-size: 12.5px; color: var(--text-muted);
+    margin-top: 12px; line-height: 1.5; }
+  .guarantee b { color: var(--gold); font-weight: 700; }
+  .checkout-card label { display: block; font-family: 'Inter', sans-serif; font-size: 13px; color: var(--text-muted); margin: 0 0 6px; }
+  .checkout-card input[type=email] { width: 100%; background: var(--bg); border: 1px solid var(--border); border-radius: 9px;
+    color: var(--text); font: inherit; font-size: 15px; padding: 12px 13px; outline: none; }
+  .checkout-card input[type=email]:focus { border-color: var(--accent); }
+  #card-element { background: var(--bg); border: 1px solid var(--border); border-radius: 9px; padding: 12px 13px; min-height: 46px; margin-top: 14px; }
+  #go { width: 100%; margin-top: 20px; background: var(--gold); color: #fff; border: none; border-radius: 10px;
+    padding: 14px; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 600; cursor: pointer; }
+  #go:disabled { opacity: .5; cursor: default; }
+  .msg { margin-top: 14px; font-family: 'Inter', sans-serif; font-size: 14px; text-align: center; min-height: 18px; }
+  .msg.err { color: var(--accent); }
+  .done a { display: inline-block; margin-top: 10px; }
+  .fine { color: var(--text-muted); font-family: 'Inter', sans-serif; font-size: 12px; text-align: center; margin-top: 16px; line-height: 1.5; }
+  .back { display: block; text-align: center; margin-top: 18px; font-family: 'Inter', sans-serif; font-size: 13px; }
+  /* A quiz reading is a single-purpose purchase, not a visit to the whole store. */
+  .reading-checkout .site-header, .reading-checkout .fine, .reading-checkout .back:not(.support-link),
+  .reading-checkout .codetoggle, .reading-checkout #codewrap, .reading-checkout #bumpwrap,
+  .reading-checkout .guarantee + .guarantee { display: none !important; }
+  .reading-checkout .checkout-wrap { margin-top: 72px; }
+</style>
+<meta property="og:image" content="https://tantra-authority.com/assets/og-default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:image" content="https://tantra-authority.com/assets/og-default.png">
+<meta name="twitter:card" content="summary_large_image">
+<script src="/ta-events.js" defer></script>
+<script src="/ta-track.js" defer></script>
+</head>
+<body>
+<header class="site-header">
+  <div class="site-header-inner">
+    <a href="index.html" class="site-logo">TANTRA <span>AUTHORITY</span></a>
+  </div>
+</header>
+
+<div class="checkout-wrap">
+  <h1>Checkout</h1>
+  <p class="checkout-sub">One-time purchase · Lifetime access · No subscription.</p>
+
+  <div class="checkout-card">
+    <div class="prod-head">
+      <img class="cover" id="prod-cover" alt="">
+      <div class="meta">
+        <div class="prod-line"><span class="nm" id="prod-name">Loading…</span><span class="pr" id="prod-price"></span></div>
+      </div>
+    </div>
+    <div class="trust">
+      <span>⚡ <b>Instant access</b></span>
+      <span>♾️ Yours for life</span>
+      <span>🔒 Secure checkout</span>
+    </div>
+
+    <div id="form" style="display:none">
+      <label for="email">Email <span style="opacity:.6">— so you can recover your access link later</span></label>
+      <input type="email" id="email" placeholder="you@example.com" autocomplete="email">
+      <span class="codetoggle" id="codetoggle">Have a code?</span>
+      <div id="codewrap">
+        <label style="margin-top:8px" for="code">Code</label>
+        <input type="text" id="code" placeholder="" autocapitalize="characters" autocomplete="off" style="width:100%; background:var(--bg); border:1px solid var(--border); border-radius:9px; color:var(--text); font:inherit; font-size:15px; padding:12px 13px; outline:none; text-transform:uppercase;">
+        <div id="code-msg" style="font-family:'Inter',sans-serif; font-size:12.5px; min-height:16px; margin-top:5px;"></div>
+      </div>
+      <div id="bumpwrap" style="display:none; margin-top:16px; border:1px dashed var(--gold); border-radius:9px; padding:12px 13px;">
+        <label style="display:flex; gap:9px; align-items:flex-start; margin:0; cursor:pointer; font-family:'Inter',sans-serif; font-size:13.5px; line-height:1.5; color:var(--text);">
+          <input type="checkbox" id="bump" style="margin-top:3px; accent-color:var(--gold);">
+          <span><b>Add the companion meditation — $9.97.</b> <i>Entering the Heart of God</i>, one deep guided audio session by Lawrence. Delivered instantly with your order.</span>
+        </label>
+      </div>
+      <label style="margin-top:14px">Card</label>
+      <div id="card-element"></div>
+      <button id="go" data-ev="pay_click" data-xp="cta_click" disabled>Loading…</button>
+      <div class="guarantee">🛡️ <b>30-day money-back guarantee.</b> Not happy? Email us — we refund you. No questions.</div>
+      <div class="guarantee" style="font-style:italic;">“Lawrence is red-hot, and so are his radical ideas. This book and his teachings have literally changed my life.”<br><span style="font-style:normal;">— Kelly Russ, from the praise pages of <i>A Course in Freedom</i></span></div>
+    </div>
+
+    <div class="msg" id="msg"></div>
+    <div id="done" class="done" style="display:none"></div>
+  </div>
+
+  <div class="fine">Card secured by Clover — your card details never touch our servers. Adults only. <a href="refunds.html">30-day money-back guarantee</a>.</div>
+  <a class="back" href="shop.html">← Back to the shop</a>
+  <a class="back" href="/launch/" style="margin-top:6px">Dec 24 Book Launch · Vol. 1 →</a>
+  <a class="back" href="checkout-v3.html?product=course-in-freedom" style="margin-top:6px">A Course in Freedom ($19.97) →</a>
+  <a class="back support-link" href="support.html" style="margin-top:6px">Questions? Chat with support →</a>
+</div>
+
+<script>
+const API = "https://api.tantra-authority.com";
+const qs = new URLSearchParams(location.search);
+const productId = (qs.get("product") || "").trim();
+const storedSource = (() => { try { return localStorage.getItem("xpmt_src") || ""; } catch (_) { return ""; } })();
+const source = (qs.get("src") || qs.get("utm_source") || storedSource).slice(0, 120);
+
+// A complete originating tuple survives cross-domain checkout even without a
+// tracker here. Never combine one visitor's query id with another experiment.
+function checkoutAttribution() {
+  const valid = (v, max) => typeof v === "string" && v.length > 0 && v.length <= max && /^[A-Za-z0-9_.:-]+$/.test(v);
+  const fields = [["xp_vid", "xpVid", 64], ["xp_exp", "xpExp", 64], ["xp_arm", "xpArm", 32], ["xp_prop", "xpProp", 64]];
+  const incoming = {};
+  const complete = fields.every(([query, body, max]) => {
+    const values = qs.getAll(query);
+    if (values.length !== 1 || !valid(values[0], max)) return false;
+    incoming[body] = values[0]; return true;
+  });
+  if (complete) return incoming;
+  const x = window.xpmt, keys = Object.keys((x && x.assignments) || {});
+  if (keys.length === 1) {
+    const candidate = {xpVid: x.vid, xpExp: keys[0], xpArm: x.assignments[keys[0]], xpProp: x.property || "tantra-authority"};
+    if (fields.every(([, body, max]) => valid(candidate[body], max))) return candidate;
+  }
+  return {xpVid: "", xpExp: "", xpArm: "", xpProp: ""};
+}
+
+const $ = (id) => document.getElementById(id);
+const msg = $("msg"), go = $("go"), emailEl = $("email"), form = $("form"), done = $("done"), codeEl = $("code"), codeMsg = $("code-msg");
+// "Have a code?" — keep the discount field out of sight for the 99% (a visible code box
+// makes cold buyers leave to hunt for one). Insiders/gift codes still work via the toggle.
+const codeToggle = $("codetoggle");
+codeToggle && codeToggle.addEventListener("click", () => {
+  const w = $("codewrap"); const open = w.style.display === "block";
+  w.style.display = open ? "none" : "block";
+  codeToggle.textContent = open ? "Have a code?" : "Hide code";
+  if (!open && codeEl) codeEl.focus();
+});
+function say(t, err) { msg.textContent = t; msg.className = "msg" + (err ? " err" : ""); }
+function money(cents) { return "$" + (cents / 100).toFixed(2); }
+
+/* ── ORDER BUMP — 50/50 test. Arm A sees the companion-meditation checkbox, arm B doesn't.
+   Impressions + outcomes beacon to the SAME tracker the shop tests use; the number decides.
+   Server re-derives the bump price from its own catalog — the client never sets an amount. */
+const BUMP_ID = "heart-of-god", BUMP_CENTS = 997;
+const bumpArm = Math.random() < 0.5 ? "A" : "B";
+let bumpShown = false, baseCents = 0;
+const beacon = (to, src) => { try { navigator.sendBeacon && navigator.sendBeacon("https://lanoff-links.pages.dev/go?to=" + to + "&src=" + src); } catch (e) {} };
+function payLabel() {
+  const b = $("bump");
+  go.textContent = "Pay " + money(baseCents + ((bumpShown && b && b.checked) ? BUMP_CENTS : 0));
+}
+
+/* Post-purchase upsell: ONE offer, shown only after a BOOK buy — the flagship at the
+   server-side UPGRADE price ($497 instead of $997). Everything else redirects straight in. */
+const BOOK_IDS = ["course-in-freedom","tantra-for-women-book","tantra-for-women-book-b","chakra-healing-book",
+  "hard-alone-soft-with-her","hard-alone-soft-with-her-b","mind-stop-book","free-yourself-from-fear-book",
+  "prophets-training-manual","tantra-for-men-book","reignite-your-desire-book","infinite-mind-book",
+  "symbolic-mind-book","true-power-of-myth-book","open-relationship-blueprint-book"];
+
+let product = null, clover = null, cardMounted = false;
+const QUESTION_BOOK='pleasure-mindset-book';
+function guardedProduct(p){return !!p&&(p.id.startsWith('reading-')||p.id===QUESTION_BOOK);}
+let readingCheckoutRecorded=false;
+function recordReadingCheckout(){
+  if(readingCheckoutRecorded || !guardedProduct(product)) return;
+  const a=readingAttempt || checkoutAttribution();
+  const book=product.id===QUESTION_BOOK;
+  if(a.xpExp!==(book?'question-reading-book-20260914':'quiz-reading-offer-20260913') || !a.xpVid || !a.xpArm || a.xpProp!==(book?'question-reading':'quiz')) return;
+  readingCheckoutRecorded=true;
+  try {fetch('https://xpmt.soullight.workers.dev/e',{method:'POST',headers:{'content-type':'application/json'},keepalive:true,
+    body:JSON.stringify({v:a.xpVid,s:crypto.randomUUID(),p:a.xpProp,src:source,
+      e:[{t:'checkout_open',x:a.xpExp,a:a.xpArm,u:location.pathname+location.search,ts:Date.now()}]})}).catch(()=>{});}catch(_){}
+}
+const READING_ATTEMPT_KEY=(productId===QUESTION_BOOK?'ta-book-attempt:':'ta-reading-attempt:')+productId;
+let readingAttempt=null;
+try { readingAttempt=JSON.parse(sessionStorage.getItem(READING_ATTEMPT_KEY)||'null'); } catch (_) {}
+function saveReadingAttempt(attempt){
+  // Persist BEFORE requesting payment. An uncertain response retries the same token/key.
+  if(attempt) sessionStorage.setItem(READING_ATTEMPT_KEY,JSON.stringify(attempt));
+  else sessionStorage.removeItem(READING_ATTEMPT_KEY);
+  readingAttempt=attempt;
+}
+function readingSecret(){
+  return Array.from(crypto.getRandomValues(new Uint8Array(32)),b=>b.toString(16).padStart(2,'0')).join('');
+}
+function lockReadingInputs(locked){ emailEl.disabled=locked; if(codeEl) codeEl.disabled=locked; }
+
+
+(async function init() {
+  if (!productId) { $("prod-name").textContent = "No product selected."; return; }
+  try {
+    const [prodRes, cfgRes] = await Promise.all([
+      fetch(API + "/api/products").then((r) => r.json()),
+      fetch(API + "/api/pay-config").then((r) => r.json()).catch(()=>({ready:false})),
+    ]);
+    product = (prodRes.products || []).find((p) => p.id === productId);
+    if (!product) { $("prod-name").textContent = "Product not found."; return; }
+
+    const isReading = product.id.startsWith("reading-");
+    const isGuarded=guardedProduct(product);
+    if (isReading) {
+      document.body.classList.add("reading-checkout");
+      $('codetoggle').hidden=true;$('codewrap').hidden=true;
+      document.querySelector("h1").textContent = "Your full reading";
+      document.querySelector(".checkout-sub").textContent = "Three-page PDF by Lawrence Lanoff. One payment. Download immediately.";
+      document.querySelector('.trust').innerHTML='<span>PDF to save and keep</span><span>Access link valid for one year</span>';
+      const proof=document.querySelectorAll('.guarantee');
+      if(proof[1]) proof[1].hidden=true; // This testimonial refers to another book.
+      const back=document.querySelector('.back');
+      if(back){ back.href='https://tantra-authority.com/test-v2.html'; back.textContent='Return to my card'; }
+      document.querySelector('.guarantee').innerHTML='30-day money-back guarantee. <a href="refunds.html">Read the refund policy</a>.';
+      if (source.startsWith("buy:reading-")) beacon("qcheckout", source);
+    }
+
+    if(product.id===QUESTION_BOOK){
+      document.body.classList.add('reading-checkout');
+      $('codetoggle').hidden=true;$('codewrap').hidden=true;
+      document.querySelector('h1').textContent='Your book and meditations';
+      document.querySelector('.checkout-sub').textContent='The Pleasure Mindset by Lawrence Lanoff. Illustrated EPUB ebook + two guided MP3 meditations.';
+      document.querySelector('.trust').innerHTML='<span>One payment · $6.99</span><span>Download after checkout</span>';
+      const proof=document.querySelectorAll('.guarantee');if(proof[1])proof[1].hidden=true;
+      const back=document.querySelector('.back');if(back){back.href='https://tantra-authority.com/test-v2.html';back.textContent='Return to my reading';}
+      document.querySelector('.guarantee').innerHTML='30-day money-back guarantee. <a href="refunds.html">Read the refund policy</a>.';
+    }
+
+    $("prod-name").textContent = product.title;
+    $("prod-price").textContent = product.priceCents > 0 ? money(product.priceCents) : "—";
+    if (product.cover) { const c = $("prod-cover"); c.onerror = () => { c.style.display = "none"; }; c.src = product.cover; c.style.display = "block"; }
+
+    if (!product.buyable) {
+      $("prod-price").textContent = "Coming soon";
+      say("This isn’t open for purchase yet. Join the list and we’ll tell you when it opens.");
+      return;
+    }
+    if(isGuarded && readingAttempt){
+      emailEl.value=readingAttempt.email;lockReadingInputs(true);
+      baseCents=product.priceCents;form.style.display='block';
+      $('card-element').style.display='none';
+      $('card-element').previousElementSibling.style.display='none';
+      $('codetoggle').style.display='none';
+      go.disabled=false;go.textContent='Check my payment';recordReadingCheckout();
+      say('Your previous payment needs confirmation. Retry safely using the same payment attempt.');
+      return;
+    }
+    if (!cfgRes.ready || !cfgRes.publicToken) {
+      say("Checkout isn’t available right now. Please try again shortly.", true);
+      return;
+    }
+
+    clover = new Clover(cfgRes.publicToken, cfgRes.merchantId ? { merchantId: cfgRes.merchantId } : undefined);
+    const card = clover.elements().create("CARD");
+    card.mount("#card-element");
+    cardMounted = true;
+    form.style.display = "block";
+    recordReadingCheckout();
+    baseCents = product.priceCents;
+    payLabel();
+    go.disabled = false;
+    if(isGuarded && readingAttempt){
+      emailEl.value=readingAttempt.email;
+      lockReadingInputs(true);
+      say('Your previous payment needs confirmation. Retry safely using the same payment attempt.');
+      go.textContent='Check my payment';
+    }
+
+    // Order bump: only where it makes sense (never on itself, a session, or a bundle that already includes it).
+    const bumpEligible = !isGuarded && product.id !== BUMP_ID && !(product.items || []).includes(BUMP_ID) && product.priceCents > 0;
+    if (bumpEligible) {
+      beacon("bumpimp", "bump:" + bumpArm);          // eligible checkout view, both arms — the denominator
+      if (bumpArm === "A") {
+        bumpShown = true;
+        $("bumpwrap").style.display = "block";
+        $("bump").addEventListener("change", payLabel);
+      }
+    }
+
+    // Prefill a code carried in the URL (used by the post-purchase upsell link).
+    const urlCode = (qs.get("code") || "").trim();
+    if (urlCode && codeEl && !isGuarded) {
+      $("codewrap").style.display = "block";
+      codeToggle.textContent = "Hide code";
+      codeEl.value = urlCode;
+      codeEl.dispatchEvent(new Event("input"));
+    }
+  } catch (e) {
+    say("Could not load checkout. Refresh to try again.", true);
+  }
+})();
+
+// Live re-price when a secret code is entered (server decides the real price).
+let codeTimer = null;
+codeEl && codeEl.addEventListener("input", () => {
+  clearTimeout(codeTimer);
+  const code = codeEl.value.trim();
+  if (!product) return;
+  if (!code) { codeMsg.textContent = ""; codeMsg.style.color = ""; $("prod-price").textContent = money(product.priceCents); baseCents = product.priceCents; payLabel(); return; }
+  codeTimer = setTimeout(async () => {
+    try {
+      const r = await fetch(API + "/api/quote?product=" + encodeURIComponent(product.id) + "&code=" + encodeURIComponent(code));
+      const d = await r.json();
+      if (d.ok && d.applied) {
+        $("prod-price").textContent = money(d.priceCents);
+        baseCents = d.priceCents; payLabel();
+        codeMsg.textContent = "✓ Code applied — " + money(d.priceCents); codeMsg.style.color = "var(--gold)";
+      } else {
+        $("prod-price").textContent = money(product.priceCents);
+        baseCents = product.priceCents; payLabel();
+        codeMsg.textContent = "That code isn’t valid."; codeMsg.style.color = "var(--accent)";
+      }
+    } catch { /* leave price as-is */ }
+  }, 400);
+});
+
+go.addEventListener("click", async () => {
+  if (go.disabled) return; // A payment request or terminal recovery is already active.
+  const email = emailEl.value.trim();
+  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { say("Add your email so you can recover access later.", true); emailEl.focus(); return; }
+  if (!(guardedProduct(product) && readingAttempt) && (!clover || !cardMounted)) { say("Checkout isn’t ready yet.", true); return; }
+
+  go.disabled = true; say("Processing…");
+  try {
+    const isGuarded=guardedProduct(product);
+    let payload;
+    let bumpTaken=false;
+    if(isGuarded && readingAttempt){
+      payload=readingAttempt;
+    }else{
+      const res = await clover.createToken();
+      if (res.errors) { say(Object.values(res.errors)[0] || "Check your card details.", true); go.disabled = false; return; }
+      bumpTaken = !!(bumpShown && $("bump") && $("bump").checked);
+      payload={productId:product.id,email,token:String(res.token||'').trim(),code:isGuarded ? '' : (codeEl ? codeEl.value.trim() : ''),
+        bump:bumpTaken,abBump:bumpArm,...checkoutAttribution(),src:source,ref:location.href};
+      if(isGuarded){
+        if(!payload.token.startsWith('clv_')){say('Card details could not be secured. Try again.',true);go.disabled=false;return;}
+        payload.attemptId=crypto.randomUUID();payload.attemptSecret=readingSecret();
+        saveReadingAttempt(payload);
+        lockReadingInputs(true);
+      }
+    }
+    const paymentAbort=isGuarded?new AbortController():null;
+    const paymentTimer=paymentAbort?setTimeout(()=>paymentAbort.abort(),25000):null;
+    let r,data;
+    try { r=await fetch(API + "/api/buy", {
+      method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify(payload),
+      ...(paymentAbort?{signal:paymentAbort.signal}:{})
+    }); data=await r.json(); } finally {if(paymentTimer)clearTimeout(paymentTimer);}
+    if (r.ok && data.ok && data.accessUrl) {
+      if(isGuarded){
+        try{saveReadingAttempt(null);}catch(_){}
+        // The paid access link is available even if automatic navigation is interrupted.
+        form.style.display='none';say(product.id===QUESTION_BOOK?'Your ebook and meditations are ready.':'Your reading is ready.');done.style.display='block';
+        const access=document.createElement('a');access.textContent=product.id===QUESTION_BOOK?'Open my ebook and meditations':'Open and download my reading';access.href=data.accessUrl;
+        done.replaceChildren(access);
+        window.location=data.accessUrl;return;
+      }
+      if (product && product.id.startsWith("reading-") && source.startsWith("buy:reading-")) beacon("qpaid", source);
+      beacon("bumpbuy", "bump:" + bumpArm + ":" + (bumpTaken ? "1" : "0"));   // outcome per arm — the numerator
+      if (BOOK_IDS.indexOf(product.id) !== -1 && product.id !== "energy-sex") {
+        // BOOK buy → success screen with the ONE post-purchase upsell (flagship at the UPGRADE price).
+        form.style.display = "none";
+        say("");
+        beacon("upsellimp", "upsell:energy-sex");
+        done.style.display = "block";
+        done.innerHTML =
+          '<p style="font-family:\'Inter\',sans-serif;font-size:15px;line-height:1.55;">✓ You’re in. Your book is ready — the link is also in your email.' +
+          (data.bump ? "<br>Your companion meditation is in your email too." : "") + '</p>' +
+          '<a href="' + data.accessUrl + '" style="display:inline-block;background:var(--gold);color:#fff;text-decoration:none;border-radius:10px;padding:13px 22px;font-family:\'Inter\',sans-serif;font-size:15px;font-weight:600;">Open your book →</a>' +
+          '<div style="margin-top:22px;padding:16px;border:1px solid var(--border);border-radius:12px;text-align:left;font-family:\'Inter\',sans-serif;">' +
+            '<div style="font-size:10.5px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:7px;">For book buyers</div>' +
+            '<div style="font-size:15px;font-weight:600;margin-bottom:5px;">Energy Sex — The Complete Course</div>' +
+            '<div style="font-size:13.5px;color:var(--text-muted);line-height:1.5;margin-bottom:11px;">The flagship. Arousal, devotion and exchange moving through attention, breath and presence — contact optional. The full course, start to finish. Because you just bought a book: <b style="color:var(--text);">$497 instead of $997</b>.</div>' +
+            '<a id="upsell-link" href="checkout-v3.html?product=energy-sex&code=UPGRADE" style="display:inline-block;background:var(--accent);color:#fff;text-decoration:none;border-radius:8px;padding:11px 18px;font-size:13px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;">Take the half-off flagship →</a>' +
+          '</div>';
+        const ul = document.getElementById("upsell-link");
+        if (ul) ul.addEventListener("click", () => beacon("upsellclk", "upsell:energy-sex"));
+      } else {
+        // Straight into the course page. Brief confirmation, then redirect.
+        form.style.display = "none";
+        say(product.id.startsWith("reading-") ? "Your reading is ready. Opening your PDF access…" : "You’re in — opening your course…");
+        window.location = data.accessUrl;
+      }
+    } else if (r.status === 402 && (!isGuarded || data.error==='card_declined')) {
+      if(isGuarded){
+        saveReadingAttempt(null);lockReadingInputs(false);
+        if(!clover || !cardMounted){
+          // A restored attempt skipped card initialization. Reload only after a definitive decline.
+          form.style.display='none';go.disabled=true;
+          say('That card was declined. Enter another card to try again.',true);
+          const restart=document.createElement('a');restart.textContent='Enter another card';restart.href=location.href;
+          done.replaceChildren(restart);done.style.display='block';return;
+        }
+      }
+      say(data.message || "That card was declined. Try another card.", true); go.disabled = false;payLabel();
+    } else if (isGuarded) {
+      const retry=['payment_uncertain'].includes(data.error) || r.status>=500;
+      say(data.message || (retry ? 'Your payment needs confirmation. Retry safely using the same payment attempt.' : 'This payment needs support. Keep this page open and use the support link below.'),true);
+      go.disabled=!retry;go.textContent=retry?'Check my payment':'Payment needs support';
+    } else {
+      say(data.message || "Something went wrong. Try again.", true); go.disabled = false;
+    }
+  } catch (e) {
+    if(guardedProduct(product) && readingAttempt){
+      say('Connection interrupted. Check your payment safely using the same attempt.',true);
+      go.disabled=false;go.textContent='Check my payment';
+    }else{say('Payment could not start. Check your connection and try again.',true);go.disabled=false;}
+  }
+});
+</script>
+<script src="https://xpmt.soullight.workers.dev/t.js" data-prop="tantra-authority" defer></script>
+</body>
+</html>
