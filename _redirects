@@ -1,0 +1,39 @@
+# 301 old funnel URLs to the fixed v2/v3/v4 copies (commit c0e31e7 and related).
+# Old files are intentionally left in the repo so rollback is a git revert.
+# Query strings (product, src, h, utm_*) are preserved by default.
+# GitHub Pages does not honor this file; a Cloudflare Worker
+# (funnel-redirects-worker.js) issues the live 301s for this zone.
+
+/what-is-tantra                     /what-is-tantra-v2/                 301
+/what-is-tantra/                    /what-is-tantra-v2/                 301
+/pleasure-mindset.html              /pleasure-mindset-v2.html           301
+/yt/kiss                            /yt/kiss-v2/                        301
+/yt/kiss/                           /yt/kiss-v2/                        301
+/yt/energy-sex                      /yt/energy-sex-v2/                  301
+/yt/energy-sex/                     /yt/energy-sex-v2/                  301
+/yt/yoni                            /yt/yoni-v3/                        301
+/yt/yoni/                           /yt/yoni-v3/                        301
+/yt/yoni-v2                         /yt/yoni-v3/                        301
+/yt/yoni-v2/                        /yt/yoni-v3/                        301
+/yt/g-spot                          /yt/g-spot-v3/                      301
+/yt/g-spot/                         /yt/g-spot-v3/                      301
+/yt/g-spot-v2                       /yt/g-spot-v3/                      301
+/yt/g-spot-v2/                      /yt/g-spot-v3/                      301
+/yt/beginners                       /yt/beginners-v2/                   301
+/yt/beginners/                      /yt/beginners-v2/                   301
+/start-here.html                    /start-here-v2.html                 301
+/checkout.html                      /checkout-v2.html                   301
+/book.html                          /book-v4.html                       301
+/thank-you.html                     /thank-you-v2.html                  301
+/test.html                          /test-v2.html                       301
+/men.html                           /men-v2.html                        301
+/tantra-for-women.html              /tantra-for-women-v2.html           301
+/hard-alone.html                    /hard-alone-v2.html                 301
+/get-out-of-your-head.html          /get-out-of-your-head-v2.html       301
+/awaken-sexually.html               /awaken-sexually-v2.html            301
+/pleasure-mindset-book.html         /pleasure-mindset-book-v2.html      301
+/psychological-clitorectomy.html    /psychological-clitorectomy-v2.html 301
+/reading-unlimited-30d.html         /reading-unlimited-30d-v2.html      301
+/work-with-lawrence.html            /work-with-lawrence-v2.html         301
+/index.html                         /v4/                                301
+/                                   /v4/                                301
